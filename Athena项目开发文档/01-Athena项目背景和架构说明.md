@@ -11,7 +11,7 @@ O2O 即 Online To Offline，也即将线下商务的机会与互联网结合在�
 
 ## 系统项目架构原理
 
-![Image text](../Athena项目开发文档/images/001.png)
+![Image text](../Athena项目开发文档/images/001系统架构.png)
 
 ### 系统前端
 前后分离开发，分为内网部署和外网部署，外网是面向公众访问的。访问前端项目，可以有手机APP，电脑网页；
