@@ -80,14 +80,136 @@ yum install -y conntrack
 由于个人资源有限，因此在构建整体系统采用的单节点构建KubeSphere容器平台。
 在后期的项目真实的上线的时候可能多集群架构来实现的项目的安装与部署工作。同时后期本人将介绍相关的实战内容。
 
+请确保已启用 OpenPitrix 系统。
+您需要创建一个企业空间、一个项目和一个用户帐户 (project-regular) 供本教程操作使用。该帐户需要是平台普通用户，
+并邀请至项目中赋予 operator 角色作为项目操作员。以project-regular 身份登录控制台，
+在企业空间 demo-workspace 中的 demo-project 项目中进行操作。
+
+
 ### Harobr仓库的部署构建
 
+Harobr是一个开源仓库，通过各种策略和基于角色的访问控制来保护制品，确保镜像经过扫描且没有漏洞，并对镜像签名使其受信。
 
+在 demo-project 项目的概览页面，点击左上角的应用商店。找到 Harbor，点击应用信息页面上的安装。
+设置名称并选择应用版本。请确保将 Harbor 部署在 demo-project 中，点击下一步。
+
+**从应用商店中部署 Harbor**
+
+在应用配置页面，编辑 Harbor 的配置文件，请注意以下字段。
+
+- type：访问 Harbor 服务的方式。本示例使用 nodePort。
+- tls：指定是否启用 HTTPS。多数情况下设置为 false。
+- externalURL：暴露给租户的 URL。
+
+备注：请指定 externalURL，如果您访问 Harbor 有问题，该字段会对解决问题非常有用。配置编辑完成后，点击安装继续。稍等片刻待 Harbor 启动并运行。
+
+```shell
+## 请注意，192.168.0.9 是示例 IP 地址，您必须使用自己的地址。 
+expose:
+  type: nodePort
+  tls:
+    enabled: false
+    secretName: ""
+    notarySecretName: ""
+    commonName: "192.168.0.9"  # 将 commonName 更改成您自己的值。
+  nodePort:
+    # NodePort 服务的名称。
+    name: harbor
+    ports:
+      http:
+        # 使用 HTTP 服务时，Harbor 监听的服务端口。
+        port: 80
+        # 使用 HTTP 服务时，Harbor 监听的节点端口。
+        nodePort: 30002
+      https:
+        # 使用 HTTPS 服务时，Harbor 监听的服务端口。
+        port: 443
+        # 使用 HTTPS 服务时，Harbor 监听的服务端口。
+        nodePort: 30003
+      # 仅在 notary.enabled 设置为 true 时需要此配置。
+      notary:
+        # Notary 监听的服务端口。
+        port: 4443
+        # Notary 监听的节点端口。
+        nodePort: 30004
+externalURL: http://192.168.0.9:30002 # 使用您自己的 IP 地址。
+# Harbor admin 的初始密码。启动 Harbor 后可以通过主页修改。
+harborAdminPassword: "Harbor12345"
+# 用于加密的密钥，必须是包含 16 个字符的字符串。
+secretKey: "not-a-secure-key"
+```
+
+**访问 Harbor**
+
+基于配置文件中 expose.type 字段的设置，访问方式可能会不同。本示例使用 nodePort 访问 Harbor，按照先前步骤中的设置，访问 http://nodeIP:30002。
+
+![img.png](images/harbor.png)
+
+使用默认帐户和密码 (admin/Harbor12345) 登录 Harbor。密码由配置文件中 harborAdminPassword 字段定义。
+
+![img.png](images/harbor_account.jpg)
+
+Harbor常见问题
+
+**如何启用 HTTP 登录？**
+
+在步骤 1 中将 tls.enabled 设置为 false。externalURL 的协议必须和 expose.nodePort.ports 相同。
+如果您使用 Docker 登录，请在 daemon.json 中将 externalURL 设置为 insecure-registries 其中之一，然后重新加载 Docker。
+
+**如何启用 HTTPS 登录？**
+
+使用自签名证书。
+
+- 在步骤 1 中将配置文件中的 tls.enabled 设置为 true，并对应编辑 externalURL。
+- 将 Pod harbor-core 的 /etc/core/ca 中存储的自签名证书复制到您的主机。
+- 先在您的主机中信任该自签名证书，然后重启 Docker。
+
+b. 使用公共 SSL。
+
+- 将证书添加为密钥 (Secret)。
+- 在步骤 1 中将配置文件中的 tls.enabled 设置为 true，并对应编辑 externalURL。
+- 编辑 tls.secretName。
+- 
 ### Nacos部署k8s
 
+Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。
+Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
 
+```shell
+# docker拉取镜像
+ 
+docker pull nacos/nacos-server
+ 
+# 查看镜像
+ 
+docker images
+ 
+# 启动Nacos
+ 
+docker run --env MODE=standalone --name nacos -d -p 8848:8848  nacos/nacos-server
+ 
+# 访问Nacos
+ 
+http://localhost:8848/nacos
+ 
+# docker tag : docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+ 
+docker tag 0e5574283393 fedora/httpd:version1.0
+ 
+# docker push 镜像到的自己的Harbor :docker push [OPTIONS] NAME[:TAG]
+ 
+docker container commit c16378f943fe rhel-httpd:latest
+ 
+docker image tag rhel-httpd:latest registry-host:5000/myadmin/rhel-httpd:latest
+ 
+docker image push registry-host:5000/myadmin/rhel-httpd:latest
+ 
+```
 
+为了解决系统服务注册中心的高可用服务问题，在运行过程中会保存数据或状态。利用的Nacos的来构建Nacos集群的构建。
+登录 KubeSphere 控制台，在已创建的项目下选择 工作负载 → 有状态副本集，进入列表页。
 
+![img.png](images/nacos.png)
 
 ### Mysql的部署
 
