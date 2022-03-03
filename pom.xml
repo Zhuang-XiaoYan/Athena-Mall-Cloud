@@ -10,23 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-<!--        <module>gulimall-common</module>-->
-<!--        <module>gulimall-coupon</module>-->
-<!--        <module>gulimall-gateway</module>-->
-<!--        <module>gulimall-member</module>-->
-<!--        <module>gulimall-order</module>-->
-<!--        <module>gulimall-product</module>-->
-<!--        <module>gulimall-third-party</module>-->
-<!--        <module>gulimall-ware</module>-->
-<!--        <module>gulimall-search</module>-->
-<!--        <module>renren-generator</module>-->
-<!--        <module>gulimall-common</module>-->
-<!--        <module>gulimall-third-party</module>-->
-<!--        <module>gulimall-search</module>-->
-<!--        <module>gulimall-auth-server</module>-->
-<!--        <module>gulimall-cart</module>-->
-<!--        <module>gulimall-test-sso-client</module>-->
-<!--        <module>gulimall-test-sso-server</module>-->
-<!--        <module>gulimall-seckill</module>-->
+
     </modules>
 </project>
