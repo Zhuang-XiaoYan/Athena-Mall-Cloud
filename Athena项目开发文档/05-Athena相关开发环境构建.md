@@ -86,23 +86,149 @@ yum install -y conntrack
 ### Nacos部署k8s
 
 
+
+
+
 ### Mysql的部署
 
+Mysql是一个开源的关系型数据库管理系统 (RDBMS)，它基于最常用的数据库管理语言 SQL。作为世界上最受欢迎的开源数据库，MySQL 为云原生应用部署提供了完全托管的数据库服务。
+
+**从应用商店部署 MySQL**
+
+- 在 demo-project 的概览页面，点击左上角的应用商店。
+
+- 找到 MySQL，在应用信息页面点击安装。
+
+- 设置应用名称和版本，确保 MySQL 部署在 demo-project 项目中，然后点击下一步。
+
+- 在应用配置页面，取消对 mysqlRootPassword 字段的注释并设置密码，然后点击安装。
+
+- 等待 MySQL 创建完成并开始运行。
+
+**访问 MySQL 终端**
+
+- 打开工作负载页面并点击 MySQL 的工作负载名称。
+
+- 在容器组区域，展开容器详情，点击终端图标。
+
+- 在终端窗口中，执行 mysql -uroot -ptesting 命令以 root 用户登录 MySQL。
+
+**从集群外访问 MySQL 数据库**
+
+- 要从集群外访问 MySQL，您需要先用 NodePort 暴露该应用。
+
+- 打开服务页面并点击 MySQL 的服务名称。
+
+- 点击更多操作，在下拉菜单中选择编辑外部访问。
+
+- 将访问模式设置为 NodePort 并点击确定。有关更多信息，请参见项目网关。
+
+- 您可以在端口区域查看暴露的端口。该端口号和公网 IP 地址将在下一步用于访问 MySQL 数据库。
+
+- 您需要使用 MySQL Client 或第三方应用（例如 SQLPro Studio）才能访问 MySQL 数据库。以下演示如何使用 SQLPro Studio 访问 MySQL 数据库
+ 
+![img.png](images/Mysql.png)
 
 ### Redis的部署
 
+Redis是一个开源的（遵循 BSD 协议）、内存中的 (in-memory) 数据结构存储库，用作数据库、缓存和消息代理。
+
+**从应用商店中部署 Redis**
+
+- 在 demo-project 项目的概览页面，点击左上角的应用商店。
+
+- 找到 Redis，点击应用信息页面上的安装。
+
+- 设置名称并选择应用版本。请确保将 Redis 部署在 demo-project 中，点击下一步。
+
+- 在应用配置页面，为应用指定持久化存储卷和密码。操作完成后，点击安装。
+
+- 稍等片刻待 Redis 启动并运行。
+
+- 备注：要为 Redis 指定更多值，请打开右上角的拨动开关查看 YAML 格式的应用清单文件，编辑其配置。
+
+**开启Redis NodePort访问方式**
+
+- 转到服务页面，点击 Redis 的服务名称。
+
+- 在容器组中展开菜单查看容器详情，随后点击终端图标。
+
+- 在弹出窗口的终端中运行 redis-cli 命令来使用该应用。
+
 
 ### MQ的部署
+RabbitMQ是部署最广泛的开源消息代理。它轻量且易于在本地和云上部署，支持多种消息协议。
+RabbitMQ 可在分布和联邦的配置中部署，以满足大规模和高可用性需求。
 
+**从应用商店部署 RabbitMQ**
+
+- 在 demo-project 的概览页面，点击左上角的应用商店。
+
+- 找到 RabbitMQ，在应用信息页面点击安装。
+
+- 设置应用名称和版本，确保 RabbitMQ 部署在 demo-project 项目中，然后点击下一步。
+
+- 在应用配置页面，您可以直接使用默认配置，也可以通过修改表单参数或编辑 YAML 文件自定义配置。您需要记录 Root Username 和 Root Password 的值，用于在后续步骤中登录系统。设置完成后点击安装。
+
+- 提示：如需查看清单文件，请点击 编辑YAML 开关。
+
+- 等待 RabbitMQ 创建完成并开始运行。
+
+**访问 RabbitMQ 并开放NodePort**
+
+要从集群外访问 RabbitMQ，您需要先用 NodePort 暴露该应用。
+
+- 打开服务页面并点击 RabbitMQ 的服务名称。
+
+- 点击更多操作，在下拉菜单中选择编辑外部访问。
+
+- 将访问模式设置为 NodePort 并点击确定。有关更多信息，请参见项目网关。
+
+- 您可以在端口区域查看暴露的端口。
+
+- 用 <NodeIP>:<NodePort> 地址以及步骤 1 中记录的用户名和密码访问 RabbitMQ 的 management 端口。
+
+![img.png](images/MQ.png)
 
 ### Elasticsearch的部署
+**从应用商店部署elasticsearch**
 
+Elasticsearch 是一个分布式的、开源的搜索分析引擎，支持各种数据类型，包括文本、数字、地理、结构化、非结构化。
+Elasticsearch 是 Elastic 产品栈的核心，Elastic 产品栈是个开源工具集合，用于数据接收、存储、分析、可视化。
+
+- 在 demo-project 的概览页面，点击左上角的应用商店。
+
+- 找到 elasticsearch，在应用信息页面点击安装。
+
+- 设置应用名称和版本，确保 elasticsearch部署在 demo-project 项目中，然后点击下一步。
+
+- 在应用配置页面，您可以直接使用默认配置，也可以通过修改表单参数或编辑 YAML 文件自定义配置。您需要记录 Root Username 和 Root Password 的值，用于在后续步骤中登录系统。设置完成后点击安装。
+
+- 提示：如需查看清单文件，请点击 编辑YAML 开关。
+
+- 等待 elasticsearch创建完成并开始运行。
+
+**访问 elasticsearch并开放NodePort**
+
+- 要从集群外访问 elasticsearch，您需要先用 NodePort 暴露该应用。
+
+- 打开服务页面并点击 elasticsearch的服务名称。
+
+- 点击更多操作，在下拉菜单中选择编辑外部访问。
+
+- 将访问模式设置为 NodePort 并点击确定。有关更多信息，请参见项目网关。
+
+- 您可以在端口区域查看暴露的端口。
+
+- 用 <NodeIP>:<NodePort> 地址以及步骤 1 中记录的用户名和密码访问 elasticsearch的 management 端口。
+
+![img.png](images/es.png)
 
 参考：
 
-https://www.bookstack.cn/read/KubeSphere-3.2-zh/4295a21d28df7802-%E5%86%85%E7%BD%AE%E5%BA%94%E7%94%A8.md
-https://zhuangxiaoyan.blog.csdn.net/article/details/122798232
-https://zhuangxiaoyan.blog.csdn.net/article/details/122903393
+- https://www.bookstack.cn/read/KubeSphere-3.2-zh/4295a21d28df7802-%E5%86%85%E7%BD%AE%E5%BA%94%E7%94%A8.md
+- https://zhuangxiaoyan.blog.csdn.net/article/details/122798232
+- https://zhuangxiaoyan.blog.csdn.net/article/details/122903393
 
 
 
