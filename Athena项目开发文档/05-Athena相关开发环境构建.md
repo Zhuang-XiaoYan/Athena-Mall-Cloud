@@ -66,6 +66,11 @@ yum install -y conntrack
 # 使用kk 安装kubesphere
  
 ./kk create cluster --with-kubernetes v1.20.4 --with-kubesphere v3.1.1
+
+## 如果是需要升级的命令
+
+./kk upgrade [--with-kubernetes version] [--with-kubesphere version] 
+
 ```
 ![img.png](images/kubekeyintsall.png)
 
@@ -351,7 +356,8 @@ Elasticsearch 是 Elastic 产品栈的核心，Elastic 产品栈是个开源工�
 - https://www.bookstack.cn/read/KubeSphere-3.2-zh/4295a21d28df7802-%E5%86%85%E7%BD%AE%E5%BA%94%E7%94%A8.md
 - https://zhuangxiaoyan.blog.csdn.net/article/details/122798232
 - https://zhuangxiaoyan.blog.csdn.net/article/details/122903393
-
+- https://github.com/kubesphere/kubekey/
+- https://kubesphere.com.cn/docs/installing-on-linux/introduction/kubekey/
 
 
 
