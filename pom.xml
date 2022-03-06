@@ -5,11 +5,15 @@
     <groupId>com.xunqi.gulimall</groupId>
     <artifactId>gulimall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall</name>
-    <description>聚合服务</description>
+    <name>Athena-mall</name>
+    <description>Athena-总项目聚合</description>
     <packaging>pom</packaging>
 
     <modules>
-
+        <module>athena-coupon</module>
+        <module>athena-member</module>
+        <module>athena-order</module>
+        <module>athena-product</module>
+        <module>athena-ware</module>
     </modules>
 </project>
