@@ -15,6 +15,7 @@
         <module>athena-order</module>
         <module>athena-product</module>
         <module>athena-ware</module>
+        <module>athena-generate</module>
         <module>renren-fast</module>
     </modules>
 </project>
