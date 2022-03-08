@@ -9,7 +9,6 @@
 package com.zhuangxiaoyan.athena.generate.config;
 
 import com.zhuangxiaoyan.athena.generate.dao.*;
-import io.renren.dao.*;
 import com.zhuangxiaoyan.athena.generate.utils.RRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
