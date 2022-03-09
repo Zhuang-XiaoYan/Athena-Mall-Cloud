@@ -51,8 +51,5 @@ public class SkuEsModel {
         private String attrName;
 
         private String attrValue;
-
     }
-
-
 }

@@ -42,5 +42,4 @@ public class SeckillOrderTo {
      */
     private Long memberId;
 
-
 }
