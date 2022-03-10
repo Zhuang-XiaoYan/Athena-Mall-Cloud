@@ -5,13 +5,20 @@ server:
       timeout: 30m
 
 spring:
+  # 配置Spring服务的名称
   application:
     name: athena-order
+  #配置Spring datebase的账户和连接
   datasource:
     username: root
     password: root
     url: jdbc:mysql://192.168.25.137:32081/athena_oms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  # Springcloud alibaba nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.25.137:8848
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml

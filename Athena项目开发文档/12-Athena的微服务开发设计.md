@@ -1,18 +1,12 @@
 # Athena的项目开发计划
 
 
-## 构建基础的环境开发环境
-包括想IDEA git 
+## athena-product微服务设计
 
-## KubeSphere的构建安装与测试
-包括构建k8s等的相关的编译和打包，监控等
+## athena-coupon微服务设计
 
-## 基础组件的安装与测试
-nacaos mysql redis MQ ES等
+## athena-member微服务设计
 
-## 微服务的开发与测试
-项目代码的构建工作 与项目的测试的工作
+## athena-order微服务设计
 
-## 项目的CICD系统项目
-
-## 项目的正式上线与部署。
+## athena-ware微服务设计
