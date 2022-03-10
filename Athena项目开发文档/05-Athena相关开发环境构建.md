@@ -72,12 +72,12 @@ yum install -y conntrack
 ./kk upgrade [--with-kubernetes version] [--with-kubesphere version] 
 
 ```
-![img.png](images/kubekeyintsall.png)
+![img.png](images/kubekey_intsall.png)
 
 ### KubeSphere系统测试
 
-![img.png](images/kubeSpherecontroller.png)
-![img.png](images/account_password.png)
+![img.png](images/kubeSphere_controller.png)
+![img.png](images/kubeSphere_account.png)
 
 
 ## Athena系统基础镜像构建
@@ -148,7 +148,7 @@ secretKey: "not-a-secure-key"
 
 基于配置文件中 expose.type 字段的设置，访问方式可能会不同。本示例使用 nodePort 访问 Harbor，按照先前步骤中的设置，访问 http://nodeIP:30002。
 
-![img.png](images/harbor.png)
+![img.png](images/harbor_login.png)
 
 使用默认帐户和密码 (admin/Harbor12345) 登录 Harbor。密码由配置文件中 harborAdminPassword 字段定义。
 
