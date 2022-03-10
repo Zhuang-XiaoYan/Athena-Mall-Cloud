@@ -11,5 +11,4 @@ public class AthenaProductApplication {
     public static void main(String[] args) {
         SpringApplication.run(AthenaProductApplication.class, args);
     }
-
 }
