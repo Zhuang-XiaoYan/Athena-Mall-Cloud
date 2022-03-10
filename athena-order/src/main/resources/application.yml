@@ -1,16 +1,16 @@
 server:
-  port: 9000
+  port: 10000
   servlet:
     session:
       timeout: 30m
 
 spring:
   application:
-    name: athena-member
+    name: athena-order
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.25.137:32081/athena_ums?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.25.137:32081/athena_oms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
