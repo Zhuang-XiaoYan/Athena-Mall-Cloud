@@ -15,8 +15,6 @@
 	<packaging>jar</packaging>
 	<description>renren-fast</description>
 
-
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -248,27 +246,13 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0</version>
-				<configuration>
-					<fromFile>target/${pack-name}</fromFile>
-					<url><![CDATA[scp://${remote-username}:${remote-passwd}@${remote-addr}${service-path}]]></url>
-					<commands>
-						<!-- Kill Old Process -->
-						<command>kill -9 `ps -ef |grep ${project.artifactId}.jar|grep -v "grep" |awk '{print $2}'`</command>
-						<!-- Restart jar package，write result into renren.log -->
-						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/renren.log 2>&1 & ]]></command>
-						<command><![CDATA[netstat -nptl]]></command>
-						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
-					</commands>
-					<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec-->
-					<displayCommandOutputs>true</displayCommandOutputs>
-				</configuration>
+				<version>1.0-beta-1</version>
 			</plugin>
 
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.0.0</version>
+				<version>1.2.2</version>
 				<!--<executions>-->
 					<!--<execution>-->
 						<!--<phase>package</phase>-->
