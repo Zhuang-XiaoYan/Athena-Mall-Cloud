@@ -21,8 +21,21 @@ import java.util.Map;
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
+
     @Autowired
     private CouponService couponService;
+
+    /**
+     * 提供远程服务调用
+     */
+    @RequestMapping("/member/list")
+    //@RequiresPermissions("coupon:coupon:list")
+    public R membercoupons() {
+        CouponEntity couponEntity=new CouponEntity();
+        couponEntity.setCouponName("满100减10");
+        return R.ok().put("coupons",Arrays.asList(couponEntity));
+    }
+
 
     /**
      * 列表
