@@ -1,10 +1,10 @@
 spring:
   application:
-    name: gulimall-coupon
+    name: gulimall-getway
   # 配置的Springcloud的配置中心
   cloud:
     nacos:
       config:
         server-addr: 192.168.25.1:8848
-        namespace: b4d48f9f-6c1a-4745-92c2-1ddcc11c5bbc
+        namespace: 8ac51f30-2d03-4309-af99-1c254b503963
 

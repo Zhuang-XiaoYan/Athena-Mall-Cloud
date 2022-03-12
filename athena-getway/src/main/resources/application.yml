@@ -1,0 +1,33 @@
+#Spring service的属性
+server:
+  port: 12000
+  servlet:
+    session:
+      timeout: 30m
+
+#spring cloud gateway的基本配置
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id athena-coupon
+          uri: https//192.168.25.1.athena-coupon.com
+            predicates:
+              - Query=url,athena-coupon
+        - id athena-member
+          uri: https//192.168.25.1.athena-member.com
+            predicates:
+              - Query=url,athena-member
+        - id athena-order
+          uri: https//192.168.25.1.athena-order.com
+            predicates:
+              - Query=url,athena-order
+        - id athena-product
+          uri: https//192.168.25.1.athena-product.com
+            predicates:
+              - Query=url,athena-product
+        - id athena-ware
+          uri: https//192.168.25.1.athena-ware.com
+            predicates:
+              - Query=url,athena-coupon
+

@@ -20,7 +20,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.25.137:8848
+        server-addr: 192.168.25.1:8848
 
 # mybatis-plus的系列的属性
 mybatis-plus:

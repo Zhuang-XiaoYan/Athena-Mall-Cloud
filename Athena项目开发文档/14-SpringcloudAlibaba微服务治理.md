@@ -12,23 +12,104 @@
 
 ## SpringCloud Alibaba Nacos的架构与原理
 
+###  Nacos在window下部署
+
+Nacos文档:https://nacos.io/zh-cn/docs/deployment.html
+
+Nacos1.4.0下载地址:https://github.com/alibaba/nacos/releases/tag/1.4.0
+
+![img.png](./images/nacos_download.png)
+
+nacos1.4.0目录结构
+
+![img.png](./images/nacos_structure.png)
+
+nacos1.4.0 Win10单机启动正确方式
+
+```shell
+# nacos1.4.0我这里启动的环境是jdk1.8.0_73,mysql数据库5.7以上就行。
+# 因为如果直接在bin目录下用鼠标双击startup.cmd启动的话，默认的是以cluster(集群)的方式启动，
+# 直接启动第一个会报db.num is null错误，解决完后在报Unable to start embedded Tomcat错误.
+
+- 1.首先通过cmd进入到nacos文件夹里面bin目录
+- 2.然后输入命令startup.cmd -m standalone 这里是将nacos以单机模式运行
+```
+
+![img.png](./images/nacos_start_up.png)
+
+如果启动看到如下，说明启动成功。
+
+![img.png](./images/nacos_standlone.png)
+
+然后在浏览器输入网址:http://IP:8848/nacos/index.html#/login, 用户名和密码默认都是nacos
+
+![img.png](./images/nacos_login.png)
+
+登录成功后是这个页面，到这里单机模式启动就结束了。
+
+![img.png](./images/nacos_admin.png)
+
+###  Nacos在dockerz中部署
+
 ```shell
 # docker的启动命令
-docker run --name nacos -d -p 8848:8848 --privileged=true \
---restart=always \
--e JVM_XMS=512m \
--e JVM_XMX=2048m \
--e MODE=standalone \
--e PREFER_HOST_MODE=hostname \
--v /home/nacos/logs:/home/nacos/logs \
-nacos/nacos-server:1.2.1
+docker run -d -p 8848:8848 -e MODE=standalone \
+-v /root/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties \
+-v /root/nacos/logs:/home/nacos/logs \
+--restart always \
+--name nacos nacos/nacos-server
 ```
+
+然后在浏览器输入网址:http://IP:8848/nacos/index.html#/login, 用户名和密码默认都是nacos
+
+![img.png](./images/nacos_login.png)
+
+登录成功后是这个页面，到这里单机模式启动就结束了。
+
+![img.png](./images/nacos_admin.png)
 
 ### 远程调用与服务发现
 
+```shell
+#Spring service的属性
+server:
+  port: 11000
+  servlet:
+    session:
+      timeout: 30m
+
+# Spring的系列的属性
+spring:
+  # 配置Spring服务的名称
+  application:
+    name: athena-ware
+  #配置Spring datebase的账户和连接
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.25.137:32081/athena_wms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # Springcloud alibaba nacos注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.25.1:8848
+
+# mybatis-plus的系列的属性
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  #设置实体类的自增主键
+  global-config:
+    db-config:
+      id-type: auto
+```
+
 ### 服务配置注册中心
 
-
+给每一个服务建立自己的命令空间。同时每一个的命名空间设置对象的dev test online等
+![img.png](./images/nacos_service.png)
+![img.png](./images/nacos_config_online.png)
+![img.png](./images/Athena微服务配置.png)
 
 ## SpringCloud Ribbon的原理
 
