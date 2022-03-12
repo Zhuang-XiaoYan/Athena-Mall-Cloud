@@ -16,7 +16,6 @@ spring:
     password: root
     url: jdbc:mysql://192.168.25.137:32081/athena_ums?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
-  # Springcloud alibaba nacos注册中心
   cloud:
     nacos:
       # 配置的Springcloud服务注册中心

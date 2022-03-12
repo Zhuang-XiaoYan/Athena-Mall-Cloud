@@ -1,6 +1,7 @@
 package com.zhuangxiaoyan.athena.member.controller;
 
 import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
+import com.zhuangxiaoyan.athena.member.fegin.CouponFeginService;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.R;
@@ -22,6 +23,21 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+   CouponFeginService couponFeginService;
+
+    /**
+     * 调用远程服务
+     * @return
+     */
+    @RequestMapping("/coupons")
+    public R test() {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("庄小焱");
+        R membercoupons = couponFeginService.membercoupons();
+        return R.ok().put("member", memberEntity).put("coupons", membercoupons.get("coupons"));
+    }
 
     /**
      * 列表

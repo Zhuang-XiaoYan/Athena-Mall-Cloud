@@ -1,5 +1,11 @@
 # Athena系统相关参数说明
 
+## 项目的软件依赖版本
+```shell
+<java.version>1.8</java.version>
+<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+
+```
 ## 项目相关参数
 - QPS指标
 - TPS指标
