@@ -19,8 +19,14 @@ spring:
   # Springcloud alibaba nacos注册中心
   cloud:
     nacos:
+      # 配置的Springcloud服务注册中心
       discovery:
-        server-addr: 192.168.25.1:8848
+        server-addr: 192.168.25.137:30768
+      # 配置的Springcloud配置中心
+      config:
+        server-addr: 192.168.25.137:30768
+        namespace: 21c9a248-bf5c-4231-9593-4311ace56b06
+        group: dev
 
 # mybatis-plus的系列的属性
 mybatis-plus:

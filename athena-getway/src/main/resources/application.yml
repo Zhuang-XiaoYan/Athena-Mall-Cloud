@@ -7,7 +7,19 @@ server:
 
 #spring cloud gateway的基本配置
 spring:
+  application:
+    name: athena-getway
   cloud:
+    nacos:
+      # 配置的Springcloud的服务注册中心
+      discovery:
+        server-addr: 192.168.25.137:30768
+      # 配置的Springcloud的配置中心
+      config:
+        server-addr: 192.168.25.137:30768
+        namespace: a9784a61-b784-44e3-b74d-7939d2b35c0a
+        group: dev
+
     gateway:
       routes:
         - id athena-coupon
