@@ -119,6 +119,15 @@ mybatis-plus:
 
 ## SpringCloud Gateway的原理
 
+### SpringCloud Gateway的使用
+
+### SpringCloud Gateway的配置
+
+### SpringCloud Gateway的相关原理
+
+### SpringCloud Gateway的在athena系统中的设计架构
+
+
 ## SpringCloud Sleuth的原理
 
 ## SpringCloud Alibaba Seata的原理
