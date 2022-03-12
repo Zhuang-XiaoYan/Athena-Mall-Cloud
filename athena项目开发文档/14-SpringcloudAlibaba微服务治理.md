@@ -110,6 +110,8 @@ mybatis-plus:
 ![img.png](./images/nacos_service.png)
 ![img.png](./images/nacos_config_online.png)
 ![img.png](./images/Athena微服务配置.png)
+![img.png](./images/nacos_discovery.png)
+
 
 ## SpringCloud Ribbon的原理
 

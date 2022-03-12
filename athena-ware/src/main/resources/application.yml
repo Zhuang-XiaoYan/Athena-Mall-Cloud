@@ -22,11 +22,6 @@ spring:
       # 配置的Springcloud服务注册中心
       discovery:
         server-addr: 192.168.25.137:30768
-      # 配置的Springcloud配置中心
-      config:
-        server-addr: 192.168.25.137:30768
-        namespace: eac66387-74d0-4c05-9d99-e79308dbaebc
-        group: dev
 
 # mybatis-plus的系列的属性
 mybatis-plus:

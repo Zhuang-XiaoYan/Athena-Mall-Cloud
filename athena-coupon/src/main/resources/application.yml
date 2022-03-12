@@ -12,21 +12,15 @@ spring:
     name: athena-coupon
   #配置Spring datebase的账户和连接
   datasource:
-    username: root`
+    username: root
     password: root
     url: jdbc:mysql://192.168.25.137:32081/athena_sms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
-  # Springcloud alibaba nacos注册中心
   cloud:
     nacos:
-      # 配置的Springcloud的服务注册中心
+      # 配置的Springcloud服务注册中心
       discovery:
         server-addr: 192.168.25.137:30768
-      # 配置的Springcloud的配置中心
-      config:
-        server-addr: 192.168.25.137:30768
-        namespace: 96238780-9411-4293-bedf-2f22c6cafc93
-        group: dev
 
 # mybatis-plus的系列的属性
 mybatis-plus:
