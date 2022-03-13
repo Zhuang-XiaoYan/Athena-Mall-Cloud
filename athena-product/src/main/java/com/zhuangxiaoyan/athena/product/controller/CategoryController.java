@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +23,22 @@ import java.util.Map;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+
+
+    /**
+     * @description TODO 查询出所有的分类以及子分类，以及树形结构
+      * @param:
+     * @date: 2022/3/13 17:35
+     * @return: com.zhuangxiaoyan.common.utils.R
+     * @author: xjl
+    */
+    @RequestMapping("/list/tree")
+    public R list() {
+        List<CategoryEntity> entities=categoryService.listWithTree();
+        return R.ok().put("date", entities);
+    }
+
 
     /**
      * 列表
@@ -74,8 +91,6 @@ public class CategoryController {
     //@RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds) {
         categoryService.removeByIds(Arrays.asList(catIds));
-
         return R.ok();
     }
-
 }
