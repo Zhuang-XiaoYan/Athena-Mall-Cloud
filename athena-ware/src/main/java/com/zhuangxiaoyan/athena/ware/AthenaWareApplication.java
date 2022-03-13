@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
+@EnableFeignClients(basePackages = "com.zhuangxiaoyan.athena.ware.fegin")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class AthenaWareApplication {
