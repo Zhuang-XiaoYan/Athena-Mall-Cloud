@@ -115,21 +115,20 @@ mybatis-plus:
 
 ## SpringCloud Ribbon的原理
 
+## SpringCloud Ribbon的使用
+
 ## SpringCloud Feign的原理
 
-## SpringCloud Alibaba Sentinel的原理
+## SpringCloud Feign的使用
 
 ## SpringCloud Gateway的原理
 
 ### SpringCloud Gateway的使用
 
-### SpringCloud Gateway的配置
-
-### SpringCloud Gateway的相关原理
-
 ### SpringCloud Gateway的在athena系统中的设计架构
-
 
 ## SpringCloud Sleuth的原理
 
 ## SpringCloud Alibaba Seata的原理
+
+## SpringCloud Alibaba Sentinel的原理

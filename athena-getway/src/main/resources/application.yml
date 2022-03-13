@@ -14,32 +14,14 @@ spring:
       # 配置的Springcloud的服务注册中心
       discovery:
         server-addr: 192.168.25.137:30768
-      # 配置的Springcloud的配置中心
-      config:
-        server-addr: 192.168.25.137:30768
-        namespace: a9784a61-b784-44e3-b74d-7939d2b35c0a
-        group: dev
-
     gateway:
       routes:
         - id athena-coupon
-          uri: https//192.168.25.1.athena-coupon.com
+          uri: http://192.168.25.1:8000/coupon/coupon/list
             predicates:
-              - Query=url,athena-coupon
+              - Query=url,coupon
         - id athena-member
-          uri: https//192.168.25.1.athena-member.com
+          uri: http://192.168.25.1:8000/member/member/list
             predicates:
-              - Query=url,athena-member
-        - id athena-order
-          uri: https//192.168.25.1.athena-order.com
-            predicates:
-              - Query=url,athena-order
-        - id athena-product
-          uri: https//192.168.25.1.athena-product.com
-            predicates:
-              - Query=url,athena-product
-        - id athena-ware
-          uri: https//192.168.25.1.athena-ware.com
-            predicates:
-              - Query=url,athena-coupon
+              - Query=url,member
 
