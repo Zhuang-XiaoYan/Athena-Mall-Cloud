@@ -46,8 +46,8 @@
 
 ## Athena-parent 项目源码
 
-gitee :https://gitee.com/xjl2462612540/Athena
-github:https://github.com/2462612540/Athena
+- gitee :https://gitee.com/xjl2462612540/Athena
+- github:https://github.com/2462612540/Athena
 
 # Project Summary
 
