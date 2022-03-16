@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.zhunagxiaoyan.athena.admin</groupId>
+	<artifactId>athena-admin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>athena-admin</name>
+	<description>athena-admin</description>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.4.RELEASE</version>
-		<relativePath/>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>io.renren</groupId>
-	<artifactId>renren-fast</artifactId>
-	<version>3.0.0</version>
-	<packaging>jar</packaging>
-	<description>renren-fast</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -46,9 +47,9 @@
 		<!--wagon plugin 配置-->
 		<service-path>/work/renren</service-path>
 		<pack-name>${project.artifactId}-${project.version}.jar</pack-name>
-		<remote-addr>192.168.1.10:22</remote-addr>
+		<remote-addr>192.168.25.141:22</remote-addr>
 		<remote-username>root</remote-username>
-		<remote-passwd>123456</remote-passwd>
+		<remote-passwd>root</remote-passwd>
 	</properties>
 
 	<dependencies>
@@ -78,11 +79,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
@@ -98,6 +94,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
+		</dependency>
+		<!--mysql驱动-->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>${mssql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -246,21 +248,27 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
-				<version>1.0-beta-1</version>
+				<version>1.0</version>
+				<configuration>
+					<fromFile>target/${pack-name}</fromFile>
+					<url><![CDATA[scp://${remote-username}:${remote-passwd}@${remote-addr}${service-path}]]></url>
+					<commands>
+						<!-- Kill Old Process -->
+						<command>kill -9 `ps -ef |grep ${project.artifactId}.jar|grep -v "grep" |awk '{print $2}'`</command>
+						<!-- Restart jar package，write result into renren.log -->
+						<command><![CDATA[nohup java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/renren.log 2>&1 & ]]></command>
+						<command><![CDATA[netstat -nptl]]></command>
+						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
+					</commands>
+					<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec-->
+					<displayCommandOutputs>true</displayCommandOutputs>
+				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>1.2.2</version>
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<phase>package</phase>-->
-						<!--<goals>-->
-							<!--<goal>build</goal>-->
-						<!--</goals>-->
-					<!--</execution>-->
-				<!--</executions>-->
+				<version>1.0.0</version>
 				<configuration>
 					<imageName>renren/fast</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
@@ -272,7 +280,6 @@
 						</resource>
 					</resources>
 				</configuration>
-				<!-- 运行命令 mvn clean package docker:build 打包并生成docker镜像 -->
 			</plugin>
 		</plugins>
 	</build>
@@ -287,6 +294,7 @@
 			</releases>
 		</repository>
 	</repositories>
+
 	<pluginRepositories>
 		<pluginRepository>
 			<id>public</id>
@@ -300,5 +308,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+
 
 </project>
