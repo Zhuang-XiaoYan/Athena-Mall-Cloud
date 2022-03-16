@@ -7,7 +7,6 @@
  */
 package com.zhunagxiaoyan.athena.admin.common.exception;
 
-
 /**
  * 自定义异常
  *

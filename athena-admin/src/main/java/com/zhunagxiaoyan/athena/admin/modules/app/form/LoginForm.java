@@ -8,7 +8,6 @@
 
 package com.zhunagxiaoyan.athena.admin.modules.app.form;
 
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

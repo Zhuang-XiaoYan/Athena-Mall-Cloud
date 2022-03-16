@@ -8,7 +8,6 @@
 
 package com.zhunagxiaoyan.athena.admin.modules.oss.cloud;
 
-
 import com.zhunagxiaoyan.athena.admin.common.validator.group.AliyunGroup;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.QcloudGroup;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.QiniuGroup;

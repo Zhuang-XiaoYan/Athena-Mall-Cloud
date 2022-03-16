@@ -17,7 +17,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * 菜单管理
  *
@@ -42,7 +41,7 @@ public class SysMenuEntity implements Serializable {
     /**
      * 父菜单名称
      */
-    @TableField(exist=false)
+    @TableField(exist = false)
     private String parentName;
 
     /**
@@ -78,9 +77,9 @@ public class SysMenuEntity implements Serializable {
     /**
      * ztree属性
      */
-    @TableField(exist=false)
+    @TableField(exist = false)
     private Boolean open;
 
-    @TableField(exist=false)
-    private List<SysMenuEntity> list=new ArrayList<>();
+    @TableField(exist = false)
+    private List<SysMenuEntity> list = new ArrayList<>();
 }

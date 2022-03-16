@@ -7,6 +7,7 @@
  */
 
 package com.zhunagxiaoyan.athena.admin.common.utils;
+
 import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
