@@ -32,8 +32,6 @@ public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, Sc
                 new Query<ScheduleJobLogEntity>().getPage(params),
                 new QueryWrapper<ScheduleJobLogEntity>().like(StringUtils.isNotBlank(jobId), "job_id", jobId)
         );
-
         return new PageUtils(page);
     }
-
 }

@@ -7,7 +7,7 @@ server:
   port: 8080
   connection-timeout: 5000ms
   servlet:
-    context-path: /renren-fast
+    context-path: /athena-admin
 
 spring:
   # 环境 dev|test|prod
@@ -45,7 +45,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: io.renren.modules.*.entity
+  typeAliasesPackage: com.zhunagxiaoyan.athena.admin.modules.*.entity
   global-config:
     #数据库相关配置
     db-config:
@@ -70,7 +70,7 @@ renren:
   # APP模块，是通过jwt认证的，如果要使用APP模块，则需要修改【加密秘钥】
   jwt:
     # 加密秘钥
-    secret: f4e2e52034348f86b67cde581c0f9eb5[www.renren.io]
+    secret: f4e2e52034348f86b67cde581c0f9eb5[zhuangxiaoyan]
     # token有效时长，7天，单位秒
     expire: 604800
     header: token
