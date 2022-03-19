@@ -19,5 +19,6 @@
         <module>athena-generate</module>
         <module>athena-common</module>
         <module>athena-getway</module>
+        <module>athena-oss</module>
     </modules>
 </project>
