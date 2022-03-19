@@ -7,11 +7,12 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-28 14:51
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:38
+ * @return:
+ * @author: xjl
+ */
 
 @ToString
 @Data

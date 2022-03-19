@@ -3,11 +3,12 @@ package com.zhuangxiaoyan.common.to.mq;
 import lombok.Data;
 
 /**
- * @Description: 发送到mq消息队列的to
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-07-06 21:03
- **/
+ * @description 发送消息到MQ中
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
+ */
 
 @Data
 public class StockLockedTo {

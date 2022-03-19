@@ -1,11 +1,12 @@
 package com.zhuangxiaoyan.common.constant;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-06-01 17:10
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:33
+ * @return:
+ * @author: xjl
+ */
 public class WareConstant {
 
     public enum PurchaseStatusEnum {

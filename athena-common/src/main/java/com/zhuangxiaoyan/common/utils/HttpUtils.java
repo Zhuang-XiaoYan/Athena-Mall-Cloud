@@ -31,11 +31,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-27 09:33
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:35
+ * @return:
+ * @author: xjl
+ */
 public class HttpUtils {
 
     /**

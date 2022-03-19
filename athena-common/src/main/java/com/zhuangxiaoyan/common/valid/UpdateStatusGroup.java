@@ -1,10 +1,11 @@
 package com.zhuangxiaoyan.common.valid;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-05-27 18:12
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:38
+ * @return:
+ * @author: xjl
+ */
 public interface UpdateStatusGroup {
 }

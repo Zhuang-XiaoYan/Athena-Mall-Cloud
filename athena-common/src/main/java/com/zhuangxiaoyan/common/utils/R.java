@@ -16,9 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 返回数据
- *
- * @author Mark sunlightcs@gmail.com
+ * @description 返回数据
+ * @param: null
+ * @date: 2022/3/19 18:37
+ * @return:
+ * @author: xjl
  */
 public class R extends HashMap<String, Object> {
     private static final long serialVersionUID = 1L;

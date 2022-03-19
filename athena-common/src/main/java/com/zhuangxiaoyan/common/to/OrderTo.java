@@ -6,11 +6,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-07-07 11:07
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
+ */
 
 @Data
 public class OrderTo {

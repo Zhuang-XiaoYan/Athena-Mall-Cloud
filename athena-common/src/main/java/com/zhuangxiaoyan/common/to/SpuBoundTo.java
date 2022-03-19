@@ -5,11 +5,12 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-06-01 08:45
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
+ */
 
 @Data
 public class SpuBoundTo {

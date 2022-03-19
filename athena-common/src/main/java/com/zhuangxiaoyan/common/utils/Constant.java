@@ -9,9 +9,11 @@
 package com.zhuangxiaoyan.common.utils;
 
 /**
- * 常量
- *
- * @author Mark sunlightcs@gmail.com
+ * @description 常量
+ * @param: null
+ * @date: 2022/3/19 18:35
+ * @return:
+ * @author: xjl
  */
 public class Constant {
     /**

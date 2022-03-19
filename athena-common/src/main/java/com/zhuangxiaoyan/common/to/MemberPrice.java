@@ -8,10 +8,11 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * Auto-generated: 2020-05-31 11:3:26
- *
- * @author bejson.com (i@bejson.com)
- * @website http://www.bejson.com/java2pojo/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
  */
 
 @Data

@@ -9,9 +9,11 @@
 package com.zhuangxiaoyan.common.utils;
 
 /**
- * 自定义异常
- *
- * @author Mark sunlightcs@gmail.com
+ * @description 自定义异常
+ * @param: null
+ * @date: 2022/3/19 18:37
+ * @return:
+ * @author: xjl
  */
 public class RRException extends RuntimeException {
     private static final long serialVersionUID = 1L;

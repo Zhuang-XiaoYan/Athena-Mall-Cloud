@@ -1,11 +1,12 @@
 package com.zhuangxiaoyan.common.constant;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-06-27 10:57
- **/
+ * @description TODO
+ * @param: xjl
+ * @date: 2022/3/19 18:33
+ * @return:
+ * @author: xjl
+ */
 public class AuthServerConstant {
 
     public static final String SMS_CODE_CACHE_PREFIX = "sms:code:";

@@ -14,9 +14,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 分页工具类
- *
- * @author Mark sunlightcs@gmail.com
+ * @description 分页工具类
+ * @param: null
+ * @date: 2022/3/19 18:36
+ * @return:
+ * @author: xjl
  */
 public class PageUtils implements Serializable {
     private static final long serialVersionUID = 1L;

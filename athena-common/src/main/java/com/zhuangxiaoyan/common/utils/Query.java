@@ -17,9 +17,11 @@ import org.apache.commons.lang.StringUtils;
 import java.util.Map;
 
 /**
- * 查询参数
- *
- * @author Mark sunlightcs@gmail.com
+ * @description 查询参数
+ * @param: null
+ * @date: 2022/3/19 18:36
+ * @return:
+ * @author: xjl
  */
 public class Query<T> {
 

@@ -12,9 +12,11 @@ import com.zhuangxiaoyan.common.utils.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * SQL过滤
- *
- * @author Mark sunlightcs@gmail.com
+ * @description SQL过滤
+ * @param: null
+ * @date: 2022/3/19 18:38
+ * @return:
+ * @author: xjl
  */
 public class SQLFilter {
 

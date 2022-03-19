@@ -3,11 +3,12 @@ package com.zhuangxiaoyan.common.to;
 import lombok.Data;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-06-06 15:38
- **/
+ * @description TODO
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
+ */
 
 @Data
 public class SkuHasStockVo {

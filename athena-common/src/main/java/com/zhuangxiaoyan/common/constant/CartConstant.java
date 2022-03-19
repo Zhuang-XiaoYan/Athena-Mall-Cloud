@@ -1,11 +1,12 @@
 package com.zhuangxiaoyan.common.constant;
 
 /**
- * @Description: 购物车常量
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-06-30 17:39
- **/
+ * @description 购物车常量
+ * @param: xjl
+ * @date: 2022/3/19 18:33
+ * @return:
+ * @author: xjl
+ */
 public class CartConstant {
 
     public final static String TEMP_USER_COOKIE_NAME = "user-key";

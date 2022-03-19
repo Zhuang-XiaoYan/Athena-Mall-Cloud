@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @Description: 无库存抛出的异常
- * @Created: with IntelliJ IDEA.
- * @author:
- * @createTime: 2020-07-05 11:39
- **/
-
+ * @description 无库存抛出的异常
+ * @param: null
+ * @date: 2022/3/19 18:34
+ * @return:
+ * @author: xjl
+ */
 public class NoStockException extends RuntimeException {
 
     @Getter

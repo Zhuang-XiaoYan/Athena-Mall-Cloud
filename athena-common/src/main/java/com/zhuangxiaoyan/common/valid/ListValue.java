@@ -10,12 +10,12 @@ import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * @Description: 自定义注解规则
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-05-27 17:48
- **/
-
+ * @description 自定义注解规则
+ * @param: null
+ * @date: 2022/3/19 18:37
+ * @return:
+ * @author: xjl
+ */
 @Documented
 @Constraint(validatedBy = {ListValueConstraintValidator.class})
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
