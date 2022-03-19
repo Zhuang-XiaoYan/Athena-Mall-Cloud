@@ -1,11 +1,8 @@
-
-
 # 1. 用户管理提供数据接口
 
 搭建gmall-ums略。。。。
 
 参照课前资料中的《前端商城接口文档.md》编写数据接口
-
 
 ## 1.1. 数据验证功能
 
@@ -16,26 +13,22 @@
 - 请求参数：param,type
 - 返回结果：true或false
 
-
-
 ### 1.1.2. UserController
 
 ```java
 /**
-     * 校验数据是否可用
-     * @param data
-     * @param type
-     * @return
-     */
+ * 校验数据是否可用
+ * @param data
+ * @param type
+ * @return
+ */
 @GetMapping("check/{data}/{type}")
-public ResponseVo<Boolean> checkData(@PathVariable("data") String data, @PathVariable("type") Integer type) {
-    Boolean b = this.userService.checkData(data, type);
+public ResponseVo<Boolean> checkData(@PathVariable("data") String data,@PathVariable("type") Integer type){
+        Boolean b=this.userService.checkData(data,type);
 
-    return ResponseVo.ok(b);
-}
+        return ResponseVo.ok(b);
+        }
 ```
-
-
 
 ### 1.1.2. UserService
 
@@ -44,26 +37,24 @@ public ResponseVo<Boolean> checkData(@PathVariable("data") String data, @PathVar
 private UserMapper userMapper;
 
 @Override
-public Boolean checkData(String data, Integer type) {
-    QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
-    switch (type) {
+public Boolean checkData(String data,Integer type){
+        QueryWrapper<UserEntity> wrapper=new QueryWrapper<>();
+        switch(type){
         case 1:
-            wrapper.eq("username", data);
-            break;
+        wrapper.eq("username",data);
+        break;
         case 2:
-            wrapper.eq("phone", data);
-            break;
+        wrapper.eq("phone",data);
+        break;
         case 3:
-            wrapper.eq("email", data);
-            break;
-        default:
-            return null;
-    }
-    return this.userMapper.selectCount(wrapper) == 0;
-}
+        wrapper.eq("email",data);
+        break;
+default:
+        return null;
+        }
+        return this.userMapper.selectCount(wrapper)==0;
+        }
 ```
-
-
 
 ### 1.1.3. 测试
 
@@ -76,8 +67,6 @@ public Boolean checkData(String data, Integer type) {
 ![1570084470608](assets/1570084470608.png)
 
 ![1570084533646](assets/1570084533646.png)
-
-
 
 ## 1.2. 发送短信功能
 
@@ -92,11 +81,7 @@ public Boolean checkData(String data, Integer type) {
 
 验证码有一定有效期，一般是5分钟，我们可以利用Redis的过期机制来保存。
 
-
-
 具体实现略。。。。
-
-
 
 ## 1.3. 注册功能
 
@@ -108,63 +93,57 @@ public Boolean checkData(String data, Integer type) {
 - 4）写入数据库
 - 5）删除Redis中的验证码
 
-
-
 ### 1.3.1. UserController
 
 ```java
 /**
-     * 注册
-     * @param userEntity
-     * @param code
-     * @return
-     */
+ * 注册
+ * @param userEntity
+ * @param code
+ * @return
+ */
 @PostMapping("register")
-public ResponseVo<Object> register(UserEntity userEntity, @RequestParam("code") String code) {
-    this.userService.register(userEntity, code);
+public ResponseVo<Object> register(UserEntity userEntity,@RequestParam("code") String code){
+        this.userService.register(userEntity,code);
 
-    return ResponseVo.ok(null);
-}
+        return ResponseVo.ok(null);
+        }
 ```
-
-
 
 ### 1.3.2. UserService
 
 ```java
-public void register(UserEntity userEntity, String code) {
-    // 校验短信验证码
-    // String cacheCode = this.redisTemplate.opsForValue().get(KEY_PREFIX + userEntity.getPhone());
-    // if (!StringUtils.equals(code, cacheCode)) {
-    //     return false;
-    // }
+public void register(UserEntity userEntity,String code){
+        // 校验短信验证码
+        // String cacheCode = this.redisTemplate.opsForValue().get(KEY_PREFIX + userEntity.getPhone());
+        // if (!StringUtils.equals(code, cacheCode)) {
+        //     return false;
+        // }
 
-    // 生成盐
-    String salt = StringUtils.replace(UUID.randomUUID().toString(), "-", "");
-    userEntity.setSalt(salt);
+        // 生成盐
+        String salt=StringUtils.replace(UUID.randomUUID().toString(),"-","");
+        userEntity.setSalt(salt);
 
-    // 对密码加密
-    userEntity.setPassword(DigestUtils.md5Hex(salt + DigestUtils.md5Hex(userEntity.getPassword())));
+        // 对密码加密
+        userEntity.setPassword(DigestUtils.md5Hex(salt+DigestUtils.md5Hex(userEntity.getPassword())));
 
-    // 设置创建时间等
-    userEntity.setCreateTime(new Date());
-    userEntity.setLevelId(1l);
-    userEntity.setStatus(1);
-    userEntity.setIntegration(0);
-    userEntity.setGrowth(0);
-    userEntity.setNickname(userEntity.getUserName());
+        // 设置创建时间等
+        userEntity.setCreateTime(new Date());
+        userEntity.setLevelId(1l);
+        userEntity.setStatus(1);
+        userEntity.setIntegration(0);
+        userEntity.setGrowth(0);
+        userEntity.setNickname(userEntity.getUserName());
 
-    // 添加到数据库
-    boolean b = this.save(userEntity);
+        // 添加到数据库
+        boolean b=this.save(userEntity);
 
-    // if(b){
-    // 注册成功，删除redis中的记录
-    // this.redisTemplate.delete(KEY_PREFIX + memberEntity.getPhone());
-    // }
-}
+        // if(b){
+        // 注册成功，删除redis中的记录
+        // this.redisTemplate.delete(KEY_PREFIX + memberEntity.getPhone());
+        // }
+        }
 ```
-
-
 
 ### 1.3.3. 测试
 
@@ -178,8 +157,6 @@ public void register(UserEntity userEntity, String code) {
 
 查看redis中的信息也被删除
 
-
-
 ## 1.4. 查询用户
 
 请求方式：GET
@@ -190,67 +167,61 @@ public void register(UserEntity userEntity, String code) {
 
 响应数据：用户的json格式
 
-
-
 ### 1.4.1. controller
 
 ```java
     @GetMapping("query")
-    public ResponseVo<UserEntity> queryUser(
-            @RequestParam("loginName")String loginName,
-            @RequestParam("password")String password
-    ){
-        UserEntity userEntity = this.userService.queryUser(loginName, password);
+public ResponseVo<UserEntity> queryUser(
+@RequestParam("loginName")String loginName,
+@RequestParam("password")String password
+        ){
+        UserEntity userEntity=this.userService.queryUser(loginName,password);
         return ResponseVo.ok(userEntity);
-    }
+        }
 ```
 
 ### 1.4.2. service
 
 ```java
 @Override
-public UserEntity queryUser(String loginName, String password) {
+public UserEntity queryUser(String loginName,String password){
 
-    // 1.根据登录名查询用户信息（拿到盐）
-    UserEntity userEntity = this.getOne(new QueryWrapper<UserEntity>()
-                                        .eq("username", loginName)
-                                        .or()
-                                        .eq("phone", loginName)
-                                        .or()
-                                        .eq("email", loginName)
-                                       );
+        // 1.根据登录名查询用户信息（拿到盐）
+        UserEntity userEntity=this.getOne(new QueryWrapper<UserEntity>()
+        .eq("username",loginName)
+        .or()
+        .eq("phone",loginName)
+        .or()
+        .eq("email",loginName)
+        );
 
-    // 2.判断用户是否为空
-    if (userEntity == null){
+        // 2.判断用户是否为空
+        if(userEntity==null){
         throw new UserException("账户输入不合法！");
-    }
+        }
 
-    // 3.对密码加盐加密，并和数据库中的密码进行比较
-    password = DigestUtils.md5Hex(password + userEntity.getSalt());
-    if (!StringUtils.equals(userEntity.getPassword(), password)){
+        // 3.对密码加盐加密，并和数据库中的密码进行比较
+        password=DigestUtils.md5Hex(password+userEntity.getSalt());
+        if(!StringUtils.equals(userEntity.getPassword(),password)){
         throw new UserException("密码输入错误！");
-    }
+        }
 
-    // 4.返回用户信息
-    return userEntity;
-}
+        // 4.返回用户信息
+        return userEntity;
+        }
 ```
 
 要注意，查询时也要对密码进行加密后判断是否一致。
-
-
 
 ### 1.4.3. 测试
 
 ![1570089177601](assets/1570089177601.png)
 
-
-
 ## 1.5. 搭建接口工程
 
 创建gmall-ums-interface工程：
 
- ![1586099669013](assets/1586099669013.png)
+![1586099669013](assets/1586099669013.png)
 
 pom.xml中的依赖，参照其他interface工程。并在gmall-ums和gmall-auth工程中引入该接口工程
 
@@ -273,8 +244,6 @@ public interface GmallUmsApi {
 }
 ```
 
-
-
 # 2. 单点登录（SSO）
 
 SSO英文全称Single Sign On，单点登录。
@@ -282,8 +251,6 @@ SSO英文全称Single Sign On，单点登录。
 SSO是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统。
 
 ![1570089652583](assets/1570089652583.png)
-
-
 
 ## 2.1. cookie问题
 
@@ -303,19 +270,15 @@ domain：作用域名
 
 domain有两点要注意：
 
-​	1. **domain参数可以设置父域名以及自身，但不能设置其它域名，包括子域名，否则cookie不起作用。**
+​ 1. **domain参数可以设置父域名以及自身，但不能设置其它域名，包括子域名，否则cookie不起作用。**
 
-​	2. **cookie的作用域是domain本身以及domain下的所有子域名。**
-
-
+​ 2. **cookie的作用域是domain本身以及domain下的所有子域名。**
 
 Cookie的路径（Path）：
 
-​	response.addCookie默认放在当前路径下，访问当前路径下的所有请求都会带
+​ response.addCookie默认放在当前路径下，访问当前路径下的所有请求都会带
 
-​	设置/标识项目根路径，访问项目任何位置都会携带
-
-
+​ 设置/标识项目根路径，访问项目任何位置都会携带
 
 ## 2.2. 演示案例
 
@@ -333,8 +296,6 @@ Cookie的路径（Path）：
 127.0.0.1 client.atguigu.com
 127.0.0.1 sso.atguigu.com
 ```
-
-
 
 ### 2.2.1. 测试一：不能访问兄弟域名cookie
 
@@ -354,8 +315,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 
 这是由于点击登录时，cookie放入了sso.atguigu.com这个作用域，client域下没有cookie导致，再次访问client时，client认为没有登录，又重定向到登录页面
 
-
-
 ### 2.2.2. 测试二：可以访问父域名的cookie
 
 修改sso-service工程LoginController类的login方法，把cookie的作用域设置为`atguigu.com`
@@ -365,8 +324,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 重启sso-service。
 
 并清理掉浏览器中的cookie：![1570104808919](assets/1570104808919.png)
-
-
 
 访问：http://client.atguigu.com:8080/hello
 
@@ -380,8 +337,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 
 可以登录成功！！
 
-
-
 ### 2.2.3. 测试三：cookie的作用路径
 
 修改sso-service工程LoginController类的login方法，把cookie的作用路径设置为`/hello`
@@ -389,8 +344,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 ![1570105058571](assets/1570105058571.png)
 
 重启sso-service服务，并清理掉cookie信息。
-
-
 
 在浏览器中访问：http://client.atguigu.com:8080/hello
 
@@ -403,8 +356,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 此时访问：http://client.atguigu.com:8080/hello1
 
 又会跳转到登录页面。原因：cookie只能在/hello路径及其子路径下可以正常访问。
-
-
 
 ## 2.3. 有状态登录
 
@@ -420,8 +371,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 
 即使使用redis保存用户的信息，也会损耗服务器资源。
 
-
-
 ## 2.4. 无状态登录
 
 微服务集群中的每个服务，对外提供的都是Rest风格的接口。而Rest风格的一个最重要的规范就是：服务的无状态性，即：
@@ -436,8 +385,6 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 - 服务端可以任意的迁移和伸缩
 - 减小服务端存储压力
 
-
-
 ## 2.5. 无状态登录流程
 
 无状态登录的流程：
@@ -449,7 +396,7 @@ sso.atguigu.com下已经有token信息。那么为什么又回到了登录页面
 
 流程图：
 
- ![](assets/1527300483893.png)
+![](assets/1527300483893.png)
 
 整个登录过程中，最关键的点是什么？
 
@@ -461,15 +408,11 @@ token是识别客户端身份的唯一标示，如果加密不够严密，被人
 
 我们将采用`JWT + RSA非对称加密`
 
-
-
 # 3. jwt实现无状态登录
 
 JWT，全称是Json Web Token， 是JSON风格轻量级的授权和身份认证规范，可实现无状态、分布式的Web应用授权；官网：https://jwt.io
 
 GitHub上jwt的java客户端：https://github.com/jwtk/jjwt
-
-
 
 ## 3.1. 数据格式
 
@@ -477,13 +420,13 @@ JWT包含三部分数据：
 
 - Header：头部，通常头部有两部分信息：
 
-  - token类型：JWT
-  - 加密方式：base64（HS256）
+    - token类型：JWT
+    - 加密方式：base64（HS256）
 
 - Payload：载荷，就是有效数据，一般包含下面信息：
 
-  - 用户身份信息（注意，这里因为采用base64编码，可解码，因此不要存放敏感信息）
-  - 注册声明：如token的签发时间，过期时间，签发人等
+    - 用户身份信息（注意，这里因为采用base64编码，可解码，因此不要存放敏感信息）
+    - 注册声明：如token的签发时间，过期时间，签发人等
 
   这部分也会采用base64编码，得到第二部分数据
 
@@ -491,13 +434,11 @@ JWT包含三部分数据：
 
 ![1570109371216](assets/1570109371216.png)
 
-
-
 ## 3.2. JWT交互流程
 
 流程图：
 
- ![1527305891424](assets/1527305891424.png)
+![1527305891424](assets/1527305891424.png)
 
 步骤翻译：
 
@@ -510,32 +451,27 @@ JWT包含三部分数据：
 
 因为JWT签发的token中已经包含了用户的身份信息，并且每次请求都会携带，这样服务的就无需保存用户信息，甚至无需去数据库查询，完全符合了Rest的无状态规范。
 
-
-
 ## 3.3. 非对称加密
 
-加密技术是对信息进行编码和解码的技术，编码是把原来可读信息（又称明文）译成代码形式（又称密文），其逆过程就是解码（解密），加密技术的要点是加密算法，加密算法可以分为三类：  
+加密技术是对信息进行编码和解码的技术，编码是把原来可读信息（又称明文）译成代码形式（又称密文），其逆过程就是解码（解密），加密技术的要点是加密算法，加密算法可以分为三类：
 
 - 对称加密，如AES
-  - 基本原理：将明文分成N个组，然后使用密钥对各个组进行加密，形成各自的密文，最后把所有的分组密文进行合并，形成最终的密文。
-  - 优势：算法公开、计算量小、加密速度快、加密效率高
-  - 缺陷：双方都使用同样密钥，安全性得不到保证 
+    - 基本原理：将明文分成N个组，然后使用密钥对各个组进行加密，形成各自的密文，最后把所有的分组密文进行合并，形成最终的密文。
+    - 优势：算法公开、计算量小、加密速度快、加密效率高
+    - 缺陷：双方都使用同样密钥，安全性得不到保证
 - 非对称加密，如RSA
-  - 基本原理：同时生成两把密钥：私钥和公钥，私钥隐秘保存，公钥可以下发给信任客户端
-    - 私钥加密，持有公钥才可以解密
-    - 公钥加密，持有私钥才可解密
-  - 优点：安全，难以破解
-  - 缺点：算法比较耗时
-- 不可逆加密，如MD5，SHA 
-  - 基本原理：加密过程中不需要使用[密钥](https://baike.baidu.com/item/%E5%AF%86%E9%92%A5)，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的，无法根据密文推算出明文。
-
-
+    - 基本原理：同时生成两把密钥：私钥和公钥，私钥隐秘保存，公钥可以下发给信任客户端
+        - 私钥加密，持有公钥才可以解密
+        - 公钥加密，持有私钥才可解密
+    - 优点：安全，难以破解
+    - 缺点：算法比较耗时
+- 不可逆加密，如MD5，SHA
+    -
+    基本原理：加密过程中不需要使用[密钥](https://baike.baidu.com/item/%E5%AF%86%E9%92%A5)，输入明文后由系统直接经过加密算法处理成密文，这种加密后的数据是无法被解密的，无法根据密文推算出明文。
 
 RSA算法历史：
 
 1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字缩写：RSA
-
-
 
 # 4. 搭建授权中心
 
@@ -548,19 +484,16 @@ RSA算法历史：
 
 有一些生成jwt，解析jwt这样行为的工具类，以后在其它微服务中也会用到，因此放在gmall-core中。
 
-
-
 ## 4.1. 创建工程
 
 ![1589984888452](assets/1589984888452.png)
 
 pom.xml中添加gmall-common及gmall-ums-interface的依赖
 
-
-
 启动类：
 
 ```java
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
@@ -614,8 +547,6 @@ feign:
     enabled: true
 ```
 
-
-
 网关工程gmall-gateway添加用户授权的网关路由：
 
 ![1589983706531](assets/1589983706531.png)
@@ -628,41 +559,38 @@ feign:
 
 注意：不要忘记重启网关，重新加载nginx配置。
 
-
-
 ## 4.2. JWT工具类
 
 gmall-common工程中已经封装了jwt相关的工具类：
 
- ![1586091816358](assets/1586091816358.png)
+![1586091816358](assets/1586091816358.png)
 
 并在gmall-common中的pom.xml中引入了jwt相关的依赖：
 
 ```xml
+
 <dependency>
     <groupId>io.jsonwebtoken</groupId>
     <artifactId>jjwt-api</artifactId>
     <version>0.10.6</version>
 </dependency>
 <dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.10.6</version>
+<groupId>io.jsonwebtoken</groupId>
+<artifactId>jjwt-impl</artifactId>
+<version>0.10.6</version>
 </dependency>
 <dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId>
-    <version>0.10.6</version>
-    <scope>runtime</scope>
+<groupId>io.jsonwebtoken</groupId>
+<artifactId>jjwt-jackson</artifactId>
+<version>0.10.6</version>
+<scope>runtime</scope>
 </dependency>
 <dependency>
-    <groupId>joda-time</groupId>
-    <artifactId>joda-time</artifactId>
-    <version>2.10.3</version>
+<groupId>joda-time</groupId>
+<artifactId>joda-time</artifactId>
+<version>2.10.3</version>
 </dependency>
 ```
-
-
 
 ## 4.3. 测试工具类
 
@@ -670,7 +598,7 @@ gmall-common工程中已经封装了jwt相关的工具类：
 public class JwtTest {
 
     // 别忘了创建D:\\project\rsa目录
-	private static final String pubKeyPath = "D:\\project\\rsa\\rsa.pub";
+    private static final String pubKeyPath = "D:\\project\\rsa\\rsa.pub";
     private static final String priKeyPath = "D:\\project\\rsa\\rsa.pri";
 
     private PublicKey publicKey;
@@ -682,7 +610,7 @@ public class JwtTest {
         RsaUtils.generateKey(pubKeyPath, priKeyPath, "234");
     }
 
-//    @BeforeEach
+    //    @BeforeEach
     public void testGetRsa() throws Exception {
         this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
         this.privateKey = RsaUtils.getPrivateKey(priKeyPath);
@@ -710,8 +638,6 @@ public class JwtTest {
 }
 ```
 
-
-
 测试生成公钥和私钥，我们运行testRsa方法：**注意需要把@Before方法注释掉**
 
 ![1586098332178](assets/1586098332178.png)
@@ -720,15 +646,11 @@ public class JwtTest {
 
 ![1586098456319](assets/1586098456319.png)
 
-
-
 测试testGenerateToken生成token：注意把@BeforeEach的注释去掉的
 
 ![1586098527275](assets/1586098527275.png)
 
 ![1570121524935](assets/1570121524935.png)
-
-
 
 测试解析token：
 
@@ -741,8 +663,6 @@ public class JwtTest {
 任意改动一下：
 
 ![1570121792041](assets/1570121792041.png)
-
-
 
 ## 4.4. 配置公钥和私钥
 
@@ -761,11 +681,12 @@ auth:
 
 然后编写属性类读取jwt配置，并从秘钥配置文件中读取出响应的公钥及私钥，加载这些数据：
 
- ![1586099976265](assets/1586099976265.png)
+![1586099976265](assets/1586099976265.png)
 
 内容如下：
 
 ```java
+
 @Data
 @Slf4j
 @ConfigurationProperties(prefix = "auth.jwt")
@@ -785,7 +706,7 @@ public class JwtProperties {
      * 该方法在构造方法执行之后执行
      */
     @PostConstruct
-    public void init(){
+    public void init() {
         try {
             File pubFile = new File(pubKeyPath);
             File priFile = new File(priKeyPath);
@@ -803,8 +724,6 @@ public class JwtProperties {
 }
 ```
 
-
-
 # 5. 完成登录功能
 
 ## 5.1. 跳转到登录页
@@ -815,20 +734,19 @@ public class JwtProperties {
 
 会记录跳转到登录页面前的页面地址，登录成功后要回到原来的页面。
 
-
-
 把课前资料动态页面中的common目录及login.html拷贝到templates目录下
 
- ![1589985622839](assets/1589985622839.png)
+![1589985622839](assets/1589985622839.png)
 
 添加AuthController，并添加页面跳转方法如下：
 
 ```java
+
 @Controller
 public class AuthController {
 
     @GetMapping("toLogin.html")
-    public String toLogin(@RequestParam("returnUrl")String returnUrl, Model model){
+    public String toLogin(@RequestParam("returnUrl") String returnUrl, Model model) {
 
         // 把登录前的页面地址，记录到登录页面，以备将来登录成功，回到登录前的页面
         model.addAttribute("returnUrl", returnUrl);
@@ -841,15 +759,11 @@ public class AuthController {
 
 ![1589984597255](assets/1589984597255.png)
 
-
-
 在浏览器输入：http://sso.gmall.com/toLogin.html?returnUrl=http://www.gmall.com
 
 效果如下：
 
 ![1589985849725](assets/1589985849725.png)
-
-
 
 ## 5.2. 完成登录功能
 
@@ -863,13 +777,9 @@ public class AuthController {
 - 为了方便页面展示登录用户昵称，向cookie中单独写入昵称（例如京东cookie中的的**unick**）
 - 重定向 回到登录前的页面
 
-
-
 实现后的项目结构如下：
 
- ![1589985770901](assets/1589985770901.png)
-
-
+![1589985770901](assets/1589985770901.png)
 
 ### 5.2.1. AuthController
 
@@ -883,6 +793,7 @@ public class AuthController {
 代码：
 
 ```java
+
 @Controller
 public class AuthController {
 
@@ -893,7 +804,7 @@ public class AuthController {
     private JwtProperties jwtProperties;
 
     @GetMapping("toLogin.html")
-    public String toLogin(@RequestParam("returnUrl")String returnUrl, Model model){
+    public String toLogin(@RequestParam("returnUrl") String returnUrl, Model model) {
 
         // 把登录前的页面地址，记录到登录页面，以备将来登录成功，回到登录前的页面
         model.addAttribute("returnUrl", returnUrl);
@@ -902,11 +813,11 @@ public class AuthController {
 
     @PostMapping("login")
     public String login(
-            @RequestParam("loginName")String loginName,
-            @RequestParam("password")String password,
-            @RequestParam("returnUrl")String returnUrl,
+            @RequestParam("loginName") String loginName,
+            @RequestParam("password") String password,
+            @RequestParam("returnUrl") String returnUrl,
             HttpServletRequest request, HttpServletResponse response
-    ){
+    ) {
         this.authService.accredit(loginName, password, request, response);
 
         // 登录成功重定向到登录前页面
@@ -915,13 +826,12 @@ public class AuthController {
 }
 ```
 
-
-
 ### 5.2.2. AuthService
 
 在gmall-auth：
 
 ```java
+
 @Service
 @EnableConfigurationProperties({JwtProperties.class})
 public class AuthService {
@@ -969,8 +879,6 @@ public class AuthService {
 }
 ```
 
-
-
 ### 5.2.3. GmallUmsClient
 
 接下来我们肯定要对用户密码进行校验，所以我们需要通过FeignClient去访问 ums-service微服务：
@@ -978,6 +886,7 @@ public class AuthService {
 在gmall-auth中引入gmall-ums-interface依赖：
 
 ```xml
+
 <dependency>
     <groupId>com.atguigu</groupId>
     <artifactId>gmall-ums-interface</artifactId>
@@ -988,12 +897,11 @@ public class AuthService {
 编写GmallUmsClient：
 
 ```java
+
 @FeignClient("ums-service")
 public interface GmallUmsClient extends GmallUmsApi {
 }
 ```
-
-
 
 ### 5.2.4. 测试
 
@@ -1011,11 +919,7 @@ public interface GmallUmsClient extends GmallUmsApi {
 
 兄弟之间不能操作cookie。导致cookie没有写入成功！
 
-
-
 为什么是Set-Cookie的Domain是IP地址？
-
-
 
 ## 5.3. 解决cookie写入问题
 
@@ -1023,9 +927,9 @@ public interface GmallUmsClient extends GmallUmsApi {
 
 1. cookie中的domain域必须和地址栏（或者是父域名）一致。
 2. cors跨域满足携带cookie的生效条件
-   - 服务的响应头中需要携带Access-Control-Allow-Credentials并且为true。（网关中已设置）
-   - 响应头中的Access-Control-Allow-Origin一定不能为*，必须是指定的域名。（网关中已设置具体域名）
-   - 浏览器发起ajax需要指定withCredentials 为true。（前端工程：gmall-admin\src\utils\httpRequest.js文件已经设置）
+    - 服务的响应头中需要携带Access-Control-Allow-Credentials并且为true。（网关中已设置）
+    - 响应头中的Access-Control-Allow-Origin一定不能为*，必须是指定的域名。（网关中已设置具体域名）
+    - 浏览器发起ajax需要指定withCredentials 为true。（前端工程：gmall-admin\src\utils\httpRequest.js文件已经设置）
 
 ### 5.3.1. 跟踪CookieUtils
 
@@ -1047,8 +951,6 @@ F7进入setCookie方法：
 
 160行获取的serverName是ip地址。也就是说这时候只能获取ip地址了，获取不到域名信息。
 
-
-
 ### 5.3.2. domain地址变化原因
 
 那么问题来了：为什么我们这里的请求serverName变成了pi地址了呢？
@@ -1059,8 +961,6 @@ F7进入setCookie方法：
 - 而后请求到达我们的gateway网关，gateway网关就会根据路径匹配，我们的请求是/api/auth，根据规则被转发到了auth服务地址 ，即我们的授权中心。
 
 每次转发都会丢失域名信息。
-
-
 
 ### 5.3.3. nginx转发时要携带域名
 
@@ -1075,8 +975,6 @@ proxy_set_header Host $host;
 修改完成之后，重新加载nginx配置：nginx -s reload
 
 这样就解决了nginx转发时的域名问题。
-
-
 
 ### 5.3.4. 网关转发时要携带域名
 
@@ -1097,20 +995,16 @@ spring.cloud.gateway.x-forwarded.host-enabled=true
 这是因为网关转发后，会把域名通过X-Forwarded-Host头信息转发给服务。所以，需要修改160行的代码，如下：
 
 ```java
-String serverName = request.getHeader("X-Forwarded-Host");
+String serverName=request.getHeader("X-Forwarded-Host");
 ```
 
 ![1586429090255](assets/1586429090255.png)
-
-
 
 ### 5.3.5. 再次登录测试
 
 ![1589987566694](assets/1589987566694.png)
 
 完美！！！！！
-
-
 
 ## 5.4. 公共页头显示用户名
 
@@ -1121,47 +1015,45 @@ js实现：
 ```javascript
 <script th:inline="javascript">
     var item = new Vue({
-        el: '#header',
+    el: '#header',
 
-        data: {
-            keyword: [[${searchParam?.keyword}]],
-            nickName: ''
-        },
+    data: {
+    keyword: [[${searchParam?.keyword}]],
+    nickName: ''
+},
 
-        created() {
-            this.showInfo()
-        },
-        methods: {
-            showInfo() {
-                // debugger
-                if(auth.getUserInfo()) {
-                    this.nickName = auth.getUserInfo();
-                }
-            },
+    created() {
+    this.showInfo()
+},
+    methods: {
+    showInfo() {
+    // debugger
+    if(auth.getUserInfo()) {
+    this.nickName = auth.getUserInfo();
+}
+},
 
-            search() {
-                if(this.keyword == null) this.keyword = ''
-                window.location.href = 'http://search.gmall.com/search?keyword=' + this.keyword
-            },
+    search() {
+    if(this.keyword == null) this.keyword = ''
+    window.location.href = 'http://search.gmall.com/search?keyword=' + this.keyword
+},
 
-            login() {
-                window.location.href = 'http://sso.gmall.com/toLogin.html?returnUrl='+window.location.href
-            },
+    login() {
+    window.location.href = 'http://sso.gmall.com/toLogin.html?returnUrl='+window.location.href
+},
 
-            logout() {
-                //debugger
-                auth.removeToken()
-                auth.removeUserInfo()
+    logout() {
+    //debugger
+    auth.removeToken()
+    auth.removeUserInfo()
 
-                //跳转页面
-                window.location.href = "/"
-            }
-        }
-    })
+    //跳转页面
+    window.location.href = "/"
+}
+}
+})
 </script>
 ```
-
-
 
 # 6. 网关过滤器验证登录状态
 
@@ -1171,11 +1063,12 @@ gateway网关过滤器包含两种：**全局过滤器**和**局部过滤器**�
 
 自定义全局过滤器非常简单：实现GlobalFilter接口即可，无差别拦截所有微服务的请求
 
- ![1590056832978](assets/1590056832978.png)
+![1590056832978](assets/1590056832978.png)
 
 内容如下：
 
 ```java
+
 @Component
 public class TestGatewayFilter implements GlobalFilter, Ordered {
 
@@ -1197,8 +1090,6 @@ public class TestGatewayFilter implements GlobalFilter, Ordered {
 }
 ```
 
-
-
 ## 6.2. 自定义局部过滤器
 
 自定义局部过滤器稍微麻烦一点：
@@ -1208,15 +1099,12 @@ public class TestGatewayFilter implements GlobalFilter, Ordered {
 
 可以做到定点拦截。
 
-
-
- ![1590051151965](assets/1590051151965.png)
-
-
+![1590051151965](assets/1590051151965.png)
 
 ### 6.2.1. 过滤器工厂AuthGatewayFilterFactory
 
 ```java
+
 @Component
 public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<Object> {
 
@@ -1236,8 +1124,6 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<Objec
 }
 ```
 
-
-
 ### 6.2.2. 在配置文件中使用
 
 现在拿gmall-auth工程尝试使用吧
@@ -1245,8 +1131,6 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<Objec
 ![1590051099606](assets/1590051099606.png)
 
 过滤器名称就是`Auth`，即自定义过滤器工厂`类名称` 去掉 `GatewayFilterFactory`
-
-
 
 ### 6.2.3. 读取过滤器配置内容
 
@@ -1258,11 +1142,10 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<Objec
 
 ![1590051731953](assets/1590051731953.png)
 
-
-
 改造AuthGatewayFilterFactory过滤器工厂类如下：
 
 ```java
+
 @Component
 public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthGatewayFilterFactory.PathConfig> {
 
@@ -1315,19 +1198,15 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
      * 读取配置的内部类
      */
     @Data
-    public static class PathConfig{
+    public static class PathConfig {
         private List<String> authPaths;
     }
 }
 ```
 
-
-
 测试效果如下：已经可以拿到配置内容
 
 ![1590052897996](assets/1590052897996.png)
-
-
 
 ## 6.3. 通过自定义局部过滤器完成登录验证
 
@@ -1343,8 +1222,6 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
 6. 传递登录信息给后续服务。后续各服务就不用再去解析了
 7. 放行
 
-
-
 ### 6.3.1. 引入jwt相关配置
 
 既然是登录拦截，一定需要公钥解析jwt，我们在`gmall-gateway`中配置。
@@ -1352,6 +1229,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
 首先在pom.xml中，引入所需要的依赖：
 
 ```xml
+
 <dependency>
     <groupId>com.atguigu</groupId>
     <artifactId>gmall-common</artifactId>
@@ -1370,11 +1248,12 @@ auth:
 
 编写属性类，读取公钥：
 
- ![1590056138535](assets/1590056138535.png)
+![1590056138535](assets/1590056138535.png)
 
 jwtProperties内容如下：
 
 ```java
+
 @Data
 @Slf4j
 @ConfigurationProperties(prefix = "auth.jwt")
@@ -1387,7 +1266,7 @@ public class JwtProperties {
     private String cookieName;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         try {
             // 获取公钥和私钥
             this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
@@ -1400,13 +1279,12 @@ public class JwtProperties {
 }
 ```
 
-
-
 ### 6.3.2. 编写代码实现登录拦截
 
 改造AuthGatewayFilterFactory
 
 ```java
+
 @Component
 @EnableConfigurationProperties({JwtProperties.class})
 public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthGatewayFilterFactory.PathConfig> {
@@ -1439,13 +1317,13 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                 Boolean flag = false;
                 for (String authPath : config.getAuthPaths()) {
                     // 如果白名单中有一个包含当前路径
-                    if (path.indexOf(authPath) != -1){
+                    if (path.indexOf(authPath) != -1) {
                         flag = true;
                         break;
                     }
                 }
                 // 不在拦截名单中，放行
-                if (!flag){
+                if (!flag) {
                     return chain.filter(exchange);
                 }
 
@@ -1453,7 +1331,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                 String token = "";
                 // 异步请求，通过头信息获取token
                 List<String> tokenList = request.getHeaders().get("token");
-                if(!CollectionUtils.isEmpty(tokenList)) {
+                if (!CollectionUtils.isEmpty(tokenList)) {
                     token = tokenList.get(0);
                 } else {
                     // 同步请求通过cookie
@@ -1463,7 +1341,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                         // 重定向到登录
                         // 303状态码表示由于请求对应的资源存在着另一个URI，应使用重定向获取请求的资源
                         response.setStatusCode(HttpStatus.SEE_OTHER);
-                        response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl="+request.getURI());
+                        response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl=" + request.getURI());
                         // 设置响应状态码为未认证
 //                        response.setStatusCode(HttpStatus.UNAUTHORIZED);
                         return response.setComplete();
@@ -1478,7 +1356,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                 if (StringUtils.isEmpty(token)) {
                     // 去登录
                     response.setStatusCode(HttpStatus.SEE_OTHER);
-                    response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl="+request.getURI());
+                    response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl=" + request.getURI());
                     return response.setComplete();
                 }
 
@@ -1490,10 +1368,10 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                     String ip = map.get("ip").toString();
                     // 当前请求的ip
                     String curIp = IpUtil.getIpAddressAtGateway(request);
-                    if (!StringUtils.equals(ip, curIp)){
+                    if (!StringUtils.equals(ip, curIp)) {
                         // 去登陆
                         response.setStatusCode(HttpStatus.SEE_OTHER);
-                        response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl="+request.getURI());
+                        response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl=" + request.getURI());
                         return response.setComplete();
                     }
 
@@ -1509,7 +1387,7 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
                     e.printStackTrace();
                     // 7.异常，去登录
                     response.setStatusCode(HttpStatus.SEE_OTHER);
-                    response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl="+request.getURI());
+                    response.getHeaders().set(HttpHeaders.LOCATION, "http://sso.gmall.com/toLogin.html?returnUrl=" + request.getURI());
                     return response.setComplete();
                 }
             }
@@ -1543,13 +1421,11 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
      * 读取配置的内部类
      */
     @Data
-    public static class PathConfig{
+    public static class PathConfig {
         private List<String> authPaths;
     }
 }
 ```
-
-
 
 ### 6.3.3. 配置过滤器并测试
 
@@ -1568,8 +1444,6 @@ public class AuthGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthG
 ![1590056697775](assets/1590056697775.png)
 
 出现404，说明登录情况下网关放行了，由于没有该路径对应的接口，所有出现了404
-
-
 
 ## 6.4. 常见异常解决
 

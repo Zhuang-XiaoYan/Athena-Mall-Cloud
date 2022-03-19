@@ -24,6 +24,7 @@ public interface ProductAttrValueService extends IService<ProductAttrValueEntity
 
     /**
      * 修改商品规格
+     *
      * @param spuId
      * @param entities
      */

@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("orderItemService")
 public class OrderItemServiceImpl extends ServiceImpl<OrderItemDao, OrderItemEntity> implements OrderItemService {
 
@@ -28,7 +27,6 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemDao, OrderItemEnt
 
         return new PageUtils(page);
     }
-
 
     /**
      * queues：声明需要监听的队列

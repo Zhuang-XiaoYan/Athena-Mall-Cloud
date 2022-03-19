@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 @Service("purchaseService")
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity> implements PurchaseService {
 
@@ -44,6 +43,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     /**
      * 查询未领取的采购单
+     *
      * @param params
      * @return
      */
@@ -51,7 +51,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     public PageUtils queryPageUnreceive(Map<String, Object> params) {
 
         QueryWrapper<PurchaseEntity> queryWrapper = new QueryWrapper<PurchaseEntity>()
-                .eq("status",0).or().eq("status",1);
+                .eq("status", 0).or().eq("status", 1);
 
         IPage<PurchaseEntity> page = this.page(
                 new Query<PurchaseEntity>().getPage(params),
@@ -63,6 +63,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     /**
      * 合并采购需求
+     *
      * @param mergeVo
      */
     @Transactional(rollbackFor = Exception.class)
@@ -93,7 +94,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
         purchaseDetailEntities.forEach((item) -> {
             if (!item.getStatus().equals(WareConstant.PurchaseDetailStatusEnum.CREATED.getCode())
-                && !item.getStatus().equals(WareConstant.PurchaseDetailStatusEnum.ASSIGNED.getCode())) {
+                    && !item.getStatus().equals(WareConstant.PurchaseDetailStatusEnum.ASSIGNED.getCode())) {
                 throw new IllegalArgumentException("正在采购，无法进行分配");
             }
         });
@@ -118,6 +119,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     /**
      * 领取采购单
+     *
      * @param ids 采购单的id
      */
     @Override
@@ -161,6 +163,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     /**
      * 完成采购单
+     *
      * @param doneVo
      */
     @Override
@@ -184,7 +187,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 //查出当前采购项的详细信息
                 //PurchaseDetailEntity entity = purchaseDetailService.getById(item.getItemId());
                 PurchaseDetailEntity entity = purchaseDetailService.getById(item.getItemId());
-                wareSkuService.addStock(entity.getSkuId(),entity.getWareId(),entity.getSkuNum());
+                wareSkuService.addStock(entity.getSkuId(), entity.getWareId(), entity.getSkuNum());
 
             }
             purchaseDetailEntity.setId(item.getItemId());
@@ -198,7 +201,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         //2、改变采购单状态
         PurchaseEntity purchaseEntity = new PurchaseEntity();
         purchaseEntity.setId(id);
-        purchaseEntity.setStatus(flag?WareConstant.PurchaseStatusEnum.FINISH.getCode():WareConstant.PurchaseStatusEnum.HASERROR.getCode());
+        purchaseEntity.setStatus(flag ? WareConstant.PurchaseStatusEnum.FINISH.getCode() : WareConstant.PurchaseStatusEnum.HASERROR.getCode());
         purchaseEntity.setUpdateTime(new Date());
         this.updateById(purchaseEntity);
 

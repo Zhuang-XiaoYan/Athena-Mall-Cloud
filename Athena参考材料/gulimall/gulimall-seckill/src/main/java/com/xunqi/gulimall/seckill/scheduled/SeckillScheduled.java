@@ -19,24 +19,22 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 秒杀商品定时上架
- *  每天晚上3点，上架最近三天需要三天秒杀的商品
- *  当天00:00:00 - 23:59:59
- *  明天00:00:00 - 23:59:59
- *  后天00:00:00 - 23:59:59
+ * 每天晚上3点，上架最近三天需要三天秒杀的商品
+ * 当天00:00:00 - 23:59:59
+ * 明天00:00:00 - 23:59:59
+ * 后天00:00:00 - 23:59:59
  */
 
 @Slf4j
 @Service
 public class SeckillScheduled {
 
-    @Autowired
-    private SeckillService seckillService;
-
-    @Autowired
-    private RedissonClient redissonClient;
-
     //秒杀商品上架功能的锁
     private final String upload_lock = "seckill:upload:lock";
+    @Autowired
+    private SeckillService seckillService;
+    @Autowired
+    private RedissonClient redissonClient;
 
     //TODO 保证幂等性问题
     // @Scheduled(cron = "*/5 * * * * ? ")

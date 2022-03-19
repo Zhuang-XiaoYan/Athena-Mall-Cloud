@@ -12,14 +12,13 @@ import java.io.InputStream;
 @SpringBootTest
 class GulimallThirdPartyApplicationTests {
 
+    @Autowired
+    OSSClient ossClient;
+
     @Test
     void contextLoads() {
 
-
     }
-
-    @Autowired
-    OSSClient ossClient;
 
     @Test
     public void testUpload() throws FileNotFoundException {

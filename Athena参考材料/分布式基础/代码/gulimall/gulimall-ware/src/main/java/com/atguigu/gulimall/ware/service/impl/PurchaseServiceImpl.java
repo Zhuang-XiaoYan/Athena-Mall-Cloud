@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
 
-
 @Service("purchaseService")
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity> implements PurchaseService {
 
@@ -53,7 +52,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     public PageUtils queryPageUnreceivePurchase(Map<String, Object> params) {
         IPage<PurchaseEntity> page = this.page(
                 new Query<PurchaseEntity>().getPage(params),
-                new QueryWrapper<PurchaseEntity>().eq("status",0).or().eq("status",1)
+                new QueryWrapper<PurchaseEntity>().eq("status", 0).or().eq("status", 1)
         );
 
         return new PageUtils(page);
@@ -63,7 +62,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     @Override
     public void mergePurchase(MergeVo mergeVo) {
         Long purchaseId = mergeVo.getPurchaseId();
-        if(purchaseId == null){
+        if (purchaseId == null) {
             //1、新建一个
             PurchaseEntity purchaseEntity = new PurchaseEntity();
 
@@ -87,7 +86,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
             return detailEntity;
         }).collect(Collectors.toList());
 
-
         detailService.updateBatchById(collect);
 
         PurchaseEntity purchaseEntity = new PurchaseEntity();
@@ -97,7 +95,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
     }
 
     /**
-     *
      * @param ids 采购单id
      */
     @Override
@@ -112,7 +109,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 return true;
             }
             return false;
-        }).map(item->{
+        }).map(item -> {
             item.setStatus(WareConstant.PurchaseStatusEnum.RECEIVE.getCode());
             item.setUpdateTime(new Date());
             return item;
@@ -121,10 +118,8 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         //2、改变采购单的状态
         this.updateBatchById(collect);
 
-
-
         //3、改变采购项的状态
-        collect.forEach((item)->{
+        collect.forEach((item) -> {
             List<PurchaseDetailEntity> entities = detailService.listDetailByPurchaseId(item.getId());
             List<PurchaseDetailEntity> detailEntities = entities.stream().map(entity -> {
                 PurchaseDetailEntity entity1 = new PurchaseDetailEntity();
@@ -142,7 +137,6 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
         Long id = doneVo.getId();
 
-
         //2、改变采购项的状态
         Boolean flag = true;
         List<PurchaseItemDoneVo> items = doneVo.getItems();
@@ -150,14 +144,14 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         List<PurchaseDetailEntity> updates = new ArrayList<>();
         for (PurchaseItemDoneVo item : items) {
             PurchaseDetailEntity detailEntity = new PurchaseDetailEntity();
-            if(item.getStatus() == WareConstant.PurchaseDetailStatusEnum.HASERROR.getCode()){
+            if (item.getStatus() == WareConstant.PurchaseDetailStatusEnum.HASERROR.getCode()) {
                 flag = false;
                 detailEntity.setStatus(item.getStatus());
-            }else{
+            } else {
                 detailEntity.setStatus(WareConstant.PurchaseDetailStatusEnum.FINISH.getCode());
                 ////3、将成功采购的进行入库
                 PurchaseDetailEntity entity = detailService.getById(item.getItemId());
-                wareSkuService.addStock(entity.getSkuId(),entity.getWareId(),entity.getSkuNum());
+                wareSkuService.addStock(entity.getSkuId(), entity.getWareId(), entity.getSkuNum());
 
             }
             detailEntity.setId(item.getItemId());
@@ -169,12 +163,9 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
         //1、改变采购单状态
         PurchaseEntity purchaseEntity = new PurchaseEntity();
         purchaseEntity.setId(id);
-        purchaseEntity.setStatus(flag?WareConstant.PurchaseStatusEnum.FINISH.getCode():WareConstant.PurchaseStatusEnum.HASERROR.getCode());
+        purchaseEntity.setStatus(flag ? WareConstant.PurchaseStatusEnum.FINISH.getCode() : WareConstant.PurchaseStatusEnum.HASERROR.getCode());
         purchaseEntity.setUpdateTime(new Date());
         this.updateById(purchaseEntity);
-
-
-
 
     }
 

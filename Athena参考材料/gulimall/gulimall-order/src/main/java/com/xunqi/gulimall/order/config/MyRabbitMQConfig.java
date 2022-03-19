@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 
-
 /**
  * @Description:
  * @Created: with IntelliJ IDEA.
@@ -26,7 +25,8 @@ public class MyRabbitMQConfig {
      * 死信队列
      *
      * @return
-     */@Bean
+     */
+    @Bean
     public Queue orderDelayQueue() {
         /*
             Queue(String name,  队列名字
@@ -74,7 +74,6 @@ public class MyRabbitMQConfig {
 
     }
 
-
     @Bean
     public Binding orderCreateBinding() {
         /*
@@ -103,6 +102,7 @@ public class MyRabbitMQConfig {
 
     /**
      * 订单释放直接和库存释放进行绑定
+     *
      * @return
      */
     @Bean
@@ -115,9 +115,9 @@ public class MyRabbitMQConfig {
                 null);
     }
 
-
     /**
      * 商品秒杀队列
+     *
      * @return
      */
     @Bean
@@ -139,6 +139,5 @@ public class MyRabbitMQConfig {
 
         return binding;
     }
-
 
 }

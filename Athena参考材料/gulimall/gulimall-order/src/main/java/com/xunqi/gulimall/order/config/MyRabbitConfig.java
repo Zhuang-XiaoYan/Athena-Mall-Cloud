@@ -38,15 +38,14 @@ public class MyRabbitConfig {
     /**
      * 定制RabbitTemplate
      * 1、服务收到消息就会回调
-     *      1、spring.rabbitmq.publisher-confirms: true
-     *      2、设置确认回调
+     * 1、spring.rabbitmq.publisher-confirms: true
+     * 2、设置确认回调
      * 2、消息正确抵达队列就会进行回调
-     *      1、spring.rabbitmq.publisher-returns: true
-     *         spring.rabbitmq.template.mandatory: true
-     *      2、设置确认回调ReturnCallback
-     *
+     * 1、spring.rabbitmq.publisher-returns: true
+     * spring.rabbitmq.template.mandatory: true
+     * 2、设置确认回调ReturnCallback
+     * <p>
      * 3、消费端确认(保证每个消息都被正确消费，此时才可以broker删除这个消息)
-     *
      */
     // @PostConstruct  //MyRabbitConfig对象创建完成以后，执行这个方法
     public void initRabbitTemplate() {
@@ -58,10 +57,9 @@ public class MyRabbitConfig {
          * cause：失败的原因
          */
         //设置确认回调
-        rabbitTemplate.setConfirmCallback((correlationData,ack,cause) -> {
-            System.out.println("confirm...correlationData["+correlationData+"]==>ack:["+ack+"]==>cause:["+cause+"]");
+        rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
+            System.out.println("confirm...correlationData[" + correlationData + "]==>ack:[" + ack + "]==>cause:[" + cause + "]");
         });
-
 
         /**
          * 只要消息没有投递给指定的队列，就触发这个失败回调
@@ -71,9 +69,9 @@ public class MyRabbitConfig {
          * exchange：当时这个消息发给哪个交换机
          * routingKey：当时这个消息用哪个路邮键
          */
-        rabbitTemplate.setReturnCallback((message,replyCode,replyText,exchange,routingKey) -> {
-            System.out.println("Fail Message["+message+"]==>replyCode["+replyCode+"]" +
-                    "==>replyText["+replyText+"]==>exchange["+exchange+"]==>routingKey["+routingKey+"]");
+        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
+            System.out.println("Fail Message[" + message + "]==>replyCode[" + replyCode + "]" +
+                    "==>replyText[" + replyText + "]==>exchange[" + exchange + "]==>routingKey[" + routingKey + "]");
         });
     }
 }

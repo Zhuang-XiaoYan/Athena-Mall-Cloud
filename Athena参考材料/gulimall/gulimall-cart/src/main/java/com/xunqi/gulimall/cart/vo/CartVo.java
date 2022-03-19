@@ -37,7 +37,8 @@ public class CartVo {
     /**
      * 减免价格
      */
-    private BigDecimal reduce = new BigDecimal("0.00");;
+    private BigDecimal reduce = new BigDecimal("0.00");
+    ;
 
     public List<CartItemVo> getItems() {
         return items;
@@ -66,7 +67,6 @@ public class CartVo {
         }
         return count;
     }
-
 
     public BigDecimal getTotalAmount() {
         BigDecimal amount = new BigDecimal("0");

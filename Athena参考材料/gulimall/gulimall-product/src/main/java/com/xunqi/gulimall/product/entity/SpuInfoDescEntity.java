@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * spu信息介绍
- * 
+ *
  * @author 夏沫止水
  * @email HeJieLin@gulimall.com
  * @date 2020-05-22 19:00:18
@@ -17,16 +17,16 @@ import java.io.Serializable;
 @Data
 @TableName("pms_spu_info_desc")
 public class SpuInfoDescEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 商品id
-	 */
-	@TableId(type = IdType.INPUT)
-	private Long spuId;
-	/**
-	 * 商品介绍
-	 */
-	private String decript;
+    /**
+     * 商品id
+     */
+    @TableId(type = IdType.INPUT)
+    private Long spuId;
+    /**
+     * 商品介绍
+     */
+    private String decript;
 
 }

@@ -19,6 +19,7 @@ public interface MemberFeignService {
 
     /**
      * 查询当前用户的全部收货地址
+     *
      * @param memberId
      * @return
      */

@@ -19,6 +19,5 @@ public interface WareSkuService extends IService<WareSkuEntity> {
 
     void addStock(Long skuId, Long wareId, Integer skuNum);
 
-
 }
 

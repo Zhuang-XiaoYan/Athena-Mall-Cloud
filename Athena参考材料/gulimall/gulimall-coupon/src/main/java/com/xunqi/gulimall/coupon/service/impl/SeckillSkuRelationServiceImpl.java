@@ -13,7 +13,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
-
 @Service("seckillSkuRelationService")
 public class SeckillSkuRelationServiceImpl extends ServiceImpl<SeckillSkuRelationDao, SeckillSkuRelationEntity> implements SeckillSkuRelationService {
 

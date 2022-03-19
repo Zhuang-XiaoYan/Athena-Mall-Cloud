@@ -25,7 +25,6 @@ import static com.xunqi.common.constant.CartConstant.TEMP_USER_COOKIE_TIMEOUT;
 
 public class CartInterceptor implements HandlerInterceptor {
 
-
     public static ThreadLocal<UserInfoTo> toThreadLocal = new ThreadLocal<>();
 
     /***
@@ -74,9 +73,9 @@ public class CartInterceptor implements HandlerInterceptor {
         return true;
     }
 
-
     /**
      * 业务执行之后，分配临时用户来浏览器保存
+     *
      * @param request
      * @param response
      * @param handler

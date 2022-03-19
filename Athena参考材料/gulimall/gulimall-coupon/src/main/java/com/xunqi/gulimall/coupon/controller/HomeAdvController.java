@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 首页轮播广告
  *
@@ -29,20 +28,19 @@ public class HomeAdvController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:homeadv:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = homeAdvService.queryPage(params);
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:homeadv:info")
-    public R info(@PathVariable("id") Long id){
-		HomeAdvEntity homeAdv = homeAdvService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        HomeAdvEntity homeAdv = homeAdvService.getById(id);
 
         return R.ok().put("homeAdv", homeAdv);
     }
@@ -52,8 +50,8 @@ public class HomeAdvController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:homeadv:save")
-    public R save(@RequestBody HomeAdvEntity homeAdv){
-		homeAdvService.save(homeAdv);
+    public R save(@RequestBody HomeAdvEntity homeAdv) {
+        homeAdvService.save(homeAdv);
 
         return R.ok();
     }
@@ -63,8 +61,8 @@ public class HomeAdvController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:homeadv:update")
-    public R update(@RequestBody HomeAdvEntity homeAdv){
-		homeAdvService.updateById(homeAdv);
+    public R update(@RequestBody HomeAdvEntity homeAdv) {
+        homeAdvService.updateById(homeAdv);
 
         return R.ok();
     }
@@ -74,8 +72,8 @@ public class HomeAdvController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:homeadv:delete")
-    public R delete(@RequestBody Long[] ids){
-		homeAdvService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        homeAdvService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

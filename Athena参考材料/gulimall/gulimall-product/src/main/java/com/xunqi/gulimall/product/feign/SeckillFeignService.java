@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @createTime: 2020-07-10 15:53
  **/
 
-@FeignClient(value = "gulimall-seckill",fallback = SeckillFeignServiceFallBack.class)
+@FeignClient(value = "gulimall-seckill", fallback = SeckillFeignServiceFallBack.class)
 public interface SeckillFeignService {
 
     /**
      * 根据skuId查询商品是否参加秒杀活动
+     *
      * @param skuId
      * @return
      */

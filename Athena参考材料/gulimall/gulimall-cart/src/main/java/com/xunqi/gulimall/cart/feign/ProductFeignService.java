@@ -21,6 +21,7 @@ public interface ProductFeignService {
 
     /**
      * 根据skuId查询sku信息
+     *
      * @param skuId
      * @return
      */
@@ -29,6 +30,7 @@ public interface ProductFeignService {
 
     /**
      * 根据skuId查询pms_sku_sale_attr_value表中的信息
+     *
      * @param skuId
      * @return
      */
@@ -37,6 +39,7 @@ public interface ProductFeignService {
 
     /**
      * 根据skuId查询当前商品的最新价格
+     *
      * @param skuId
      * @return
      */

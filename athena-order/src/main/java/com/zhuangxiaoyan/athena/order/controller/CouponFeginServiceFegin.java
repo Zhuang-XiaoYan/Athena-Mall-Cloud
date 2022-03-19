@@ -1,6 +1,5 @@
 package com.zhuangxiaoyan.athena.order.controller;
 
-
 import com.zhuangxiaoyan.athena.order.fegin.CouponFeginService;
 import com.zhuangxiaoyan.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +18,17 @@ public class CouponFeginServiceFegin {
 
     @Autowired
     private CouponFeginService couponFeginService;
+
     /**
-     * @description  调用远程服务
-      * @param:
+     * @description 调用远程服务
+     * @param:
      * @date: 2022/3/13 14:09
      * @return: com.zhuangxiaoyan.common.utils.R
      * @author: xjl
-    */
+     */
     @RequestMapping("/coupons")
     public R test() {
         R membercoupons = couponFeginService.membercoupons();
-        return R.ok().put("athena-order ","athena-order fegin call athena coupons").put("coupon", membercoupons);
+        return R.ok().put("athena-order ", "athena-order fegin call athena coupons").put("coupon", membercoupons);
     }
 }

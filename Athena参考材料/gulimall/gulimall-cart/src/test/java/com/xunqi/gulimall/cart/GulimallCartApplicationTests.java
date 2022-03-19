@@ -24,7 +24,7 @@ public class GulimallCartApplicationTests {
 
         CartItemVo cartItemVo = cartService.addToCart(1L, 2);
 
-        log.info("cartItemVo:{}",cartItemVo);
+        log.info("cartItemVo:{}", cartItemVo);
 
     }
 

@@ -29,7 +29,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
-
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
 
@@ -74,23 +73,23 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         String key = (String) params.get("key");
         if (!StringUtils.isEmpty(key) && !"0".equalsIgnoreCase(key)) {
             queryWrapper.and((wrapper) -> {
-                wrapper.eq("sku_id",key).or().like("sku_name",key);
+                wrapper.eq("sku_id", key).or().like("sku_name", key);
             });
         }
 
         String catelogId = (String) params.get("catelogId");
         if (!StringUtils.isEmpty(catelogId) && !"0".equalsIgnoreCase(catelogId)) {
-            queryWrapper.eq("catalog_id",catelogId);
+            queryWrapper.eq("catalog_id", catelogId);
         }
 
         String brandId = (String) params.get("brandId");
         if (!StringUtils.isEmpty(brandId) && !"0".equalsIgnoreCase(brandId)) {
-            queryWrapper.eq("brand_id",brandId);
+            queryWrapper.eq("brand_id", brandId);
         }
 
         String min = (String) params.get("min");
         if (!StringUtils.isEmpty(min)) {
-            queryWrapper.ge("price",min);
+            queryWrapper.ge("price", min);
         }
 
         String max = (String) params.get("max");
@@ -99,7 +98,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             try {
                 BigDecimal bigDecimal = new BigDecimal(max);
                 if (bigDecimal.compareTo(BigDecimal.ZERO) == 1) {
-                    queryWrapper.le("price",max);
+                    queryWrapper.le("price", max);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -128,7 +127,6 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         return skuInfoEntities;
     }
 
-
     @Override
     public SkuItemVo item(Long skuId) throws ExecutionException, InterruptedException {
 
@@ -141,13 +139,11 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             return info;
         }, executor);
 
-
         CompletableFuture<Void> saleAttrFuture = infoFuture.thenAcceptAsync((res) -> {
             //3、获取spu的销售属性组合
             List<SkuItemSaleAttrVo> saleAttrVos = skuSaleAttrValueService.getSaleAttrBySpuId(res.getSpuId());
             skuItemVo.setSaleAttr(saleAttrVos);
         }, executor);
-
 
         CompletableFuture<Void> descFuture = infoFuture.thenAcceptAsync((res) -> {
             //4、获取spu的介绍    pms_spu_info_desc
@@ -155,13 +151,11 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             skuItemVo.setDesc(spuInfoDescEntity);
         }, executor);
 
-
         CompletableFuture<Void> baseAttrFuture = infoFuture.thenAcceptAsync((res) -> {
             //5、获取spu的规格参数信息
             List<SpuItemAttrGroupVo> attrGroupVos = attrGroupService.getAttrGroupWithAttrsBySpuId(res.getSpuId(), res.getCatalogId());
             skuItemVo.setGroupAttrs(attrGroupVos);
         }, executor);
-
 
         // Long spuId = info.getSpuId();
         // Long catalogId = info.getCatalogId();
@@ -190,9 +184,8 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
             }
         }, executor);
 
-
         //等到所有任务都完成
-        CompletableFuture.allOf(saleAttrFuture,descFuture,baseAttrFuture,imageFuture,seckillFuture).get();
+        CompletableFuture.allOf(saleAttrFuture, descFuture, baseAttrFuture, imageFuture, seckillFuture).get();
 
         return skuItemVo;
     }

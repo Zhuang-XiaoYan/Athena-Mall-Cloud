@@ -34,9 +34,9 @@ public class OrderSeckillListener {
 
         try {
             orderService.createSeckillOrder(orderTo);
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         } catch (Exception e) {
-            channel.basicReject(message.getMessageProperties().getDeliveryTag(),true);
+            channel.basicReject(message.getMessageProperties().getDeliveryTag(), true);
         }
 
     }

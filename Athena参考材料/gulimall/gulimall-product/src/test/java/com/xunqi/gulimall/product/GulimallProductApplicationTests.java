@@ -71,11 +71,11 @@ public class GulimallProductApplicationTests {
         ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
 
         //保存
-        ops.set("hello","world_" + UUID.randomUUID().toString());
+        ops.set("hello", "world_" + UUID.randomUUID().toString());
 
         //查询
         String hello = ops.get("hello");
-        System.out.println("之前保存的数据:"+hello);
+        System.out.println("之前保存的数据:" + hello);
     }
 
     @Test
@@ -106,7 +106,6 @@ public class GulimallProductApplicationTests {
 
         System.out.println("上传成功...");
     }
-
 
     @Test
     public void contextLoads() {

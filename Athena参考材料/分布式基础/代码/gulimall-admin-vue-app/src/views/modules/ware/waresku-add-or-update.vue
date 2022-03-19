@@ -1,22 +1,22 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '修改'"
     :close-on-click-modal="false"
+    :title="!dataForm.id ? '新增' : '修改'"
     :visible.sync="visible"
   >
     <el-form
+      ref="dataForm"
       :model="dataForm"
       :rules="dataRule"
-      ref="dataForm"
-      @keyup.enter.native="dataFormSubmit()"
       label-width="120px"
+      @keyup.enter.native="dataFormSubmit()"
     >
       <el-form-item label="sku_id" prop="skuId">
         <el-input v-model="dataForm.skuId" placeholder="sku_id"></el-input>
       </el-form-item>
       <el-form-item label="仓库" prop="wareId">
-        <el-select v-model="dataForm.wareId" placeholder="请选择仓库" clearable>
-          <el-option :label="w.name" :value="w.id" v-for="w in wareList" :key="w.id"></el-option>
+        <el-select v-model="dataForm.wareId" clearable placeholder="请选择仓库">
+          <el-option v-for="w in wareList" :key="w.id" :label="w.name" :value="w.id"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="库存数" prop="stock">
@@ -51,18 +51,18 @@ export default {
         stockLocked: 0
       },
       dataRule: {
-        skuId: [{ required: true, message: "sku_id不能为空", trigger: "blur" }],
+        skuId: [{required: true, message: "sku_id不能为空", trigger: "blur"}],
         wareId: [
-          { required: true, message: "仓库id不能为空", trigger: "blur" }
+          {required: true, message: "仓库id不能为空", trigger: "blur"}
         ],
-        stock: [{ required: true, message: "库存数不能为空", trigger: "blur" }],
+        stock: [{required: true, message: "库存数不能为空", trigger: "blur"}],
         skuName: [
-          { required: true, message: "sku_name不能为空", trigger: "blur" }
+          {required: true, message: "sku_name不能为空", trigger: "blur"}
         ]
       }
     };
   },
-  created(){
+  created() {
     this.getWares();
   },
   methods: {
@@ -74,7 +74,7 @@ export default {
           page: 1,
           limit: 500
         })
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.wareList = data.page.list;
       });
     },
@@ -88,7 +88,7 @@ export default {
             url: this.$http.adornUrl(`/ware/waresku/info/${this.dataForm.id}`),
             method: "get",
             params: this.$http.adornParams()
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.dataForm.skuId = data.wareSku.skuId;
               this.dataForm.wareId = data.wareSku.wareId;
@@ -117,7 +117,7 @@ export default {
               skuName: this.dataForm.skuName,
               stockLocked: this.dataForm.stockLocked
             })
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.$message({
                 message: "操作成功",

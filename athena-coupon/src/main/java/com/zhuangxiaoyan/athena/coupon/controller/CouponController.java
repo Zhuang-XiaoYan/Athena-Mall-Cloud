@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 优惠券信息
  *
@@ -31,11 +30,10 @@ public class CouponController {
     @RequestMapping("/member/list")
     //@RequiresPermissions("coupon:coupon:list")
     public R membercoupons() {
-        CouponEntity couponEntity=new CouponEntity();
+        CouponEntity couponEntity = new CouponEntity();
         couponEntity.setCouponName("满100减10");
-        return R.ok().put("coupons",Arrays.asList(couponEntity));
+        return R.ok().put("coupons", Arrays.asList(couponEntity));
     }
-
 
     /**
      * 列表
@@ -47,7 +45,6 @@ public class CouponController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.Map;
 
-
 @Service("brandService")
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
@@ -31,7 +30,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         QueryWrapper<BrandEntity> queryWrapper = new QueryWrapper<>();
         //如果传过来的数据不是空的，就进行多参数查询
         if (!StringUtils.isEmpty(key)) {
-            queryWrapper.eq("brand_id",key).or().like("name",key);
+            queryWrapper.eq("brand_id", key).or().like("name", key);
         }
 
         IPage<BrandEntity> page = this.page(
@@ -50,7 +49,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
         if (!StringUtils.isEmpty(brand.getName())) {
             //同步更新其他关联表中的数据
-            categoryBrandRelationService.updateBrand(brand.getBrandId(),brand.getName());
+            categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
 
             //TODO 更新其他关联
         }

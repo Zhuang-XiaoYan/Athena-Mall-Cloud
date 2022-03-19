@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("memberPriceService")
 public class MemberPriceServiceImpl extends ServiceImpl<MemberPriceDao, MemberPriceEntity> implements MemberPriceService {
 

@@ -54,7 +54,6 @@ import java.util.stream.Collectors;
 import static com.xunqi.common.constant.CartConstant.CART_PREFIX;
 import static com.xunqi.gulimall.order.constant.OrderConstant.USER_ORDER_TOKEN_PREFIX;
 
-
 @Slf4j
 @Service("orderService")
 public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> implements OrderService {
@@ -91,6 +90,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
     @Autowired
     private ThreadPoolExecutor threadPoolExecutor;
 
+    public static void main(String[] args) {
+        String orderSn = IdWorker.getTimeId().substring(0, 16);
+        System.out.println(orderSn);
+    }
+
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<OrderEntity> page = this.page(
@@ -103,6 +107,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 订单确认页返回需要用的数据
+     *
      * @return
      */
     @Override
@@ -147,14 +152,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
             //远程查询商品库存信息
             R skuHasStock = wmsFeignService.getSkuHasStock(skuIds);
-            List<SkuStockVo> skuStockVos = skuHasStock.getData("data", new TypeReference<List<SkuStockVo>>() {});
+            List<SkuStockVo> skuStockVos = skuHasStock.getData("data", new TypeReference<List<SkuStockVo>>() {
+            });
 
             if (skuStockVos != null && skuStockVos.size() > 0) {
                 //将skuStockVos集合转换为map
                 Map<Long, Boolean> skuHasStockMap = skuStockVos.stream().collect(Collectors.toMap(SkuStockVo::getSkuId, SkuStockVo::getHasStock));
                 confirmVo.setStocks(skuHasStockMap);
             }
-        },threadPoolExecutor);
+        }, threadPoolExecutor);
 
         //3、查询用户积分
         Integer integration = memberResponseVo.getIntegration();
@@ -165,17 +171,17 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         //TODO 5、防重令牌(防止表单重复提交)
         //为用户设置一个token，三十分钟过期时间（存在redis）
         String token = UUID.randomUUID().toString().replace("-", "");
-        redisTemplate.opsForValue().set(USER_ORDER_TOKEN_PREFIX+memberResponseVo.getId(),token,30, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(USER_ORDER_TOKEN_PREFIX + memberResponseVo.getId(), token, 30, TimeUnit.MINUTES);
         confirmVo.setOrderToken(token);
 
-
-        CompletableFuture.allOf(addressFuture,cartInfoFuture).get();
+        CompletableFuture.allOf(addressFuture, cartInfoFuture).get();
 
         return confirmVo;
     }
 
     /**
      * 提交订单
+     *
      * @param vo
      * @return
      */
@@ -247,10 +253,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
                     // int i = 10/0;
 
                     //TODO 订单创建成功，发送消息给MQ
-                    rabbitTemplate.convertAndSend("order-event-exchange","order.create.order",order.getOrder());
+                    rabbitTemplate.convertAndSend("order-event-exchange", "order.create.order", order.getOrder());
 
                     //删除购物车里的数据
-                    redisTemplate.delete(CART_PREFIX+memberResponseVo.getId());
+                    redisTemplate.delete(CART_PREFIX + memberResponseVo.getId());
                     return responseVo;
                 } else {
                     //锁定失败
@@ -269,6 +275,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 按照订单号获取订单信息
+     *
      * @param orderSn
      * @return
      */
@@ -282,6 +289,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 关闭订单
+     *
      * @param orderEntity
      */
     @Override
@@ -289,7 +297,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         //关闭订单之前先查询一下数据库，判断此订单状态是否已支付
         OrderEntity orderInfo = this.getOne(new QueryWrapper<OrderEntity>().
-                eq("order_sn",orderEntity.getOrderSn()));
+                eq("order_sn", orderEntity.getOrderSn()));
 
         if (orderInfo.getStatus().equals(OrderStatusEnum.CREATE_NEW.getCode())) {
             //代付款状态进行关单
@@ -311,9 +319,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         }
     }
 
-
     /**
      * 获取当前订单的支付信息
+     *
      * @param orderSn
      * @return
      */
@@ -341,6 +349,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 查询当前用户所有订单数据
+     *
      * @param params
      * @return
      */
@@ -352,7 +361,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         IPage<OrderEntity> page = this.page(
                 new Query<OrderEntity>().getPage(params),
                 new QueryWrapper<OrderEntity>()
-                        .eq("member_id",memberResponseVo.getId()).orderByDesc("create_time")
+                        .eq("member_id", memberResponseVo.getId()).orderByDesc("create_time")
         );
 
         //遍历所有订单集合
@@ -371,6 +380,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 保存订单所有数据
+     *
      * @param orderCreateTo
      */
     private void saveOrder(OrderCreateTo orderCreateTo) {
@@ -388,7 +398,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         orderItemService.saveBatch(orderItems);
     }
 
-
     private OrderCreateTo createOrder() {
 
         OrderCreateTo createTo = new OrderCreateTo();
@@ -401,7 +410,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         List<OrderItemEntity> orderItemEntities = builderOrderItems(orderSn);
 
         //3、验价(计算价格、积分等信息)
-        computePrice(orderEntity,orderItemEntities);
+        computePrice(orderEntity, orderItemEntities);
 
         createTo.setOrder(orderEntity);
         createTo.setOrderItems(orderItemEntities);
@@ -411,6 +420,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 计算价格的方法
+     *
      * @param orderEntity
      * @param orderItemEntities
      */
@@ -459,9 +469,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     }
 
-
     /**
      * 构建订单数据
+     *
      * @param orderSn
      * @return
      */
@@ -479,7 +489,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         //远程获取收货地址和运费信息
         R fareAddressVo = wmsFeignService.getFare(orderSubmitVo.getAddrId());
-        FareVo fareResp = fareAddressVo.getData("data", new TypeReference<FareVo>() {});
+        FareVo fareResp = fareAddressVo.getData("data", new TypeReference<FareVo>() {
+        });
 
         //获取到运费信息
         BigDecimal fare = fareResp.getFare();
@@ -505,6 +516,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 构建所有订单项数据
+     *
      * @return
      */
     public List<OrderItemEntity> builderOrderItems(String orderSn) {
@@ -528,6 +540,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
     /**
      * 构建某一个订单项的数据
+     *
      * @param items
      * @return
      */
@@ -580,9 +593,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         return orderItemEntity;
     }
 
-
     /**
      * 处理支付宝的支付结果
+     *
      * @param asyncVo
      * @return
      */
@@ -609,25 +622,26 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         if (tradeStatus.equals("TRADE_SUCCESS") || tradeStatus.equals("TRADE_FINISHED")) {
             //支付成功状态
             String orderSn = asyncVo.getOut_trade_no(); //获取订单号
-            this.updateOrderStatus(orderSn,OrderStatusEnum.PAYED.getCode(),PayConstant.ALIPAY);
+            this.updateOrderStatus(orderSn, OrderStatusEnum.PAYED.getCode(), PayConstant.ALIPAY);
         }
 
         return "success";
     }
 
-
     /**
      * 修改订单状态
+     *
      * @param orderSn
      * @param code
      */
-    private void updateOrderStatus(String orderSn, Integer code,Integer payType) {
+    private void updateOrderStatus(String orderSn, Integer code, Integer payType) {
 
-        this.baseMapper.updateOrderStatus(orderSn,code,payType);
+        this.baseMapper.updateOrderStatus(orderSn, code, payType);
     }
 
     /**
      * 微信异步通知结果
+     *
      * @param notifyData
      * @return
      */
@@ -636,7 +650,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         //签名效验
         PayResponse payResponse = bestPayService.asyncNotify(notifyData);
-        log.info("payResponse={}",payResponse);
+        log.info("payResponse={}", payResponse);
 
         //2.金额效验（从数据库查订单）
         OrderEntity orderEntity = this.getOrderByOrderSn(payResponse.getOrderId());
@@ -663,7 +677,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         //3.修改订单支付状态
         //支付成功状态
         String orderSn = orderEntity.getOrderSn();
-        this.updateOrderStatus(orderSn,OrderStatusEnum.PAYED.getCode(),PayConstant.WXPAY);
+        this.updateOrderStatus(orderSn, OrderStatusEnum.PAYED.getCode(), PayConstant.WXPAY);
 
         //4.告诉微信不要再重复通知了
         return "<xml>\n" +
@@ -672,9 +686,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
                 "</xml>";
     }
 
-
     /**
      * 创建秒杀单
+     *
      * @param orderTo
      */
     @Override
@@ -710,12 +724,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
 
         //保存订单项数据
         orderItemService.save(orderItem);
-    }
-
-
-    public static void main(String[] args) {
-        String orderSn = IdWorker.getTimeId().substring(0,16);
-        System.out.println(orderSn);
     }
 
 }

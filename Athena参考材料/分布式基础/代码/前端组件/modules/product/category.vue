@@ -4,42 +4,42 @@
     <el-button v-if="draggable" @click="batchSave">批量保存</el-button>
     <el-button type="danger" @click="batchDelete">批量删除</el-button>
     <el-tree
-      :data="menus"
-      :props="defaultProps"
-      :expand-on-click-node="false"
-      show-checkbox
-      node-key="catId"
-      :default-expanded-keys="expandedKey"
-      :draggable="draggable"
-      :allow-drop="allowDrop"
-      @node-drop="handleDrop"
-      ref="menuTree"
+        ref="menuTree"
+        :allow-drop="allowDrop"
+        :data="menus"
+        :default-expanded-keys="expandedKey"
+        :draggable="draggable"
+        :expand-on-click-node="false"
+        :props="defaultProps"
+        node-key="catId"
+        show-checkbox
+        @node-drop="handleDrop"
     >
-      <span class="custom-tree-node" slot-scope="{ node, data }">
+      <span slot-scope="{ node, data }" class="custom-tree-node">
         <span>{{ node.label }}</span>
         <span>
           <el-button
-            v-if="node.level <=2"
-            type="text"
-            size="mini"
-            @click="() => append(data)"
+              v-if="node.level <=2"
+              size="mini"
+              type="text"
+              @click="() => append(data)"
           >Append</el-button>
-          <el-button type="text" size="mini" @click="edit(data)">edit</el-button>
+          <el-button size="mini" type="text" @click="edit(data)">edit</el-button>
           <el-button
-            v-if="node.childNodes.length==0"
-            type="text"
-            size="mini"
-            @click="() => remove(node, data)"
+              v-if="node.childNodes.length==0"
+              size="mini"
+              type="text"
+              @click="() => remove(node, data)"
           >Delete</el-button>
         </span>
       </span>
     </el-tree>
 
     <el-dialog
-      :title="title"
-      :visible.sync="dialogVisible"
-      width="30%"
-      :close-on-click-modal="false"
+        :close-on-click-modal="false"
+        :title="title"
+        :visible.sync="dialogVisible"
+        width="30%"
     >
       <el-form :model="category">
         <el-form-item label="分类名称">
@@ -106,7 +106,7 @@ export default {
       this.$http({
         url: this.$http.adornUrl("/product/category/list/tree"),
         method: "get"
-      }).then(({ data }) => {
+      }).then(({data}) => {
         console.log("成功获取到菜单数据...", data.data);
         this.menus = data.data;
       });
@@ -123,27 +123,28 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       })
-        .then(() => {
-          this.$http({
-            url: this.$http.adornUrl("/product/category/delete"),
-            method: "post",
-            data: this.$http.adornData(catIds, false)
-          }).then(({ data }) => {
-            this.$message({
-              message: "菜单批量删除成功",
-              type: "success"
+          .then(() => {
+            this.$http({
+              url: this.$http.adornUrl("/product/category/delete"),
+              method: "post",
+              data: this.$http.adornData(catIds, false)
+            }).then(({data}) => {
+              this.$message({
+                message: "菜单批量删除成功",
+                type: "success"
+              });
+              this.getMenus();
             });
-            this.getMenus();
+          })
+          .catch(() => {
           });
-        })
-        .catch(() => {});
     },
     batchSave() {
       this.$http({
         url: this.$http.adornUrl("/product/category/update/sort"),
         method: "post",
         data: this.$http.adornData(this.updateNodes, false)
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.$message({
           message: "菜单顺序等修改成功",
           type: "success"
@@ -164,9 +165,9 @@ export default {
       let siblings = null;
       if (dropType == "before" || dropType == "after") {
         pCid =
-          dropNode.parent.data.catId == undefined
-            ? 0
-            : dropNode.parent.data.catId;
+            dropNode.parent.data.catId == undefined
+                ? 0
+                : dropNode.parent.data.catId;
         siblings = dropNode.parent.childNodes;
       } else {
         pCid = dropNode.data.catId;
@@ -192,7 +193,7 @@ export default {
             catLevel: catLevel
           });
         } else {
-          this.updateNodes.push({ catId: siblings[i].data.catId, sort: i });
+          this.updateNodes.push({catId: siblings[i].data.catId, sort: i});
         }
       }
 
@@ -253,7 +254,7 @@ export default {
       this.$http({
         url: this.$http.adornUrl(`/product/category/info/${data.catId}`),
         method: "get"
-      }).then(({ data }) => {
+      }).then(({data}) => {
         //请求成功
         console.log("要回显的数据", data);
         this.category.name = data.data.name;
@@ -266,9 +267,9 @@ export default {
         this.category.showStatus = data.data.showStatus;
         /**
          *         parentCid: 0,
-        catLevel: 0,
-        showStatus: 1,
-        sort: 0,
+         catLevel: 0,
+         showStatus: 1,
+         sort: 0,
          */
       });
     },
@@ -297,12 +298,12 @@ export default {
     },
     //修改三级分类数据
     editCategory() {
-      var { catId, name, icon, productUnit } = this.category;
+      var {catId, name, icon, productUnit} = this.category;
       this.$http({
         url: this.$http.adornUrl("/product/category/update"),
         method: "post",
-        data: this.$http.adornData({ catId, name, icon, productUnit }, false)
-      }).then(({ data }) => {
+        data: this.$http.adornData({catId, name, icon, productUnit}, false)
+      }).then(({data}) => {
         this.$message({
           message: "菜单修改成功",
           type: "success"
@@ -322,7 +323,7 @@ export default {
         url: this.$http.adornUrl("/product/category/save"),
         method: "post",
         data: this.$http.adornData(this.category, false)
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.$message({
           message: "菜单保存成功",
           type: "success"
@@ -343,23 +344,24 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       })
-        .then(() => {
-          this.$http({
-            url: this.$http.adornUrl("/product/category/delete"),
-            method: "post",
-            data: this.$http.adornData(ids, false)
-          }).then(({ data }) => {
-            this.$message({
-              message: "菜单删除成功",
-              type: "success"
+          .then(() => {
+            this.$http({
+              url: this.$http.adornUrl("/product/category/delete"),
+              method: "post",
+              data: this.$http.adornData(ids, false)
+            }).then(({data}) => {
+              this.$message({
+                message: "菜单删除成功",
+                type: "success"
+              });
+              //刷新出新的菜单
+              this.getMenus();
+              //设置需要默认展开的菜单
+              this.expandedKey = [node.parent.data.catId];
             });
-            //刷新出新的菜单
-            this.getMenus();
-            //设置需要默认展开的菜单
-            this.expandedKey = [node.parent.data.catId];
+          })
+          .catch(() => {
           });
-        })
-        .catch(() => {});
 
       console.log("remove", node, data);
     }
@@ -369,14 +371,22 @@ export default {
     this.getMenus();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  mounted() {
+  },
+  beforeCreate() {
+  }, //生命周期 - 创建之前
+  beforeMount() {
+  }, //生命周期 - 挂载之前
+  beforeUpdate() {
+  }, //生命周期 - 更新之前
+  updated() {
+  }, //生命周期 - 更新之后
+  beforeDestroy() {
+  }, //生命周期 - 销毁之前
+  destroyed() {
+  }, //生命周期 - 销毁完成
+  activated() {
+  } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style scoped>

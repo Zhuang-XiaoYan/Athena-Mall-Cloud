@@ -1,15 +1,14 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- *
+ * <p>
  * https://www.guli.cloud
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.atguigu.common.utils;
 
 import java.util.HashMap;
-
 
 /**
  * Map工具类

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <script src="/static/order/confirm/js/jquery-3.1.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/order/confirm/css/JD2.css"/>
+    <link href="/static/order/confirm/css/JD2.css" rel="stylesheet" type="text/css"/>
 
     <title>订单结算页</title>
 </head>
@@ -290,7 +290,7 @@
                         <p>新人专享大礼</p>
                         <div class="h-r-1img2">
                             <a href="/static/order/confirm/"><img
-                                    src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
+                                    alt="" src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png"/></a>
                             <a href="/static/order/confirm/"><img
                                     src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
                             <a href="/static/order/confirm/"><img
@@ -317,7 +317,7 @@
                         <p>新人专享大礼</p>
                         <div class="h-r-1img2">
                             <a href="/static/order/confirm/"><img
-                                    src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png" alt=""/></a>
+                                    alt="" src="/static/order/confirm/img/8104b36ae6b72043ae838599d36d007d.png"/></a>
                             <a href="/static/order/confirm/"><img
                                     src="/static/order/confirm/img/c0935b2c6504a5419e6ee507a5381bbe.png"/></a>
                             <a href="/static/order/confirm/"><img
@@ -440,9 +440,9 @@
 
 <!--logo图片-->
 <div class="top-1">
-    <img src="/static/order/confirm/img/logo1.jpg" class="img1"/><span>结算页</span>
+    <img class="img1" src="/static/order/confirm/img/logo1.jpg"/><span>结算页</span>
     <!--右侧绿色-->
-    <img src="/static/order/confirm/img/08.png" class="img2"/>
+    <img class="img2" src="/static/order/confirm/img/08.png"/>
 </div>
 
 <!--主体部分-->
@@ -590,7 +590,7 @@
 <!--</div>-->
 <!--</div>-->
 <!--主体部分-->
-<p class="p1">填写并核对订单信息 <span style="color: red" th:if="${msg!=null}" th:text="${msg}"></span> </p>
+<p class="p1">填写并核对订单信息 <span style="color: red" th:if="${msg!=null}" th:text="${msg}"></span></p>
 <div class="section">
     <!--收货人信息-->
     <div class="top-2">
@@ -668,7 +668,7 @@
             <span>已购满20.00元，再加49.90元，可返回购物车领取赠品</span></div>
         <!--图片-->
         <div class="yun1" th:each="item:${confirmOrderData.items}">
-            <img th:src="${item.image}" class="yun"/>
+            <img class="yun" th:src="${item.image}"/>
             <div class="mi">
                 <p>[[${item.title}]]<span style="color: red;" th:text="'￥' + ${#numbers.formatDecimal(item.price,3,2)}"> ￥ 499.00</span>
                     <span> [[${item.count}]] </span> <span> [[${confirmOrderData.stocks[item.skuId]?"有货":"无货"}]]</span>
@@ -740,8 +740,8 @@
         <p class="yfze_b">寄送至： <span id="receiveAddress"></span> 收货人：<span id="receiver"></span></p>
     </div>
     <form action="http://order.gulimall.com/submitOrder" method="post">
-		<input id="addrInput" type="hidden" name="addrId" />
-		<input id="payPriceInput" type="hidden" name="payPrice">
+        <input id="addrInput" name="addrId" type="hidden"/>
+        <input id="payPriceInput" name="payPrice" type="hidden">
         <input name="orderToken" th:value="${confirmOrderData.orderToken}" type="hidden"/>
         <button class="tijiao" type="submit">提交订单</button>
     </form>
@@ -1003,8 +1003,8 @@
 
     //查运费
     function getFare(addrId) {
-    	//给表单回填选择的地址
-		$("#addrInput").val(addrId);
+        //给表单回填选择的地址
+        $("#addrInput").val(addrId);
         $.get("http://gulimall.com/api/ware/wareinfo/fare?addrId=" + addrId, function (resp) {
             console.log(resp);
             $("#fare").text(resp.data.fare);
@@ -1013,7 +1013,7 @@
             var payPrice = total * 1 + resp.data.fare * 1;
             //设置运费
             $("#payPrice").text(payPrice);
-			$("#payPriceInput").val(payPrice);
+            $("#payPriceInput").val(payPrice);
 
             //设置收获地址人信息
             $("#receiveAddress").text(resp.data.address.province + " " + resp.data.address.city + " " + " " + resp.data.address.region + resp.data.address.detailAddress);

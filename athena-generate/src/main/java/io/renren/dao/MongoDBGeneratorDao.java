@@ -52,5 +52,4 @@ public class MongoDBGeneratorDao implements GeneratorDao {
         return MongoTableInfoAdaptor.columnInfo(mongoDefinition);
     }
 
-
 }

@@ -17,7 +17,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableDiscoveryClient
 public class GulimallSearchApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(GulimallSearchApplication.class, args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(GulimallSearchApplication.class, args);
+    }
 }

@@ -24,12 +24,14 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 用户注册
+     *
      * @param vo
      */
     void register(MemberUserRegisterVo vo);
 
     /**
      * 判断邮箱是否重复
+     *
      * @param phone
      * @return
      */
@@ -37,6 +39,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 判断用户名是否重复
+     *
      * @param userName
      * @return
      */
@@ -44,6 +47,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 用户登录
+     *
      * @param vo
      * @return
      */
@@ -51,6 +55,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 社交用户的登录
+     *
      * @param socialUser
      * @return
      */
@@ -58,6 +63,7 @@ public interface MemberService extends IService<MemberEntity> {
 
     /**
      * 微信登录
+     *
      * @param accessTokenInfo
      * @return
      */

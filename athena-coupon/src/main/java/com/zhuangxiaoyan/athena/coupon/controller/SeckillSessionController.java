@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 秒杀活动场次
  *
@@ -34,7 +33,6 @@ public class SeckillSessionController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

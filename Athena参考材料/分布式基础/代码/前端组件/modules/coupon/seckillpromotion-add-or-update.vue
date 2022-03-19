@@ -1,26 +1,26 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '修改'"
-    :close-on-click-modal="false"
-    :visible.sync="visible"
+      :close-on-click-modal="false"
+      :title="!dataForm.id ? '新增' : '修改'"
+      :visible.sync="visible"
   >
     <el-form
-      :model="dataForm"
-      :rules="dataRule"
-      ref="dataForm"
-      @keyup.enter.native="dataFormSubmit()"
-      label-width="120px"
+        ref="dataForm"
+        :model="dataForm"
+        :rules="dataRule"
+        label-width="120px"
+        @keyup.enter.native="dataFormSubmit()"
     >
       <el-form-item label="活动标题" prop="title">
         <el-input v-model="dataForm.title" placeholder="活动标题"></el-input>
       </el-form-item>
       <el-form-item label="生效日期" prop="enableStartTime">
         <el-date-picker
-          v-model="dataForm.timeRange"
-          type="datetimerange"
-          range-separator="至"
-          start-placeholder="开始日期"
-          end-placeholder="结束日期"
+            v-model="dataForm.timeRange"
+            end-placeholder="结束日期"
+            range-separator="至"
+            start-placeholder="开始日期"
+            type="datetimerange"
         ></el-date-picker>
       </el-form-item>
       <el-form-item label="上下线状态" prop="status">
@@ -57,7 +57,7 @@ export default {
       },
       dataRule: {
         title: [
-          { required: true, message: "活动标题不能为空", trigger: "blur" }
+          {required: true, message: "活动标题不能为空", trigger: "blur"}
         ]
       }
     };
@@ -71,11 +71,11 @@ export default {
         if (this.dataForm.id) {
           this.$http({
             url: this.$http.adornUrl(
-              `/coupon/seckillpromotion/info/${this.dataForm.id}`
+                `/coupon/seckillpromotion/info/${this.dataForm.id}`
             ),
             method: "get",
             params: this.$http.adornParams()
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.dataForm.title = data.seckillPromotion.title;
               this.dataForm.startTime = data.seckillPromotion.startTime;
@@ -96,9 +96,9 @@ export default {
         if (valid) {
           this.$http({
             url: this.$http.adornUrl(
-              `/coupon/seckillpromotion/${
-                !this.dataForm.id ? "save" : "update"
-              }`
+                `/coupon/seckillpromotion/${
+                    !this.dataForm.id ? "save" : "update"
+                }`
             ),
             method: "post",
             data: this.$http.adornData({
@@ -108,7 +108,7 @@ export default {
               endTime: this.dataForm.timeRange[1],
               status: this.dataForm.status
             })
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.$message({
                 message: "操作成功",

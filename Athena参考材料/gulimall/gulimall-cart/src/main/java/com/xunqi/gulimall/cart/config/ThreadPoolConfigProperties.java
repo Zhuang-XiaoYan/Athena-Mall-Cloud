@@ -21,5 +21,4 @@ public class ThreadPoolConfigProperties {
 
     private Integer keepAliveTime;
 
-
 }

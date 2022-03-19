@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/login/JD_sass/JD1.css"/>
-    <script src="/static/login/JD_js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="/static/login/JD_sass/JD1.css" rel="stylesheet" type="text/css"/>
+    <script charset="utf-8" src="/static/login/JD_js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <title>gulimall</title>
 </head>
 <body>
@@ -42,8 +42,8 @@
             <h2 class="btn1">账户登录</h2>
         </div>
         <div class="si_bom tab">
-            <img src="/static/login/JD_img/show.png" class="bom_1"/>
-            <a href="/static/login/#"><img src="/static/login/JD_img/phone-orange.png" class="bom_2"/></a>
+            <img class="bom_1" src="/static/login/JD_img/show.png"/>
+            <a href="/static/login/#"><img class="bom_2" src="/static/login/JD_img/phone-orange.png"/></a>
             <h6>打开<span class="red">手机谷粒商城</span> 扫描二维码</h6>
             <p>
                 <img src="/static/login/JD_img/4de5019d2404d347897dee637895d02b_15.png"/>
@@ -60,15 +60,16 @@
                 请输入账户名和密码
             </div>
             <form action="/login" method="post">
-                <div style="color: red" th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}"></div>
+                <div style="color: red"
+                     th:text="${errors != null ? (#maps.containsKey(errors, 'msg') ? errors.msg : '') : ''}"></div>
                 <ul>
                     <li class="top_1">
-                        <img src="/static/login/JD_img/user_03.png" class="err_img1"/>
-                        <input type="text" name="loginacct" placeholder=" 邮箱/用户名/已验证手机" class="user"/>
+                        <img class="err_img1" src="/static/login/JD_img/user_03.png"/>
+                        <input class="user" name="loginacct" placeholder=" 邮箱/用户名/已验证手机" type="text"/>
                     </li>
                     <li>
-                        <img src="/static/login/JD_img/user_06.png" class="err_img2"/>
-                        <input type="password" name="password" placeholder=" 密码" class="password"/>
+                        <img class="err_img2" src="/static/login/JD_img/user_06.png"/>
+                        <input class="password" name="password" placeholder=" 密码" type="password"/>
                     </li>
                     <li class="bri">
                         <a href="/static/login/">忘记密码</a>
@@ -82,8 +83,8 @@
             <ul>
                 <li>
                     <a href="https://api.weibo.com/oauth2/authorize?client_id=2077705774&response_type=code&redirect_uri=http://auth.gulimall.com/oauth2.0/weibo/success">
-                        <img style="width: 50px;height: 18px;" src="/static/login/JD_img/weibo.png"/>
-<!--                        <span>weibo</span>-->
+                        <img src="/static/login/JD_img/weibo.png" style="width: 50px;height: 18px;"/>
+                        <!--                        <span>weibo</span>-->
                     </a>
                 </li>
                 <li class="f4"> |</li>

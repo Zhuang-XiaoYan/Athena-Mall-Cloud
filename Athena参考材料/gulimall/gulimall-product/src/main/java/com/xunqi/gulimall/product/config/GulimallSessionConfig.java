@@ -29,7 +29,6 @@ public class GulimallSessionConfig {
         return cookieSerializer;
     }
 
-
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
         return new GenericJackson2JsonRedisSerializer();

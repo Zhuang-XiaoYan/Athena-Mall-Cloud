@@ -24,6 +24,7 @@ public interface WareSkuService extends IService<WareSkuEntity> {
 
     /**
      * 添加库存
+     *
      * @param skuId
      * @param wareId
      * @param skuNum
@@ -32,6 +33,7 @@ public interface WareSkuService extends IService<WareSkuEntity> {
 
     /**
      * 判断是否有库存
+     *
      * @param skuIds
      * @return
      */
@@ -39,20 +41,22 @@ public interface WareSkuService extends IService<WareSkuEntity> {
 
     /**
      * 锁定库存
+     *
      * @param vo
      * @return
      */
     boolean orderLockStock(WareSkuLockVo vo);
 
-
     /**
      * 解锁库存
+     *
      * @param to
      */
     void unlockStock(StockLockedTo to);
 
     /**
      * 解锁订单
+     *
      * @param orderTo
      */
     void unlockStock(OrderTo orderTo);

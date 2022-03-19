@@ -46,26 +46,19 @@ import java.util.stream.Collectors;
 @Service
 public class SeckillServiceImpl implements SeckillService {
 
+    private final String SESSION__CACHE_PREFIX = "seckill:sessions:";
+    private final String SECKILL_CHARE_PREFIX = "seckill:skus";
+    private final String SKU_STOCK_SEMAPHORE = "seckill:stock:";    //+商品随机码
     @Autowired
     private StringRedisTemplate redisTemplate;
-
     @Autowired
     private CouponFeignService couponFeignService;
-
     @Autowired
     private ProductFeignService productFeignService;
-
     @Autowired
     private RedissonClient redissonClient;
-
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
-    private final String SESSION__CACHE_PREFIX = "seckill:sessions:";
-
-    private final String SECKILL_CHARE_PREFIX = "seckill:skus";
-
-    private final String SKU_STOCK_SEMAPHORE = "seckill:stock:";    //+商品随机码
 
     @Override
     public void uploadSeckillSkuLatest3Days() {
@@ -88,6 +81,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * 缓存秒杀活动信息
+     *
      * @param sessions
      */
     private void saveSessionInfos(List<SeckillSessionWithSkusVo> sessions) {
@@ -108,7 +102,7 @@ public class SeckillServiceImpl implements SeckillService {
                 //获取到活动中所有商品的skuId
                 List<String> skuIds = session.getRelationSkus().stream()
                         .map(item -> item.getPromotionSessionId() + "-" + item.getSkuId().toString()).collect(Collectors.toList());
-                redisTemplate.opsForList().leftPushAll(key,skuIds);
+                redisTemplate.opsForList().leftPushAll(key, skuIds);
             }
         });
 
@@ -116,6 +110,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * 缓存秒杀活动所关联的商品信息
+     *
      * @param sessions
      */
     private void saveSessionSkuInfo(List<SeckillSessionWithSkusVo> sessions) {
@@ -135,12 +130,13 @@ public class SeckillServiceImpl implements SeckillService {
                     //1、先查询sku的基本信息，调用远程服务
                     R info = productFeignService.getSkuInfo(skuId);
                     if (info.getCode() == 0) {
-                        SkuInfoVo skuInfo = info.getData("skuInfo",new TypeReference<SkuInfoVo>(){});
+                        SkuInfoVo skuInfo = info.getData("skuInfo", new TypeReference<SkuInfoVo>() {
+                        });
                         redisTo.setSkuInfo(skuInfo);
                     }
 
                     //2、sku的秒杀信息
-                    BeanUtils.copyProperties(seckillSkuVo,redisTo);
+                    BeanUtils.copyProperties(seckillSkuVo, redisTo);
 
                     //3、设置当前商品的秒杀时间信息
                     redisTo.setStartTime(session.getStartTime().getTime());
@@ -151,7 +147,7 @@ public class SeckillServiceImpl implements SeckillService {
 
                     //序列化json格式存入Redis中
                     String seckillValue = JSON.toJSONString(redisTo);
-                    operations.put(seckillSkuVo.getPromotionSessionId().toString() + "-" + seckillSkuVo.getSkuId().toString(),seckillValue);
+                    operations.put(seckillSkuVo.getPromotionSessionId().toString() + "-" + seckillSkuVo.getSkuId().toString(), seckillValue);
 
                     //如果当前这个场次的商品库存信息已经上架就不需要上架
                     //5、使用库存作为分布式Redisson信号量（限流）
@@ -164,12 +160,12 @@ public class SeckillServiceImpl implements SeckillService {
         });
     }
 
-
     /**
      * 获取到当前可以参加秒杀商品的信息
+     *
      * @return
      */
-    @SentinelResource(value = "getCurrentSeckillSkusResource",blockHandler = "blockHandler")
+    @SentinelResource(value = "getCurrentSeckillSkusResource", blockHandler = "blockHandler")
     @Override
     public List<SeckillSkuRedisTo> getCurrentSeckillSkus() {
 
@@ -209,7 +205,7 @@ public class SeckillServiceImpl implements SeckillService {
                 }
             }
         } catch (BlockException e) {
-            log.error("资源被限流{}",e.getMessage());
+            log.error("资源被限流{}", e.getMessage());
         }
 
         return null;
@@ -217,12 +213,13 @@ public class SeckillServiceImpl implements SeckillService {
 
     public List<SeckillSkuRedisTo> blockHandler(BlockException e) {
 
-        log.error("getCurrentSeckillSkusResource被限流了,{}",e.getMessage());
+        log.error("getCurrentSeckillSkusResource被限流了,{}", e.getMessage());
         return null;
     }
 
     /**
      * 根据skuId查询商品是否参加秒杀活动
+     *
      * @param skuId
      * @return
      */
@@ -239,7 +236,7 @@ public class SeckillServiceImpl implements SeckillService {
             String reg = "\\d-" + skuId;
             for (String key : keys) {
                 //如果匹配上了
-                if (Pattern.matches(reg,key)) {
+                if (Pattern.matches(reg, key)) {
                     //从Redis中取出数据来
                     String redisValue = hashOps.get(key);
                     //进行序列化
@@ -261,9 +258,9 @@ public class SeckillServiceImpl implements SeckillService {
         return null;
     }
 
-
     /**
      * 当前商品进行秒杀（秒杀开始）
+     *
      * @param killId
      * @param key
      * @param num
@@ -292,7 +289,7 @@ public class SeckillServiceImpl implements SeckillService {
 
             //2、效验随机码和商品id
             String randomCode = redisTo.getRandomCode();
-            String skuId = redisTo.getPromotionSessionId() + "-" +redisTo.getSkuId();
+            String skuId = redisTo.getPromotionSessionId() + "-" + redisTo.getSkuId();
             if (randomCode.equals(key) && killId.equals(skuId)) {
                 //3、验证购物数量是否合理和库存量是否充足
                 Integer seckillLimit = redisTo.getSeckillLimit();
@@ -301,7 +298,7 @@ public class SeckillServiceImpl implements SeckillService {
                 String seckillCount = redisTemplate.opsForValue().get(SKU_STOCK_SEMAPHORE + randomCode);
                 Integer count = Integer.valueOf(seckillCount);
                 //判断信号量是否大于0,并且买的数量不能超过库存
-                if (count > 0 && num <= seckillLimit && count > num ) {
+                if (count > 0 && num <= seckillLimit && count > num) {
                     //4、验证这个人是否已经买过了（幂等性处理）,如果秒杀成功，就去占位。userId-sessionId-skuId
                     //SETNX 原子性处理
                     String redisKey = user.getId() + "-" + skuId;
@@ -325,7 +322,7 @@ public class SeckillServiceImpl implements SeckillService {
                             orderTo.setPromotionSessionId(redisTo.getPromotionSessionId());
                             orderTo.setSkuId(redisTo.getSkuId());
                             orderTo.setSeckillPrice(redisTo.getSeckillPrice());
-                            rabbitTemplate.convertAndSend("order-event-exchange","order.seckill.order",orderTo);
+                            rabbitTemplate.convertAndSend("order-event-exchange", "order.seckill.order", orderTo);
                             long s2 = System.currentTimeMillis();
                             log.info("耗时..." + (s2 - s1));
                             return timeId;

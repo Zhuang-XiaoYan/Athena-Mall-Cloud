@@ -15,7 +15,6 @@ import java.util.List;
  * @createTime: 2020-06-19 16:46
  **/
 
-
 @ToString
 @Data
 public class SkuItemVo {

@@ -1,27 +1,23 @@
-#Spring service的属性
-server:
-  port: 12000
-  servlet:
-    session:
-      timeout: 30m
-
-#spring cloud gateway的基本配置
 spring:
-  application:
-    name: athena-getway
   cloud:
-    nacos:
-      # 配置的Springcloud的服务注册中心
-      discovery:
-        server-addr: 192.168.25.137:30768
     gateway:
       routes:
-        - id athena-coupon
-          uri: http://192.168.25.1:8000/coupon/coupon/list
-            predicates:
-              - Query=url,coupon
-        - id athena-member
-          uri: http://192.168.25.1:8000/member/member/list
-            predicates:
-              - Query=url,member
+
+        # high level athena-product service
+        - id: athena-product-route
+          uri: lb://athena-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # low level athena-admin service
+        - id: athena-admin-route
+          uri: lb://athena-admin
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /athena-admin/$\{segment}
+
+
+
 

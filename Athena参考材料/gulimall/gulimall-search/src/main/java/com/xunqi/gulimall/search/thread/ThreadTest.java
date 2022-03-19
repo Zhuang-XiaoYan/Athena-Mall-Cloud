@@ -71,7 +71,6 @@ public class ThreadTest {
         //     return 0;
         // });
 
-
         /**
          * 线程串行化
          * 1、thenRunL：不能获取上一步的执行结果
@@ -108,7 +107,6 @@ public class ThreadTest {
         ExecutorService service = Executors.newScheduledThreadPool(2);
     }
 
-
     public static class Thread01 extends Thread {
         @Override
         public void run() {
@@ -118,7 +116,6 @@ public class ThreadTest {
         }
     }
 
-
     public static class Runable01 implements Runnable {
         @Override
         public void run() {
@@ -127,7 +124,6 @@ public class ThreadTest {
             System.out.println("运行结果：" + i);
         }
     }
-
 
     public static class Callable01 implements Callable<Integer> {
         @Override

@@ -6,7 +6,6 @@ import org.apache.commons.collections.CollectionUtils;
 import java.io.Serializable;
 import java.util.*;
 
-
 /**
  * 解析表之后得到的信息实体
  * 换句话说这个类就是一张mongo一张表的内容
@@ -23,7 +22,6 @@ public class MongoDefinition implements Serializable {
     private boolean array = false;
     /***如果此属性是对象  那么他仍然有此类型的子类**/
     private List<MongoDefinition> child;
-
 
     public List<MongoGeneratorEntity> getChildrenInfo(String tableName) {
         List<MongoGeneratorEntity> result = new ArrayList<>();
@@ -54,15 +52,8 @@ public class MongoDefinition implements Serializable {
         return type == null || Objects.equals(type, objectType) || CollectionUtils.isNotEmpty(child);
     }
 
-
     public boolean primaryBean() {
         return type == null;
-    }
-
-
-    public MongoDefinition setType(Integer type) {
-        this.type = type;
-        return this;
     }
 
     public String getPropertyName() {
@@ -76,6 +67,11 @@ public class MongoDefinition implements Serializable {
 
     public Integer getType() {
         return type;
+    }
+
+    public MongoDefinition setType(Integer type) {
+        this.type = type;
+        return this;
     }
 
     public boolean isArray() {

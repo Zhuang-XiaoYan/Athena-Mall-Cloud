@@ -38,16 +38,15 @@ public class IndexController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @GetMapping(value = {"/","index.html"})
+    @GetMapping(value = {"/", "index.html"})
     private String indexPage(Model model) {
 
         //1、查出所有的一级分类
         List<CategoryEntity> categoryEntities = categoryService.getLevel1Categorys();
-        model.addAttribute("categories",categoryEntities);
+        model.addAttribute("categories", categoryEntities);
 
         return "index";
     }
-
 
     //index/json/catalog.json
     @GetMapping(value = "/index/catalog.json")
@@ -59,7 +58,6 @@ public class IndexController {
         return catalogJson;
 
     }
-
 
     @ResponseBody
     @GetMapping(value = "/hello")
@@ -80,7 +78,11 @@ public class IndexController {
         // internalLockLeaseTime 【看门狗时间】 / 3， 10s
         try {
             System.out.println("加锁成功，执行业务..." + Thread.currentThread().getId());
-            try { TimeUnit.SECONDS.sleep(20); } catch (InterruptedException e) { e.printStackTrace(); }
+            try {
+                TimeUnit.SECONDS.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -92,7 +94,6 @@ public class IndexController {
         return "hello";
     }
 
-
     /**
      * 保证一定能读到最新数据，修改期间，写锁是一个排它锁（互斥锁、独享锁），读锁是一个共享锁
      * 写锁没释放读锁必须等待
@@ -101,6 +102,7 @@ public class IndexController {
      * 写 + 写 ：阻塞方式
      * 读 + 写 ：有读锁。写也需要等待
      * 只要有读或者写的存都必须等待
+     *
      * @return
      */
     @GetMapping(value = "/write")
@@ -114,7 +116,7 @@ public class IndexController {
             rLock.lock();
             s = UUID.randomUUID().toString();
             ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-            ops.set("writeValue",s);
+            ops.set("writeValue", s);
             TimeUnit.SECONDS.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -136,7 +138,11 @@ public class IndexController {
             rLock.lock();
             ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
             s = ops.get("writeValue");
-            try { TimeUnit.SECONDS.sleep(10); } catch (InterruptedException e) { e.printStackTrace(); }
+            try {
+                TimeUnit.SECONDS.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -145,7 +151,6 @@ public class IndexController {
 
         return s;
     }
-
 
     /**
      * 车库停车
@@ -176,7 +181,6 @@ public class IndexController {
         park.release();     //释放一个车位
         return "ok";
     }
-
 
     /**
      * 放假、锁门

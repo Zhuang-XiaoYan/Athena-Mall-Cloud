@@ -35,10 +35,11 @@ public class WxApiController {
 
     /**
      * 获取扫码人的信息，添加数据
+     *
      * @return
      */
     @GetMapping(value = "/callback")
-    public String callback(String code,String state, HttpSession session) throws Exception {
+    public String callback(String code, String state, HttpSession session) throws Exception {
 
         try {
             //得到授权临时票据code
@@ -66,14 +67,15 @@ public class WxApiController {
             String accessTokenInfo = HttpClientUtils.get(accessTokenUrl);
             R r = memberFeignService.weixinLogin(accessTokenInfo);
             if (r.getCode() == 0) {
-                MemberResponseVo data = r.getData("data", new TypeReference<MemberResponseVo>() {});
-                log.info("登录成功：用户信息：{}",data.toString());
+                MemberResponseVo data = r.getData("data", new TypeReference<MemberResponseVo>() {
+                });
+                log.info("登录成功：用户信息：{}", data.toString());
 
                 //1、第一次使用session，命令浏览器保存卡号，JSESSIONID这个cookie
                 //以后浏览器访问哪个网站就会带上这个网站的cookie
                 //TODO 1、默认发的令牌。当前域（解决子域session共享问题）
                 //TODO 2、使用JSON的序列化方式来序列化对象到Redis中
-                session.setAttribute(LOGIN_USER,data);
+                session.setAttribute(LOGIN_USER, data);
 
                 //2、登录成功跳回首页
                 return "redirect:http://gulimall.com";
@@ -90,6 +92,7 @@ public class WxApiController {
 
     /**
      * 生成微信扫描二维码
+     *
      * @return
      * @throws UnsupportedEncodingException
      */
@@ -107,7 +110,7 @@ public class WxApiController {
 
         //对redirect_url进行URLEncoder编码
         String redirect_url = ConstantWxUtils.WX_OPEN_REDIRECT_URL;
-        redirect_url = URLEncoder.encode(redirect_url,"UTF-8");
+        redirect_url = URLEncoder.encode(redirect_url, "UTF-8");
 
         // 防止csrf攻击（跨站请求伪造攻击）
         //String state = UUID.randomUUID().toString().replaceAll("-", "");//一般情况下会使用一个随机数

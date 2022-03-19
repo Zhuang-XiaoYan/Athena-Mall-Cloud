@@ -8,15 +8,15 @@ spring:
 
     gateway:
       routes:
-#        - id: test_route
-#          uri: https://www.baidu.com
-#          predicates:
-#            - Query=uri,baidu
-#
-#        - id: qq_route
-#          uri: https://www.qq.com
-#          predicates:
-#            - Query=uri,qq
+        #        - id: test_route
+        #          uri: https://www.baidu.com
+        #          predicates:
+        #            - Query=uri,baidu
+        #
+        #        - id: qq_route
+        #          uri: https://www.qq.com
+        #          predicates:
+        #            - Query=uri,qq
 
         - id: product_route
           uri: lb://gulimall-product

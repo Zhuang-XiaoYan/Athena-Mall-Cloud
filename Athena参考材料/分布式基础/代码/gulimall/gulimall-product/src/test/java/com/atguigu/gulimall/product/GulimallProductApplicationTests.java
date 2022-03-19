@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * 1、引入oss-starter
  * 2、配置key，endpoint相关信息即可
@@ -34,16 +33,14 @@ public class GulimallProductApplicationTests {
     @Autowired
     BrandService brandService;
 
-
     @Autowired
     CategoryService categoryService;
 
     @Test
-    public void testFindPath(){
+    public void testFindPath() {
         Long[] catelogPath = categoryService.findCatelogPath(225L);
-        log.info("完整路径：{}",Arrays.asList(catelogPath));
+        log.info("完整路径：{}", Arrays.asList(catelogPath));
     }
-
 
     @Test
     public void contextLoads() {
@@ -58,7 +55,6 @@ public class GulimallProductApplicationTests {
 //        System.out.println("保存成功....");
 
 //        brandService.updateById(brandEntity);
-
 
         List<BrandEntity> list = brandService.list(new QueryWrapper<BrandEntity>().eq("brand_id", 1L));
         list.forEach((item) -> {

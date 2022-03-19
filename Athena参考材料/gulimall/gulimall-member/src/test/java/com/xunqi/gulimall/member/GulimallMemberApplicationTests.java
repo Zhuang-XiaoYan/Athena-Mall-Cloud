@@ -15,7 +15,7 @@ public class GulimallMemberApplicationTests {
         String s = DigestUtils.md5Hex("123456");
         System.out.println(s);
         System.out.println(Md5Crypt.md5Crypt("123456".getBytes()));
-        System.out.println(Md5Crypt.md5Crypt("123456".getBytes(),"$1$qqqqqqqq"));
+        System.out.println(Md5Crypt.md5Crypt("123456".getBytes(), "$1$qqqqqqqq"));
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         //$2a$10$GT0TjB5YK5Vx77Y.2N7hkuYZtYAjZjMlE6NWGE2Aar/7pk/Rmhf8S
@@ -23,7 +23,7 @@ public class GulimallMemberApplicationTests {
         String encode = bCryptPasswordEncoder.encode("123456");
         boolean matches = bCryptPasswordEncoder.matches("123456", "$2a$10$GT0TjB5YK5Vx77Y.2N7hkuYZtYAjZjMlE6NWGE2Aar/7pk/Rmhf8S");
 
-        System.out.println(encode+"==>" + matches);
+        System.out.println(encode + "==>" + matches);
     }
 
 }

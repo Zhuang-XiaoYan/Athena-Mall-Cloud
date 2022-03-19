@@ -73,7 +73,7 @@ public class GulimallSeckillApplicationTests {
         //44444444444444444444444444
         i = 10;
         while (i-- > 0) {
-            robot.mouseMove(0, 300 );
+            robot.mouseMove(0, 300);
         }
         robot.mousePress(InputEvent.BUTTON1_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_MASK); //画完一个圆后在圆外面点一下鼠标，否则回拖动画的圆到下一个位置

@@ -25,6 +25,7 @@ public class SearchController {
 
     /**
      * 自动将页面提交过来的所有请求参数封装成我们指定的对象
+     *
      * @param param
      * @return
      */
@@ -36,7 +37,7 @@ public class SearchController {
         //1、根据传递来的页面的查询参数，去es中检索商品
         SearchResult result = mallSearchService.search(param);
 
-        model.addAttribute("result",result);
+        model.addAttribute("result", result);
 
         return "list";
     }

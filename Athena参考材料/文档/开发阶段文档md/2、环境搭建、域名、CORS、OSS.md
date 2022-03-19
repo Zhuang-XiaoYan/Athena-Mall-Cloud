@@ -1,5 +1,3 @@
-
-
 # 1. 谷粒商城介绍
 
 ## 1.1. 项目分类
@@ -16,20 +14,15 @@
 
 - 技术侧重点：业务功能
 
-    
-
-
 ### 1.1.2. 互联网项目
 
-门户网站、电商网站：baidu.com、qq.com、taobao.com、jd.com  ...... 
+门户网站、电商网站：baidu.com、qq.com、taobao.com、jd.com ......
 
 - 需求方：广大用户群体
 - 盈利模式：虚拟币、增值服务、广告收益......
 - 技术侧重点：网站性能、业务功能
 
 而我们今天要聊的就是互联网项目中的重要角色：电商
-
-
 
 ## 1.2. 为什么我们要讲电商？
 
@@ -40,19 +33,16 @@
 - 有一定的业务复杂性
 - 涉及支付 考虑一定安全性
 
-
-
 ## 1.3. 电商行业的发展
 
 ### 1.3.1. 钱景
 
 近年来，中国的电子商务快速发展，交易额连创新高，电子商务在各领域的应用不断拓展和深化、相关服务业蓬勃发展、支撑体系不断健全完善、创新的动力和能力不断增强。电子商务正在与实体经济深度融合，进入规模性发展阶段，对经济社会生活的影响不断增大，正成为我国经济发展的新引擎。
 
-中国电子商务研究中心数据显示，截止到 2012 年底，中国电子商务市场交易规模达 7.85万亿人民币，同比增长 30.83%。其中，B2B 电子商务交易额达 6.25 万亿，同比增长 27%。而 2011 年全年，中国电子商务市场交易额达 6 万亿人民币，同比增长 33%，占 GDP 比重上升到 13%；2012 年，电子商务占 GDP 的比重已经高达 15%。
+中国电子商务研究中心数据显示，截止到 2012 年底，中国电子商务市场交易规模达 7.85万亿人民币，同比增长 30.83%。其中，B2B 电子商务交易额达 6.25 万亿，同比增长 27%。而 2011 年全年，中国电子商务市场交易额达
+6 万亿人民币，同比增长 33%，占 GDP 比重上升到 13%；2012 年，电子商务占 GDP 的比重已经高达 15%。
 
- ![](assets/1525686041466.png)
-
-
+![](assets/1525686041466.png)
 
 ### 1.3.2. 数据
 
@@ -68,9 +58,8 @@
 
 2017阿里双11交易创建峰值 32.5 万笔／秒，支付峰值达到每秒25.6万笔。支付宝每秒处理4200万次请求。
 
-2018年天猫双11**每秒订单创建峰值49.1万笔**。全天**实时计算处理峰值达到每秒17.18亿条**，强大技术能力保障了双11购物如丝般顺滑。消费者手指轻点下单的这一秒钟里，光是计算环节，就包括至少7个系统的运转。这对阿里巴巴来说，意味着单位时间内全球最大的多维度计算量。提交订单的环节，一个页面里，背后包括商品、价格、营销、资金、零库存、限购数、物流等，这些都在考核后台的计算能力。目前，在全球范围内都没有其他任何一个商业机构能在1秒钟内处理这么大的交易计算量。
-
-
+2018年天猫双11**每秒订单创建峰值49.1万笔**。全天**实时计算处理峰值达到每秒17.18亿条**
+，强大技术能力保障了双11购物如丝般顺滑。消费者手指轻点下单的这一秒钟里，光是计算环节，就包括至少7个系统的运转。这对阿里巴巴来说，意味着单位时间内全球最大的多维度计算量。提交订单的环节，一个页面里，背后包括商品、价格、营销、资金、零库存、限购数、物流等，这些都在考核后台的计算能力。目前，在全球范围内都没有其他任何一个商业机构能在1秒钟内处理这么大的交易计算量。
 
 ## 1.4. 常见电商模式
 
@@ -83,8 +72,6 @@
 - P2P：在线金融，贷款，如：网贷之家、人人聚财等。
 - B2C平台：天猫、京东、一号店等
 
-
-
 # 2. 搭建项目
 
 ## 2.1. 项目结构说明
@@ -95,25 +82,25 @@
 
 - 后台CRUD微服务
 
-  1. pms：商品管理系统（product） 18081
+    1. pms：商品管理系统（product） 18081
 
-  2. ums：用户管理系统（user）18082
+    2. ums：用户管理系统（user）18082
 
-  3. wms：仓库管理系统（warehouse） 18083
+    3. wms：仓库管理系统（warehouse） 18083
 
-  4. oms：订单管理系统（order）18084
+    4. oms：订单管理系统（order）18084
 
-  5. sms：营销管理系统（sale） 18085
+    5. sms：营销管理系统（sale） 18085
 
-     。。。。
+       。。。。
 
 - 前台数据接口微服务
 
-  1. cart：购物车微服务
-  2. order：订单微服务
-  3. search：搜索微服务
-  4. item：商品详情微服务
-  5. member：会员微服务
+    1. cart：购物车微服务
+    2. order：订单微服务
+    3. search：搜索微服务
+    4. item：商品详情微服务
+    5. member：会员微服务
 
 第三方微服务：物流、短信、支付、云存储。。。。
 
@@ -125,8 +112,6 @@
 
 网关：gmall-gateway（8888）
 
-
-
 ## 2.2. 数据准备
 
 把课前资料中的数据文件导入数据库：
@@ -136,8 +121,6 @@
 导入数据库之后：
 
 ![1567333267252](assets/1567333267252.png)
-
-
 
 ## 2.3. 使用github创建仓库
 
@@ -151,13 +134,9 @@
 
 ![1567339951241](assets/1567339951241.png)
 
-
-
 开源协议参考：
 
 ![1567337340281](assets/1567337340281.png)
-
-
 
 ## 2.4. 项目初始创建
 
@@ -169,17 +148,13 @@ copy到 clone下来的gmall工程中
 
 ![1584516493674](assets/1584516493674.png)
 
-
-
 接下来在idea中导入gmall工程：
 
- ![1567339273164](assets/1567339273164.png)
+![1567339273164](assets/1567339273164.png)
 
- ![1584516638926](assets/1584516638926.png)
+![1584516638926](assets/1584516638926.png)
 
 点击“OK”，一路下一步：
-
-
 
 在idea的Terminal窗口，查看git状态：
 
@@ -198,8 +173,6 @@ copy到 clone下来的gmall工程中
 效果：
 
 ![1584517089773](assets/1584517089773.png)
-
-
 
 ## 2.5. 依赖分析
 
@@ -224,8 +197,6 @@ springCloud的常用依赖有：
 
 需要链接数据库的工程需要引入mybatis相关依赖。
 
-
-
 ## 2.6. 创建项目其他模块
 
 任何项目都要依赖common工程。
@@ -242,29 +213,31 @@ springCloud的常用依赖有：
 
 创建完成：
 
- ![1584519349474](assets/1584519349474.png)
+![1584519349474](assets/1584519349474.png)
 
 需要手动导入的依赖：
 
 ```xml
+
 <dependency>
     <groupId>com.atguigu</groupId>
     <artifactId>gmall-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 <dependency>
-    <groupId>com.baomidou</groupId>
-    <artifactId>mybatis-plus-boot-starter</artifactId>
+<groupId>com.baomidou</groupId>
+<artifactId>mybatis-plus-boot-starter</artifactId>
 </dependency>
 <dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
 </dependency>
 ```
 
 创建springboot工程，默认是以spring-boot-starter-parent为父工程，需要改为gmall为父工程：
 
 ```xml
+
 <parent>
     <groupId>com.atguigu</groupId>
     <artifactId>gmall</artifactId>
@@ -275,31 +248,30 @@ springCloud的常用依赖有：
 并且把pms工程中的如下springCloud依赖管理去掉：
 
 ```xml
+
 <spring-cloud-alibaba.version>2.2.0.RELEASE</spring-cloud-alibaba.version>
 <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 
 <dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-            <version>${spring-cloud-alibaba.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
+    <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+    </dependency>
+</dependencies>
 </dependencyManagement>
 ```
-
-
 
 ### 2.6.2. 创建用户管理模块
 
@@ -307,31 +279,23 @@ springCloud的常用依赖有：
 
 其他项，参考商品管理模块。
 
-
-
 ### 2.6.3. 创建订单管理模块
 
 ![1567347502480](assets/1567347502480.png)
 
 其他项参考商品管理模块
 
-
-
 ### 2.6.4. 创建营销管理模块
 
 ![1567347664944](assets/1567347664944.png)
-
-
 
 ### 2.6.5. 创建仓库管理模块
 
 ![1567347872743](assets/1567347872743.png)
 
-
-
 ### 2.6.6. 完整工程
 
- ![1584521284761](assets/1584521284761.png)
+![1584521284761](assets/1584521284761.png)
 
 接下来把这些新模块push到github。
 
@@ -347,8 +311,6 @@ git push origin master
 
 ![1584521463705](assets/1584521463705.png)
 
-
-
 ## 2.7. 逆向工程生成代码
 
 课前资料/逆向工程：
@@ -361,15 +323,11 @@ copy到gmall项目下：
 
 回到idea，把逆向工程作为maven工程导入idea
 
- ![1584533730931](assets/1584533730931.png)
+![1584533730931](assets/1584533730931.png)
 
- ![1584533852229](assets/1584533852229.png)
-
-
+![1584533852229](assets/1584533852229.png)
 
 下面以生成pms的代码为例，其他模块操作类似！！！！！！！
-
-
 
 ### 2.7.1. 修改配置
 
@@ -381,13 +339,11 @@ copy到gmall项目下：
 
 ![1567353654521](assets/1567353654521.png)
 
-
-
 ### 2.7.2. 启动逆向工程
 
 启动RenrenApplication：
 
- ![1567353884488](assets/1567353884488.png)
+![1567353884488](assets/1567353884488.png)
 
 启动成功，监听端口号为80。浏览器访问
 
@@ -399,8 +355,6 @@ copy到gmall项目下：
 
 即找到压缩包。
 
-
-
 ### 2.7.3. 把文件copy到对应工程
 
 1. 打开压缩包，压缩包/main/java下的com目录，copy到gmall-pms模块的src/main/java：
@@ -409,7 +363,7 @@ copy到gmall项目下：
 
    效果如下：
 
-    ![1584534175887](assets/1584534175887.png)
+   ![1584534175887](assets/1584534175887.png)
 
 2. 把压缩包/main/resources下的mapper目录，copy到gmall-pms模块的src/java/resources目录下：
 
@@ -417,9 +371,7 @@ copy到gmall项目下：
 
    如下：
 
-    ![1567355365129](assets/1567355365129.png)
-
-
+   ![1567355365129](assets/1567355365129.png)
 
 ## 2.8. 各个模块工程的配置
 
@@ -467,8 +419,6 @@ feign:
     enabled: true
 ```
 
-
-
 bootstrap.yml配置文件：
 
 ```yaml
@@ -481,13 +431,12 @@ spring:
         server-addr: 127.0.0.1:8848
 ```
 
-
-
 ### 2.8.2. 在引导类上添加注解
 
 在gmall-pms工程的引导类（GmallPmsApplication）上添加注解：
 
 ```java
+
 @SpringBootApplication
 @MapperScan(basePackages = "com.atguigu.gmall.pms.mapper")
 @EnableSwagger2
@@ -500,17 +449,16 @@ public class GmallPmsApplication {
 }
 ```
 
-
-
 **使用mybatis-plus步骤：**
 
 1. **配置文件中引入映射文件**
 2. **在引导类上添加@MapperScan扫描所有mapper/dao接口**
 3. **编写mapper接口实现BaseMapper<T>即可**
-4. **编写service接口继承IService<T>，编写xxxService继承ServiceImpl<Mapper,  Entity>**
+4. **编写service接口继承IService<T>，编写xxxService继承ServiceImpl<Mapper, Entity>**
 5. **查询分页要添加分页过滤器：**
 
 ```java
+
 @Configuration
 public class MybatisPlusConfig {
 
@@ -527,8 +475,6 @@ public class MybatisPlusConfig {
     }
 }
 ```
-
-
 
 ### 2.8.3. 配置到nacos
 
@@ -558,8 +504,6 @@ spring:
 在GmallPmsApplication类上添加@RefreshScope注解：
 
 ![1567393477982](assets/1567393477982.png)
-
-
 
 ## 2.9. 参照PMS完成其他管理模块
 
@@ -670,9 +614,6 @@ spring:
 
    **注意：需要修改basePackages的值**
 
-
-
-
 ## 2.10. 搭建网关服务
 
 **nacos容器内的所有服务，可以直接相互访问。nacos外的服务，为了保证安全，必须通过网关访问后台各个管理模块**
@@ -744,11 +685,9 @@ pom.xml:
 </project>
 ```
 
-
-
 添加配置：
 
- ![1567395922784](assets/1567395922784.png)
+![1567395922784](assets/1567395922784.png)
 
 bootstrap.yml配置如下：
 
@@ -773,7 +712,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
     gateway:
-      routes: 
+      routes:
         - id: pms-route # 商品管理路由
           uri: lb://pms-service
           predicates:
@@ -796,13 +735,9 @@ spring:
             - Path=/sms/**
 ```
 
-
-
 测试：
 
 ![1567404703573](assets/1567404703573.png)
-
-
 
 # 3. 通过域名访问
 
@@ -823,7 +758,7 @@ spring:
 
 我们将使用以下域名：
 
-- 主域名是：gmall.com 
+- 主域名是：gmall.com
 - 管理系统域名：manage.gmall.com
 - 网关域名：api.gmall.com
 - ...
@@ -831,8 +766,6 @@ spring:
 但是最终，我们希望这些域名指向的还是我们本机的某个端口。
 
 那么，当我们在浏览器输入一个域名时，浏览器是如何找到对应服务的ip和端口的呢？
-
-
 
 ## 3.2. 域名解析
 
@@ -842,8 +775,8 @@ spring:
 
   浏览器会首先在本机的hosts文件中查找域名映射的IP地址，如果查找到就返回IP ，没找到则进行域名服务器解析，一般本地解析都会失败，因为默认这个文件是空的。
 
-  - Windows下的hosts文件地址：C:/Windows/System32/drivers/etc/hosts
-  - Linux下的hosts文件所在路径： /etc/hosts 
+    - Windows下的hosts文件地址：C:/Windows/System32/drivers/etc/hosts
+    - Linux下的hosts文件所在路径： /etc/hosts
 
   样式：
 
@@ -855,8 +788,6 @@ spring:
 - 域名服务器解析
 
   本地解析失败，才会进行域名服务器解析，域名服务器就是网络中的一台计算机，里面记录了所有注册备案的域名和ip映射关系，一般只要域名是正确的，并且备案通过，一定能找到。
-
-
 
 我们不可能去购买一个域名，因此我们可以伪造本地的hosts文件，实现对域名的解析。修改本地的host为：
 
@@ -872,8 +803,6 @@ spring:
 
 ![1584543394088](assets/1584543394088.png)
 
-
-
 ## 3.3. nginx反向代理
 
 域名问题解决了，但是现在要访问后台页面，还得自己加上端口：`http://api.gmall.com:8888`。
@@ -884,11 +813,7 @@ spring:
 
 ![1584544747906](assets/1584544747906.png)
 
-
-
 nginx安装：略。。。。。。
-
-
 
 ## 3.4. 配置反向代理
 
@@ -897,8 +822,6 @@ windows宿主机hosts文件，配置如下：
 ```
 172.16.116.100 gmall.com www.gmall.com api.gmall.com item.gmall.com cart.gmall.com order.gmall.com auth.gmall.com search.gmall.com manager.gmall.com
 ```
-
-
 
 修改nginx配置文件，完整配置如下：
 
@@ -985,13 +908,9 @@ http {
 
 启动nginx命令：nginx
 
-
-
 在浏览器中测试，完美！
 
 ![1584546442325](assets/1584546442325.png)
-
-
 
 # 4. 系统管理前后端联调
 
@@ -1018,17 +937,15 @@ npm start	# 启动该项目
 
 此时还不能登录，因为没有对应的后台管理系统。
 
-
-
 ## 4.2. 启动系统管理后台工程
 
 要想正常登陆，并使用后台管理系统，还需要启动如下工程
 
- ![1567402510618](assets/1567402510618.png)
+![1567402510618](assets/1567402510618.png)
 
 启动前，需要修改配置：
 
- ![1567403029427](assets/1567403029427.png)
+![1567403029427](assets/1567403029427.png)
 
 数据库连接信息：
 
@@ -1038,8 +955,6 @@ npm start	# 启动该项目
 
 ![1584549522238](assets/1584549522238.png)
 
-
-
 打开品牌管理试试：
 
 ![1584549655227](assets/1584549655227.png)
@@ -1047,8 +962,6 @@ npm start	# 启动该项目
 这时，你使用浏览器直接该接口，发现访问没事，但是这里却报错，什么原因？
 
 这其实是浏览器的同源策略造成的跨域问题。
-
-
 
 # 5. 跨域问题
 
@@ -1064,15 +977,13 @@ npm start	# 启动该项目
 
 如果**域名和端口都相同，但是请求路径不同**，不属于跨域，如：
 
-`www.jd.com/item` 
+`www.jd.com/item`
 
 `www.jd.com/goods`
 
 http和https也属于跨域
 
 而我们刚才是从`manager.gmall.com`去访问`api.gmall.com`，这属于端口不同，跨域了。
-
-
 
 ## 5.1. 为什么有跨域问题？
 
@@ -1084,8 +995,6 @@ http和https也属于跨域
 
 但是这却给我们的开发带来了不便，而且在实际生产环境中，肯定会有很多台服务器之间交互，地址和端口都可能不同，怎么办？
 
-
-
 ## 5.2. 解决跨域问题的方案
 
 目前比较常用的跨域解决方案有3种：
@@ -1096,14 +1005,14 @@ http和https也属于跨域
 
   限制：
 
-  - 需要服务的支持
-  - 只能发起GET请求
+    - 需要服务的支持
+    - 只能发起GET请求
 
 - nginx反向代理
 
   思路是：利用nginx把跨域反向代理为不跨域，支持各种请求方式
 
-  缺点：需要在nginx进行额外配置，语义不清晰 
+  缺点：需要在nginx进行额外配置，语义不清晰
 
 - CORS
 
@@ -1111,16 +1020,14 @@ http和https也属于跨域
 
   优势：
 
-  - 在服务端进行控制是否允许跨域，可自定义规则
-  - 支持各种请求方式
+    - 在服务端进行控制是否允许跨域，可自定义规则
+    - 支持各种请求方式
 
   缺点：
 
-  - 会产生额外的请求
+    - 会产生额外的请求
 
 我们这里会采用cors的跨域方案。
-
-
 
 ## 5.3. 什么是cors
 
@@ -1137,8 +1044,6 @@ CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持�
 - 服务端：
 
   CORS通信与AJAX没有任何差别，因此你不需要改变以前的业务逻辑。只不过，浏览器会在请求中携带一些头信息，我们需要以此判断是否允许其跨域，然后在响应头中加入一些信息即可。这一般通过过滤器完成即可。
-
-
 
 ## 5.4. 原理有点复杂
 
@@ -1192,8 +1097,6 @@ Content-Type: text/plain
 - Access-Control-Allow-Headers：允许携带的头
 - Access-Control-Max-Age：本次许可的有效时长，单位是秒，**过期之前的ajax请求就无需再次进行预检了**
 
-
-
 > 有关cookie：
 
 要想操作cookie，需要满足3个条件：
@@ -1201,8 +1104,6 @@ Content-Type: text/plain
 - 服务的响应头中需要携带Access-Control-Allow-Credentials并且为true。
 - 浏览器发起ajax需要指定withCredentials 为true
 - 响应头中的Access-Control-Allow-Origin一定不能为*，必须是指定的域名
-
-
 
 ## 5.5. 实现非常简单
 
@@ -1223,6 +1124,7 @@ springcloud-gateway集成的是webflux，所以这里使用的是CorsWebFilter
 在`gmall-gateway`中编写一个配置类，并且注册CorsWebFilter：
 
 ```java
+
 @Configuration
 public class CorsConfig {
 
@@ -1250,13 +1152,9 @@ public class CorsConfig {
 }
 ```
 
-
-
 测试：完美解决！
 
 ![1584551855161](assets/1584551855161.png)
-
-
 
 # 6. 图片上传
 
@@ -1274,8 +1172,6 @@ public class CorsConfig {
 
 ![1567410599428](assets/1567410599428.png)
 
-
-
 ## 6.1. 阿里云配置
 
 登录到个人阿里云控制台，并创建bucket。
@@ -1292,8 +1188,6 @@ public class CorsConfig {
 
 ![1567411945299](assets/1567411945299.png)
 
-
-
 ## 6.2. 服务端签名后直传
 
 ![1567412332108](assets/1567412332108.png)
@@ -1308,8 +1202,6 @@ public class CorsConfig {
 
 ![1567413433392](assets/1567413433392.png)
 
-
-
 ## 6.3. 编写代码实现签名获取
 
 ![1567412666674](assets/1567412666674.png)
@@ -1322,11 +1214,10 @@ public class CorsConfig {
 
 响应数据：统一都是Resp对象
 
-
-
 ### 6.3.1. 导入OSS的依赖
 
 ```xml
+
 <dependency>
     <groupId>com.aliyun.oss</groupId>
     <artifactId>aliyun-sdk-oss</artifactId>
@@ -1334,11 +1225,10 @@ public class CorsConfig {
 </dependency>
 ```
 
-
-
 ### 6.3.2. 编写Controller方法
 
 ```java
+
 @RequestMapping("pms/oss")
 @RestController
 public class PmsOssController {
@@ -1385,15 +1275,11 @@ public class PmsOssController {
 }
 ```
 
-
-
 ### 6.3.3. 上传测试
 
- ![1567419631674](assets/1567419631674.png)
+![1567419631674](assets/1567419631674.png)
 
 ![1567419692132](assets/1567419692132.png)
-
-
 
 ## 6.4. 参数获取
 
@@ -1415,13 +1301,9 @@ public class PmsOssController {
 
 完成权限的添加
 
-
-
 ### 6.4.2. bucktName及EndPoint
 
 ![1567415000311](assets/1567415000311.png)
-
-
 
 ### 6.4.3. 公共读权限
 

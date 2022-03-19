@@ -20,12 +20,17 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Map;
 
-
 @Service("wareInfoService")
 public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity> implements WareInfoService {
 
     @Autowired
     private MemberFeignService memberFeignService;
+
+    public static void main(String[] args) {
+        String phone = "1558022051";
+        String fare = phone.substring(phone.length() - 10, phone.length() - 8);
+        System.out.println(fare);
+    }
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -35,12 +40,11 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
         String key = (String) params.get("key");
 
         if (!StringUtils.isEmpty(key)) {
-            queryWrapper.eq("id",key)
-                    .or().like("name",key)
-                    .or().like("address",key)
-                    .or().like("areacode",key);
+            queryWrapper.eq("id", key)
+                    .or().like("name", key)
+                    .or().like("address", key)
+                    .or().like("areacode", key);
         }
-
 
         IPage<WareInfoEntity> page = this.page(
                 new Query<WareInfoEntity>().getPage(params),
@@ -52,6 +56,7 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
 
     /**
      * 计算运费
+     *
      * @param addrId
      * @return
      */
@@ -63,13 +68,14 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
         //收获地址的详细信息
         R addrInfo = memberFeignService.info(addrId);
 
-        MemberAddressVo memberAddressVo = addrInfo.getData("memberReceiveAddress",new TypeReference<MemberAddressVo>() {});
+        MemberAddressVo memberAddressVo = addrInfo.getData("memberReceiveAddress", new TypeReference<MemberAddressVo>() {
+        });
 
         if (memberAddressVo != null) {
             String phone = memberAddressVo.getPhone();
             //截取用户手机号码最后一位作为我们的运费计算
             //1558022051
-            String fare = phone.substring(phone.length() - 10, phone.length()-8);
+            String fare = phone.substring(phone.length() - 10, phone.length() - 8);
             BigDecimal bigDecimal = new BigDecimal(fare);
 
             fareVo.setFare(bigDecimal);
@@ -78,12 +84,6 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
             return fareVo;
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        String phone = "1558022051";
-        String fare = phone.substring(phone.length() - 10, phone.length()-8);
-        System.out.println(fare);
     }
 
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("seckillSkuRelationService")
 public class SeckillSkuRelationServiceImpl extends ServiceImpl<SeckillSkuRelationDao, SeckillSkuRelationEntity> implements SeckillSkuRelationService {
 

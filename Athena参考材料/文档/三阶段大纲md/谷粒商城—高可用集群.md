@@ -1,24 +1,19 @@
 ## 1、K8s快速入门
+
 ### 1）简介
-kubernetes简称k8s。是用于自动部署，扩展和管理容器化应用程序的开源系统。
-中文官网：https://kubernetes.io/Zh/
+
+kubernetes简称k8s。是用于自动部署，扩展和管理容器化应用程序的开源系统。 中文官网：https://kubernetes.io/Zh/
 中文社区：https://www.kubernetes.org.cn/
 官方文档：https://kubernetes.io/zh/docs/home/
 社区文档：https://docs.kubernetes.org.cn/
 
 部署方式的进化：
 
- ![部署演进](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg) 
-
-
+![部署演进](https://d33wubrfki0l68.cloudfront.net/26a177ede4d7b032362289c6fccd448fc4a91174/eb693/images/docs/container_evolution.svg)
 
 ![image-20200503105948619](images/image-20200503105948619.png)
 
 ![image-20200503110101659](images/image-20200503110101659.png)
-
-
-
-
 
 ### 2）架构
 
@@ -26,11 +21,7 @@ kubernetes简称k8s。是用于自动部署，扩展和管理容器化应用程�
 
 ![image-20200503110244940](images/image-20200503110244940.png)
 
-
-
 ![image-20200503110350256](images/image-20200503110350256.png)
-
-
 
 #### （2）master节点架构
 
@@ -45,18 +36,6 @@ kubernetes简称k8s。是用于自动部署，扩展和管理容器化应用程�
 ![image-20200503110804361](images/image-20200503110804361.png)
 
 ![image-20200503111032457](images/image-20200503111032457.png)
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### 3）概念
 
@@ -74,41 +53,28 @@ kubernetes简称k8s。是用于自动部署，扩展和管理容器化应用程�
 
 ![image-20200503113701902](images/image-20200503113701902.png)
 
-
-
-
-
 ### 4）快速体验
-
- 
 
 #### （1）安装minikube
 
 https://github.com/kubernetes/minikube/releases
-下载minikuber-windows-amd64.exe 改名为minikube.exe
-打开virtualBox，打开cmd
-运行
-minikube start --vm-driver=virtualbox --registry-mirror=https://registry.docker-cn.com
+下载minikuber-windows-amd64.exe 改名为minikube.exe 打开virtualBox，打开cmd 运行 minikube start --vm-driver=virtualbox
+--registry-mirror=https://registry.docker-cn.com
 等待20分钟即可。
 
 #### （2）体验nginx部署升级
 
-1. 提交一个nginx deployment
-kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+1. 提交一个nginx deployment kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
-2. 升级 nginx deployment
-kubectl apply -f https://k8s.io/examples/application/deployment-update.yaml
+2. 升级 nginx deployment kubectl apply -f https://k8s.io/examples/application/deployment-update.yaml
 
 3. 扩容 nginx deployment
-
-
 
 ## 2、K8s集群安装
 
 ### 1）kubeadm
 
-kubeadm是官方社区推出的一个用于快速部署kuberneters集群的工具。
-这个工具能通过两条指令完成一个kuberneters集群的部署
+kubeadm是官方社区推出的一个用于快速部署kuberneters集群的工具。 这个工具能通过两条指令完成一个kuberneters集群的部署
 
 创建一个master节点
 
@@ -122,15 +88,9 @@ $ kuberneters init
 $ kubeadm join <Master节点的IP和端口>
 ```
 
-
-
 ### 2）前置要求
 
-一台或多台机器，操作系统Centos7.x-86_x64
-硬件配置：2GB或更多RAM，2个CPU或更多CPU，硬盘30GB或更多
-集群中所有的机器之间网络互通
-可以访问外网，需要拉取镜像
-禁止Swap分区
+一台或多台机器，操作系统Centos7.x-86_x64 硬件配置：2GB或更多RAM，2个CPU或更多CPU，硬盘30GB或更多 集群中所有的机器之间网络互通 可以访问外网，需要拉取镜像 禁止Swap分区
 
 ### 3）部署步骤
 
@@ -150,19 +110,11 @@ $ kubeadm join <Master节点的IP和端口>
 
 ![image-20200503175351320](images/image-20200503175351320.png)
 
-
-
-* 在全局设定中，找到一个空间比较大的磁盘用用来存放镜像。 
+* 在全局设定中，找到一个空间比较大的磁盘用用来存放镜像。
 
 ![image-20200503180202640](images/image-20200503180202640.png)
 
-
-
-
-
 #### （2）启动三个虚拟机
-
-
 
 * 使用我们提供的vagrant文件，复制到非中文无空格目录下，运行vagrant up启动三个虚拟机。其实vagrant完全可以一键部署全部K8s集群
   https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster
@@ -200,8 +152,6 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-
-
 * 进入到三个虚拟机，开启root的密码访问权限
 
 ```shell
@@ -217,10 +167,6 @@ PasswordAuthentication yes
 
 所有的虚拟机设为4核4G
 ```
-
-
-
-
 
 关于在"网络地址转换"的连接方式下，三个节点的eth0，IP地址相同的问题。
 
@@ -270,15 +216,9 @@ default via 10.0.2.2 dev eth0 proto dhcp metric 100
 
 <img src="images/image-20200503185344246.png" alt="image-20200503185344246" style="zoom: 50%;" />
 
-
-
 * 再次查看三个节点的IP
 
 <img src="images/image-20200503190101156.png" alt="image-20200503190101156" style="zoom:50%;" />
-
-
-
-
 
 #### （3）设置Linux环境（三个节点都执行）
 
@@ -296,7 +236,7 @@ sed -i 's/enforcing/disabled/' /etc/selinux/config
 setenforce 0
 ```
 
-* 关闭swap 
+* 关闭swap
 
 ```shell
 swapoff -a #临时关闭
@@ -314,15 +254,12 @@ hostname
 
 如果主机名不正确，可以通过“hostnamectl set-hostname \<newhostname\> :指定新的hostname”命令来进行修改。
 
-
 ```shell
 vi /etc/hosts
 10.0.2.15 k8s-node1
 10.0.2.4 k8s-node2
 10.0.2.5 k8s-node3
 ```
-
-
 
 将桥接的IPV4流量传递到iptables的链：
 
@@ -342,10 +279,6 @@ EOF
 sysctl --system
 ```
 
-
-
-
-
 疑难问题：遇见提示是只读的文件系统，运行如下命令
 
 ```
@@ -359,8 +292,6 @@ yum -y install ntpupdate
 
 ntpupdate time.window.com #同步最新时间
 ```
-
-
 
 ### 5）所有节点安装docker、kubeadm、kubelet、kubectl
 
@@ -381,7 +312,7 @@ $ sudo yum remove docker \
                   docker-engine
 ```
 
-2、安装Docker  -CE
+2、安装Docker -CE
 
 ```shell
 $ sudo yum install -y yum-utils
@@ -412,8 +343,6 @@ sudo systemctl restart docker
 systemctl enable docker
 ```
 
-
-
 基础环境准备好，可以给三个虚拟机备份一下；
 
 ![image-20200503192940651](images/image-20200503192940651.png)
@@ -432,7 +361,7 @@ gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors
 EOF
 ```
 
-更多详情见： https://developer.aliyun.com/mirror/kubernetes 
+更多详情见： https://developer.aliyun.com/mirror/kubernetes
 
 #### （3）安装kubeadm，kubelet和kubectl
 
@@ -452,8 +381,6 @@ yum install -y kubelet-1.17.3 kubeadm-1.17.3 kubectl-1.17.3
 systemctl enable kubelet && systemctl start kubelet
 ```
 
-
-
 查看kubelet的状态：
 
 ```
@@ -466,8 +393,6 @@ systemctl status kubelet
 [root@k8s-node2 ~]# kubelet --version
 Kubernetes v1.17.3
 ```
-
-
 
 ### 6）部署k8s-master
 
@@ -494,9 +419,6 @@ for imageName in ${images[@]} ; do
 done
 ```
 
-
-
-
 初始化kubeadm
 
 ```shell
@@ -511,7 +433,7 @@ $ kubeadm init \
 注：
 
 * --apiserver-advertise-address=10.0.2.21 ：这里的IP地址是master主机的地址，为上面的eth0网卡的地址；
-* 
+*
 
 执行结果：
 
@@ -596,19 +518,12 @@ kubeadm join 10.0.2.15:6443 --token sg47f3.4asffoi6ijb8ljhq \
 [root@k8s-node1 opt]# 
 ```
 
-
-
-
-
 由于默认拉取镜像地址k8s.cr.io国内无法访问，这里指定阿里云仓库地址。可以手动按照我们的images.sh先拉取镜像。
 
-地址变为：registry.aliyuncs.com/googole_containers也可以。
-科普：无类别域间路由（Classless Inter-Domain Routing 、CIDR）是一个用于给用户分配IP地址以及在互联网上有效第路由IP数据包的对IP地址进行归类的方法。
-拉取可能失败，需要下载镜像。
+地址变为：registry.aliyuncs.com/googole_containers也可以。 科普：无类别域间路由（Classless Inter-Domain Routing
+、CIDR）是一个用于给用户分配IP地址以及在互联网上有效第路由IP数据包的对IP地址进行归类的方法。 拉取可能失败，需要下载镜像。
 
 运行完成提前复制：加入集群的令牌。
-
-
 
 #### （2）测试Kubectl（主节点执行）
 
@@ -629,8 +544,6 @@ $ kubectl get nodes #获取所有节点
 ```shell
 $ journalctl -u kubelet #查看kubelet日志
 ```
-
-
 
 ```shell
 kubeadm join 10.0.2.15:6443 --token sg47f3.4asffoi6ijb8ljhq \
@@ -663,14 +576,10 @@ daemonset.apps/kube-flannel-ds-s390x created
 [root@k8s-node1 k8s]#
 ```
 
-同时flannel.yml中指定的images访问不到可以去docker hub找一个wget yml地址
-vi 修改yml 所有amd64的地址修改了即可
-等待大约3分钟
-kubectl get pods -n kube-system 查看指定名称空间的pods
-kubectl get pods -all-namespace 查看所有名称空间的pods
+同时flannel.yml中指定的images访问不到可以去docker hub找一个wget yml地址 vi 修改yml 所有amd64的地址修改了即可 等待大约3分钟 kubectl get pods -n kube-system
+查看指定名称空间的pods kubectl get pods -all-namespace 查看所有名称空间的pods
 
-$ ip link set cni0 down 如果网络出现问题，关闭cni0，重启虚拟机继续测试
-执行watch kubectl get pod -n kube-system -o wide 监控pod进度
+$ ip link set cni0 down 如果网络出现问题，关闭cni0，重启虚拟机继续测试 执行watch kubectl get pod -n kube-system -o wide 监控pod进度
 等待3-10分钟，完全都是running以后继续
 
 查看命名空间：
@@ -699,7 +608,7 @@ kube-system   kube-scheduler-k8s-node1            1/1     Running   0          3
 [root@k8s-node1 k8s]# 
 ```
 
- 查看master上的节点信息：
+查看master上的节点信息：
 
 ```shell
 [root@k8s-node1 k8s]# kubectl get nodes
@@ -715,8 +624,6 @@ kubeadm join 10.0.2.15:6443 --token sg47f3.4asffoi6ijb8ljhq \
     --discovery-token-ca-cert-hash sha256:81fccdd29970cbc1b7dc7f171ac0234d53825bdf9b05428fc9e6767436991bfb 
 ```
 
-
-
 ```shell
 [root@k8s-node1 opt]# kubectl get nodes;
 NAME        STATUS     ROLES    AGE   VERSION
@@ -725,8 +632,6 @@ k8s-node2   NotReady   <none>   75s   v1.17.3
 k8s-node3   NotReady   <none>   76s   v1.17.3
 [root@k8s-node1 opt]# 
 ```
-
-
 
 监控pod进度
 
@@ -745,20 +650,10 @@ k8s-node3   Ready    <none>   3h3m    v1.17.3
 [root@k8s-node1 ~]# 
 ```
 
-
-
-
-
 ### 8）加入kubenetes的Node节点
 
-在node节点中执行，向集群中添加新的节点，执行在kubeadm init 输出的kubeadm join命令；
-确保node节点成功：
-token过期怎么办
-kubeadm token create --print-join-command
-
-
-
-
+在node节点中执行，向集群中添加新的节点，执行在kubeadm init 输出的kubeadm join命令； 确保node节点成功： token过期怎么办 kubeadm token create
+--print-join-command
 
 ### 9）入门操作kubernetes集群
 
@@ -767,8 +662,6 @@ kubeadm token create --print-join-command
 ```shell
 kubectl create deployment tomcat6 --image=tomcat:6.0.53-jre8
 ```
-
-
 
 获取所有的资源：
 
@@ -788,8 +681,6 @@ replicaset.apps/tomcat6-7b84fb5fdc   1         1         0       41s
 [root@k8s-node1 k8s]# 
 ```
 
-
-
 kubectl get pods -o wide 可以获取到tomcat部署信息，能够看到它被部署到了k8s-node2上了
 
 ```shell
@@ -808,8 +699,6 @@ replicaset.apps/tomcat6-7b84fb5fdc   1         1         1       114s   tomcat  
 [root@k8s-node1 k8s]# 
 ```
 
-
-
 查看node2节点上，下载了哪些镜像：
 
 ```shell
@@ -821,8 +710,6 @@ quay.io/coreos/flannel                                           v0.11.0-amd64  
 tomcat                                                           6.0.53-jre8         49ab0583115a        2 years ago         290MB
 [root@k8s-node2 opt]# 
 ```
-
-
 
 查看Node2节点上，正在运行的容器：
 
@@ -837,8 +724,6 @@ c8a524e5a193        registry.cn-hangzhou.aliyuncs.com/google_containers/kube-pro
 54e00af5cde4        registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.2    "/pause"                 26 minutes ago      Up 26 minutes                           k8s_POD_kube-proxy-mvlnk_kube-system_519de79a-e8d8-4b1c-a74e-94634cebabce_0
 [root@k8s-node2 opt]# 
 ```
-
-
 
 在node1上执行：
 
@@ -865,8 +750,6 @@ kube-system   kube-scheduler-k8s-node1            1/1     Running   0          3
 [root@k8s-node1 ~]# 
 ```
 
-
-
 从前面看到tomcat部署在Node2上，现在模拟因为各种原因宕机的情况，将node2关闭电源，观察情况。
 
 ```shell
@@ -878,8 +761,6 @@ k8s-node3   Ready      <none>   3h18m   v1.17.3
 [root@k8s-node1 ~]# 
 ```
 
-
-
 ```shell
 [root@k8s-node1 ~]# kubectl get pods -o wide
 NAME                       READY   STATUS    RESTARTS   AGE    IP           NODE        NOMINATED NODE   READINESS GATES
@@ -887,11 +768,7 @@ tomcat6-7b84fb5fdc-cfd8g   1/1     Running   0          177m   10.244.2.2   k8s-
 [root@k8s-node1 ~]# 
 ```
 
-
-
 ![image-20200504104925236](images/image-20200504104925236.png)
-
-
 
 2、暴露nginx访问
 
@@ -913,8 +790,6 @@ tomcat6      NodePort    10.96.24.191   <none>        80:30526/TCP   49s
 [root@k8s-node1 ~]# 
 ```
 
-
-
 ```shell
 [root@k8s-node1 ~]# kubectl get svc -o wide
 NAME         TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE     SELECTOR
@@ -923,11 +798,9 @@ tomcat6      NodePort    10.96.24.191   <none>        80:30526/TCP   3m30s   app
 [root@k8s-node1 ~]# 
 ```
 
- http://192.168.56.100:30526/ 
+http://192.168.56.100:30526/
 
 ![image-20200504105723874](images/image-20200504105723874.png)
-
-
 
 ```shell
 [root@k8s-node1 ~]# kubectl get all
@@ -946,8 +819,6 @@ replicaset.apps/tomcat6-7b84fb5fdc   1         1         1       11h
 [root@k8s-node1 ~]#
 ```
 
-
-
 3、动态扩容测试
 
 kubectl get deployment
@@ -958,7 +829,6 @@ NAME      READY   UP-TO-DATE   AVAILABLE   AGE
 tomcat6   2/2     2            2           11h
 [root@k8s-node1 ~]# 
 ```
-
 
 应用升级： kubectl set image (--help查看帮助)
 扩容：kubectl scale --replicas=3 deployment tomcat6
@@ -980,21 +850,15 @@ tomcat6      NodePort    10.96.24.191   <none>        80:30526/TCP   16m   app=t
 [root@k8s-node1 ~]#
 ```
 
-
-
-
-
 扩容了多份，所有无论访问哪个node的指定端口，都可以访问到tomcat6
 
- http://192.168.56.101:30526/ 
+http://192.168.56.101:30526/
 
 ![image-20200504111008668](images/image-20200504111008668.png)
 
- http://192.168.56.102:30526/ 
+http://192.168.56.102:30526/
 
 ![image-20200504111028496](images/image-20200504111028496.png)
-
-
 
 缩容：kubectl scale --replicas=2 deployment tomcat6
 
@@ -1009,15 +873,9 @@ tomcat6-7b84fb5fdc-vlrh6   1/1     Running       0          4m47s   10.244.2.4  
 [root@k8s-node1 ~]# 
 ```
 
+4、以上操作的yaml获取 参照k8s细节
 
-
-
-
-4、以上操作的yaml获取
-参照k8s细节
-
-5、删除
-kubectl get all
+5、删除 kubectl get all
 
 ```shell
 #查看所有资源
@@ -1057,12 +915,7 @@ service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   13h
 
 ```
 
-
-
-kubectl delete deploye/nginx
-kubectl delete service/nginx-service
-
-
+kubectl delete deploye/nginx kubectl delete service/nginx-service
 
 ## 3、K8s细节
 
@@ -1072,13 +925,11 @@ kubectl delete service/nginx-service
 
 ### 2、资源类型
 
-   https://kubernetes.io/zh/docs/reference/kubectl/overview/#%e8%b5%84%e6%ba%90%e7%b1%bb%e5%9e%8b
-
-
+https://kubernetes.io/zh/docs/reference/kubectl/overview/#%e8%b5%84%e6%ba%90%e7%b1%bb%e5%9e%8b
 
 ### 3、格式化输出
 
- https://kubernetes.io/zh/docs/reference/kubectl/overview/ 
+https://kubernetes.io/zh/docs/reference/kubectl/overview/
 
 >
 >
@@ -1126,10 +977,6 @@ kubectl delete service/nginx-service
 >值必须为none，server或client。如果是客户端策略，则只打印该发送对象，但不发送它。如果服务器策略，提交服务器端请求而不持久化资源。
 >
 >也就是说，通过--dry-run选项，并不会真正的执行这条命令。
-
-
-
-
 
 ```yaml
 [root@k8s-node1 ~]# kubectl create deployment tomcat6 --image=tomcat:6.0.53-jre8 --dry-run -o yaml
@@ -1211,8 +1058,6 @@ tomcat6-7b84fb5fdc-8lhwv   1/1     Running   0          8s
 tomcat6-7b84fb5fdc-j4qmh   1/1     Running   0          8s
 [root@k8s-node1 ~]#
 ```
-
-
 
 查看某个pod的具体信息：
 
@@ -1392,29 +1237,13 @@ status:
   startTime: "2020-05-04T03:50:47Z"
 ```
 
-
-
-
-
-
-
 ### 命令参考
 
 ![image-20200504115823058](images/image-20200504115823058.png)
 
-
-
-
-
-
-
 ### service的意义
 
 ![image-20200504120856830](images/image-20200504120856830.png)
-
-
-
-
 
 前面我们通过命令行的方式，部署和暴露了tomcat，实际上也可以通过yaml的方式来完成这些操作。
 
@@ -1451,8 +1280,6 @@ spec:
         name: tomcat
 ```
 
-
-
 ```shell
 #部署
 [root@k8s-node1 ~]# kubectl apply -f tomcat6-deployment.yaml
@@ -1477,10 +1304,6 @@ replicaset.apps/tomcat6-7b84fb5fdc   3         3         3       27m
 [root@k8s-node1 ~]#
 ```
 
-
-
-
-
 ```shell
 kubectl expose deployment tomcat6 --port=80 --target-port=8080 --type=NodePort  --dry-run -o yaml
 ```
@@ -1504,8 +1327,6 @@ spec:
 status:
   loadBalancer: {}
 ```
-
-
 
 将这段输出和“tomcat6-deployment.yaml”进行拼接，表示部署完毕并进行暴露服务：
 
@@ -1546,8 +1367,6 @@ spec:
     app: tomcat6
   type: NodePort
 ```
-
-
 
 部署并暴露服务
 
@@ -1612,18 +1431,13 @@ Date: Mon, 04 May 2020 04:35:35 GMT
 [root@k8s-node1 ~]# 
 ```
 
-
-
 ### Ingress
 
-通过Ingress发现pod进行关联。基于域名访问
-通过Ingress controller实现POD负载均衡
-支持TCP/UDP 4层负载均衡和HTTP 7层负载均衡
+通过Ingress发现pod进行关联。基于域名访问 通过Ingress controller实现POD负载均衡 支持TCP/UDP 4层负载均衡和HTTP 7层负载均衡
 
 ![image-20200504123948771](images/image-20200504123948771.png)
 
-步骤：
-（1）部署Ingress controller
+步骤： （1）部署Ingress controller
 
 执行“k8s/ingress-controller.yaml”
 
@@ -1642,8 +1456,6 @@ daemonset.apps/nginx-ingress-controller created
 service/ingress-nginx created
 [root@k8s-node1 k8s]# 
 ```
-
-
 
 查看
 
@@ -1674,12 +1486,6 @@ kube-system     kube-scheduler-k8s-node1            1/1     Running             
 
 ![image-20200504124608258](images/image-20200504124608258.png)
 
-
-
-
-
-
-
 （2）创建Ingress规则
 
 ```yaml
@@ -1697,8 +1503,6 @@ spec:
               servicePort: 80
 ```
 
-
-
 ```shell
 [root@k8s-node1 k8s]# touch ingress-tomcat6.yaml
 #将上面的规则，添加到ingress-tomcat6.yaml文件中
@@ -1715,17 +1519,11 @@ ingress.extensions/web created
 192.168.56.102 tomcat6.kubenetes.com
 ```
 
-
-
-测试: http://tomcat6.kubenetes.com/ 
+测试: http://tomcat6.kubenetes.com/
 
 ![image-20200504131325267](images/image-20200504131325267.png)
 
-
-
 并且集群中即便有一个节点不可用，也不影响整体的运行。
-
-
 
 ## 安装kubernetes可视化界面——DashBoard
 
@@ -1735,7 +1533,7 @@ ingress.extensions/web created
 $ kubectl appy -f  kubernetes-dashboard.yaml
 ```
 
- 文件在“k8s”源码目录提供
+文件在“k8s”源码目录提供
 
 2、暴露DashBoard为公共访问
 
@@ -1761,8 +1559,6 @@ spec:
 
 访问地址：http://NodeIP:30001
 
-
-
 3、创建授权账号
 
 ```
@@ -1781,10 +1577,6 @@ $ kubectl describe secrets -n kube-system $( kubectl -n kube-system get secret |
 
 ![image-20200504153630775](images/image-20200504153630775.png)
 
-
-
-
-
 ## kubesphere
 
 默认的dashboard没啥用，我们用kubesphere可以打通全部的devops链路，kubesphere集成了很多套件，集群要求比较高
@@ -1798,8 +1590,6 @@ https://kuboard.cn/support/
 kubesphere是一款面向云原声设计的开源项目，在目前主流容器调度平台kubernets智商构建的分布式多用户容器管理平台，提供简单易用的操作界面以及向导式操作方式，在降低用户使用容器调度平台学习成本的同时，极大降低开发、测试、运维的日常工作的复杂度。
 
 ### 2、安装前提提交
-
-
 
 #### 1、安装helm（master节点执行）
 
@@ -1876,8 +1666,6 @@ clusterrolebinding.rbac.authorization.k8s.io/tiller created
 [root@k8s-node1 k8s]#
 ```
 
-
-
 #### 2、安装Tilller（Master执行）
 
 1、初始化
@@ -1906,8 +1694,6 @@ For more information on securing your installation see: https://v2.helm.sh/docs/
 
 --tiller-image 指定镜像，否则会被墙，等待节点上部署的tiller完成即可。
 
-
-
 ```shell
 [root@k8s-node1 k8s]#  kubectl get pods -n kube-system
 NAME                                   READY   STATUS             RESTARTS   AGE
@@ -1928,8 +1714,6 @@ tiller-deploy-8cc566858-67bxb          1/1     Running            0          31s
 [root@k8s-node1 k8s]#
 ```
 
-
-
 查看集群的所有节点信息：
 
 ```
@@ -1946,19 +1730,11 @@ k8s-node3   Ready    <none>   22h   v1.17.3   10.0.2.5      <none>        CentOS
 [root@k8s-node1 k8s]# 
 ```
 
-
-
-
-
 2、测试
 
 ```
 helm install stable/nginx-ingress --name nginx-ingress
 ```
-
-
-
-
 
 最小化安装 KubeSphere
 
@@ -1968,7 +1744,10 @@ helm install stable/nginx-ingress --name nginx-ingress
 kubectl apply -f https://raw.githubusercontent.com/kubesphere/ks-installer/master/kubesphere-minimal.yaml
 ```
 
- **提示：若您的服务器提示无法访问 GitHub，可将** [kubesphere-minimal.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-minimal.yaml) **或** [kubesphere-complete-setup.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-complete-setup.yaml) **文件保存到本地作为本地的静态文件，再参考上述命令进行安装。** 
+**提示：若您的服务器提示无法访问
+GitHub，可将** [kubesphere-minimal.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-minimal.yaml) **
+或** [kubesphere-complete-setup.yaml](https://github.com/kubesphere/ks-installer/blob/master/kubesphere-complete-setup.yaml) **
+文件保存到本地作为本地的静态文件，再参考上述命令进行安装。**
 
 1. 查看滚动刷新的安装日志，请耐心等待安装成功。
 

@@ -16,7 +16,9 @@ public class LockStockResultVo {
 
     private Integer num;
 
-    /** 是否锁定成功 **/
+    /**
+     * 是否锁定成功
+     **/
     private Boolean locked;
 
 }

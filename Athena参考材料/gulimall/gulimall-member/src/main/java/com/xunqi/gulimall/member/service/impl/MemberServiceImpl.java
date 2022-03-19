@@ -30,7 +30,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
 @Service("memberService")
 public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> implements MemberService {
 
@@ -149,9 +148,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
             //2、没有查到当前社交用户对应的记录我们就需要注册一个
             MemberEntity register = new MemberEntity();
             //3、查询当前社交用户的社交账号信息（昵称、性别等）
-            Map<String,String> query = new HashMap<>();
-            query.put("access_token",socialUser.getAccess_token());
-            query.put("uid",socialUser.getUid());
+            Map<String, String> query = new HashMap<>();
+            query.put("access_token", socialUser.getAccess_token());
+            query.put("uid", socialUser.getUid());
             HttpResponse response = HttpUtils.doGet("https://api.weibo.com", "/2/users/show.json", "get", new HashMap<String, String>(), query);
 
             if (response.getStatusLine().getStatusCode() == 200) {
@@ -163,7 +162,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
                 String profileImageUrl = jsonObject.getString("profile_image_url");
 
                 register.setNickname(name);
-                register.setGender("m".equals(gender)?1:0);
+                register.setGender("m".equals(gender) ? 1 : 0);
                 register.setHeader(profileImageUrl);
                 register.setCreateTime(new Date());
                 register.setSocialUid(socialUser.getUid());
@@ -228,6 +227,5 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         }
         return memberEntity;
     }
-
 
 }

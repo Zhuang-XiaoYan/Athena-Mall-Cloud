@@ -1,13 +1,12 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- *
+ * <p>
  * https://www.guli.cloud
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.atguigu.modules.app.controller;
-
 
 import com.atguigu.common.utils.R;
 import com.atguigu.common.validator.ValidatorUtils;
@@ -44,7 +43,7 @@ public class AppLoginController {
      */
     @PostMapping("login")
     @ApiOperation("登录")
-    public R login(@RequestBody LoginForm form){
+    public R login(@RequestBody LoginForm form) {
         //表单校验
         ValidatorUtils.validateEntity(form);
 

@@ -20,7 +20,6 @@ public class SearchResult {
      */
     private List<SkuEsModel> product;
 
-
     /**
      * 当前页码
      */
@@ -53,9 +52,7 @@ public class SearchResult {
      */
     private List<CatalogVo> catalogs;
 
-
     //===========================以上是返回给页面的所有信息============================//
-
 
     /* 面包屑导航数据 */
     private List<NavVo> navs;
@@ -67,7 +64,6 @@ public class SearchResult {
         private String link;
     }
 
-
     @Data
     public static class BrandVo {
 
@@ -78,7 +74,6 @@ public class SearchResult {
         private String brandImg;
     }
 
-
     @Data
     public static class AttrVo {
 
@@ -88,7 +83,6 @@ public class SearchResult {
 
         private List<String> attrValue;
     }
-
 
     @Data
     public static class CatalogVo {

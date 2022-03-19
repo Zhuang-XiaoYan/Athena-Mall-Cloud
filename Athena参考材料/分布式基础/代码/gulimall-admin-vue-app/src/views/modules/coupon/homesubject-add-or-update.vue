@@ -1,15 +1,15 @@
 <template>
   <el-dialog
-    :title="!dataForm.id ? '新增' : '修改'"
     :close-on-click-modal="false"
+    :title="!dataForm.id ? '新增' : '修改'"
     :visible.sync="visible"
   >
     <el-form
+      ref="dataForm"
       :model="dataForm"
       :rules="dataRule"
-      ref="dataForm"
-      @keyup.enter.native="dataFormSubmit()"
       label-width="120px"
+      @keyup.enter.native="dataFormSubmit()"
     >
       <el-form-item label="专题名字" prop="name">
         <el-input v-model="dataForm.name" placeholder="专题名字"></el-input>
@@ -42,8 +42,9 @@
 
 <script>
 import SingleUpload from '@/components/upload/singleUpload'
+
 export default {
-  components:{SingleUpload},
+  components: {SingleUpload},
   data() {
     return {
       visible: false,
@@ -59,21 +60,21 @@ export default {
       },
       dataRule: {
         name: [
-          { required: true, message: "专题名字不能为空", trigger: "blur" }
+          {required: true, message: "专题名字不能为空", trigger: "blur"}
         ],
         title: [
-          { required: true, message: "专题标题不能为空", trigger: "blur" }
+          {required: true, message: "专题标题不能为空", trigger: "blur"}
         ],
         subTitle: [
-          { required: true, message: "专题副标题不能为空", trigger: "blur" }
+          {required: true, message: "专题副标题不能为空", trigger: "blur"}
         ],
         status: [
-          { required: true, message: "显示状态不能为空", trigger: "blur" }
+          {required: true, message: "显示状态不能为空", trigger: "blur"}
         ],
-        url: [{ required: true, message: "详情连接不能为空", trigger: "blur" }],
-        sort: [{ required: true, message: "排序不能为空", trigger: "blur" }],
+        url: [{required: true, message: "详情连接不能为空", trigger: "blur"}],
+        sort: [{required: true, message: "排序不能为空", trigger: "blur"}],
         img: [
-          { required: true, message: "专题图片地址不能为空", trigger: "blur" }
+          {required: true, message: "专题图片地址不能为空", trigger: "blur"}
         ]
       }
     };
@@ -91,7 +92,7 @@ export default {
             ),
             method: "get",
             params: this.$http.adornParams()
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.dataForm.name = data.homeSubject.name;
               this.dataForm.title = data.homeSubject.title;
@@ -124,7 +125,7 @@ export default {
               sort: this.dataForm.sort,
               img: this.dataForm.img
             })
-          }).then(({ data }) => {
+          }).then(({data}) => {
             if (data && data.code === 0) {
               this.$message({
                 message: "操作成功",

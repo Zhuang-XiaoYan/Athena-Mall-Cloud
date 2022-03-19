@@ -13,7 +13,6 @@ import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
-
 @Service("spuBoundsService")
 public class SpuBoundsServiceImpl extends ServiceImpl<SpuBoundsDao, SpuBoundsEntity> implements SpuBoundsService {
 
@@ -25,7 +24,7 @@ public class SpuBoundsServiceImpl extends ServiceImpl<SpuBoundsDao, SpuBoundsEnt
         String key = (String) params.get("key");
 
         if (!StringUtils.isEmpty(key)) {
-            queryWrapper.eq("id",key).or().eq("sku_id",key);
+            queryWrapper.eq("id", key).or().eq("sku_id", key);
         }
 
         IPage<SpuBoundsEntity> page = this.page(

@@ -21,6 +21,7 @@ public interface SeckillService {
 
     /**
      * 根据skuId查询商品是否参加秒杀活动
+     *
      * @param skuId
      * @return
      */
@@ -28,6 +29,7 @@ public interface SeckillService {
 
     /**
      * 当前商品进行秒杀（秒杀开始）
+     *
      * @param killId
      * @param key
      * @param num

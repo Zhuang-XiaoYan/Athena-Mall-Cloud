@@ -1,6 +1,6 @@
 import abc from "./hello.js"
-import {name,add} from "./user.js"
+import {add, name} from "./user.js"
 
-abc.sum(1,2);
+abc.sum(1, 2);
 console.log(name);
-add(1,3);
+add(1, 3);

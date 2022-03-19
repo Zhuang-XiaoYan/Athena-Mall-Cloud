@@ -46,12 +46,13 @@ public class PayWebController {
      * 用户下单:支付宝支付
      * 1、让支付页让浏览器展示
      * 2、支付成功以后，跳转到用户的订单列表页
+     *
      * @param orderSn
      * @return
      * @throws AlipayApiException
      */
     @ResponseBody
-    @GetMapping(value = "/aliPayOrder",produces = "text/html")
+    @GetMapping(value = "/aliPayOrder", produces = "text/html")
     public String aliPayOrder(@RequestParam("orderSn") String orderSn) throws AlipayApiException {
 
         PayVo payVo = orderService.getOrderPay(orderSn);
@@ -60,9 +61,9 @@ public class PayWebController {
         return pay;
     }
 
-
     /**
      * 微信支付
+     *
      * @param orderSn
      * @return
      */
@@ -86,13 +87,12 @@ public class PayWebController {
         log.info("发起支付 response={}", payResponse);
 
         //传入前台的二维码路径生成支付二维码
-        model.addAttribute("codeUrl",payResponse.getCodeUrl());
-        model.addAttribute("orderId",payResponse.getOrderId());
-        model.addAttribute("returnUrl",wxPayConfig.getReturnUrl());
+        model.addAttribute("codeUrl", payResponse.getCodeUrl());
+        model.addAttribute("orderId", payResponse.getOrderId());
+        model.addAttribute("returnUrl", wxPayConfig.getReturnUrl());
 
         return "createForWxNative";
     }
-
 
     //根据订单号查询订单状态的API
     @GetMapping(value = "/queryByOrderId")
@@ -101,7 +101,5 @@ public class PayWebController {
         log.info("查询支付记录...");
         return orderService.getOrderByOrderSn(orderId);
     }
-
-
 
 }

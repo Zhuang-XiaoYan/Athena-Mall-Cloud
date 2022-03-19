@@ -186,7 +186,7 @@ subjects:
 ---
 
 apiVersion: apps/v1
-kind: DaemonSet 
+kind: DaemonSet
 metadata:
   name: nginx-ingress-controller
   namespace: ingress-nginx
@@ -271,14 +271,14 @@ metadata:
 spec:
   #type: NodePort
   ports:
-  - name: http
-    port: 80
-    targetPort: 80
-    protocol: TCP
-  - name: https
-    port: 443
-    targetPort: 443
-    protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+    - name: https
+      port: 443
+      targetPort: 443
+      protocol: TCP
   selector:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx

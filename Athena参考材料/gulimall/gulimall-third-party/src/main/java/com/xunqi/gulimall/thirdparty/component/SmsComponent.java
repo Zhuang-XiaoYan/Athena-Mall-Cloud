@@ -28,7 +28,7 @@ public class SmsComponent {
     private String sign;
     private String appcode;
 
-    public void sendCode(String phone,String code) {
+    public void sendCode(String phone, String code) {
         String method = "GET";
         Map<String, String> headers = new HashMap<String, String>();
         //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105

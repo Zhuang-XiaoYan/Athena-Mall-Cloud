@@ -28,6 +28,7 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
 
     /**
      * 查询商品详情
+     *
      * @param skuId
      * @return
      */

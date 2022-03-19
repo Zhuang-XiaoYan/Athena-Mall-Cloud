@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 商品spu积分设置
  *
@@ -34,7 +33,6 @@ public class SpuBoundsController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

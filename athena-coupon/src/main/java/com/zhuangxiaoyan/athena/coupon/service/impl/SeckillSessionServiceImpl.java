@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("seckillSessionService")
 public class SeckillSessionServiceImpl extends ServiceImpl<SeckillSessionDao, SeckillSessionEntity> implements SeckillSessionService {
 

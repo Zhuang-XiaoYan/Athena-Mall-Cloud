@@ -1,6 +1,5 @@
 package io.renren.config;
 
-
 import io.renren.entity.mongo.MongoDefinition;
 
 import java.util.Map;
@@ -33,6 +32,5 @@ public class MongoManager {
     public static boolean isMongo() {
         return DbConfig.isMongo();
     }
-
 
 }

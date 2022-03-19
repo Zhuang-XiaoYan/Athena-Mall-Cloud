@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 优惠券分类关联
  *
@@ -34,7 +33,6 @@ public class CouponSpuCategoryRelationController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

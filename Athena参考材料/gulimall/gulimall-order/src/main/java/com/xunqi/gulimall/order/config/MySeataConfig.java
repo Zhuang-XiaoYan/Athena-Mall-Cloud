@@ -10,7 +10,6 @@ import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
 
-
 /**
  * @Description:
  * @Created: with IntelliJ IDEA.
@@ -23,7 +22,6 @@ public class MySeataConfig {
 
     @Autowired
     DataSourceProperties dataSourceProperties;
-
 
     @Bean
     public DataSource dataSource(DataSourceProperties dataSourceProperties) {

@@ -36,26 +36,8 @@ import java.io.IOException;
 @SpringBootTest
 public class GulimallSearchApplicationTests {
 
-
     @Resource
     private RestHighLevelClient client;
-
-    @ToString
-    @Data
-    static class Account {
-        private int account_number;
-        private int balance;
-        private String firstname;
-        private String lastname;
-        private int age;
-        private String gender;
-        private String address;
-        private String employer;
-        private String email;
-        private String city;
-        private String state;
-    }
-
 
     /**
      * 复杂检索:在bank中搜索address中包含mill的所有人的年龄分布以及平均年龄，平均薪资
@@ -72,7 +54,6 @@ public class GulimallSearchApplicationTests {
         //1.2）构造检索条件
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         sourceBuilder.query(QueryBuilders.matchQuery("address", "Mill"));
-
 
         //1.2.1)按照年龄分布进行聚合
         TermsAggregationBuilder ageAgg = AggregationBuilders.terms("ageAgg").field("age").size(10);
@@ -116,7 +97,6 @@ public class GulimallSearchApplicationTests {
         Avg balanceAvg1 = aggregations.get("balanceAvg");
         System.out.println("平均薪资：" + balanceAvg1.getValue());
     }
-
 
     /**
      * @throws IOException
@@ -171,18 +151,34 @@ public class GulimallSearchApplicationTests {
 
     }
 
+    @Test
+    public void contextLoads() {
+
+        System.out.println(client);
+
+    }
+
+    @ToString
+    @Data
+    static class Account {
+        private int account_number;
+        private int balance;
+        private String firstname;
+        private String lastname;
+        private int age;
+        private String gender;
+        private String address;
+        private String employer;
+        private String email;
+        private String city;
+        private String state;
+    }
+
     @Getter
     @Setter
     class User {
         private String userName;
         private String gender;
         private Integer age;
-    }
-
-    @Test
-    public void contextLoads() {
-
-        System.out.println(client);
-
     }
 }

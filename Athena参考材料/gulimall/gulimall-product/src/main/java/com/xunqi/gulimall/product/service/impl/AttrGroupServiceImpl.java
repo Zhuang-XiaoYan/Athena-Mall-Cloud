@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 @Service("attrGroupService")
 public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEntity> implements AttrGroupService {
 
@@ -49,7 +48,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
         if (!StringUtils.isEmpty(key)) {
             wrapper.and((obj) -> {
-                obj.eq("attr_group_id",key).or().like("attr_group_name",key);
+                obj.eq("attr_group_id", key).or().like("attr_group_name", key);
             });
         }
 
@@ -61,14 +60,15 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             );
             return new PageUtils(page);
         } else {
-            wrapper.eq("catelog_id",catelogId);
-            IPage<AttrGroupEntity> page = this.page(new Query<AttrGroupEntity>().getPage(params),wrapper);
+            wrapper.eq("catelog_id", catelogId);
+            IPage<AttrGroupEntity> page = this.page(new Query<AttrGroupEntity>().getPage(params), wrapper);
             return new PageUtils(page);
         }
     }
 
     /**
      * 根据分类id查询出所有的分组以及这些组里面的属性
+     *
      * @param catelogId
      * @return
      */
@@ -81,7 +81,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         //2、查询所有属性
         List<AttrGroupWithAttrsVo> collect = attrGroupEntities.stream().map(group -> {
             AttrGroupWithAttrsVo attrGroupWithAttrsVo = new AttrGroupWithAttrsVo();
-            BeanUtils.copyProperties(group,attrGroupWithAttrsVo);
+            BeanUtils.copyProperties(group, attrGroupWithAttrsVo);
 
             List<AttrEntity> attrs = attrService.getRelationAttr(attrGroupWithAttrsVo.getAttrGroupId());
             attrGroupWithAttrsVo.setAttrs(attrs);
@@ -97,7 +97,7 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
 
         //1、查出当前spu对应的所有属性的分组信息以及当前分组下的所有属性对应的值
         AttrGroupDao baseMapper = this.getBaseMapper();
-        List<SpuItemAttrGroupVo> vos = baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catalogId);
+        List<SpuItemAttrGroupVo> vos = baseMapper.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
 
         return vos;
     }

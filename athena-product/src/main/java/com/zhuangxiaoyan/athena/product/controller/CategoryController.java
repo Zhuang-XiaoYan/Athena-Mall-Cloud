@@ -24,21 +24,18 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-
-
     /**
      * @description TODO 查询出所有的分类以及子分类，以及树形结构
-      * @param:
+     * @param:
      * @date: 2022/3/13 17:35
      * @return: com.zhuangxiaoyan.common.utils.R
      * @author: xjl
-    */
+     */
     @RequestMapping("/list/tree")
     public R list() {
-        List<CategoryEntity> entities=categoryService.listWithTree();
+        List<CategoryEntity> entities = categoryService.listWithTree();
         return R.ok().put("date", entities);
     }
-
 
     /**
      * 列表
@@ -86,6 +83,8 @@ public class CategoryController {
 
     /**
      * 删除
+     * @RequestBody 获取请求数据 必须是发送的是post请求
+     * Springmvc 自动的请求的数据的json 转为对应的对象
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:category:delete")

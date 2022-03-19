@@ -22,6 +22,7 @@ public interface PurchaseService extends IService<PurchaseEntity> {
 
     /**
      * 查询未领取的采购单
+     *
      * @param params
      * @return
      */
@@ -29,18 +30,21 @@ public interface PurchaseService extends IService<PurchaseEntity> {
 
     /**
      * 合并采购需求
+     *
      * @param mergeVo
      */
     void mergePurchase(MergeVo mergeVo);
 
     /**
      * 领取采购单
+     *
      * @param ids
      */
     void received(List<Long> ids);
 
     /**
      * 完成采购单
+     *
      * @param doneVo
      */
     void done(PurchaseDoneVo doneVo);

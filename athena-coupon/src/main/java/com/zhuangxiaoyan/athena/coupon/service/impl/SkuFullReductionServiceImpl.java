@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-
 @Service("skuFullReductionService")
 public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao, SkuFullReductionEntity> implements SkuFullReductionService {
 

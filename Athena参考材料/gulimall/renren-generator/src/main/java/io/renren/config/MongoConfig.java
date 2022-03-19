@@ -31,7 +31,6 @@ public class MongoConfig {
     private boolean auth;
     private String source;
 
-
     @Bean
     @Conditional(MongoCondition.class)
     private MongoClient getMongoClient() {
@@ -53,7 +52,10 @@ public class MongoConfig {
         return getMongoClient().getDatabase(dataBase);
     }
 
-
+    public MongoConfig setDataBase(String dataBase) {
+        this.dataBase = dataBase;
+        return this;
+    }
 
     public MongoConfig setHost(String host) {
         this.host = host;
@@ -72,11 +74,6 @@ public class MongoConfig {
 
     public MongoConfig setPassword(String password) {
         this.password = password;
-        return this;
-    }
-
-    public MongoConfig setDataBase(String dataBase) {
-        this.dataBase = dataBase;
         return this;
     }
 

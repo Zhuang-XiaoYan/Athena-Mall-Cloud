@@ -1,7 +1,8 @@
-var name = "jack"
-var age = 21
-function add(a,b){
+var name = "jack"
+var age = 21
+
+function add(a, b) {
     return a + b;
 }
 
-export {name,age,add}
+export {name, age, add}

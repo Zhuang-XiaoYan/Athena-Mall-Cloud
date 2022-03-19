@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * 退货原因
- * 
+ *
  * @author 夏沫止水
  * @email HeJieLin@gulimall.com
  * @date 2020-05-22 19:49:53
@@ -20,28 +20,28 @@ import java.util.Date;
 @Data
 @TableName("oms_order_return_reason")
 public class OrderReturnReasonEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * 退货原因名
-	 */
-	private String name;
-	/**
-	 * 排序
-	 */
-	private Integer sort;
-	/**
-	 * 启用状态
-	 */
-	private Integer status;
-	/**
-	 * create_time
-	 */
-	private Date createTime;
+    /**
+     * id
+     */
+    @TableId
+    private Long id;
+    /**
+     * 退货原因名
+     */
+    private String name;
+    /**
+     * 排序
+     */
+    private Integer sort;
+    /**
+     * 启用状态
+     */
+    private Integer status;
+    /**
+     * create_time
+     */
+    private Date createTime;
 
 }

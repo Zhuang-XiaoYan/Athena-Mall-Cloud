@@ -21,6 +21,7 @@ public interface CategoryBrandRelationService extends IService<CategoryBrandRela
 
     /**
      * 保存详细信息
+     *
      * @param categoryBrandRelation
      */
     void saveDetail(CategoryBrandRelationEntity categoryBrandRelation);

@@ -1,13 +1,12 @@
 /**
  * Copyright (c) 2016-2019 谷粒开源 All rights reserved.
- *
+ * <p>
  * https://www.guli.cloud
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package com.atguigu.modules.sys.redis;
-
 
 import com.atguigu.modules.sys.entity.SysConfigEntity;
 import com.atguigu.common.utils.RedisKeys;
@@ -26,8 +25,8 @@ public class SysConfigRedis {
     private RedisUtils redisUtils;
 
     public void saveOrUpdate(SysConfigEntity config) {
-        if(config == null){
-            return ;
+        if (config == null) {
+            return;
         }
         String key = RedisKeys.getSysConfigKey(config.getParamKey());
         redisUtils.set(key, config);
@@ -38,7 +37,7 @@ public class SysConfigRedis {
         redisUtils.delete(key);
     }
 
-    public SysConfigEntity get(String configKey){
+    public SysConfigEntity get(String configKey) {
         String key = RedisKeys.getSysConfigKey(configKey);
         return redisUtils.get(key, SysConfigEntity.class);
     }

@@ -2,7 +2,7 @@
 
 ### 1、安装elastic search
 
- dokcer中安装elastic search
+dokcer中安装elastic search
 
 （1）下载ealastic search和kibana
 
@@ -19,8 +19,6 @@ mkdir -p /mydata/elasticsearch/data
 echo "http.host: 0.0.0.0" >/mydata/elasticsearch/config/elasticsearch.yml
 chmod -R 777 /mydata/elasticsearch/
 ```
-
-
 
 （3）启动Elastic search
 
@@ -40,8 +38,6 @@ docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \
 docker update elasticsearch --restart=always
 ```
 
-
-
 （4）启动kibana：
 
 ```shell
@@ -54,13 +50,9 @@ docker run --name kibana -e ELASTICSEARCH_HOSTS=http://192.168.137.14:9200 -p 56
 docker update kibana  --restart=always
 ```
 
-
-
-
-
 （5）测试
 
-查看elasticsearch版本信息： http://192.168.137.14:9200/ 
+查看elasticsearch版本信息： http://192.168.137.14:9200/
 
 ```json
 {
@@ -82,21 +74,15 @@ docker update kibana  --restart=always
 }
 ```
 
-
-
 显示elasticsearch 节点信息http://192.168.137.14:9200/_cat/nodes ，
 
 ```json
 127.0.0.1 76 95 1 0.26 1.40 1.22 dilm * 0adeb7852e00
 ```
 
-
-
-访问Kibana： http://192.168.137.14:5601/app/kibana 
+访问Kibana： http://192.168.137.14:5601/app/kibana
 
 ![image-20200501192629304](images/image-20200501192629304.png)
-
-
 
 ### 2、初步检索
 
@@ -104,7 +90,7 @@ docker update kibana  --restart=always
 
 （1）GET/_cat/nodes：查看所有节点_
 
- 如：http://192.168.137.14:9200/_cat/nodes :
+如：http://192.168.137.14:9200/_cat/nodes :
 
 ```
 127.0.0.1 61 91 11 0.08 0.49 0.87 dilm * 0adeb7852e00
@@ -114,7 +100,7 @@ docker update kibana  --restart=always
 
 （2）GET/_cat/health：查看es健康状况_
 
-如： http://192.168.137.14:9200/_cat/health 
+如： http://192.168.137.14:9200/_cat/health
 
 ```
 1588332616 11:30:16 elasticsearch green 1 1 3 3 0 0 0 0 - 100.0%
@@ -124,7 +110,7 @@ docker update kibana  --restart=always
 
 （3）GET/_cat/master：查看主节点_
 
-如： http://192.168.137.14:9200/_cat/master 
+如： http://192.168.137.14:9200/_cat/master
 
 ```
 vfpgxbusTC6-W3C2Np31EQ 127.0.0.1 127.0.0.1 0adeb7852e00
@@ -132,7 +118,7 @@ vfpgxbusTC6-W3C2Np31EQ 127.0.0.1 127.0.0.1 0adeb7852e00
 
 （4）GET/_cat/indicies：查看所有索引 ，等价于mysql数据库的show databases;
 
-如： http://192.168.137.14:9200/_cat/indices 
+如： http://192.168.137.14:9200/_cat/indices
 
 ```json
 green open .kibana_task_manager_1   KWLtjcKRRuaV9so_v15WYg 1 0 2 0 39.8kb 39.8kb
@@ -140,27 +126,21 @@ green open .apm-agent-configuration cuwCpJ5ER0OYsSgAJ7bVYA 1 0 0 0   283b   283b
 green open .kibana_1                PqK_LdUYRpWMy4fK0tMSPw 1 0 7 0 31.2kb 31.2kb
 ```
 
-####  2）索引一个文档
+#### 2）索引一个文档
 
-保存一个数据，保存在哪个索引的哪个类型下，指定用那个唯一标识
-PUT customer/external/1;在customer索引下的external类型下保存1号数据为
+保存一个数据，保存在哪个索引的哪个类型下，指定用那个唯一标识 PUT customer/external/1;在customer索引下的external类型下保存1号数据为
 
 ```
 PUT customer/external/1
 ```
-
-
 
 ```json
 {
  "name":"John Doe"
 }
 ```
-PUT和POST都可以
-POST新增。如果不指定id，会自动生成id。指定id就会修改这个数据，并新增版本号；
-PUT可以新增也可以修改。PUT必须指定id；由于PUT需要指定id，我们一般用来做修改操作，不指定id会报错。
 
-
+PUT和POST都可以 POST新增。如果不指定id，会自动生成id。指定id就会修改这个数据，并新增版本号； PUT可以新增也可以修改。PUT必须指定id；由于PUT需要指定id，我们一般用来做修改操作，不指定id会报错。
 
 下面是在postman中的测试数据：
 ![image-20200501194449944](images/image-20200501194449944.png)
@@ -192,11 +172,9 @@ PUT可以新增也可以修改。PUT必须指定id；由于PUT需要指定id，�
 
 "_id": "1"                    表明被保存数据的id；
 
- "_version": 1,            被保存数据的版本
+"_version": 1, 被保存数据的版本
 
 "result": "created"      这里是创建了一条数据，如果重新put一条数据，则该状态会变为updated，并且版本号也会发生变化。
-
-
 
 下面选用POST方式：
 
@@ -218,13 +196,11 @@ PUT可以新增也可以修改。PUT必须指定id；由于PUT需要指定id，�
 
 <img src="images/image-20200501200132199.png" alt="image-20200501200132199" style="zoom:67%;" />
 
-
-
 #### 3）查看文档
 
 GET /customer/external/1
 
- http://192.168.137.14:9200/customer/external/1 
+http://192.168.137.14:9200/customer/external/1
 
 ```json
 {
@@ -241,33 +217,27 @@ GET /customer/external/1
 }
 ```
 
- 
-
-
-
 通过“if_seq_no=1&if_primary_term=1 ”，当序列号匹配的时候，才进行修改，否则不修改。
 
 实例：将id=1的数据更新为name=1，然后再次更新为name=2，起始_seq_no=6，_primary_term=1
 
 （1）将name更新为1
 
- http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1 
+http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1
 
 <img src="images/image-20200501212224983.png" alt="image-20200501212224983" style="zoom: 61%;" />
 
- （2）将name更新为2，更新过程中使用seq_no=6
+（2）将name更新为2，更新过程中使用seq_no=6
 
-http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1 
+http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1
 
 <img src="images/image-20200501213047499.png" alt="image-20200501213047499" style="zoom: 60%;" />
 
 出现更新错误。
 
-
-
 （3）查询新的数据
 
- http://192.168.137.14:9200/customer/external/1 
+http://192.168.137.14:9200/customer/external/1
 
 ![image-20200501212924094](images/image-20200501212924094.png)
 
@@ -275,7 +245,7 @@ http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1
 
 （4）再次更新，更新成功
 
- http://192.168.137.14:9200/customer/external/1?if_seq_no=7&if_primary_term=1 
+http://192.168.137.14:9200/customer/external/1?if_seq_no=7&if_primary_term=1
 
 <img src="images/image-20200501213130001.png" alt="image-20200501213130001" style="zoom:75%;" />
 
@@ -283,11 +253,11 @@ http://192.168.137.14:9200/customer/external/1?if_seq_no=6&if_primary_term=1
 
 ![image-20200501214522818](images/image-20200501214522818.png)
 
- ![image-20200501215746139](images/image-20200501215746139.png)
+![image-20200501215746139](images/image-20200501215746139.png)
 
 （1）POST更新文档，带有_update
 
-http://192.168.137.14:9200/customer/external/1/_update 
+http://192.168.137.14:9200/customer/external/1/_update
 
 ![image-20200501214810741](images/image-20200501214810741.png)
 
@@ -297,7 +267,7 @@ http://192.168.137.14:9200/customer/external/1/_update
 
 POST更新方式，会对比原来的数据，和原来的相同，则不执行任何操作（version和_seq_no）都不变。
 
- （2）POST更新文档，不带_update
+（2）POST更新文档，不带_update
 
 ![image-20200501215358666](images/image-20200501215358666.png)
 
@@ -311,8 +281,6 @@ DELETE customer
 ```
 
 注：elasticsearch并没有提供删除类型的操作，只提供了删除索引和文档的操作。
-
-
 
 实例：删除id=1的数据，删除后继续查询
 
@@ -341,9 +309,8 @@ green  open .apm-agent-configuration cuwCpJ5ER0OYsSgAJ7bVYA 1 0 0 0   283b   283
 green  open .kibana_1                PqK_LdUYRpWMy4fK0tMSPw 1 0 7 0 31.2kb 31.2kb
 ```
 
-
-
 #### 6）eleasticsearch的批量操作——bulk
+
 语法格式：
 
 ```json
@@ -359,7 +326,6 @@ green  open .kibana_1                PqK_LdUYRpWMy4fK0tMSPw 1 0 7 0 31.2kb 31.2k
 bulk api以此按顺序执行所有的action（动作）。如果一个单个的动作因任何原因失败，它将继续处理它后面剩余的动作。当bulk api返回时，它将提供每个动作的状态（与发送的顺序相同），所以您可以检查是否一个指定的动作是否失败了。
 
 实例1: 执行多条数据
-
 
 ```json
 POST customer/external/_bulk
@@ -415,8 +381,6 @@ POST customer/external/_bulk
 }
 
 ```
-
-
 
 实例2：对于整个索引执行批量操作
 
@@ -512,8 +476,6 @@ POST /_bulk
 
 ```
 
-
-
 #### 7）样本测试数据
 
 准备了一份顾客银行账户信息的虚构的JSON文档样本。每个文档都有下列的schema（模式）。
@@ -534,11 +496,9 @@ POST /_bulk
 }
 ```
 
- https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json ，导入测试数据，
+https://github.com/elastic/elasticsearch/blob/master/docs/src/test/resources/accounts.json ，导入测试数据，
 
 POST bank/account/_bulk
-
-
 
 ### 3、检索
 
@@ -571,16 +531,7 @@ GET /bank/_search
 
 ```
 
-
-
 HTTP客户端工具（），get请求不能够携带请求体，
-
-
-
-
-
-
-
 
 ```
 GET bank/_search?q=*&sort=account_number:asc
@@ -831,11 +782,9 @@ GET bank/_search?q=*&sort=account_number:asc
 
 ```
 
-
-
 （1）只有6条数据，这是因为存在分页查询；
 
-（2）详细的字段信息，参照： https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-search.html 
+（2）详细的字段信息，参照： https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started-search.html
 
 >
 >
@@ -848,8 +797,6 @@ GET bank/_search?q=*&sort=account_number:asc
 >- `hits.total.value` - how many matching documents were found
 >- `hits.sort` - the document’s sort position (when not sorting by relevance score)
 >- `hits._score` - the document’s relevance score (not applicable when using `match_all`)
-
-
 
 #### 2）Query DSL
 
@@ -866,8 +813,6 @@ QUERY_NAME:{
 }
 ```
 
-
-
 如果针对于某个字段，那么它的结构如下：
 
 ```json
@@ -880,8 +825,6 @@ QUERY_NAME:{
    }
 }
 ```
-
-
 
 ```json
 GET bank/_search
@@ -901,16 +844,12 @@ GET bank/_search
 }
 ```
 
-
-
 query定义如何查询；
 
 - match_all查询类型【代表查询所有的所有】，es中可以在query中组合非常多的查询类型完成复杂查询；
 - 除了query参数之外，我们可也传递其他的参数以改变查询结果，如sort，size；
 - from+size限定，完成分页功能；
 - sort排序，多字段排序，会在前序字段相等时后续字段内部排序，否则以前序为准；
-
-
 
 ##### （2）返回部分字段
 
@@ -1025,8 +964,6 @@ GET bank/_search
 
 ```
 
-
-
 ##### （3）match匹配查询
 
 * 基本类型（非字符串），精确控制
@@ -1088,12 +1025,6 @@ match返回account_number=20的数据。
 }
 
 ```
-
-
-
-
-
-
 
 * 字符串，全文检索
 
@@ -1173,9 +1104,7 @@ GET bank/_search
 
 ```
 
-
-
-##### （4） match_phrase [短句匹配] 
+##### （4） match_phrase [短句匹配]
 
 将需要匹配的值当成一整个单词（不分词）进行检索
 
@@ -1189,6 +1118,7 @@ GET bank/_search
   }
 }
 ```
+
 查处address中包含mill_road的所有记录，并给出相关性得分
 
 查看结果：
@@ -1234,8 +1164,6 @@ GET bank/_search
 }
 
 ```
-
-
 
 match_phrase和Match的区别，观察如下实例：
 
@@ -1294,8 +1222,6 @@ GET bank/_search
 
 ```
 
-
-
 使用match的keyword
 
 ```json
@@ -1332,8 +1258,6 @@ GET bank/_search
 }
 
 ```
-
-
 
 修改匹配条件为“990 Mill Road”
 
@@ -1392,15 +1316,9 @@ GET bank/_search
 
 ```
 
-
-
 文本字段的匹配，使用keyword，匹配的条件就是要显示字段的全部值，要进行精确匹配的。
 
 match_phrase是做短语匹配，只要文本中包含匹配条件，就能匹配到。
-
-
-
-
 
 ##### （5）multi_math【多字段匹配】
 
@@ -1418,6 +1336,7 @@ GET bank/_search
   }
 }
 ```
+
 state或者address中包含mill，并且在查询过程中，会对于查询条件进行分词。
 
 查询结果：
@@ -1521,12 +1440,9 @@ state或者address中包含mill，并且在查询过程中，会对于查询条�
 
 ```
 
-
-
 ##### （6）bool用来做复合查询
 
-复合语句可以合并，任何其他查询语句，包括符合语句。这也就意味着，复合语句之间
-可以互相嵌套，可以表达非常复杂的逻辑。
+复合语句可以合并，任何其他查询语句，包括符合语句。这也就意味着，复合语句之间 可以互相嵌套，可以表达非常复杂的逻辑。
 
 must：必须达到must所列举的所有条件
 
@@ -1547,8 +1463,6 @@ GET bank/_search
 must_not，必须不匹配must_not所列举的所有条件。
 
 should，应该满足should所列举的条件。
-
-
 
 实例：查询gender=m，并且address=mill的数据
 
@@ -1656,10 +1570,6 @@ GET bank/_search
 
 ```
 
-
-
-
-
 **must_not：必须不是指定的情况**
 
 实例：查询gender=m，并且address=mill的数据，但是age不等于38的
@@ -1738,10 +1648,6 @@ GET bank/_search
 
 ```
 
-
-
-
-
 **should：应该达到should列举的条件，如果到达会增加相关文档的评分，并不会改变查询的结果。如果query中只有should且只有一种匹配规则，那么should的条件就会被作为默认匹配条件二区改变查询结果。**
 
 实例：匹配lastName应该等于Wallace的数据
@@ -1781,8 +1687,6 @@ GET bank/_search
   }
 }
 ```
-
-
 
 查询结果：
 
@@ -1944,17 +1848,19 @@ GET bank/_search
 
 ```
 
+Each `must`, `should`, and `must_not` element in a Boolean query is referred to as a query clause. How well a document
+meets the criteria in each `must` or `should` clause contributes to the document’s *relevance score*. The higher the
+score, the better the document matches your search criteria. By default, Elasticsearch returns documents ranked by these
+relevance scores.
 
+在boolean查询中，`must`, `should` 和`must_not` 元素都被称为查询子句 。 文档是否符合每个“must”或“should”子句中的标准，决定了文档的“相关性得分”。 得分越高，文档越符合您的搜索条件。
+默认情况下，Elasticsearch返回根据这些相关性得分排序的文档。
 
-Each `must`, `should`, and `must_not` element in a Boolean query is referred to as a query clause. How well a document meets the criteria in each `must` or `should` clause contributes to the document’s *relevance score*. The higher the score, the better the document matches your search criteria. By default, Elasticsearch returns documents ranked by these relevance scores.
+The criteria in a `must_not` clause is treated as a *filter*. It affects whether or not the document is included in the
+results, but does not contribute to how documents are scored. You can also explicitly specify arbitrary filters to
+include or exclude documents based on structured data.
 
- 在boolean查询中，`must`, `should` 和`must_not` 元素都被称为查询子句 。 文档是否符合每个“must”或“should”子句中的标准，决定了文档的“相关性得分”。  得分越高，文档越符合您的搜索条件。  默认情况下，Elasticsearch返回根据这些相关性得分排序的文档。 
-
-The criteria in a `must_not` clause is treated as a *filter*. It affects whether or not the document is included in the results, but does not contribute to how documents are scored. You can also explicitly specify arbitrary filters to include or exclude documents based on structured data.
-
-`“must_not”子句中的条件被视为“过滤器”。` 它影响文档是否包含在结果中，  但不影响文档的评分方式。  还可以显式地指定任意过滤器来包含或排除基于结构化数据的文档。 
-
-
+`“must_not”子句中的条件被视为“过滤器”。` 它影响文档是否包含在结果中， 但不影响文档的评分方式。 还可以显式地指定任意过滤器来包含或排除基于结构化数据的文档。
 
 filter在使用过程中，并不会计算相关性得分：
 
@@ -2214,13 +2120,13 @@ GET bank/_search
 >
 >By default, Elasticsearch changes the values of `text` fields as part of [analysis](). This can make finding exact matches for `text` field values difficult.
 >
-> 默认情况下，Elasticsearch作为[analysis]()的一部分更改' text '字段的值。这使得为“text”字段值寻找精确匹配变得困难。 
+> 默认情况下，Elasticsearch作为[analysis]()的一部分更改' text '字段的值。这使得为“text”字段值寻找精确匹配变得困难。
 >
 >To search `text` field values, use the match.
 >
 >要搜索“text”字段值，请使用匹配。
 >
->https://www.elastic.co/guide/en/elasticsearch/reference/7.6/query-dsl-term-query.html 
+>https://www.elastic.co/guide/en/elasticsearch/reference/7.6/query-dsl-term-query.html
 
 使用term匹配查询
 
@@ -2261,28 +2167,20 @@ GET bank/_search
 
 一条也没有匹配到
 
-
-
 而更换为match匹配时，能够匹配到32个文档
 
 ![image-20200502120921830](images/image-20200502120921830.png)
 
 也就是说，**全文检索字段用match，其他非text字段匹配用term**。
 
-
-
 ##### （9）Aggregation（执行聚合）
 
-聚合提供了从数据中分组和提取数据的能力。最简单的聚合方法大致等于SQL Group by和SQL聚合函数。在elasticsearch中，执行搜索返回this（命中结果），并且同时返回聚合结果，把以响应中的所有hits（命中结果）分隔开的能力。这是非常强大且有效的，你可以执行查询和多个聚合，并且在一次使用中得到各自的（任何一个的）返回结果，使用一次简洁和简化的API啦避免网络往返。
-
-
-
-
+聚合提供了从数据中分组和提取数据的能力。最简单的聚合方法大致等于SQL Group
+by和SQL聚合函数。在elasticsearch中，执行搜索返回this（命中结果），并且同时返回聚合结果，把以响应中的所有hits（命中结果）分隔开的能力。这是非常强大且有效的，你可以执行查询和多个聚合，并且在一次使用中得到各自的（任何一个的）返回结果，使用一次简洁和简化的API啦避免网络往返。
 
 "size":0
 
-size:0不显示搜索数据
-aggs：执行聚合。聚合语法如下：
+size:0不显示搜索数据 aggs：执行聚合。聚合语法如下：
 
 ```json
 "aggs":{
@@ -2292,14 +2190,7 @@ aggs：执行聚合。聚合语法如下：
 }，
 ```
 
-
-
-
-
-
-
 **搜索address中包含mill的所有人的年龄分布以及平均年龄，但不显示这些人的详情**
-
 
 ```json
 GET bank/_search
@@ -2381,12 +2272,7 @@ GET bank/_search
 
 ```
 
-
-
-
-
-复杂：
-按照年龄聚合，并且求这些年龄段的这些人的平均薪资
+复杂： 按照年龄聚合，并且求这些年龄段的这些人的平均薪资
 
 ```json
 GET bank/_search
@@ -2696,8 +2582,6 @@ GET bank/_search
 
 ![image-20200502161339291](images/image-20200502161339291.png)
 
-
-
 ##### （2）映射
 
 Mapping(映射)
@@ -2709,10 +2593,7 @@ Maping是用来定义一个文档（document），以及它所包含的属性（
 * 日期的格式；
 * 自定义映射规则来执行动态添加属性；
 
-* 查看mapping信息
-  GET bank/_mapping
-
-  
+* 查看mapping信息 GET bank/_mapping
 
   ```json
   {
@@ -2806,43 +2687,28 @@ Maping是用来定义一个文档（document），以及它所包含的属性（
   }
   ```
 
-  
-
 * 修改mapping信息
 
 ![image-20200502170924399](images/image-20200502170924399.png)
-
-
-
-
-
-
-
-
-
-
 
 ##### （3）新版本改变
 
 ElasticSearch7-去掉type概念
 
-1. 关系型数据库中两个数据表示是独立的，即使他们里面有相同名称的列也不影响使用，但ES中不是这样的。elasticsearch是基于Lucene开发的搜索引擎，而ES中不同type下名称相同的filed最终在Lucene中的处理方式是一样的。
+1.
+关系型数据库中两个数据表示是独立的，即使他们里面有相同名称的列也不影响使用，但ES中不是这样的。elasticsearch是基于Lucene开发的搜索引擎，而ES中不同type下名称相同的filed最终在Lucene中的处理方式是一样的。
 
-   - 两个不同type下的两个user_name，在ES同一个索引下其实被认为是同一个filed，你必须在两个不同的type中定义相同的filed映射。否则，不同type中的相同字段名称就会在处理中出现冲突的情况，导致Lucene处理效率下降。
-   - 去掉type就是为了提高ES处理数据的效率。
+    -
+    两个不同type下的两个user_name，在ES同一个索引下其实被认为是同一个filed，你必须在两个不同的type中定义相同的filed映射。否则，不同type中的相同字段名称就会在处理中出现冲突的情况，导致Lucene处理效率下降。
+    - 去掉type就是为了提高ES处理数据的效率。
 
 2. Elasticsearch 7.x URL中的type参数为可选。比如，索引一个文档不再要求提供文档类型。
 
 3. Elasticsearch 8.x 不再支持URL中的type参数。
 
-4. 解决：
-   将索引从多类型迁移到单类型，每种类型文档一个独立索引
+4. 解决： 将索引从多类型迁移到单类型，每种类型文档一个独立索引
 
    将已存在的索引下的类型数据，全部迁移到指定位置即可。详见数据迁移
-
-
-
-
 
 >
 >
@@ -2856,10 +2722,6 @@ ElasticSearch7-去掉type概念
 >
 >- Specifying types in requests is no longer supported.
 >- The `include_type_name` parameter is removed.
-
-
-
-
 
 ###### 创建映射
 
@@ -2884,7 +2746,7 @@ PUT /my_index
 }
 ```
 
- 输出：
+输出：
 
 ```json
 {
@@ -2894,8 +2756,6 @@ PUT /my_index
 }
 
 ```
-
-
 
 ###### 查看映射
 
@@ -2942,10 +2802,6 @@ GET /my_index
 }
 ```
 
-
-
-
-
 ###### 添加新的字段映射
 
 ```json
@@ -2961,12 +2817,6 @@ PUT /my_index/_mapping
 ```
 
 这里的 "index": false，表明新增的字段不能被检索，只是一个冗余字段。
-
-
-
-
-
-
 
 ###### 更新映射
 
@@ -2988,8 +2838,6 @@ POST reindex [固定写法]
 }
 ```
 
-
-
 将旧索引的type下的数据进行迁移
 
 ```json
@@ -3005,11 +2853,7 @@ POST reindex [固定写法]
 }
 ```
 
-更多详情见： https://www.elastic.co/guide/en/elasticsearch/reference/7.6/docs-reindex.html 
-
-
-
-
+更多详情见： https://www.elastic.co/guide/en/elasticsearch/reference/7.6/docs-reindex.html
 
 GET /bank/_search
 
@@ -3051,8 +2895,6 @@ GET /bank/_search
       },
       ...
 ```
-
-
 
 ```
 GET /bank/_search
@@ -3119,8 +2961,6 @@ GET /newbank/_mapping
 
 能够看到age的映射类型被修改为了integer.
 
-
-
 将bank中的数据迁移到newbank中
 
 ```json
@@ -3161,13 +3001,9 @@ POST _reindex
 }
 ```
 
-
-
 查看newbank中的数据
 
 ![image-20200502181432745](images/image-20200502181432745.png)
-
-
 
 #### 4）分词
 
@@ -3175,13 +3011,12 @@ POST _reindex
 
 例如：whitespace tokenizer遇到空白字符时分割文本。它会将文本“Quick brown fox!”分割为[Quick,brown,fox!]。
 
-该tokenizer（分词器）还负责记录各个terms(词条)的顺序或position位置（用于phrase短语和word proximity词近邻查询），以及term（词条）所代表的原始word（单词）的start（起始）和end（结束）的character offsets（字符串偏移量）（用于高亮显示搜索的内容）。
+该tokenizer（分词器）还负责记录各个terms(词条)的顺序或position位置（用于phrase短语和word
+proximity词近邻查询），以及term（词条）所代表的原始word（单词）的start（起始）和end（结束）的character offsets（字符串偏移量）（用于高亮显示搜索的内容）。
 
 elasticsearch提供了很多内置的分词器，可以用来构建custom analyzers（自定义分词器）。
 
-关于分词器： https://www.elastic.co/guide/en/elasticsearch/reference/7.6/analysis.html 
-
-
+关于分词器： https://www.elastic.co/guide/en/elasticsearch/reference/7.6/analysis.html
 
 ```json
 POST _analyze
@@ -3278,24 +3113,17 @@ POST _analyze
 
 ```
 
-
-
 ##### （1）安装ik分词器
 
 ![image-20200502182929583](images/image-20200502182929583.png)
 
 所有的语言分词，默认使用的都是“Standard Analyzer”，但是这些分词器针对于中文的分词，并不友好。为此需要安装中文的分词器。
 
-
-
 注意：不能用默认elasticsearch-plugin install xxx.zip 进行自动安装
 https://github.com/medcl/elasticsearch-analysis-ik/releases/download 对应es版本安装
 
-
-
-在前面安装的elasticsearch时，我们已经将elasticsearch容器的“/usr/share/elasticsearch/plugins”目录，映射到宿主机的“ /mydata/elasticsearch/plugins”目录下，所以比较方便的做法就是下载“/elasticsearch-analysis-ik-7.6.2.zip”文件，然后解压到该文件夹下即可。安装完毕后，需要重启elasticsearch容器。
-
- 
+在前面安装的elasticsearch时，我们已经将elasticsearch容器的“/usr/share/elasticsearch/plugins”目录，映射到宿主机的“
+/mydata/elasticsearch/plugins”目录下，所以比较方便的做法就是下载“/elasticsearch-analysis-ik-7.6.2.zip”文件，然后解压到该文件夹下即可。安装完毕后，需要重启elasticsearch容器。
 
 如果不嫌麻烦，还可以采用如下的方式。
 
@@ -3322,8 +3150,6 @@ https://github.com/medcl/elasticsearch-analysis-ik/releases/download 对应es版
 }
 [root@hadoop-104 ~]# 
 ```
-
-
 
 ###### （2）进入es容器内部plugin目录
 
@@ -3378,7 +3204,6 @@ Archive:  elasticsearch-analysis-ik-7.6.2.zip
 ```
 [root@0adeb7852e00 elasticsearch]# rm -rf elasticsearch-analysis-ik-7.6.2.zip 
 ```
-
 
 确认是否安装好了分词器
 
@@ -3437,8 +3262,6 @@ GET my_index/_analyze
 }
 ```
 
-
-
 ```json
 GET my_index/_analyze
 {
@@ -3478,8 +3301,6 @@ GET my_index/_analyze
 
 ```
 
-
-
 ```json
 GET my_index/_analyze
 {
@@ -3487,8 +3308,6 @@ GET my_index/_analyze
    "text":"我是中国人"
 }
 ```
-
-
 
 输出结果：
 
@@ -3535,12 +3354,9 @@ GET my_index/_analyze
 
 ```
 
- 
-
 ##### （3）自定义词库
 
-* 修改/usr/share/elasticsearch/plugins/ik/config中的IKAnalyzer.cfg.xml
-  /usr/share/elasticsearch/plugins/ik/config
+* 修改/usr/share/elasticsearch/plugins/ik/config中的IKAnalyzer.cfg.xml /usr/share/elasticsearch/plugins/ik/config
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -3584,10 +3400,6 @@ GET my_index/_analyze
 ```shell
 POST my_index/_update_by_query?conflicts=proceed
 ```
-
-
-
-
 
 http://192.168.137.14/es/fenci.txt，这个是nginx上资源的访问路径
 
@@ -3652,27 +3464,23 @@ GET my_index/_analyze
 
 ```
 
-
-
-
-
 ### 4、elasticsearch-Rest-Client
+
 #### 1）9300: TCP
- * spring-data-elasticsearch:transport-api.jar;
-   * springboot版本不同，ransport-api.jar不同，不能适配es版本
-   * 7.x已经不建议使用，8以后就要废弃
+
+* spring-data-elasticsearch:transport-api.jar;
+    * springboot版本不同，ransport-api.jar不同，不能适配es版本
+    * 7.x已经不建议使用，8以后就要废弃
+
 #### 2）9200: HTTP
- * jestClient: 非官方，更新慢；
- * RestTemplate：模拟HTTP请求，ES很多操作需要自己封装，麻烦；
- * HttpClient：同上；
+
+* jestClient: 非官方，更新慢；
+* RestTemplate：模拟HTTP请求，ES很多操作需要自己封装，麻烦；
+* HttpClient：同上；
 
 * Elasticsearch-Rest-Client：官方RestClient，封装了ES操作，API层次分明，上手简单；
   最终选择Elasticsearch-Rest-Client（elasticsearch-rest-high-level-client）；
-   https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html 
-
-
-
-
+  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high.html
 
 ### 5、附录：安装Nginx
 
@@ -3722,8 +3530,7 @@ GET my_index/_analyze
   docker update nginx --restart=always
   ```
 
-  
-  
+
 * 创建“/mydata/nginx/html/index.html”文件，测试是否能够正常访问
 
   ```
@@ -3731,8 +3538,6 @@ GET my_index/_analyze
   ```
 
   访问：http://ngix所在主机的IP:80/index.html
-
-
 
 ## SpringBoot整合ElasticSearch
 
@@ -3748,8 +3553,6 @@ GET my_index/_analyze
 </dependency>
 ```
 
-
-
 在spring-boot-dependencies中所依赖的ELK版本位6.8.7
 
 ```
@@ -3757,8 +3560,6 @@ GET my_index/_analyze
 ```
 
 ![image-20200511074437763](images/image-20200511074437763.png)
-
-
 
 需要在项目中将它改为7.6.2
 
@@ -3769,15 +3570,11 @@ GET my_index/_analyze
     </properties>
 ```
 
- 
-
 ### 2、编写测试类
 
 #### 1）测试保存数据
 
- https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html 
-
-
+https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-document-index.html
 
 ```java
     @Test
@@ -3799,8 +3596,6 @@ GET my_index/_analyze
     }
 ```
 
-
-
 测试前：
 
 ![image-20200511111618183](images/image-20200511111618183.png)
@@ -3809,11 +3604,9 @@ GET my_index/_analyze
 
 ![image-20200511112025327](images/image-20200511112025327.png)
 
-
-
 #### 2）测试获取数据
 
- https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-search.html 
+https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-high-search.html
 
 ```
     @Test
@@ -3842,19 +3635,11 @@ GET my_index/_analyze
     }
 ```
 
-
-
-
-
 查询state="AK"的文档：
 
 ```
 
 ```
-
-
-
-
 
 ```json
 {
@@ -3897,10 +3682,7 @@ GET my_index/_analyze
 }
 ```
 
-
-
 **搜索address中包含mill的所有人的年龄分布以及平均年龄，平均薪资**
-
 
 ```json
 GET bank/_search
@@ -3930,8 +3712,6 @@ GET bank/_search
   }
 }
 ```
-
-
 
 java实现
 
@@ -3998,8 +3778,6 @@ java实现
 ```
 
 可以尝试对比打印的条件和执行结果，和前面的ElasticSearch的检索语句和检索结果进行比较；
-
-
 
 ## 其他
 

@@ -29,5 +29,4 @@ public class MyBatisConfig {
         return paginationInterceptor;
     }
 
-
 }

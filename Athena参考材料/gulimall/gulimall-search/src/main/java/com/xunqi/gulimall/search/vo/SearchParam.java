@@ -59,5 +59,4 @@ public class SearchParam {
      */
     private String _queryString;
 
-
 }

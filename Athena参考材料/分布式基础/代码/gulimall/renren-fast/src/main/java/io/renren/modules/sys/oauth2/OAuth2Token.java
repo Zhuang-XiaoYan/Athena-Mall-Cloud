@@ -1,13 +1,12 @@
 /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
 package io.renren.modules.sys.oauth2;
-
 
 import org.apache.shiro.authc.AuthenticationToken;
 
@@ -19,7 +18,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 public class OAuth2Token implements AuthenticationToken {
     private String token;
 
-    public OAuth2Token(String token){
+    public OAuth2Token(String token) {
         this.token = token;
     }
 

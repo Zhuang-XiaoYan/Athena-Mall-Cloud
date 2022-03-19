@@ -11,12 +11,13 @@ import java.util.Set;
  * @author: 夏沫止水
  * @createTime: 2020-05-27 17:54
  **/
-public class ListValueConstraintValidator implements ConstraintValidator<ListValue,Integer> {
+public class ListValueConstraintValidator implements ConstraintValidator<ListValue, Integer> {
 
     private Set<Integer> set = new HashSet<>();
 
     /**
      * 初始化方法
+     *
      * @param constraintAnnotation
      */
     @Override
@@ -32,7 +33,8 @@ public class ListValueConstraintValidator implements ConstraintValidator<ListVal
 
     /**
      * 判断是否效验成功
-     * @param value 需要效验的值
+     *
+     * @param value   需要效验的值
      * @param context
      * @return
      */

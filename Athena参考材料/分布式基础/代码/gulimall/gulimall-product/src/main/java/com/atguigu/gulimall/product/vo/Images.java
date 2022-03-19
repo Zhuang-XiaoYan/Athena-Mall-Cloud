@@ -1,6 +1,6 @@
 /**
-  * Copyright 2019 bejson.com 
-  */
+ * Copyright 2019 bejson.com
+ */
 package com.atguigu.gulimall.product.vo;
 
 import lombok.Data;
@@ -16,6 +16,5 @@ public class Images {
 
     private String imgUrl;
     private int defaultImg;
-
 
 }

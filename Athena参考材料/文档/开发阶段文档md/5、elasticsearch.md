@@ -1,12 +1,8 @@
 ![img](assets/timg.jpg)
 
-
-
 # 1. elasticsearch基本操作
 
-## 1.1.   基本概念
-
-
+## 1.1. 基本概念
 
 Elasticsearch也是基于Lucene的全文检索库，本质也是存储数据，很多概念与MySQL类似的。
 
@@ -22,15 +18,11 @@ Elasticsearch也是基于Lucene的全文检索库，本质也是存储数据，�
 	    字段（Field）-------------------------Columns 列 
 ```
 
-
-
 要注意的是：Elasticsearch本身就是分布式的，因此即便你只有一个节点，Elasticsearch默认也会对你的数据进行分片和副本操作，当你向集群添加新数据时，数据也会在新加入的节点中进行平衡。
 
+## 1.2. 索引操作（indeces）
 
-
-## 1.2.   索引操作（indeces）
-
-### 1.2.1.    查询索引
+### 1.2.1. 查询索引
 
 查看es中有哪些索引库：
 
@@ -57,9 +49,7 @@ es 中会默认存在一个名为.kibana和.kibana_task_manager的索引
 |   store.size   | 整体占空间大小                                               |
 | pri.store.size | 主节点占                                                     |
 
-
-
-### 1.2.2.   创建索引
+### 1.2.2. 创建索引
 
 ```
 PUT /索引名
@@ -84,9 +74,7 @@ PUT /索引名
 
 ![1563200665166](assets/1563200665166.png)
 
-
-
-### 1.2.3.    查看索引具体信息
+### 1.2.3. 查看索引具体信息
 
 ```
 GET /索引名
@@ -96,9 +84,7 @@ GET /索引名
 
 或者，我们可以使用*来查询所有索引具体信息
 
-
-
-### 1.2.4.    删除索引
+### 1.2.4. 删除索引
 
 ```
 DELETE /索引库名
@@ -112,9 +98,7 @@ DELETE /索引库名
 
 ![1563201443616](assets/1563201443616.png)
 
-
-
-## 1.3.   映射配置（_mapping）
+## 1.3. 映射配置（_mapping）
 
 索引有了，接下来肯定是添加数据。但是，在添加数据之前必须定义映射。
 
@@ -124,9 +108,7 @@ DELETE /索引库名
 
 只有配置清楚，Elasticsearch才会帮我们进行索引库的创建（不一定）
 
-
-
-### 1.3.1.    创建映射字段
+### 1.3.1. 创建映射字段
 
 ```
 PUT /索引库名/_mapping/类型名称
@@ -152,8 +134,6 @@ PUT /索引库名/_mapping/类型名称
 - index：是否索引，默认为true
 - store：是否存储，默认为false
 - analyzer：分词器，这里使用ik分词器：`ik_max_word`或者`ik_smart`
-
-
 
 > 示例
 
@@ -187,9 +167,7 @@ PUT atguigu/_mapping/goods
 
 ```
 
-
-
-### 1.3.2.    查看映射关系
+### 1.3.2. 查看映射关系
 
 > 语法：
 
@@ -229,19 +207,17 @@ GET /atguigu/_mapping
 }
 ```
 
-type：字段类型。String（text  keyword） Numeric（long integer float double） date boolean
+type：字段类型。String（text keyword） Numeric（long integer float double） date boolean
 
 index：是否创建索引
 
 analyzer：分词器（ik_max_word）
 
-
-
-## 1.4.   新增文档（document）
+## 1.4. 新增文档（document）
 
 有了索引、类型和映射，就可以对文档做增删改查操作了。
 
-### 1.4.1.    基本玩法
+### 1.4.1. 基本玩法
 
 如果我们想要自己新增的时候指定id，可以这么做：
 
@@ -263,9 +239,7 @@ POST /索引库名/类型/id值
 - `_source`：源文档信息，所有的数据都在里面。
 - `_id`：这条文档的唯一标示，与文档自己的id字段没有关联
 
-
-
-### 1.4.2.    智能判断
+### 1.4.2. 智能判断
 
 事实上Elasticsearch非常智能，你不需要给索引库设置任何mapping映射，它也可以根据你输入的数据来判断类型，动态添加数据映射。
 
@@ -395,9 +369,7 @@ stock，saleable，attr都被成功映射了。
 
 如果是字符串类型的数据，会添加两种类型：text + keyword。如上例中的category 和 brand
 
-
-
-## 1.5.   删除数据
+## 1.5. 删除数据
 
 删除使用DELETE请求，同样，需要根据id进行删除：
 
@@ -432,8 +404,6 @@ DELETE /atguigu/goods/3
 }
 ```
 
-
-
 # 2. 查询
 
 之前已经见识了查询功能
@@ -452,8 +422,6 @@ GET /{index}/{type}/{id}
 
 除了上述简单查询之外。elasticsearch作为搜索引擎，最复杂最强大的功能就是搜索查询功能。包括：匹配查询、词条查询、模糊查询、组合查询、范围查询、高亮、排序、分页等等查询功能。
 
-
-
 基本查询语法如下：
 
 ```json
@@ -470,10 +438,8 @@ GET /索引库名/_search
 这里的query代表一个查询对象，里面可以有不同的查询属性
 
 - 查询类型：
-  - 例如：`match_all`， `match`，`term` ， `range` 等等
+    - 例如：`match_all`， `match`，`term` ， `range` 等等
 - 查询条件：查询条件会根据类型的不同，写法也有差异，后面详细讲解
-
-
 
 查询结果：
 
@@ -481,18 +447,16 @@ GET /索引库名/_search
 - time_out：是否超时
 - _shards：分片信息
 - hits：搜索结果总览对象
-  - total：搜索到的总条数
-  - max_score：所有结果中文档得分的最高分
-  - hits：搜索结果的文档对象数组，每个元素是一条搜索到的文档信息
-    - _index：索引库
-    - _type：文档类型
-    - _id：文档id
-    - _score：文档得分
-    - _source：文档的源数据
+    - total：搜索到的总条数
+    - max_score：所有结果中文档得分的最高分
+    - hits：搜索结果的文档对象数组，每个元素是一条搜索到的文档信息
+        - _index：索引库
+        - _type：文档类型
+        - _id：文档id
+        - _score：文档得分
+        - _source：文档的源数据
 
-
-
-## 2.1.   数据准备
+## 2.1. 数据准备
 
 ```json
 POST /atguigu/goods/_bulk
@@ -518,9 +482,7 @@ POST /atguigu/goods/_bulk
 { "title":"华为nova手机", "images":"http://image.jd.com/12479122.jpg", "price":2999, "stock": 300, "attr": { "category": "手机", "brand": "华为" } }
 ```
 
-
-
-## 2.2.   匹配查询（match）
+## 2.2. 匹配查询（match）
 
 > 匹配所有
 
@@ -535,8 +497,6 @@ GET /atguigu/_search
 
 - `query`：代表查询对象
 - `match_all`：代表查询所有
-
-
 
 > 条件匹配
 
@@ -606,8 +566,6 @@ GET /atguigu/_search
 }
 ```
 
-
-
 > 子属性匹配
 
 ```json
@@ -620,8 +578,6 @@ GET /atguigu/_search
   }
 }
 ```
-
-
 
 > 多字段匹配
 
@@ -639,9 +595,7 @@ GET /atguigu/_search
 }
 ```
 
-
-
-## 2.3.   词条查询（term）
+## 2.3. 词条查询（term）
 
 `term` 查询被用于精确值 匹配，这些精确值可能是数字、时间、布尔或者那些**未分词**的字符串。
 
@@ -656,9 +610,7 @@ GET /atguigu/_search
 }
 ```
 
-
-
-## 2.4.   范围查询（range）
+## 2.4. 范围查询（range）
 
 `range` 查询找出那些落在指定区间内的数字或者时间
 
@@ -685,9 +637,7 @@ GET /atguigu/_search
 |   lt   |   小于   |
 |  lte   | 小于等于 |
 
-
-
-## 2.5.   布尔组合（bool)
+## 2.5. 布尔组合（bool)
 
 布尔查询又叫**组合查询**
 
@@ -723,9 +673,7 @@ GET /atguigu/_search
 
 注意：一个组合查询里面只能出现一种组合，不能混用
 
-
-
-## 2.6.   过滤（filter）
+## 2.6. 过滤（filter）
 
 所有的查询都会影响到文档的评分及排名。如果我们需要在查询结果中进行过滤，并且不希望过滤条件影响评分，那么就不要把过滤条件作为查询条件来用。而是使用`filter`方式：
 
@@ -749,9 +697,7 @@ GET /atguigu/_search
 
 注意：`filter`中还可以再次进行`bool`组合条件过滤。
 
-
-
-## 2.7.   排序（sort）
+## 2.7. 排序（sort）
 
 `sort` 可以让我们按照不同的字段进行排序，并且通过`order`指定排序的方式
 
@@ -774,9 +720,7 @@ GET /atguigu/_search
 }
 ```
 
-
-
-## 2.8.   分页（from/size）
+## 2.8. 分页（from/size）
 
 ```json
 GET /atguigu/_search
@@ -795,17 +739,13 @@ from：从那一条开始
 
 size：取多少条
 
-
-
-## 2.9.   高亮（highlight）
+## 2.9. 高亮（highlight）
 
 查看百度高亮的原理：
 
 ![1563258499361](assets/1563258499361.png)
 
 发现：高亮的本质是给关键字添加了<em>标签，在前端再给该标签添加样式即可。
-
-
 
 ```
 GET /atguigu/_search
@@ -833,9 +773,7 @@ post_tags：后置标签
 
 ![1563258748370](assets/1563258748370.png)
 
-
-
-## 2.10.   结果过滤（_source）
+## 2.10. 结果过滤（_source）
 
 默认情况下，elasticsearch在搜索的结果中，会把文档中保存在`_source`的所有字段都返回。
 
@@ -884,8 +822,6 @@ GET /atguigu/_search
 }
 ```
 
-
-
 # 3. 聚合（aggregations）
 
 聚合可以让我们极其方便的实现对数据的统计、分析。例如：
@@ -895,8 +831,6 @@ GET /atguigu/_search
 - 这些手机每月的销售情况如何？
 
 实现这些统计功能的比数据库的sql要方便的多，而且查询速度非常快，可以实现实时搜索效果。
-
-
 
 ## 3.1 基本概念
 
@@ -913,8 +847,6 @@ Elasticsearch中提供的划分桶的方式有很多：
 - Terms Aggregation：根据词条内容分组，词条内容完全匹配的为一组
 - Range Aggregation：数值和日期的范围分组，指定开始和结束，然后按段分组
 - ……
-
-
 
 bucket aggregations 只负责对数据进行分组，并不进行计算，因此往往bucket中往往会嵌套另一种聚合：metrics aggregations即度量
 
@@ -936,8 +868,6 @@ bucket aggregations 只负责对数据进行分组，并不进行计算，因此
 - Value Count Aggregation：求总数
 - ……
 
-
-
 ## 3.2 聚合为桶
 
 首先，我们按照手机的品牌`attr.brand.keyword`来划分`桶`
@@ -958,9 +888,9 @@ GET /atguigu/_search
 
 - size： 查询条数，这里设置为0，因为我们不关心搜索到的数据，只关心聚合结果，提高效率
 - aggs：声明这是一个聚合查询，是aggregations的缩写
-  - brands：给这次聚合起一个名字，任意。
-    - terms：划分桶的方式，这里是根据词条划分
-      - field：划分桶的字段
+    - brands：给这次聚合起一个名字，任意。
+        - terms：划分桶的方式，这里是根据词条划分
+            - field：划分桶的字段
 
 结果：
 
@@ -1010,10 +940,8 @@ GET /atguigu/_search
 - aggregations：聚合的结果
 - brands：我们定义的聚合名称
 - buckets：查找到的桶，每个不同的品牌字段值都会形成一个桶
-  - key：这个桶对应的品牌字段的值
-  - doc_count：这个桶中的文档数量
-
-
+    - key：这个桶对应的品牌字段的值
+    - doc_count：这个桶中的文档数量
 
 ## 3.3 桶内度量
 
@@ -1048,8 +976,6 @@ GET /atguigu/_search
 - avg_price：聚合的名称
 - avg：度量的类型，这里是求平均值
 - field：度量运算的字段
-
-
 
 结果：
 
@@ -1110,8 +1036,6 @@ GET /atguigu/_search
 
 可以看到每个桶中都有自己的`avg_price`字段，这是度量聚合的结果
 
-
-
 ## 3.4 桶内嵌套桶
 
 刚刚的案例中，我们在桶内嵌套度量运算。事实上桶不仅可以嵌套运算， 还可以再嵌套其它桶。也就是说在每个分组中，再分更多组。
@@ -1143,8 +1067,6 @@ GET /atguigu/_search
     }
 }
 ```
-
-
 
 部分结果：
 
@@ -1258,11 +1180,9 @@ GET /atguigu/_search
 - 我们可以看到，新的聚合`categorys`被嵌套在原来每一个`brands`的桶中。
 - 每个品牌下面都根据 `attr.category.keyword`字段进行了分组
 - 我们能读取到的信息：
-  - 华为有4中产品
-  - 华为产品的平均售价是 3999.0美元。
-  - 其中3种手机产品，1种笔记本产品
-
-
+    - 华为有4中产品
+    - 华为产品的平均售价是 3999.0美元。
+    - 其中3种手机产品，1种笔记本产品
 
 # 4. SpringData-Elasticsearch
 
@@ -1278,13 +1198,9 @@ GET /atguigu/_search
 
 由于原生的Elasticsearch客户端API非常麻烦。所以这里直接学习Spring提供的套件：Spring Data Elasticsearch。
 
-
-
 **spring-data-Elasticsearch 使用之前,必须先确定版本,elasticsearch 对版本的要求比较高。**
 
-
-
-## 4.1.   创建module
+## 4.1. 创建module
 
 在gmall工程下创建一个模块：
 
@@ -1292,7 +1208,7 @@ GET /atguigu/_search
 
 ![1569761255432](assets/1569761255432.png)
 
- ![1567859963944](assets/1567859963944.png)
+![1567859963944](assets/1567859963944.png)
 
 引入依赖：
 
@@ -1328,8 +1244,6 @@ GET /atguigu/_search
 </dependency>
 ```
 
-
-
 在application.properties中添加配置
 
 ```properties
@@ -1339,9 +1253,7 @@ spring.elasticsearch.rest.uris[0]=http://172.16.116.100:9200
 spring.elasticsearch.rest.uris[1]=http://172.16.116.100:9200
 ```
 
-
-
-## 4.2.   实体类
+## 4.2. 实体类
 
 ```java
 @Data
@@ -1363,20 +1275,18 @@ public class User {
 Spring Data通过注解来声明字段的映射属性，有下面的三个注解：
 
 - `@Document` 作用在类，标记实体类为文档对象，一般有四个属性
-  - indexName：对应索引库名称
-  - type：对应在索引库中的类型
-  - shards：分片数量，默认5
-  - replicas：副本数量，默认1
+    - indexName：对应索引库名称
+    - type：对应在索引库中的类型
+    - shards：分片数量，默认5
+    - replicas：副本数量，默认1
 - `@Id` 作用在成员变量，标记一个字段作为id主键
 - `@Field` 作用在成员变量，标记为文档的字段，并指定字段映射属性：
-  - type：字段类型，取值是枚举：FieldType
-  - index：是否索引，布尔类型，默认是true
-  - store：是否存储，布尔类型，默认是false
-  - analyzer：分词器名称：ik_max_word
+    - type：字段类型，取值是枚举：FieldType
+    - index：是否索引，布尔类型，默认是true
+    - store：是否存储，布尔类型，默认是false
+    - analyzer：分词器名称：ik_max_word
 
-
-
-## 4.3.   创建索引及映射
+## 4.3. 创建索引及映射
 
 ```java
 @SpringBootTest
@@ -1400,21 +1310,17 @@ class EsDemoApplicationTests {
 }
 ```
 
-
-
-## 4.4.   Repository文档操作
+## 4.4. Repository文档操作
 
 Spring Data 的强大之处，就在于你不用写任何DAO处理，自动根据方法名或类的信息进行CRUD操作。只要你定义一个接口，然后继承Repository提供的一些子接口，就能具备各种基本的CRUD功能。
 
- ![1575806287671](assets/1575806287671.png)
+![1575806287671](assets/1575806287671.png)
 
 其中ElasticsearchRepository接口功能最强大。该接口的方法包括：
 
 ![1575806405547](assets/1575806405547.png)
 
-
-
-### 4.4.1.   新增
+### 4.4.1. 新增
 
 ```java
 @Autowired
@@ -1428,9 +1334,7 @@ void testAdd(){
 
 修改和新增是同一个接口，区分的依据就是id，这一点跟我们在页面发起PUT请求是类似的。
 
-
-
-### 4.4.2.   删除
+### 4.4.2. 删除
 
 ```java
 @Test
@@ -1439,15 +1343,11 @@ void testDelete(){
 }
 ```
 
+## 4.5. 查询
 
-
-## 4.5.   查询
-
-### 4.5.1.   基本查询
+### 4.5.1. 基本查询
 
 ![1575848896764](assets/1575848896764.png)
-
-
 
 查询一个：
 
@@ -1458,9 +1358,7 @@ void testFind(){
 }
 ```
 
-
-
-### 4.5.2.   条件查询
+### 4.5.2. 条件查询
 
 Spring Data 的另一个强大功能，是根据方法名称自动实现功能。
 
@@ -1506,8 +1404,6 @@ void testAddAll(){
 }
 ```
 
-
-
 在UserRepository中定义一个方法：
 
 第一种写法：
@@ -1534,8 +1430,6 @@ void testFindByAgeBetween(){
 }
 ```
 
-
-
 第二种写法：
 
 ```java
@@ -1559,9 +1453,7 @@ void testFindByQuery(){
 }
 ```
 
-
-
-### 4.5.3.   自定义查询
+### 4.5.3. 自定义查询
 
 ```java
 @Test

@@ -12,7 +12,7 @@
 
 ## SpringCloud Alibaba Nacos的架构与原理
 
-###  Nacos在window下部署
+### Nacos在window下部署
 
 Nacos文档:https://nacos.io/zh-cn/docs/deployment.html
 
@@ -49,7 +49,7 @@ nacos1.4.0 Win10单机启动正确方式
 
 ![img.png](./images/nacos_admin.png)
 
-###  Nacos在dockerz中部署
+### Nacos在dockerz中部署
 
 ```shell
 # docker的启动命令
@@ -111,7 +111,6 @@ mybatis-plus:
 ![img.png](./images/nacos_config_online.png)
 ![img.png](./images/Athena微服务配置.png)
 ![img.png](./images/nacos_discovery.png)
-
 
 ## SpringCloud Ribbon的原理
 

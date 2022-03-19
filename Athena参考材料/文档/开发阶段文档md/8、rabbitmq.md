@@ -1,12 +1,6 @@
-
-
-
-
 # 1. RabbitMQ
 
-## 1.1.   现实问题
-
-
+## 1.1. 现实问题
 
 目前我们已经完成了商品和搜索系统的开发。我们思考一下，是否存在问题？
 
@@ -15,30 +9,22 @@
 
 如果我们在后台修改了商品的价格，搜索页面依然是旧的价格，这样显然不对。该如何解决？
 
-
-
 这里有两种解决方案：
 
 - 方案1：每当后台对商品做增删改操作，同时要修改索引库数据
 - 方案2：搜索服务对外提供操作接口，后台在商品增删改后，调用接口
 
-
-
 以上两种方式都有同一个严重问题：就是代码耦合，后台服务中需要嵌入搜索和商品页面服务，违背了微服务的`独立`原则。
 
 所以，我们会通过另外一种方式来解决这个问题：消息队列
 
+## 1.2. 消息队列（MQ）
 
-
-## 1.2.   消息队列（MQ）
-
-### 1.2.1.   什么是消息队列
+### 1.2.1. 什么是消息队列
 
 消息队列，即MQ，Message Queue。
 
 ![1527063872737](assets/1527063872737.png)
-
-
 
 消息队列是典型的：生产者、消费者模型。生产者不断向消息队列中生产消息，消费者不断的从队列中获取消息。因为消息的生产和消费都是异步的，而且只关心消息的发送和接收，没有业务逻辑的侵入，这样就实现了生产者和消费者的解耦。
 
@@ -49,9 +35,7 @@
 
 如果以后有其它系统也依赖商品服务的数据，同样监听消息即可，商品服务无需任何代码修改。
 
-
-
-### 1.2.2.   AMQP和JMS
+### 1.2.2. AMQP和JMS
 
 MQ是消息通信的模型，并不是具体实现。现在实现MQ的有两种主流方式：AMQP、JMS。
 
@@ -59,17 +43,13 @@ MQ是消息通信的模型，并不是具体实现。现在实现MQ的有两种�
 
 ![1527064487042](assets/1527064487042.png)
 
-
-
 两者间的区别和联系：
 
 - JMS是定义了统一的接口，来对消息操作进行统一；AMQP是通过规定协议来统一数据交互的格式
 - JMS限定了必须使用Java语言；AMQP只是协议，不规定实现方式，因此是跨语言的。
 - JMS规定了两种消息模型；而AMQP的消息模型更加丰富
 
-
-
-### 1.2.3.   常见MQ产品
+### 1.2.3. 常见MQ产品
 
 ![1527064606029](assets/1527064606029.png)
 
@@ -78,9 +58,7 @@ MQ是消息通信的模型，并不是具体实现。现在实现MQ的有两种�
 - RocketMQ：基于JMS，阿里巴巴产品，目前交由Apache基金会
 - Kafka：分布式消息系统，高吞吐量
 
-
-
-### 1.2.4.   RabbitMQ
+### 1.2.4. RabbitMQ
 
 RabbitMQ是基于AMQP的一款消息管理系统
 
@@ -90,25 +68,17 @@ RabbitMQ是基于AMQP的一款消息管理系统
 
 ![1532758972119](assets/1532758972119.png)
 
+![1527064762982](assets/1527064762982.png)
 
+## 1.3. 下载和安装
 
- ![1527064762982](assets/1527064762982.png)
-
-
-
-## 1.3.   下载和安装
-
-### 1.3.1.   下载
+### 1.3.1. 下载
 
 官网下载地址：http://www.rabbitmq.com/download.html
 
 ![1532759070767](assets/1532759070767.png)
 
-
-
-
-
-### 1.3.2.   安装
+### 1.3.2. 安装
 
 下载镜像：`docker pull rabbitmq:management`
 
@@ -120,16 +90,11 @@ docker run -d --name rabbitmq --publish 5671:5671 \
 rabbitmq:management
 ```
 
-注：
-4369 -- erlang发现口
-5672 --client端通信口
+注： 4369 -- erlang发现口 5672 --client端通信口
 
-15672 -- 管理界面ui端口
-25672 -- server间内部通信口
+15672 -- 管理界面ui端口 25672 -- server间内部通信口
 
-
-
-### 1.3.3.   测试
+### 1.3.3. 测试
 
 在web浏览器中输入地址：http://虚拟机ip:15672/
 
@@ -147,8 +112,6 @@ Exchanges：交换机，用来实现消息的路由
 
 Queues：队列，即消息队列，消息存放在队列中，等待消费，消费后被移除队列。
 
- 
-
 端口：
 
 5672: rabbitMq的编程语言客户端连接端口
@@ -157,11 +120,9 @@ Queues：队列，即消息队列，消息存放在队列中，等待消费，�
 
 25672：rabbitMq集群的端口
 
+## 1.4. 管理界面
 
-
-## 1.4.   管理界面
-
-### 1.4.1.   添加用户
+### 1.4.1. 添加用户
 
 如果不使用guest，我们也可以自己创建一个用户：
 
@@ -187,25 +148,19 @@ Queues：队列，即消息队列，消息存放在队列中，等待消费，�
 
 无法登陆管理控制台，通常就是普通的生产者和消费者。
 
- 
-
-### 1.4.2.   创建Virtual Hosts
+### 1.4.2. 创建Virtual Hosts
 
 虚拟主机：类似于mysql中的database。他们都是以“/”开头
 
 ![1570341361306](assets/1570341361306.png)
 
-
-
-### 1.4.3.   设置权限
+### 1.4.3. 设置权限
 
 ![1570341470699](assets/1570341470699.png)
 
 ![1570341567294](assets/1570341567294.png)
 
 ![1570341637530](assets/1570341637530.png)
-
-
 
 # 2. 五种消息模型
 
@@ -215,44 +170,43 @@ RabbitMQ提供了6种消息模型，但是第6种其实是RPC，并不是MQ，�
 
 ![1527068544487](assets/1527068544487.png)
 
-
-
 我们通过一个demo工程来了解下RabbitMQ的工作方式，导入工程：
 
- ![1570342715181](assets/1570342715181.png)
+![1570342715181](assets/1570342715181.png)
 
 依赖：
 
 ```xml
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>cn.itcast.rabbitmq</groupId>
-	<artifactId>itcast-rabbitmq</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.2.RELEASE</version>
-	</parent>
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>
-	</dependencies>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.itcast.rabbitmq</groupId>
+    <artifactId>itcast-rabbitmq</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
 </project>
 ```
 
@@ -283,19 +237,17 @@ public class ConnectionUtil {
 }
 ```
 
-
-
-## 2.1.   基本消息模型
+## 2.1. 基本消息模型
 
 官方介绍：
 
- ![1532762961149](assets/1532762961149.png)
+![1532762961149](assets/1532762961149.png)
 
 RabbitMQ是一个消息代理：它接受和转发消息。 你可以把它想象成一个邮局：当你把邮件放在邮箱里时，你可以确定邮差先生最终会把邮件发送给你的收件人。 在这个比喻中，RabbitMQ是邮政信箱，邮局和邮递员。
 
 RabbitMQ与邮局的主要区别是它不处理纸张，而是接受，存储和转发数据消息的二进制数据块。
 
- ![1532762975546](assets/1532762975546.png)
+![1532762975546](assets/1532762975546.png)
 
 P（producer/ publisher）：生产者，一个发送消息的用户应用程序。
 
@@ -307,13 +259,11 @@ C（consumer）：消费者，消费和接收有类似的意思，消费者是�
 
 生产者将消息发送到队列，消费者从队列中获取消息，队列是存储消息的缓冲区。
 
-
-
 我们将用Java编写两个程序;发送单个消息的生产者，以及接收消息并将其打印出来的消费者。我们将详细介绍Java API中的一些细节，这是一个消息传递的“Hello World”。
 
 我们将调用我们的消息发布者（发送者）Send和我们的消息消费者（接收者）Recv。发布者将连接到RabbitMQ，发送一条消息，然后退出。
 
-### 2.1.1.   生产者发送消息
+### 2.1.1. 生产者发送消息
 
 ```java
 public class Send {
@@ -346,7 +296,7 @@ public class Send {
 
 ![1532763328424](assets/1532763328424.png)
 
-### 2.1.2.   管理工具中查看消息
+### 2.1.2. 管理工具中查看消息
 
 进入队列页面，可以看到新建了一个队列：simple_queue
 
@@ -358,9 +308,7 @@ public class Send {
 
 在控制台查看消息并不会将消息消费，所以消息还在。
 
-
-
-### 2.1.3.   消费者获取消息
+### 2.1.3. 消费者获取消息
 
 ```java
 public class Recv {
@@ -378,7 +326,7 @@ public class Recv {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [x] received : " + msg + "!");
@@ -400,8 +348,6 @@ public class Recv {
 
 我们发现，消费者已经获取了消息，但是程序没有停止，一直在监听队列中是否有新的消息。一旦有新的消息进入队列，就会立即打印.
 
-
-
 ### 2.1.4. 生产者消息确认机制
 
 面试题：如何避免消息丢失？
@@ -419,14 +365,13 @@ public class Recv {
 
 开启事务会大幅降低消息发送及接收效率，使用的相对较少，因此我们生产环境一般都采取消息确认模式，我们只是讲解消息确认模式及消息持久化
 
-1. 生产者的ACK机制。有时，业务处理成功，消息也发了，但是我们并不知道消息是否成功到达了rabbitmq，例如：由于网络等原因导致业务成功而消息发送失败，此时可以使用rabbitmq的发送确认功能，要求rabbitmq显式告知我们消息是否已成功发送。
+1.
+生产者的ACK机制。有时，业务处理成功，消息也发了，但是我们并不知道消息是否成功到达了rabbitmq，例如：由于网络等原因导致业务成功而消息发送失败，此时可以使用rabbitmq的发送确认功能，要求rabbitmq显式告知我们消息是否已成功发送。
 2. 消费者的ACK机制。可以防止消费者丢失消息。
 
 ![1585466011140](assets/1585466011140.png)
 
 生产者确认机制有很严重的性能问题，如果每秒钟只有几百的消息量，可以使用。所以，我们主要讲了消费者的消息确认机制。
-
-
 
 生产者确认
 
@@ -435,15 +380,13 @@ public class Recv {
 // 开启消息确认机制
 channel.confirmSelect();
 // 消息是否正常发送到交换机
-channel.addConfirmListener((long deliveryTag, boolean multiple) -> {
-    System.out.println("消息发送成功！");
-}, (long deliveryTag, boolean multiple) -> {
-    // 此种情况无法演示
-    System.out.println("消息发送失败！");
-});
+        channel.addConfirmListener((long deliveryTag,boolean multiple)->{
+        System.out.println("消息发送成功！");
+        },(long deliveryTag,boolean multiple)->{
+        // 此种情况无法演示
+        System.out.println("消息发送失败！");
+        });
 ```
-
-
 
 ### 2.1.5. 消费者消息确认机制（ACK）
 
@@ -483,7 +426,7 @@ public class Recv2 {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [x] received : " + msg + "!");
@@ -500,16 +443,14 @@ public class Recv2 {
 注意到最后一行代码：
 
 ```java
-channel.basicConsume(QUEUE_NAME, false, consumer);
+channel.basicConsume(QUEUE_NAME,false,consumer);
 ```
 
 如果第二个参数为true，则会自动进行ACK；如果为false，则需要手动ACK。方法的声明：
 
 ![1532764253019](assets/1532764253019.png)
 
-
-
-#### 2.1.5.1.   自动ACK存在的问题
+#### 2.1.5.1. 自动ACK存在的问题
 
 修改消费者，添加异常，如下：
 
@@ -527,9 +468,7 @@ channel.basicConsume(QUEUE_NAME, false, consumer);
 
 ![1532764734232](assets/1532764734232.png)
 
- 
-
-#### 2.1.5.2.   演示手动ACK
+#### 2.1.5.2. 演示手动ACK
 
 修改消费者，把自动改成手动（去掉之前制造的异常）
 
@@ -555,8 +494,6 @@ channel.basicConsume(QUEUE_NAME, false, consumer);
 
 当我们关掉这个消费者，消息的状态再次称为Ready
 
- 
-
 修改代码手动ACK：
 
 ![1532765123282](assets/1532765123282.png)
@@ -567,17 +504,16 @@ channel.basicConsume(QUEUE_NAME, false, consumer);
 
 消息消费成功！
 
-
-
-## 2.2.   work消息模型
+## 2.2. work消息模型
 
 工作队列或者竞争消费者模式
 
- ![1532765197277](assets/1532765197277.png)
+![1532765197277](assets/1532765197277.png)
 
 在第一篇教程中，我们编写了一个程序，从一个命名队列中发送并接受消息。在这里，我们将创建一个工作队列，在多个工作者之间分配耗时任务。
 
-工作队列，又称任务队列。主要思想就是避免执行资源密集型任务时，必须等待它执行完成。相反我们稍后完成任务，我们将任务封装为消息并将其发送到队列。 在后台运行的工作进程将获取任务并最终执行作业。当你运行许多消费者时，任务将在他们之间共享，但是**一个消息只能被一个消费者获取**。
+工作队列，又称任务队列。主要思想就是避免执行资源密集型任务时，必须等待它执行完成。相反我们稍后完成任务，我们将任务封装为消息并将其发送到队列。
+在后台运行的工作进程将获取任务并最终执行作业。当你运行许多消费者时，任务将在他们之间共享，但是**一个消息只能被一个消费者获取**。
 
 这个概念在Web应用程序中特别有用，因为在短的HTTP请求窗口中无法处理复杂的任务。
 
@@ -591,27 +527,13 @@ C1：消费者，领取任务并且完成任务，假设完成速度较快
 C2：消费者2：领取任务并完成任务，假设完成速度慢
 ```
 
- 
-
-
-
-
-
-
-
-
-
-
-
 面试题：避免消息堆积？
 
 1）采用workqueue，多个消费者监听同一队列。
 
 2）接收到消息以后，而是通过线程池，异步消费。
 
- 
-
-### 2.2.1.   生产者
+### 2.2.1. 生产者
 
 生产者与案例1中的几乎一样：
 
@@ -644,11 +566,11 @@ public class Send {
 
 不过这里我们是循环发送50条消息。
 
-### 2.2.2.   消费者1
+### 2.2.2. 消费者1
 
 ![1527085386747](assets/1527085386747.png)
 
-### 2.2.3.   消费者2
+### 2.2.3. 消费者2
 
 ![1527085448377](assets/1527085448377.png)
 
@@ -656,17 +578,13 @@ public class Send {
 
 这里是模拟有些消费者快，有些比较慢。
 
-
-
 接下来，两个消费者一同启动，然后发送50条消息：
 
 ![1527085826462](assets/1527085826462.png)
 
 可以发现，两个消费者各自消费了25条消息，而且各不相同，这就实现了任务的分发。
 
-
-
-### 2.2.4.   能者多劳
+### 2.2.4. 能者多劳
 
 刚才的实现有问题吗？
 
@@ -678,7 +596,8 @@ public class Send {
 
 怎么实现呢？
 
-我们可以使用basicQos方法和prefetchCount = 1设置。 这告诉RabbitMQ一次不要向工作人员发送多于一条消息。 或者换句话说，不要向工作人员发送新消息，直到它处理并确认了前一个消息。 相反，它会将其分派给不是仍然忙碌的下一个工作人员。
+我们可以使用basicQos方法和prefetchCount = 1设置。 这告诉RabbitMQ一次不要向工作人员发送多于一条消息。 或者换句话说，不要向工作人员发送新消息，直到它处理并确认了前一个消息。
+相反，它会将其分派给不是仍然忙碌的下一个工作人员。
 
 ![1532765689904](assets/1532765689904.png)
 
@@ -686,15 +605,13 @@ public class Send {
 
 ![1527086159534](assets/1527086159534.png)
 
+## 2.3. 订阅模型分类
 
-
-## 2.3.   订阅模型分类
-
-在之前的模式中，我们创建了一个工作队列。 工作队列背后的假设是：每个任务只被传递给一个工作人员。 在这一部分，我们将做一些完全不同的事情 - 我们将会传递一个信息给多个消费者。 这种模式被称为“发布/订阅”。 
+在之前的模式中，我们创建了一个工作队列。 工作队列背后的假设是：每个任务只被传递给一个工作人员。 在这一部分，我们将做一些完全不同的事情 - 我们将会传递一个信息给多个消费者。 这种模式被称为“发布/订阅”。
 
 订阅模型示意图：
 
- ![1527086284940](assets/1527086284940.png)
+![1527086284940](assets/1527086284940.png)
 
 解读：
 
@@ -730,33 +647,29 @@ Fanout：即广播模式
 
 **Exchange（交换机）只负责转发消息，不具备存储消息的能力**，因此如果没有任何队列与Exchange绑定，或者没有符合路由规则的队列，那么消息会丢失！
 
-
-
-## 2.4.   订阅模型-Fanout
+## 2.4. 订阅模型-Fanout
 
 Fanout，也称为广播。
 
 流程图：
 
- ![1527086564505](assets/1527086564505.png)
+![1527086564505](assets/1527086564505.png)
 
 在广播模式下，消息发送流程是这样的：
 
-- 1）  可以有多个消费者
-- 2）  每个**消费者有自己的queue**（队列）
-- 3）  每个**队列都要绑定到Exchange**（交换机）
+- 1） 可以有多个消费者
+- 2） 每个**消费者有自己的queue**（队列）
+- 3） 每个**队列都要绑定到Exchange**（交换机）
 - 4）  **生产者发送的消息，只能发送到交换机**，交换机来决定要发给哪个队列，生产者无法决定。
-- 5）  交换机把消息发送给绑定过的所有队列
-- 6）  队列的消费者都能拿到消息。实现一条消息被多个消费者消费
+- 5） 交换机把消息发送给绑定过的所有队列
+- 6） 队列的消费者都能拿到消息。实现一条消息被多个消费者消费
 
-
-
-### 2.4.1.   生产者
+### 2.4.1. 生产者
 
 两个变化：
 
-- 1）  声明Exchange，不再声明Queue
-- 2）  发送消息到Exchange，不再发送到Queue
+- 1） 声明Exchange，不再声明Queue
+- 2） 发送消息到Exchange，不再发送到Queue
 
 ```java
 public class Send {
@@ -768,10 +681,10 @@ public class Send {
         Connection connection = ConnectionUtil.getConnection();
         // 获取通道
         Channel channel = connection.createChannel();
-        
+
         // 声明exchange，指定类型为fanout
         channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-        
+
         // 消息内容
         String message = "Hello everyone";
         // 发布消息到Exchange
@@ -785,7 +698,7 @@ public class Send {
 
 ```
 
-### 2.4.2.   消费者1
+### 2.4.2. 消费者1
 
 ```java
 public class Recv {
@@ -809,7 +722,7 @@ public class Recv {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者1] received : " + msg + "!");
@@ -824,7 +737,7 @@ public class Recv {
 
 要注意代码中：**队列需要和交换机绑定**
 
-### 2.4.3.   消费者2
+### 2.4.3. 消费者2
 
 ```java
 public class Recv2 {
@@ -842,13 +755,13 @@ public class Recv2 {
 
         // 绑定队列到交换机
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "");
-        
+
         // 定义队列的消费者
         DefaultConsumer consumer = new DefaultConsumer(channel) {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者2] received : " + msg + "!");
@@ -861,9 +774,7 @@ public class Recv2 {
 
 ```
 
-
-
-### 2.4.4.   测试
+### 2.4.4. 测试
 
 我们运行两个消费者，然后发送1条消息：
 
@@ -871,9 +782,7 @@ public class Recv2 {
 
 ![1532766291204](assets/1532766291204.png)
 
-
-
-## 2.5.   订阅模型-Direct
+## 2.5. 订阅模型-Direct
 
 有选择性的接收消息
 
@@ -887,7 +796,7 @@ public class Recv2 {
 
 消息的发送方在向Exchange发送消息时，也必须指定消息的routing key。
 
- ![1532766437787](assets/1532766437787.png)
+![1532766437787](assets/1532766437787.png)
 
 P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key。
 
@@ -897,9 +806,7 @@ C1：消费者，其所在队列指定了需要routing key 为 error 的消息
 
 C2：消费者，其所在队列指定了需要routing key 为 info、error、warning 的消息
 
-
-
-### 2.5.1.   生产者
+### 2.5.1. 生产者
 
 此处我们模拟商品的增删改，发送消息的RoutingKey分别是：insert、update、delete
 
@@ -926,9 +833,7 @@ public class Send {
 }
 ```
 
-
-
-### 2.5.2.   消费者1
+### 2.5.2. 消费者1
 
 我们此处假设消费者1只接收两种类型的消息：更新商品和删除商品。
 
@@ -944,7 +849,7 @@ public class Recv {
         Channel channel = connection.createChannel();
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        
+
         // 绑定队列到交换机，同时指定需要订阅的routing key。假设此处需要update和delete消息
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "update");
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "delete");
@@ -954,7 +859,7 @@ public class Recv {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者1] received : " + msg + "!");
@@ -967,9 +872,7 @@ public class Recv {
 
 ```
 
-
-
-### 2.5.3.   消费者2
+### 2.5.3. 消费者2
 
 我们此处假设消费者2接收所有类型的消息：新增商品，更新商品和删除商品。
 
@@ -985,7 +888,7 @@ public class Recv2 {
         Channel channel = connection.createChannel();
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        
+
         // 绑定队列到交换机，同时指定需要订阅的routing key。订阅 insert、update、delete
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "insert");
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "update");
@@ -996,7 +899,7 @@ public class Recv2 {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者2] received : " + msg + "!");
@@ -1009,23 +912,19 @@ public class Recv2 {
 
 ```
 
-
-
-### 2.5.4.   测试
+### 2.5.4. 测试
 
 我们分别发送增、删、改的RoutingKey，发现结果：
 
- ![1527088296131](assets/1527088296131.png)
+![1527088296131](assets/1527088296131.png)
 
-
-
-## 2.6.   订阅模型-Topic
+## 2.6. 订阅模型-Topic
 
 `Topic`类型的`Exchange`与`Direct`相比，都是可以根据`RoutingKey`把消息路由到不同的队列。只不过`Topic`类型`Exchange`可以让队列在绑定`Routing key` 的时候使用通配符！
 
 `Routingkey` 一般都是有一个或多个单词组成，多个单词之间以”.”分割，例如： `item.insert`
 
- 通配符规则：
+通配符规则：
 
 ```
 `#`：匹配一个或多个词
@@ -1041,9 +940,7 @@ public class Recv2 {
 `audit.*`：只能匹配`audit.irs`
 ```
 
-
-
- ![1532766712166](assets/1532766712166.png)
+![1532766712166](assets/1532766712166.png)
 
 在这个例子中，我们将发送所有描述动物的消息。消息将使用由三个字（两个点）组成的routing key发送。路由关键字中的第一个单词将描述速度，第二个颜色和第三个种类：“<speed>.<color>.<species>”。
 
@@ -1053,27 +950,23 @@ Q1匹配所有的橙色动物。
 
 Q2匹配关于兔子以及懒惰动物的消息。
 
-
-
 练习，生产者发送如下消息，会进入那个队列：
 
-quick.orange.rabbit     Q1 Q2
+quick.orange.rabbit Q1 Q2
 
-lazy.orange.elephant	 
+lazy.orange.elephant
 
-quick.orange.fox	  
+quick.orange.fox
 
-lazy.pink.rabbit 	 
+lazy.pink.rabbit
 
-quick.brown.fox 	
+quick.brown.fox
 
-quick.orange.male.rabbit 
+quick.orange.male.rabbit
 
-orange 
+orange
 
-
-
-### 2.6.1.   生产者
+### 2.6.1. 生产者
 
 使用topic类型的Exchange，发送消息的routing key有3种： `item.isnert`、`item.update`、`item.delete`：
 
@@ -1100,9 +993,7 @@ public class Send {
 }
 ```
 
-
-
-### 2.6.2.   消费者1
+### 2.6.2. 消费者1
 
 我们此处假设消费者1只接收两种类型的消息：更新商品和删除商品
 
@@ -1118,7 +1009,7 @@ public class Recv {
         Channel channel = connection.createChannel();
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        
+
         // 绑定队列到交换机，同时指定需要订阅的routing key。需要 update、delete
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "item.update");
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "item.delete");
@@ -1128,7 +1019,7 @@ public class Recv {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者1] received : " + msg + "!");
@@ -1141,9 +1032,7 @@ public class Recv {
 
 ```
 
-
-
-### 2.6.3.   消费者2
+### 2.6.3. 消费者2
 
 我们此处假设消费者2接收所有类型的消息：新增商品，更新商品和删除商品。
 
@@ -1162,7 +1051,7 @@ public class Recv2 {
         Channel channel = connection.createChannel();
         // 声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        
+
         // 绑定队列到交换机，同时指定需要订阅的routing key。订阅 insert、update、delete
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, "item.*");
 
@@ -1171,7 +1060,7 @@ public class Recv2 {
             // 获取消息，并且处理，这个方法类似事件监听，如果有消息的时候，会被自动调用
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, BasicProperties properties,
-                    byte[] body) throws IOException {
+                                       byte[] body) throws IOException {
                 // body 即消息体
                 String msg = new String(body);
                 System.out.println(" [消费者2] received : " + msg + "!");
@@ -1184,31 +1073,25 @@ public class Recv2 {
 
 ```
 
-
-
-## 2.7.   持久化
+## 2.7. 持久化
 
 要将消息持久化，前提是：队列、Exchange都持久化
 
-
-
-### 2.7.1.   交换机持久化
+### 2.7.1. 交换机持久化
 
 ![1532766951432](assets/1532766951432.png)
 
-### 2.7.2.   队列持久化
+### 2.7.2. 队列持久化
 
 ![1532766981230](assets/1532766981230.png)
 
-### 2.7.3.   消息持久化
+### 2.7.3. 消息持久化
 
 ![1532767057491](assets/1532767057491.png)
 
-
-
 # 3. Spring AMQP
 
-## 3.1.   简介
+## 3.1. 简介
 
 Sprin有很多不同的项目，其中就有对AMQP的支持：
 
@@ -1218,18 +1101,14 @@ Spring AMQP的页面：http://spring.io/projects/spring-amqp
 
 ![1532767171063](assets/1532767171063.png)
 
-
-
 注意这里一段描述：
 
-![1532767227821](assets/1532767227821.png)                                             
+![1532767227821](assets/1532767227821.png)
 
 ```
      Spring-amqp是对AMQP协议的抽象实现，而spring-rabbit 是对协议的具体实现，也是目前的唯一实现。底层使用的就是RabbitMQ。
 
 ```
-
-
 
 ## 3.2. 入门程序
 
@@ -1238,6 +1117,7 @@ Spring AMQP的页面：http://spring.io/projects/spring-amqp
 添加AMQP的启动器：
 
 ```xml
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-amqp</artifactId>
@@ -1256,13 +1136,12 @@ spring:
     virtual-host: /fengge
 ```
 
-
-
 ### 3.2.2. 监听者（消费者）
 
 在SpringAmqp中，对消息的消费者进行了封装和抽象，一个普通的JavaBean中的普通方法，只要通过简单的注解，就可以成为一个消费者。
 
 ```java
+
 @Component
 public class Listener {
 
@@ -1274,7 +1153,7 @@ public class Listener {
                     type = ExchangeTypes.TOPIC
             ),
             key = {"a.#"}))
-    public void listen(String msg){
+    public void listen(String msg) {
         System.out.println("接收到消息：" + msg);
     }
 }
@@ -1283,14 +1162,12 @@ public class Listener {
 
 - `@Componet`：类上的注解，注册到Spring容器
 - `@RabbitListener`：方法上的注解，声明这个方法是一个消费者方法，需要指定下面的属性：
-  - `bindings`：指定绑定关系，可以有多个。值是`@QueueBinding`的数组。`@QueueBinding`包含下面属性：
-    - `value`：这个消费者关联的队列。值是`@Queue`，代表一个队列
-    - `exchange`：队列所绑定的交换机，值是`@Exchange`类型
-    - `key`：队列和交换机绑定的`RoutingKey`
+    - `bindings`：指定绑定关系，可以有多个。值是`@QueueBinding`的数组。`@QueueBinding`包含下面属性：
+        - `value`：这个消费者关联的队列。值是`@Queue`，代表一个队列
+        - `exchange`：队列所绑定的交换机，值是`@Exchange`类型
+        - `key`：队列和交换机绑定的`RoutingKey`
 
 类似listen这样的方法在一个类中可以写多个，就代表多个消费者。
-
-
 
 ### 3.2.3. AmqpTemplate（生产者）
 
@@ -1306,11 +1183,10 @@ Spring为AMQP提供了统一的消息处理模板：AmqpTemplate，非常方便�
 - 指定消息
 - 指定RoutingKey和消息，会向默认的交换机发送消息
 
-
-
 ### 3.2.4. 测试代码
 
 ```java
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class MqDemo {
@@ -1321,7 +1197,7 @@ public class MqDemo {
     @Test
     public void testSend() throws InterruptedException {
         String msg = "hello, Spring boot amqp";
-        this.amqpTemplate.convertAndSend("spring.test.exchange","a.b", msg);
+        this.amqpTemplate.convertAndSend("spring.test.exchange", "a.b", msg);
         // 等待10秒后再结束
         Thread.sleep(10000);
     }
@@ -1333,11 +1209,9 @@ public class MqDemo {
 
 ![1532767726274](assets/1532767726274.png)
 
-
-
 ## 3.3. 生产者确认
 
- ![1585467767083](assets/1585467767083.png)
+![1585467767083](assets/1585467767083.png)
 
 内容如下：
 
@@ -1402,13 +1276,9 @@ public class ProducerAckConfig implements RabbitTemplate.ConfirmCallback, Rabbit
 }
 ```
 
-
-
 测试1：消息正常发送，正常消费
 
 ![1585467927161](assets/1585467927161.png)
-
-
 
 测试2：消息到达交换机，没有达到队列
 
@@ -1416,15 +1286,11 @@ public class ProducerAckConfig implements RabbitTemplate.ConfirmCallback, Rabbit
 
 ![1585468467934](assets/1585468467934.png)
 
-
-
 测试3：消息不能到达交换机
 
 ![1585468780482](assets/1585468780482.png)
 
 ![1585468657812](assets/1585468657812.png)
-
-
 
 ## 3.4. 消费者确认
 
@@ -1439,8 +1305,6 @@ springboot-rabbit提供了三种消息确认模式：
 ```properties
 spring.rabbitmq.listener.simple.acknowledge-mode=manual/none/auto
 ```
-
-
 
 ### 3.4.1. 自动确认模式
 
@@ -1458,8 +1322,6 @@ spring.rabbitmq.listener.simple.acknowledge-mode=manual/none/auto
 
 停掉应用消息回到Ready状态，消息不会丢失！
 
-
-
 ### 3.4.2. 不确认模式
 
 在application.yml修改确认模式为none：
@@ -1474,36 +1336,33 @@ spring.rabbitmq.listener.simple.acknowledge-mode=manual/none/auto
 
 ![1585470927937](assets/1585470927937.png)
 
-
-
 ### 3.4.3. 手动确认模式
 
 确认消息：
 
 ```java
 // 参数二：是否批量确认
-channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
 ```
 
 拒绝消息：
 
 ```java
 // 参数二：是否重新入队，false时消息不再重发，如果配置了死信队列则进入死信队列，没有死信就会被丢弃
-channel.basicReject(message.getMessageProperties().getDeliveryTag(), false);
+channel.basicReject(message.getMessageProperties().getDeliveryTag(),false);
 ```
 
 不确认消息：
 
 ```java
 // 参数二：是否批量； 参数三：是否重新回到队列，true重新入队
-channel.basicNack(message.getMessageProperties().getDeliveryTag(), false, true);
+channel.basicNack(message.getMessageProperties().getDeliveryTag(),false,true);
 ```
-
-
 
 改造消费者监听器代码如下：
 
 ```java
+
 @Component
 public class Listener {
 
@@ -1538,8 +1397,6 @@ public class Listener {
 }
 ```
 
-
-
 输出日志如下：
 
 ```
@@ -1560,10 +1417,6 @@ java.lang.ArithmeticException: / by zero
 	.........................
 ```
 
-
-
-
-
 ## 3.5. 死信队列
 
 死信，在官网中对应的单词为“Dead Letter”，可以看出翻译确实非常的简单粗暴。那么死信是个什么东西呢？
@@ -1578,97 +1431,87 @@ java.lang.ArithmeticException: / by zero
 
 “死信”消息会被RabbitMQ进行特殊处理，如果配置了死信队列信息，那么该消息将会被丢进死信队列中，如果没有配置，则该消息将会被丢弃。
 
-
-
 死信的队列的使用，大概可以分为以下步骤：
 
 1. 配置业务队列，绑定到业务交换机上
 2. 为业务队列配置死信交换机（DLX）和路由key
 3. 为死信交换机配置死信队列（DLQ）
 
-
-
 在配置类中增加配置：
 
- ![1585474690360](assets/1585474690360.png)
+![1585474690360](assets/1585474690360.png)
 
 内容如下：
 
 ```java
 /**
-     * 声明业务交换机
-     *
-     * @return
-     */
+ * 声明业务交换机
+ *
+ * @return
+ */
 @Bean
-public TopicExchange topicExchange() {
-    return new TopicExchange("spring.test.exchange", true, false);
-}
+public TopicExchange topicExchange(){
+        return new TopicExchange("spring.test.exchange",true,false);
+        }
 
 /**
-     * 声明业务队列
-     * 并把死信交换机绑定到业务队列
-     * @return
-     */
+ * 声明业务队列
+ * 并把死信交换机绑定到业务队列
+ * @return
+ */
 @Bean
-public Queue queue() {
-    Map<String, Object> arguments = new HashMap<>();
-    //         x-dead-letter-exchange    这里声明当前队列绑定的死信交换机
-    arguments.put("x-dead-letter-exchange", "dead-exchange");
-    //         x-dead-letter-routing-key  这里声明当前队列的死信路由key
-    arguments.put("x-dead-letter-routing-key", "msg.dead");
-    return new Queue("spring.test.queue", true, false, false, arguments);
-}
+public Queue queue(){
+        Map<String, Object> arguments=new HashMap<>();
+        //         x-dead-letter-exchange    这里声明当前队列绑定的死信交换机
+        arguments.put("x-dead-letter-exchange","dead-exchange");
+        //         x-dead-letter-routing-key  这里声明当前队列的死信路由key
+        arguments.put("x-dead-letter-routing-key","msg.dead");
+        return new Queue("spring.test.queue",true,false,false,arguments);
+        }
 
 /**
-     * 业务队列绑定到业务交换机
-     *
-     * @return
-     */
+ * 业务队列绑定到业务交换机
+ *
+ * @return
+ */
 @Bean
-public Binding binding() {
-    return new Binding("spring.test.queue", Binding.DestinationType.QUEUE, "spring.test.exchange", "a.b", null);
-}
+public Binding binding(){
+        return new Binding("spring.test.queue",Binding.DestinationType.QUEUE,"spring.test.exchange","a.b",null);
+        }
 
 /**
-     * 声明死信交换机
-     * @return
-     */
+ * 声明死信交换机
+ * @return
+ */
 @Bean
 public TopicExchange deadExchange(){
-    return new TopicExchange("dead-exchange", true, false);
-}
+        return new TopicExchange("dead-exchange",true,false);
+        }
 
 /**
-     * 声明死信队列
-     * @return
-     */
+ * 声明死信队列
+ * @return
+ */
 @Bean
 public Queue deadQueue(){
-    return new Queue("dead-queue", true, false, false);
-}
+        return new Queue("dead-queue",true,false,false);
+        }
 
 /**
-     * 把死信队列绑定到死信交换机
-     * @return
-     */
+ * 把死信队列绑定到死信交换机
+ * @return
+ */
 @Bean
-public Binding deadBinding() {
-    return new Binding("dead-queue", Binding.DestinationType.QUEUE, "dead-exchange", "msg.dead", null);
-}
+public Binding deadBinding(){
+        return new Binding("dead-queue",Binding.DestinationType.QUEUE,"dead-exchange","msg.dead",null);
+        }
 ```
-
-
 
 改造消费者监听器：
 
 ![1585474754089](assets/1585474754089.png)
 
-
-
 **注意：测试前，需要把项目停掉，并在rabbitmq浏览器控制台删除之前声明好的交换机及队列**
-
-
 
 运行测试后：
 
@@ -1676,11 +1519,10 @@ public Binding deadBinding() {
 
 可以看到spring.test.queue有了绑定死信交换机，死信消息已经进入死信队列。
 
-
-
 ## 3.6. 延时队列
 
-`延时队列`，最重要的特性就体现在它的`延时`属性上，跟普通的队列不一样的是，`普通队列中的元素总是等着希望被早点取出处理，而延时队列中的元素则是希望被在指定时间得到取出和处理`，所以延时队列中的元素是都是带时间属性的，通常来说是需要被处理的消息或者任务。
+`延时队列`，最重要的特性就体现在它的`延时`属性上，跟普通的队列不一样的是，`普通队列中的元素总是等着希望被早点取出处理，而延时队列中的元素则是希望被在指定时间得到取出和处理`
+，所以延时队列中的元素是都是带时间属性的，通常来说是需要被处理的消息或者任务。
 
 简单来说，延时队列就是用来存放需要在指定时间被处理的元素的队列。
 
@@ -1699,8 +1541,6 @@ public Binding deadBinding() {
 
 更重要的一点是，不！优！雅！
 
-
-
 ### 3.6.2. 怎么声明
 
 延时队列需要配置TTL，那么什么时TTL呢？
@@ -1710,27 +1550,26 @@ public Binding deadBinding() {
 队列设置TTL：
 
 ```java
-Map<String, Object> args = new HashMap<String, Object>();
-args.put("x-message-ttl", 6000);
-channel.queueDeclare(queueName, durable, exclusive, autoDelete, args);
+Map<String, Object> args=new HashMap<String, Object>();
+        args.put("x-message-ttl",6000);
+        channel.queueDeclare(queueName,durable,exclusive,autoDelete,args);
 ```
 
 消息设置TTL：
 
 ```java
-AMQP.BasicProperties.Builder builder = new AMQP.BasicProperties.Builder();
-builder.expiration("6000");
-AMQP.BasicProperties properties = builder.build();
-channel.basicPublish(exchangeName, routingKey, mandatory, properties, "msg body".getBytes());
+AMQP.BasicProperties.Builder builder=new AMQP.BasicProperties.Builder();
+        builder.expiration("6000");
+        AMQP.BasicProperties properties=builder.build();
+        channel.basicPublish(exchangeName,routingKey,mandatory,properties,"msg body".getBytes());
 ```
 
 这样这条消息的过期时间也被设置成了6s。
 
-但这两种方式是有区别的，**如果设置了队列的TTL属性，那么一旦消息过期，就会被队列丢弃，而第二种方式，消息即使过期，也不一定会被马上丢弃，因为消息是否过期是在即将投递到消费者之前判定的，如果当前队列有严重的消息积压情况，则已过期的消息也许还能存活较长时间。**
+但这两种方式是有区别的，**
+如果设置了队列的TTL属性，那么一旦消息过期，就会被队列丢弃，而第二种方式，消息即使过期，也不一定会被马上丢弃，因为消息是否过期是在即将投递到消费者之前判定的，如果当前队列有严重的消息积压情况，则已过期的消息也许还能存活较长时间。**
 
 另外，还需要注意的一点是，如果不设置TTL，表示消息永远不会过期，如果将TTL设置为0，则表示除非此时可以直接投递该消息到消费者，否则该消息将会被丢弃。
-
-
 
 ### 3.6.3. 如何使用
 
@@ -1738,11 +1577,12 @@ channel.basicPublish(exchangeName, routingKey, mandatory, properties, "msg body"
 
 实现如下：
 
- ![1585477749188](assets/1585477749188.png)
+![1585477749188](assets/1585477749188.png)
 
 配置延时队列及死信队列：
 
 ```java
+
 @Configuration
 public class TTLQueueConfig {
 
@@ -1751,7 +1591,7 @@ public class TTLQueueConfig {
      * @return
      */
     @Bean
-    public Exchange exchange(){
+    public Exchange exchange() {
 
         return new TopicExchange("ORDER-EXCHANGE", true, false, null);
     }
@@ -1761,7 +1601,7 @@ public class TTLQueueConfig {
      * @return
      */
     @Bean("ORDER-TTL-QUEUE")
-    public Queue ttlQueue(){
+    public Queue ttlQueue() {
 
         Map<String, Object> arguments = new HashMap<>();
         arguments.put("x-dead-letter-exchange", "ORDER-EXCHANGE");
@@ -1776,7 +1616,7 @@ public class TTLQueueConfig {
      * @return
      */
     @Bean("ORDER-TTL-BINDING")
-    public Binding ttlBinding(){
+    public Binding ttlBinding() {
 
         return new Binding("ORDER-TTL-QUEUE", Binding.DestinationType.QUEUE, "ORDER-EXCHANGE", "order.create", null);
     }
@@ -1786,7 +1626,7 @@ public class TTLQueueConfig {
      * @return
      */
     @Bean("ORDER-CLOSE-QUEUE")
-    public Queue queue(){
+    public Queue queue() {
 
         return new Queue("ORDER-CLOSE-QUEUE", true, false, false, null);
     }
@@ -1797,7 +1637,7 @@ public class TTLQueueConfig {
      * @return
      */
     @Bean("ORDER-CLOSE-BINDING")
-    public Binding closeBinding(){
+    public Binding closeBinding() {
 
         return new Binding("ORDER-CLOSE-QUEUE", Binding.DestinationType.QUEUE, "ORDER-EXCHANGE", "order.close", null);
     }
@@ -1808,33 +1648,32 @@ public class TTLQueueConfig {
 
 ```java
 @Test
-public void testTTL() throws IOException {
+public void testTTL()throws IOException{
 
-    this.rabbitTemplate.convertAndSend("ORDER-EXCHANGE", "order.create", "hello world!");
-    System.in.read();
-}
+        this.rabbitTemplate.convertAndSend("ORDER-EXCHANGE","order.create","hello world!");
+        System.in.read();
+        }
 ```
 
 添加消费者，消费死信消息：
 
 ```java
+
 @Component
 public class DeadListener {
 
     @RabbitListener(queues = "ORDER-CLOSE-QUEUE")
-    public void testDead(String msg){
+    public void testDead(String msg) {
         System.out.println(msg);
     }
 }
 ```
 
-
-
 # 4. 项目改造
 
 接下来，我们就改造项目，实现搜索服务的数据同步。
 
-## 4.1.   思路分析
+## 4.1. 思路分析
 
 > 发送方：商品微服务
 
@@ -1851,18 +1690,17 @@ public class DeadListener {
 接收消息后如何处理？
 
 - 搜索微服务：
-  - 增/改：添加新的数据到索引库 
-  - 删：删除索引库数据
+    - 增/改：添加新的数据到索引库
+    - 删：删除索引库数据
 
-
-
-## 4.2.   商品服务发送消息
+## 4.2. 商品服务发送消息
 
 我们先在商品微服务`gmall-pms`中实现发送消息。
 
-### 4.2.1.   引入依赖
+### 4.2.1. 引入依赖
 
 ```xml
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-amqp</artifactId>
@@ -1870,7 +1708,7 @@ public class DeadListener {
 
 ```
 
-### 4.2.2.   配置文件
+### 4.2.2. 配置文件
 
 我们在application.yml中添加一些有关RabbitMQ的配置：
 
@@ -1888,12 +1726,10 @@ spring:
 ```
 
 - template：有关`AmqpTemplate`的配置
-  - exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
+    - exchange：缺省的交换机名称，此处配置后，发送消息如果不指定交换机就会使用这个
 - publisher-confirms：生产者确认机制，确保消息会正确发送，如果发送失败会有错误回执，从而触发重试
 
-
-
-### 4.2.3.   改造SpuInfoServiceImpl
+### 4.2.3. 改造SpuInfoServiceImpl
 
 在SpuInfoServiceImpl中封装一个发送消息到mq的方法：**（需要注入AmqpTemplate模板）**
 
@@ -1901,14 +1737,14 @@ spring:
 @Autowired
 private AmqpTemplate amqpTemplate;
 
-private void sendMessage(Long id, String type){
-    // 发送消息
-    try {
-        this.amqpTemplate.convertAndSend("item." + type, id);
-    } catch (Exception e) {
-        logger.error("{}商品消息发送异常，商品id：{}", type, id, e);
-    }
-}
+private void sendMessage(Long id,String type){
+        // 发送消息
+        try{
+        this.amqpTemplate.convertAndSend("item."+type,id);
+        }catch(Exception e){
+        logger.error("{}商品消息发送异常，商品id：{}",type,id,e);
+        }
+        }
 
 ```
 
@@ -1916,15 +1752,11 @@ private void sendMessage(Long id, String type){
 
 **注意：这里要把所有异常都try起来，不能让消息的发送影响到正常的业务逻辑**
 
-
-
 然后在新增的时候调用：
 
 ![1570343973179](assets/1570343973179.png)
 
-
-
-## 4.3.   搜索服务接收消息
+## 4.3. 搜索服务接收消息
 
 搜索服务接收到消息后要做的事情：
 
@@ -1932,16 +1764,17 @@ private void sendMessage(Long id, String type){
 - 删：删除索引库数据
 - 改：修改索引库数据
 
-### 4.3.1.   引入依赖
+### 4.3.1. 引入依赖
 
 ```xml
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-amqp</artifactId>
 </dependency>
 ```
 
-### 4.3.2.   添加配置
+### 4.3.2. 添加配置
 
 ```yaml
 spring:
@@ -1954,13 +1787,14 @@ spring:
 
 这里只是接收消息而不发送，所以不用配置template相关内容。
 
-### 4.3.3.   编写监听器
+### 4.3.3. 编写监听器
 
- ![1570344827798](assets/1570344827798.png)
+![1570344827798](assets/1570344827798.png)
 
 代码：
 
 ```java
+
 @Component
 public class SpuInfoListener {
 
@@ -1990,80 +1824,76 @@ public class SpuInfoListener {
 }
 ```
 
-
-
-### 4.3.4.   编写创建索引方法
+### 4.3.4. 编写创建索引方法
 
 这里因为要创建和删除索引，我们需要在SearchService中拓展创建索引：
 
 ```java
 @Override
-public void createIndex(Long id) {
+public void createIndex(Long id){
 
-    Resp<List<SkuInfoEntity>> skuInfoResp = this.gmallPmsFeign.querySkuBySpuId(id);
-    List<SkuInfoEntity> skuInfoEntities = skuInfoResp.getData();
-    if (!CollectionUtils.isEmpty(skuInfoEntities)) {
-        skuInfoEntities.forEach(skuInfoEntity -> {
-            GoodsVO goodsVO = new GoodsVO();
-            goodsVO.setId(skuInfoEntity.getSkuId());
-            goodsVO.setName(skuInfoEntity.getSkuName());
-            goodsVO.setPic(skuInfoEntity.getSkuDefaultImg());
-            goodsVO.setPrice(skuInfoEntity.getPrice());
-            goodsVO.setSale(0); // 销量，数据库暂没设计
-            goodsVO.setSort(0);
-            // 设置库存
-            Resp<List<WareSkuEntity>> wareSkuResp = this.gmallWmsFeign.queryWareSkuBySkuId(skuInfoEntity.getSkuId());
-            List<WareSkuEntity> wareSkuEntities = wareSkuResp.getData();
-            if (!CollectionUtils.isEmpty(wareSkuEntities)) {
-                long sum = wareSkuEntities.stream().mapToLong(WareSkuEntity::getSkuId).sum();
-                goodsVO.setStock(sum);
-            }
-            // 设置品牌
-            goodsVO.setBrandId(skuInfoEntity.getBrandId());
-            if (skuInfoEntity.getBrandId() != null) {
-                Resp<BrandEntity> brandEntityResp = this.gmallPmsFeign.info(skuInfoEntity.getBrandId());
-                if (brandEntityResp.getData() != null) {
-                    goodsVO.setBrandName(brandEntityResp.getData().getName());
-                }
-            }
-            // 设置分类
-            goodsVO.setProductCategoryId(skuInfoEntity.getCatalogId());
-            if (skuInfoEntity.getCatalogId() != null) {
-                Resp<CategoryEntity> categoryEntityResp = this.gmallPmsFeign.catInfo(skuInfoEntity.getCatalogId());
-                if (categoryEntityResp.getData() != null) {
-                    goodsVO.setProductCategoryName(categoryEntityResp.getData().getName());
-                }
-            }
-            // 设置搜索的规格属性
-            Resp<List<ProductAttrValueEntity>> listResp = this.gmallPmsFeign.querySearchAttrValue(id);
-            if (!CollectionUtils.isEmpty(listResp.getData())) {
-                List<SpuAttributeValueVO> spuAttributeValueVOS = listResp.getData().stream().map(productAttrValueEntity -> {
-                    SpuAttributeValueVO spuAttributeValueVO = new SpuAttributeValueVO();
-                    spuAttributeValueVO.setId(productAttrValueEntity.getId());
-                    spuAttributeValueVO.setName(productAttrValueEntity.getAttrName());
-                    spuAttributeValueVO.setValue(productAttrValueEntity.getAttrValue());
-                    spuAttributeValueVO.setProductAttributeId(productAttrValueEntity.getAttrId());
-                    spuAttributeValueVO.setSpuId(productAttrValueEntity.getSpuId());
-                    return spuAttributeValueVO;
-                }).collect(Collectors.toList());
-                goodsVO.setAttrValueList(spuAttributeValueVOS);
-            }
-            Index action = new Index.Builder(goodsVO).index("goods").type("info").id(skuInfoEntity.getSkuId().toString()).build();
-            try {
-                jestClient.execute(action);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        Resp<List<SkuInfoEntity>>skuInfoResp=this.gmallPmsFeign.querySkuBySpuId(id);
+        List<SkuInfoEntity> skuInfoEntities=skuInfoResp.getData();
+        if(!CollectionUtils.isEmpty(skuInfoEntities)){
+        skuInfoEntities.forEach(skuInfoEntity->{
+        GoodsVO goodsVO=new GoodsVO();
+        goodsVO.setId(skuInfoEntity.getSkuId());
+        goodsVO.setName(skuInfoEntity.getSkuName());
+        goodsVO.setPic(skuInfoEntity.getSkuDefaultImg());
+        goodsVO.setPrice(skuInfoEntity.getPrice());
+        goodsVO.setSale(0); // 销量，数据库暂没设计
+        goodsVO.setSort(0);
+        // 设置库存
+        Resp<List<WareSkuEntity>>wareSkuResp=this.gmallWmsFeign.queryWareSkuBySkuId(skuInfoEntity.getSkuId());
+        List<WareSkuEntity> wareSkuEntities=wareSkuResp.getData();
+        if(!CollectionUtils.isEmpty(wareSkuEntities)){
+        long sum=wareSkuEntities.stream().mapToLong(WareSkuEntity::getSkuId).sum();
+        goodsVO.setStock(sum);
+        }
+        // 设置品牌
+        goodsVO.setBrandId(skuInfoEntity.getBrandId());
+        if(skuInfoEntity.getBrandId()!=null){
+        Resp<BrandEntity> brandEntityResp=this.gmallPmsFeign.info(skuInfoEntity.getBrandId());
+        if(brandEntityResp.getData()!=null){
+        goodsVO.setBrandName(brandEntityResp.getData().getName());
+        }
+        }
+        // 设置分类
+        goodsVO.setProductCategoryId(skuInfoEntity.getCatalogId());
+        if(skuInfoEntity.getCatalogId()!=null){
+        Resp<CategoryEntity> categoryEntityResp=this.gmallPmsFeign.catInfo(skuInfoEntity.getCatalogId());
+        if(categoryEntityResp.getData()!=null){
+        goodsVO.setProductCategoryName(categoryEntityResp.getData().getName());
+        }
+        }
+        // 设置搜索的规格属性
+        Resp<List<ProductAttrValueEntity>>listResp=this.gmallPmsFeign.querySearchAttrValue(id);
+        if(!CollectionUtils.isEmpty(listResp.getData())){
+        List<SpuAttributeValueVO> spuAttributeValueVOS=listResp.getData().stream().map(productAttrValueEntity->{
+        SpuAttributeValueVO spuAttributeValueVO=new SpuAttributeValueVO();
+        spuAttributeValueVO.setId(productAttrValueEntity.getId());
+        spuAttributeValueVO.setName(productAttrValueEntity.getAttrName());
+        spuAttributeValueVO.setValue(productAttrValueEntity.getAttrValue());
+        spuAttributeValueVO.setProductAttributeId(productAttrValueEntity.getAttrId());
+        spuAttributeValueVO.setSpuId(productAttrValueEntity.getSpuId());
+        return spuAttributeValueVO;
+        }).collect(Collectors.toList());
+        goodsVO.setAttrValueList(spuAttributeValueVOS);
+        }
+        Index action=new Index.Builder(goodsVO).index("goods").type("info").id(skuInfoEntity.getSkuId().toString()).build();
+        try{
+        jestClient.execute(action);
+        }catch(IOException e){
+        e.printStackTrace();
+        }
         });
-    }
-}
+        }
+        }
 ```
 
 创建索引的方法可以从之前导入数据的测试类中拷贝和改造。
 
-
-
-## 4.4.   修改数据试一试
+## 4.4. 修改数据试一试
 
 在后台修改商品数据的价格，分别在搜索及商品详情页查看是否统一。
 

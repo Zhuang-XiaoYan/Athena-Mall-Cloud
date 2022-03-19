@@ -3,7 +3,7 @@
 
 <mapper namespace="com.xunqi.gulimall.member.dao.MemberLevelDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.xunqi.gulimall.member.entity.MemberLevelEntity" id="memberLevelMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
@@ -19,7 +19,9 @@
 
 
     <select id="getDefaultLevel" resultType="com.xunqi.gulimall.member.entity.MemberLevelEntity">
-        SELECT * FROM ums_member_level WHERE default_status = 1
+        SELECT *
+        FROM ums_member_level
+        WHERE default_status = 1
     </select>
 
 

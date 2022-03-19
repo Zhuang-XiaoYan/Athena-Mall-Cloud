@@ -37,7 +37,6 @@ public class SysGeneratorService {
     @Autowired
     private GeneratorDao generatorDao;
 
-
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
         List<Map<String, Object>> list = generatorDao.queryList(query);
@@ -56,7 +55,6 @@ public class SysGeneratorService {
         return generatorDao.queryColumns(tableName);
     }
 
-
     public byte[] generatorCode(String[] tableNames) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zip = new ZipOutputStream(outputStream);
@@ -71,7 +69,6 @@ public class SysGeneratorService {
         if (MongoManager.isMongo()) {
             GenUtils.generatorMongoCode(tableNames, zip);
         }
-
 
         IOUtils.closeQuietly(zip);
         return outputStream.toByteArray();

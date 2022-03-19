@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 @Service("skuFullReductionService")
 public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao, SkuFullReductionEntity> implements SkuFullReductionService {
 
@@ -34,7 +33,6 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
     @Autowired
     private MemberPriceService memberPriceService;
 
-
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
 
@@ -43,7 +41,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
         String key = (String) params.get("key");
 
         if (!StringUtils.isEmpty(key)) {
-            queryWrapper.eq("id",key).or().eq("sku_id",key);
+            queryWrapper.eq("id", key).or().eq("sku_id", key);
         }
 
         IPage<SkuFullReductionEntity> page = this.page(
@@ -60,7 +58,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
         //1、保存满减打折、会员价
         //1、1）、sku的优惠、满减等信息：gulimall_sms--->sms_sku_ladder、sms_sku_full_reduction、sms_member_price
         SkuLadderEntity skuLadderEntity = new SkuLadderEntity();
-        BeanUtils.copyProperties(skuReductionTo,skuLadderEntity);
+        BeanUtils.copyProperties(skuReductionTo, skuLadderEntity);
         skuLadderEntity.setAddOther(skuReductionTo.getCountStatus());
 
         if (skuReductionTo.getFullCount() > 0) {
@@ -69,11 +67,10 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
 
         //2、sms_sku_full_reduction
         SkuFullReductionEntity skuFullReductionEntity = new SkuFullReductionEntity();
-        BeanUtils.copyProperties(skuReductionTo,skuFullReductionEntity);
+        BeanUtils.copyProperties(skuReductionTo, skuFullReductionEntity);
         if (skuFullReductionEntity.getFullPrice().compareTo(BigDecimal.ZERO) == 1) {
             this.save(skuFullReductionEntity);
         }
-
 
         //3、sms_member_price
         List<MemberPrice> memberPrice = skuReductionTo.getMemberPrice();

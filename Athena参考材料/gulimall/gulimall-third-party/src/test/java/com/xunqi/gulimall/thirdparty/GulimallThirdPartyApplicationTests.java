@@ -52,7 +52,6 @@ public class GulimallThirdPartyApplicationTests {
         System.out.println("上传成功...");
     }
 
-
     @Test
     public void sendSms() {
         String host = "https://fesms.market.alicloudapi.com";

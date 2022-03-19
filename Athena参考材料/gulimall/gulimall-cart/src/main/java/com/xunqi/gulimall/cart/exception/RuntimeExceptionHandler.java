@@ -17,6 +17,7 @@ public class RuntimeExceptionHandler {
 
     /**
      * 全局统一异常处理
+     *
      * @param exception
      * @return
      */
@@ -25,7 +26,6 @@ public class RuntimeExceptionHandler {
     public R handler(RuntimeException exception) {
         return R.error(exception.getMessage());
     }
-
 
     @ExceptionHandler(CartExceptionHandler.class)
     public R userHandler(CartExceptionHandler exception) {

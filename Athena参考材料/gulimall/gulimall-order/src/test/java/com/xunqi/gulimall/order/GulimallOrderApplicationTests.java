@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
-
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,7 +25,6 @@ public class GulimallOrderApplicationTests {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
 
     @Test
     public void sendMessageTest() {
@@ -40,33 +38,30 @@ public class GulimallOrderApplicationTests {
         //1、发送消息,如果发送的消息是个对象，会使用序列化机制，将对象写出去，对象必须实现Serializable接口
 
         //2、发送的对象类型的消息，可以是一个json
-        rabbitTemplate.convertAndSend("hello-java-exchange","hello2.java",
-                reasonEntity,new CorrelationData(UUID.randomUUID().toString()));
-        log.info("消息发送完成:{}",reasonEntity);
+        rabbitTemplate.convertAndSend("hello-java-exchange", "hello2.java",
+                reasonEntity, new CorrelationData(UUID.randomUUID().toString()));
+        log.info("消息发送完成:{}", reasonEntity);
     }
 
     /**
      * 1、如何创建Exchange、Queue、Binding
-     *      1）、使用AmqpAdmin进行创建
+     * 1）、使用AmqpAdmin进行创建
      * 2、如何收发消息
      */
     @Test
     public void createExchange() {
 
-        Exchange directExchange = new DirectExchange("hello-java-exchange",true,false);
+        Exchange directExchange = new DirectExchange("hello-java-exchange", true, false);
         amqpAdmin.declareExchange(directExchange);
-        log.info("Exchange[{}]创建成功：","hello-java-exchange");
+        log.info("Exchange[{}]创建成功：", "hello-java-exchange");
     }
-
-
 
     @Test
     public void testCreateQueue() {
-        Queue queue = new Queue("hello-java-queue",true,false,false);
+        Queue queue = new Queue("hello-java-queue", true, false, false);
         amqpAdmin.declareQueue(queue);
-        log.info("Queue[{}]创建成功：","hello-java-queue");
+        log.info("Queue[{}]创建成功：", "hello-java-queue");
     }
-
 
     @Test
     public void createBinding() {
@@ -77,7 +72,7 @@ public class GulimallOrderApplicationTests {
                 "hello.java",
                 null);
         amqpAdmin.declareBinding(binding);
-        log.info("Binding[{}]创建成功：","hello-java-binding");
+        log.info("Binding[{}]创建成功：", "hello-java-binding");
 
     }
 
@@ -89,7 +84,7 @@ public class GulimallOrderApplicationTests {
         arguments.put("x-message-ttl", 60000); // 消息过期时间 1分钟
         Queue queue = new Queue("order.delay.queue", true, false, false, arguments);
         amqpAdmin.declareQueue(queue);
-        log.info("Queue[{}]创建成功：","order.delay.queue");
+        log.info("Queue[{}]创建成功：", "order.delay.queue");
     }
 
 }

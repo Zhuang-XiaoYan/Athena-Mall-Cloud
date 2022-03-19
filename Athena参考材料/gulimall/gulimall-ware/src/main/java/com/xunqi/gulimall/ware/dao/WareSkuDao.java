@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 商品库存
- * 
+ *
  * @author 夏沫止水
  * @email HeJieLin@gulimall.com
  * @date 2020-05-22 19:55:33
@@ -19,6 +19,7 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
 
     /**
      * 添加入库信息
+     *
      * @param skuId
      * @param wareId
      * @param skuNum
@@ -31,6 +32,7 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
 
     /**
      * 锁定库存
+     *
      * @param skuId
      * @param wareId
      * @param num
@@ -40,6 +42,7 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
 
     /**
      * 解锁库存
+     *
      * @param skuId
      * @param wareId
      * @param num

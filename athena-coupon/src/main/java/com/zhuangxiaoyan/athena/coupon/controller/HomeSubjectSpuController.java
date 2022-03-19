@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 专题商品
  *
@@ -34,7 +33,6 @@ public class HomeSubjectSpuController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

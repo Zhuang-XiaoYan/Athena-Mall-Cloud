@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
 @Service("categoryBrandRelationService")
 public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandRelationDao, CategoryBrandRelationEntity> implements CategoryBrandRelationService {
 
@@ -71,12 +70,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         CategoryBrandRelationEntity relationEntity = new CategoryBrandRelationEntity();
         relationEntity.setBrandId(brandId);
         relationEntity.setBrandName(name);
-        this.update(relationEntity,new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId));
+        this.update(relationEntity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
     }
 
     @Override
     public void updateCategory(Long catId, String name) {
-        this.baseMapper.updateCategory(catId,name);
+        this.baseMapper.updateCategory(catId, name);
     }
 
     @Override

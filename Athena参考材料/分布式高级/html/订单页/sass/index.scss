@@ -179,7 +179,7 @@ nav {
   background: url('../img/icon (1).png') no-repeat 0 0;
   transition: -webkit-transform 0.2s ease-in 0s;
   transition: transform 0.2s ease-in 0s;
-  transition: transform 0.2s ease-in 0s,-webkit-transform 0.2s ease-in 0s;
+  transition: transform 0.2s ease-in 0s, -webkit-transform 0.2s ease-in 0s;
 }
 
 .nav_ul .hover .ul_i {
@@ -262,6 +262,7 @@ nav {
           text-decoration: underline;
           font-weight: 600;
         }
+
         font-size: 13px;
 
         > li {
@@ -347,6 +348,7 @@ nav {
             }
           }
         }
+
         background: #F3F3F3;
 
         > li {
@@ -1182,7 +1184,7 @@ nav {
     text-align: left;
     min-width: 337px;
     background: white;
-    box-shadow:-3px -3px 20px 0px #ccc;
+    box-shadow: -3px -3px 20px 0px #ccc;
     display: none;
 
     .p-tit {
@@ -1196,18 +1198,18 @@ nav {
       height: 40px;
       line-height: 40px;
       font-weight: 700;
-      border-bottom:1px solid  #e3e3e3;
-      padding:{
-        top:0;
-        left:10px;
-        bottom:18px;
+      border-bottom: 1px solid #e3e3e3;
+      padding: {
+        top: 0;
+        left: 10px;
+        bottom: 18px;
       }
     }
 
     .hideList {
       ul {
         li {
-          margin-bottom:20px;
+          margin-bottom: 20px;
           // overflow: visible;
           width: 340px;
           padding: 15px 10px 0 15px;

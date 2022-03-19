@@ -1,5 +1,3 @@
-
-
 # 1. 购物车功能分析
 
 ## 1.1. 功能需求
@@ -15,6 +13,7 @@
        程序员的新大陆-更新最快的IT资源社区！开发者必备平台！
     
        欢迎访问：www.cx1314.cn      百度搜索->  程序源码论坛
+
 需求描述：
 
 - 用户可以在登录状态下将商品添加到购物车
@@ -28,8 +27,6 @@
 
 提示购物车商品价格变化，数据结构，首先分析一下购物车的数据结构
 
-
-
 ## 1.2. 数据结构
 
 首先分析一下购物车的数据结构
@@ -41,16 +38,36 @@
 ```js
 {
     id: 1,
-    userId: '2',
-    skuId: 2131241,
-    check: true, // 选中状态
-    title: "Apple iphone.....",
-    image: "...",
-    price: 4999,
-    count: 1,
-    store: true, // 是否有货
-    saleAttrs: [{..},{..}], // 销售属性
-    sales: [{..},{..}] // 营销信息
+        userId
+:
+    '2',
+        skuId
+:
+    2131241,
+        check
+:
+    true, // 选中状态
+        title
+:
+    "Apple iphone.....",
+        image
+:
+    "...",
+        price
+:
+    4999,
+        count
+:
+    1,
+        store
+:
+    true, // 是否有货
+        saleAttrs
+:
+    [{..}, {..}], // 销售属性
+        sales
+:
+    [{..}, {..}] // 营销信息
 }
 ```
 
@@ -58,11 +75,9 @@
 
 ```js
 [
-    {...},{...},{...}
+    {...}, {...}, {...}
 ]
 ```
-
-
 
 ## 1.3. 怎么保存
 
@@ -97,12 +112,10 @@ Redis有5种不同数据结构，这里选择哪一种比较合适呢？`Map<Str
 - 首先不同用户应该有独立的购物车，因此购物车应该以用户的作为key来存储，Value是用户的所有购物车信息。这样看来基本的`k-v`结构就可以了。
 - 但是，我们对购物车中的商品进行增、删、改操作，基本都需要根据商品id进行判断，为了方便后期处理，我们的购物车也应该是`k-v`结构，key是商品id，value才是这个商品的购物车信息。
 
-综上所述，我们的购物车结构是一个双层Map：`Map<String,Map<String,String>>` 
+综上所述，我们的购物车结构是一个双层Map：`Map<String,Map<String,String>>`
 
 - 第一层Map，Key是用户id
 - 第二层Map，Key是购物车中商品id，值是购物车数据
-
-
 
 ## 1.4. 流程分析
 
@@ -123,10 +136,8 @@ user-key是游客id，不管有没有登录都会有这个cookie信息。
 
 - 否：直接根据user-key查询redis中数据并展示
 - 是：已登录，则需要先根据user-key查询redis是否有数据。
-  - 有：需要先合并数据（redis + mysql），而后查询。
-  - 否：直接去后台查询redis，而后返回。
-
-
+    - 有：需要先合并数据（redis + mysql），而后查询。
+    - 否：直接去后台查询redis，而后返回。
 
 # 2. 搭建购物车服务
 
@@ -135,24 +146,24 @@ user-key是游客id，不管有没有登录都会有这个cookie信息。
 创建guli_cart数据库，创建下表：
 
 ```mysql
-CREATE TABLE `cart_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(30) NOT NULL COMMENT '用户id或者userKey',
-  `sku_id` bigint(20) NOT NULL COMMENT 'skuId',
-  `check` tinyint(4) NOT NULL COMMENT '选中状态',
-  `title` varchar(255) NOT NULL COMMENT '标题',
-  `default_image` varchar(255) DEFAULT NULL COMMENT '默认图片',
-  `price` decimal(18,2) NOT NULL COMMENT '加入购物车时价格',
-  `count` int(11) NOT NULL COMMENT '数量',
-  `store` tinyint(4) NOT NULL COMMENT '是否有货',
-  `sale_attrs` varchar(100) DEFAULT NULL COMMENT '销售属性（json格式）',
-  `sales` varchar(255) DEFAULT NULL COMMENT '营销信息（json格式）',
-  PRIMARY KEY (`id`),
-  KEY `idx_uid_sid` (`user_id`,`sku_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `cart_info`
+(
+    `id`            bigint(20)     NOT NULL AUTO_INCREMENT,
+    `user_id`       varchar(30)    NOT NULL COMMENT '用户id或者userKey',
+    `sku_id`        bigint(20)     NOT NULL COMMENT 'skuId',
+    `check`         tinyint(4)     NOT NULL COMMENT '选中状态',
+    `title`         varchar(255)   NOT NULL COMMENT '标题',
+    `default_image` varchar(255) DEFAULT NULL COMMENT '默认图片',
+    `price`         decimal(18, 2) NOT NULL COMMENT '加入购物车时价格',
+    `count`         int(11)        NOT NULL COMMENT '数量',
+    `store`         tinyint(4)     NOT NULL COMMENT '是否有货',
+    `sale_attrs`    varchar(100) DEFAULT NULL COMMENT '销售属性（json格式）',
+    `sales`         varchar(255) DEFAULT NULL COMMENT '营销信息（json格式）',
+    PRIMARY KEY (`id`),
+    KEY `idx_uid_sid` (`user_id`, `sku_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 ```
-
-
 
 ## 2.2. 创建工程
 
@@ -163,8 +174,6 @@ CREATE TABLE `cart_info` (
 ![1570194939148](assets/1570194939148.png)
 
 ![1590063903661](assets/1590063903661.png)
-
-
 
 pom依赖：
 
@@ -331,6 +340,7 @@ feign:
 启动类：
 
 ```java
+
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
@@ -357,28 +367,21 @@ nginx配置中追加域名映射：重新加载nginx
 172.16.116.100 api.gmall.com manager.gmall.com www.gmall.com gmall.com static.gmall.com search.gmall.com item.gmall.com sso.gmall.com cart.gmall.com order.gmall.com
 ```
 
-
-
 ## 2.3. 添加登录校验
 
 购物车系统根据用户的登录状态，购物车的增删改处理方式不同，因此需要添加登录校验。而登录状态的校验如果在每个方法中进行校验，会造成代码的冗余，不利于维护。所以这里使用拦截器统一处理。
-
-
 
 springboot自定义拦截器：
 
 1. 编写自定义拦截器类实现HandlerInterceptor接口（前置方法 后置方法 完成方法）
 2. 编写配置类（添加@Configuration注解）实现WebMvcConfigurer接口（重写addInterceptors方法）
 
-
-
- ![1590488659054](assets/1590488659054.png)
-
-
+![1590488659054](assets/1590488659054.png)
 
 ### 2.3.1. 编写拦截器
 
 ```java
+
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -391,13 +394,12 @@ public class LoginInterceptor implements HandlerInterceptor {
 }
 ```
 
-
-
 ### 2.3.2. 配置拦截器
 
 配置SpringMVC，使过滤器生效：
 
 ```java
+
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
@@ -412,31 +414,26 @@ public class MvcConfig implements WebMvcConfigurer {
 }
 ```
 
-
-
 ### 2.3.3. 编写Controller测试拦截器
 
 ```java
+
 @Controller
 public class CartController {
 
     @GetMapping("test")
     @ResponseBody
-    public String test(){
+    public String test() {
         return "hello cart!";
     }
 }
 ```
-
-
 
 debug启动后，访问：http://cart.gmall.com/test进入拦截器
 
 ![1590489283970](assets/1590489283970.png)
 
 说明拦截器已经生效
-
-
 
 ### 2.3.4. 传递登录信息
 
@@ -446,11 +443,10 @@ debug启动后，访问：http://cart.gmall.com/test进入拦截器
 2. request对象。不够优雅
 3. ThreadLocal线程变量。推荐
 
-
-
 实现：
 
 ```java
+
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -473,7 +469,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      * 封装了一个获取线程局部变量值的静态方法
      * @return
      */
-    public static UserInfo getUserInfo(){
+    public static UserInfo getUserInfo() {
         return THREAD_LOCAL.get();
     }
 
@@ -495,15 +491,14 @@ public class LoginInterceptor implements HandlerInterceptor {
 }
 ```
 
-
-
 声明ThreadLocal中的载荷对象UserInfo
 
- ![1590490338929](assets/1590490338929.png)
+![1590490338929](assets/1590490338929.png)
 
 内容如下：
 
 ```java
+
 @Data
 public class UserInfo {
 
@@ -512,17 +507,16 @@ public class UserInfo {
 }
 ```
 
-
-
 在controller中尝试获取登录信息：
 
 ```java
+
 @Controller
 public class CartController {
 
     @GetMapping("test")
     @ResponseBody
-    public String test(){
+    public String test() {
         UserInfo userInfo = LoginInterceptor.getUserInfo();
         System.out.println(userInfo);
         return "hello cart!";
@@ -530,19 +524,16 @@ public class CartController {
 }
 ```
 
-
-
 debug启动访问：http://cart.gmall.com/test
 
 效果如下：可以获取到userInfo载荷信息
 
 ![1590490435126](assets/1590490435126.png)
 
-
-
 ### 2.3.5. 拦截器代码实现
 
 ```java
+
 @Component
 @EnableConfigurationProperties({JwtProperties.class})
 public class LoginInterceptor implements HandlerInterceptor {
@@ -559,7 +550,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 获取登录头信息
         String userKey = CookieUtil.getCookieValue(request, jwtProperties.getUserKey());
         // 如果userKey为空，制作一个userKey放入cookie中
-        if (StringUtils.isBlank(userKey)){
+        if (StringUtils.isBlank(userKey)) {
             userKey = UUID.randomUUID().toString();
             CookieUtil.setCookie(request, response, jwtProperties.getUserKey(), userKey, jwtProperties.getExpireTime());
         }
@@ -568,7 +559,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         // 获取用户的登录信息
         String token = CookieUtil.getCookieValue(request, jwtProperties.getCookieName());
-        if (StringUtils.isNotBlank(token)){
+        if (StringUtils.isNotBlank(token)) {
             try {
                 // 解析jwt
                 Map<String, Object> map = JwtUtil.getInfoFromToken(token, jwtProperties.getPublicKey());
@@ -590,7 +581,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      * 封装了一个获取线程局部变量值的静态方法
      * @return
      */
-    public static UserInfo getUserInfo(){
+    public static UserInfo getUserInfo() {
         return THREAD_LOCAL.get();
     }
 
@@ -612,11 +603,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 }
 ```
 
-
-
 JwtProperties读取配置类：
 
 ```java
+
 @Data
 @Slf4j
 @ConfigurationProperties(prefix = "auth.jwt")
@@ -631,7 +621,7 @@ public class JwtProperties {
     private PublicKey publicKey;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         try {
             this.publicKey = RsaUtil.getPublicKey(pubKeyPath);
         } catch (Exception e) {
@@ -653,25 +643,20 @@ auth:
     expireTime: 15552000 # userKey的过期时间
 ```
 
-
-
 重启后测试，效果如下：可以获取到userId及userKey信息
 
 ![1590494677138](assets/1590494677138.png)
-
-
-
-
 
 ## 2.4. 实体类及feign接口
 
 添加实体类、mapper接口及feign接口：
 
- ![1590495522094](assets/1590495522094.png)
+![1590495522094](assets/1590495522094.png)
 
 购物车实体类：
 
 ```java
+
 @Data
 @TableName("cart_info")
 public class Cart {
@@ -695,8 +680,6 @@ public class Cart {
 }
 ```
 
-
-
 mapper接口：
 
 ```java
@@ -704,50 +687,47 @@ public interface CartMapper extends BaseMapper<Cart> {
 }
 ```
 
-
-
 Feign接口：
 
 ```java
+
 @FeignClient("pms-service")
 public interface GmallPmsClient extends GmallPmsApi {
 }
 ```
 
 ```java
+
 @FeignClient("sms-service")
 public interface GmallSmsClient extends GmallSmsApi {
 }
 ```
 
 ```java
+
 @FeignClient("wms-service")
 public interface GmallWmsClient extends GmallWmsApi {
 }
 ```
-
-
 
 在gmall-pms工程的SkuSaleAttrValueController中新增根据skuId查询销售属性及值：
 
 ```java
 @ApiOperation("查询sku的所有销售属性")
 @GetMapping("all/{skuId}")
-public ResponseVo<List<SkuAttrValueEntity>> querySkuAttrValuesBySkuId(@PathVariable("skuId")Long skuId){
+public ResponseVo<List<SkuAttrValueEntity>>querySkuAttrValuesBySkuId(@PathVariable("skuId")Long skuId){
 
-    List<SkuAttrValueEntity> skuAttrValueEntities = this.skuAttrValueService.list(new QueryWrapper<SkuAttrValueEntity>().eq("sku_id", skuId));
-    return  ResponseVo.ok(skuAttrValueEntities);
-}
+        List<SkuAttrValueEntity> skuAttrValueEntities=this.skuAttrValueService.list(new QueryWrapper<SkuAttrValueEntity>().eq("sku_id",skuId));
+        return ResponseVo.ok(skuAttrValueEntities);
+        }
 ```
 
 给gmall-pms-interface工程的GmallPmsApi添加接口方法：
 
 ```java
 @GetMapping("pms/skuattrvalue/all/{skuId}")
-public ResponseVo<List<SkuAttrValueEntity>> querySkuSaleAttrValueBySkuId(@PathVariable("skuId")Long skuId);
+public ResponseVo<List<SkuAttrValueEntity>>querySkuSaleAttrValueBySkuId(@PathVariable("skuId")Long skuId);
 ```
-
-
 
 # 3. 新增购物车
 
@@ -773,8 +753,6 @@ pcount：商品数量
 
 ![1590586976105](assets/1590586976105.png)
 
-
-
 ## 3.1. CartController
 
 我们模仿京东：
@@ -790,8 +768,6 @@ pcount：商品数量
 - 请求方式：Get
 - 请求路径：addCart.html
 - 请求参数：?skuId=40
-
-
 
 具体实现如下：
 
@@ -825,8 +801,8 @@ public class CartController {
      * @return
      */
     @GetMapping
-    public String addCart(Cart cart){
-        if (cart == null || cart.getSkuId() == null){
+    public String addCart(Cart cart) {
+        if (cart == null || cart.getSkuId() == null) {
             throw new RuntimeException("没有选择添加到购物车的商品信息！");
         }
         this.cartService.addCart(cart);
@@ -841,7 +817,7 @@ public class CartController {
      * @return
      */
     @GetMapping("addCart.html")
-    public String addCart(@RequestParam("skuId")Long skuId, Model model){
+    public String addCart(@RequestParam("skuId") Long skuId, Model model) {
 
         Cart cart = this.cartService.queryCartBySkuId(skuId);
         model.addAttribute("cart", cart);
@@ -850,7 +826,7 @@ public class CartController {
 
     @GetMapping("test")
     @ResponseBody
-    public String test(){
+    public String test() {
         UserInfo userInfo = LoginInterceptor.getUserInfo();
         System.out.println(userInfo);
         return "hello cart!";
@@ -859,20 +835,19 @@ public class CartController {
 }
 ```
 
-
-
 ## 3.2. CartService
 
 基本思路：
 
 - 先查询之前的购物车数据
 - 判断要添加的商品是否存在
-  - 存在：则直接修改数量后写回Redis及mysql
-  - 不存在：新建一条数据，然后写入Redis及mysql
+    - 存在：则直接修改数量后写回Redis及mysql
+    - 不存在：新建一条数据，然后写入Redis及mysql
 
 代码：
 
 ```java
+
 @Service
 public class CartService {
 
@@ -953,7 +928,7 @@ public class CartService {
 
         // 2.获取redis中该用户的购物车
         BoundHashOperations<String, Object, Object> hashOps = this.redisTemplate.boundHashOps(key);
-        if (hashOps.hasKey(skuId.toString())){
+        if (hashOps.hasKey(skuId.toString())) {
             String cartJson = hashOps.get(skuId.toString()).toString();
             return JSON.parseObject(cartJson, Cart.class);
         }
@@ -971,8 +946,6 @@ public class CartService {
     }
 }
 ```
-
-
 
 ## 3.3. 结果
 
@@ -992,11 +965,7 @@ redis的数据：
 
 ![1590593802234](assets/1590593802234.png)
 
-
-
 测试已登录状态的购物车：略。。。
-
-
 
 # 4. 异步优化新增购物车
 
@@ -1012,8 +981,6 @@ redis的数据：
 
 所以，使用**进程内**的队列或者线程池来实现异步调用的话，一定要尽可能的保证 JVM 进程的优雅关闭，保证它们在关闭前被执行完成。
 
-
-
 ## 4.1. 编写异步demo
 
 在CartController中改造test方法：
@@ -1022,44 +989,42 @@ redis的数据：
 @GetMapping("test")
 @ResponseBody
 public String test(){
-    // UserInfo userInfo = LoginInterceptor.getUserInfo();
-    // System.out.println(userInfo);
-    System.out.println("controller.test方法开始执行！");
-    this.cartService.executor1();
-    this.cartService.executor2();
-    System.out.println("controller.test方法结束执行！！！");
+        // UserInfo userInfo = LoginInterceptor.getUserInfo();
+        // System.out.println(userInfo);
+        System.out.println("controller.test方法开始执行！");
+        this.cartService.executor1();
+        this.cartService.executor2();
+        System.out.println("controller.test方法结束执行！！！");
 
-    return "hello cart!";
-}
+        return"hello cart!";
+        }
 ```
 
 在CartService中添加两个方法：
 
 ```java
-public String executor1() {
-    try {
+public String executor1(){
+        try{
         System.out.println("executor1方法开始执行");
         TimeUnit.SECONDS.sleep(4);
         System.out.println("executor1方法结束执行。。。");
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
-    }
-    return "executor1";
-}
+        }
+        return"executor1";
+        }
 
-public String executor2() {
-    try {
+public String executor2(){
+        try{
         System.out.println("executor2方法开始执行");
         TimeUnit.SECONDS.sleep(5);
         System.out.println("executor2方法结束执行。。。");
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
-    }
-    return "executor2";
-}
+        }
+        return"executor2";
+        }
 ```
-
-
 
 浏览器访问：http://cart.gmall.com/test
 
@@ -1076,8 +1041,6 @@ controller.test方法结束执行！！！9001
 
 浏览器需要等待9s才能响应
 
-
-
 ## 4.2. 简单入门
 
 因为 Spring Task 是 Spring Framework 的模块，所以在我们引入 spring-boot-web 依赖后，无需特别引入它。
@@ -1088,13 +1051,9 @@ controller.test方法结束执行！！！9001
 
 ![1590636992586](assets/1590636992586.png)
 
-
-
 ### 4.2.2. @Async标记异步调用方法
 
 ![1590637266516](assets/1590637266516.png)
-
-
 
 ### 4.3.3. 重启测试结果
 
@@ -1115,8 +1074,6 @@ executor2方法结束执行。。。
 
 可以看到浏览器只需11ms就能响应。
 
-
-
 ## 4.3. 获取异步执行结果
 
 上一节虽然实现了异步调用，但是无法获取异步任务的返回值。
@@ -1127,53 +1084,49 @@ executor2方法结束执行。。。
 
 ```java
 @Async
-public Future<String> executor1() {
-    try {
+public Future<String> executor1(){
+        try{
         System.out.println("executor1方法开始执行");
         TimeUnit.SECONDS.sleep(4);
         System.out.println("executor1方法结束执行。。。");
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
-    }
-    return AsyncResult.forValue("executor1") ;
-}
+        }
+        return AsyncResult.forValue("executor1");
+        }
 
 @Async
-public Future<String> executor2() {
-    try {
+public Future<String> executor2(){
+        try{
         System.out.println("executor2方法开始执行");
         TimeUnit.SECONDS.sleep(5);
         System.out.println("executor2方法结束执行。。。");
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
-    }
-    return AsyncResult.forValue("executor2");
-}
+        }
+        return AsyncResult.forValue("executor2");
+        }
 ```
-
-
 
 ### 4.3.2. 改造controller方法获取异步结果
 
 ```java
 @GetMapping("test")
 @ResponseBody
-public String test() throws ExecutionException, InterruptedException {
-    // UserInfo userInfo = LoginInterceptor.getUserInfo();
-    // System.out.println(userInfo);
-    long now = System.currentTimeMillis();
-    System.out.println("controller.test方法开始执行！");
-    Future<String> future1 = this.cartService.executor1();
-    Future<String> future2 = this.cartService.executor2();
-    System.out.println("future1的执行结果：" + future1.get());
-    System.out.println("future2的执行结果：" + future2.get());
-    System.out.println("controller.test方法结束执行！！！" + (System.currentTimeMillis() - now));
+public String test()throws ExecutionException,InterruptedException{
+        // UserInfo userInfo = LoginInterceptor.getUserInfo();
+        // System.out.println(userInfo);
+        long now=System.currentTimeMillis();
+        System.out.println("controller.test方法开始执行！");
+        Future<String> future1=this.cartService.executor1();
+        Future<String> future2=this.cartService.executor2();
+        System.out.println("future1的执行结果："+future1.get());
+        System.out.println("future2的执行结果："+future2.get());
+        System.out.println("controller.test方法结束执行！！！"+(System.currentTimeMillis()-now));
 
-    return "hello cart!";
-}
+        return"hello cart!";
+        }
 ```
-
-
 
 ### 4.3.3. 重启测试结果
 
@@ -1194,14 +1147,10 @@ controller.test方法结束执行！！！5009
 
 浏览器等待大概5s可以响应成功
 
-
-
 结论：
 
 1. 这两个异步调用的逻辑，可以**并行**执行。当同时有多个异步调用，并阻塞等待执行结果，消耗时长由最慢的异步调用的逻辑所决定。
 2. 分别调用两个 Future 对象的 get() 方法，阻塞等待结果。
-
-
 
 ## 4.4. 异步回调
 
@@ -1212,17 +1161,15 @@ $.ajax({
     url: 'http://xxx.com/xx/xx',
     dataType: 'json',
     success(result) {
-        ......
+    ......
     },
     error(err) {
-        ......
+    ......
     }
 })
 ```
 
 springTask允许使用异步回调的方式，根据不同的响应结果做出不同的处理。springTask提供了ListenableFuture对象来实现**自定义回调**。
-
-
 
 ### 4.4.1. ListenableFuture改造Service方法
 
@@ -1230,34 +1177,32 @@ springTask允许使用异步回调的方式，根据不同的响应结果做出�
 
 ```java
 @Async
-public ListenableFuture<String> executor1() {
-    try {
+public ListenableFuture<String> executor1(){
+        try{
         System.out.println("executor1方法开始执行");
         TimeUnit.SECONDS.sleep(4);
         System.out.println("executor1方法结束执行。。。");
         return AsyncResult.forValue("executor1"); // 正常响应
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
         return AsyncResult.forExecutionException(e); // 异常响应
-    }
-}
+        }
+        }
 
 @Async
-public ListenableFuture<String> executor2() {
-    try {
+public ListenableFuture<String> executor2(){
+        try{
         System.out.println("executor2方法开始执行");
         TimeUnit.SECONDS.sleep(5);
         System.out.println("executor2方法结束执行。。。");
-        int i = 1 / 0; // 制造异常
+        int i=1/0; // 制造异常
         return AsyncResult.forValue("executor2"); // 正常响应
-    } catch (InterruptedException e) {
+        }catch(InterruptedException e){
         e.printStackTrace();
         return AsyncResult.forExecutionException(e); // 异常响应
-    }
-}
+        }
+        }
 ```
-
-
 
 ### 4.4.2. 在controller方法中添加回调
 
@@ -1268,38 +1213,36 @@ public ListenableFuture<String> executor2() {
 ```java
 @GetMapping("test")
 @ResponseBody
-public String test() throws ExecutionException, InterruptedException {
-    long now = System.currentTimeMillis();
-    System.out.println("controller.test方法开始执行！");
-    this.cartService.executor1().addCallback(new SuccessCallback<String>() {
-        @Override
-        public void onSuccess(String result) {
-            System.out.println("future1的正常执行结果：" + result);
+public String test()throws ExecutionException,InterruptedException{
+        long now=System.currentTimeMillis();
+        System.out.println("controller.test方法开始执行！");
+        this.cartService.executor1().addCallback(new SuccessCallback<String>(){
+@Override
+public void onSuccess(String result){
+        System.out.println("future1的正常执行结果："+result);
         }
-    }, new FailureCallback() {
-        @Override
-        public void onFailure(Throwable ex) {
-            System.out.println("future1执行出错：" + ex.getMessage());
+        },new FailureCallback(){
+@Override
+public void onFailure(Throwable ex){
+        System.out.println("future1执行出错："+ex.getMessage());
         }
-    });
-    this.cartService.executor2().addCallback(new SuccessCallback<String>() {
-        @Override
-        public void onSuccess(String result) {
-            System.out.println("future2的正常执行结果：" + result);
+        });
+        this.cartService.executor2().addCallback(new SuccessCallback<String>(){
+@Override
+public void onSuccess(String result){
+        System.out.println("future2的正常执行结果："+result);
         }
-    }, new FailureCallback() {
-        @Override
-        public void onFailure(Throwable ex) {
-            System.out.println("future2执行出错：" + ex.getMessage());
+        },new FailureCallback(){
+@Override
+public void onFailure(Throwable ex){
+        System.out.println("future2执行出错："+ex.getMessage());
         }
-    });
-    System.out.println("controller.test方法结束执行！！！" + (System.currentTimeMillis() - now));
+        });
+        System.out.println("controller.test方法结束执行！！！"+(System.currentTimeMillis()-now));
 
-    return "hello cart!";
-}
+        return"hello cart!";
+        }
 ```
-
-
 
 ### 4.4.3. 重启测试结果
 
@@ -1320,8 +1263,6 @@ future2执行出错：/ by zero
 
 浏览器等待22ms
 
-
-
 ## 4.5. 异步执行异常处理
 
 返回值为ListenableFuture的异步方法可以使用异步回调处理异常结果，那么返回值为普通类型的异步方法出现异常该如何处理呢？
@@ -1332,24 +1273,19 @@ springTask提供了AsyncUncaughtExceptionHandler 接口，达到对异步调用�
 
 返回类型为 Future 的异步调用方法，请使用异步回调来处理。
 
-
-
 实现步骤：
 
 1. 自定义异常处理实现类实现AsyncUncaughtExceptionHandler 接口
 2. 添加配置类（@Configuration）实现AsyncConfigurer异步配置接口
 
+![1590658668419](assets/1590658668419.png)
 
-
- ![1590658668419](assets/1590658668419.png)
-
-
-
-### 4.5.1. 实现AsyncUncaughtExceptionHandler 
+### 4.5.1. 实现AsyncUncaughtExceptionHandler
 
 自定义异常处理实现类AsyncExceptionHandler实现AsyncUncaughtExceptionHandler 接口
 
 ```java
+
 @Component
 @Slf4j
 public class AsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
@@ -1361,11 +1297,10 @@ public class AsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
 }
 ```
 
-
-
 ### 4.5.2. 自定义配置类实现AsyncConfigurer
 
 ```java
+
 @Configuration
 public class AsyncConfig implements AsyncConfigurer {
 
@@ -1392,8 +1327,6 @@ public class AsyncConfig implements AsyncConfigurer {
     }
 }
 ```
-
-
 
 ### 4.5.3. 改造代码测试效果
 
@@ -1442,8 +1375,6 @@ public class AsyncConfig implements AsyncConfigurer {
 
    浏览器等待了3ms，并且打印了异常信息
 
-
-
 ## 4.6. 线程池配置
 
 ```yaml
@@ -1463,8 +1394,6 @@ spring:
         await-termination-period: 60 # 等待任务完成的最大时长，单位为秒。默认为 0 ，根据自己应用来设置
 ```
 
-
-
 ## 4.7. 最后寄语及扩展
 
 使用 Spring Task 的异步任务，一定要注意三个点：
@@ -1472,8 +1401,6 @@ spring:
 - 配置线程池控制线程及阻塞队列的大小。
 - JVM 应用的正常优雅关闭，保证异步任务都被执行完成。
 - 编写异步异常处理器（实现AsyncUncaughtExceptionHandler接口），记录异常日志，进行监控告警。
-
-
 
 springTask还为定时任务设计了一套注解：
 
@@ -1483,19 +1410,18 @@ springTask还为定时任务设计了一套注解：
 
 请大家自行查询资料学习。
 
-
-
 ## 4.8. 使用SpringTask改造新增购物车
 
 为了方便扩展维护，新增一个异步service专门完成mysql的异步操作。
 
 ### 4.8.1. 新增CartAsyncService
 
- ![1590661063184](assets/1590661063184.png)
+![1590661063184](assets/1590661063184.png)
 
 内容
 
 ```java
+
 @Service
 public class CartAsyncService {
 
@@ -1503,24 +1429,23 @@ public class CartAsyncService {
     private CartMapper cartMapper;
 
     @Async
-    public void updateCartByUserIdAndSkuId(Cart cart){
+    public void updateCartByUserIdAndSkuId(Cart cart) {
         this.cartMapper.update(cart, new UpdateWrapper<Cart>().eq("user_id", cart.getUserId()).eq("sku_id", cart.getSkuId()));
     }
 
     @Async
-    public void saveCart(Cart cart){
+    public void saveCart(Cart cart) {
         this.cartMapper.insert(cart);
     }
 }
 ```
-
-
 
 ### 4.8.2. 改造CartService
 
 注入：CartMapper --> CartAsyncService
 
 ```java
+
 @Service
 public class CartService {
 
@@ -1547,8 +1472,6 @@ public class CartService {
 }
 ```
 
-
-
 # 5. 查询修改删除
 
 ## 5.1. 查询购物车
@@ -1557,8 +1480,6 @@ public class CartService {
 2. 判断是否登录，未登录直接返回
 3. 已登录，合并购物车中的记录并删除未登录状态的购物车（redis + mysql）
 4. 查询购物车记录（redis）
-
-
 
 ### 5.1.1. CartController
 
@@ -1572,90 +1493,84 @@ public class CartService {
 @GetMapping("cart.html")
 public List<Cart> queryCarts(Model model){
 
-    List<Cart> carts = this.cartService.queryCarts();
-    //model.addAttribute("carts", carts);
-    return carts;
-}
+        List<Cart> carts=this.cartService.queryCarts();
+        //model.addAttribute("carts", carts);
+        return carts;
+        }
 ```
-
-
 
 ### 5.1.2. CartService
 
 ```java
-public List<Cart> queryCarts() {
+public List<Cart> queryCarts(){
 
-    // 查询未登录的购物车
-    UserInfo userInfo = LoginInterceptor.getUserInfo();
-    String unloginKey = KEY_PREFIX + userInfo.getUserKey(); // 未登录情况下的外层map的key
-    BoundHashOperations<String, Object, Object> unLoginHashOps = this.redisTemplate.boundHashOps(unloginKey);
-    // 获取内层map的所有value（cart的json字符串）
-    List<Object> unloginCartJsons = unLoginHashOps.values();
-    List<Cart> unloginCarts = null;
-    if (!CollectionUtils.isEmpty(unloginCartJsons)) {
+        // 查询未登录的购物车
+        UserInfo userInfo=LoginInterceptor.getUserInfo();
+        String unloginKey=KEY_PREFIX+userInfo.getUserKey(); // 未登录情况下的外层map的key
+        BoundHashOperations<String, Object, Object> unLoginHashOps=this.redisTemplate.boundHashOps(unloginKey);
+        // 获取内层map的所有value（cart的json字符串）
+        List<Object> unloginCartJsons=unLoginHashOps.values();
+        List<Cart> unloginCarts=null;
+        if(!CollectionUtils.isEmpty(unloginCartJsons)){
         // 反序列化为List<Cart>集合
-        unloginCarts = unloginCartJsons.stream().map(cartJson -> {
-            Cart cart = JSON.parseObject(cartJson.toString(), Cart.class);
-            return cart;
+        unloginCarts=unloginCartJsons.stream().map(cartJson->{
+        Cart cart=JSON.parseObject(cartJson.toString(),Cart.class);
+        return cart;
         }).collect(Collectors.toList());
-    }
+        }
 
-    // 获取登陆状态，未登录直接返回
-    if (userInfo.getUserId() == null) {
+        // 获取登陆状态，未登录直接返回
+        if(userInfo.getUserId()==null){
         return unloginCarts;
-    }
+        }
 
-    // 合并到登录状态的购物车
-    String loginKey = KEY_PREFIX + userInfo.getUserId();
-    BoundHashOperations<String, Object, Object> loginHashOps = this.redisTemplate.boundHashOps(loginKey);
-    if (!CollectionUtils.isEmpty(unloginCarts)) {
-        unloginCarts.forEach(cart -> {
-            String skuId = cart.getSkuId().toString();
-            if (loginHashOps.hasKey(skuId)) {
-                // 登录状态的购物车包含了这条购物车记录，合并数量
-                String cartJson = loginHashOps.get(skuId).toString();
-                BigDecimal count = cart.getCount();
-                cart = JSON.parseObject(cartJson, Cart.class);
-                cart.setCount(cart.getCount().add(count));
-                // 更新mysql
-                this.cartAsyncService.updateCartByUserIdAndSkuId(cart);
-            } else {
-                // 新增mysql
-                cart.setUserId(userInfo.getUserId().toString());
-                this.cartAsyncService.saveCart(cart);
-            }
-            // 更新redis
-            loginHashOps.put(skuId, JSON.toJSONString(cart));
+        // 合并到登录状态的购物车
+        String loginKey=KEY_PREFIX+userInfo.getUserId();
+        BoundHashOperations<String, Object, Object> loginHashOps=this.redisTemplate.boundHashOps(loginKey);
+        if(!CollectionUtils.isEmpty(unloginCarts)){
+        unloginCarts.forEach(cart->{
+        String skuId=cart.getSkuId().toString();
+        if(loginHashOps.hasKey(skuId)){
+        // 登录状态的购物车包含了这条购物车记录，合并数量
+        String cartJson=loginHashOps.get(skuId).toString();
+        BigDecimal count=cart.getCount();
+        cart=JSON.parseObject(cartJson,Cart.class);
+        cart.setCount(cart.getCount().add(count));
+        // 更新mysql
+        this.cartAsyncService.updateCartByUserIdAndSkuId(cart);
+        }else{
+        // 新增mysql
+        cart.setUserId(userInfo.getUserId().toString());
+        this.cartAsyncService.saveCart(cart);
+        }
+        // 更新redis
+        loginHashOps.put(skuId,JSON.toJSONString(cart));
         });
         // 删除未登录的购物车，删除redis及mysql中未登录用户的购物车
         this.cartAsyncService.deleteCartsByUserId(userInfo.getUserKey());
         this.redisTemplate.delete(unloginKey);
-    }
+        }
 
-    // 查询登录状态的购物并返回
-    List<Object> loginCartJsons = loginHashOps.values();
-    if (CollectionUtils.isEmpty(loginCartJsons)) {
+        // 查询登录状态的购物并返回
+        List<Object> loginCartJsons=loginHashOps.values();
+        if(CollectionUtils.isEmpty(loginCartJsons)){
         return null;
-    }
-    return loginCartJsons.stream().map(cartJson -> {
-        Cart cart = JSON.parseObject(cartJson.toString(), Cart.class);
+        }
+        return loginCartJsons.stream().map(cartJson->{
+        Cart cart=JSON.parseObject(cartJson.toString(),Cart.class);
         return cart;
-    }).collect(Collectors.toList());
-}
+        }).collect(Collectors.toList());
+        }
 ```
-
-
 
 ### 5.1.3. CartAsyncService
 
 ```java
 @Async
 public void deleteCartsByUserId(String userKey){
-    this.cartMapper.delete(new UpdateWrapper<Cart>().eq("user_id", userKey));
-}
+        this.cartMapper.delete(new UpdateWrapper<Cart>().eq("user_id",userKey));
+        }
 ```
-
-
 
 ### 5.1.4. 测试
 
@@ -1673,8 +1588,6 @@ mysql中未登录购物车信息：
 
 ![1590665539596](assets/1590665539596.png)
 
-
-
 登录状态时，在浏览器中连续访问：
 
 http://cart.gmall.com?skuId=31&count=2
@@ -1689,8 +1602,6 @@ mysql中已登录购物车信息：
 
 ![1590665736078](assets/1590665736078.png)
 
-
-
 在浏览器中访问：http://cart.gmall.com/cart.html
 
 redis中的数据已合并，并把未登录状态的购物车删除
@@ -1703,8 +1614,6 @@ redis中的数据已合并，并把未登录状态的购物车删除
 
 ![1590666000186](assets/1590666000186.png)
 
-
-
 ### 5.1.5. 加入页面联调
 
 改造CartController中的queryCarts方法：
@@ -1713,10 +1622,10 @@ redis中的数据已合并，并把未登录状态的购物车删除
 @GetMapping("cart.html")
 public String queryCarts(Model model){
 
-    List<Cart> carts = this.cartService.queryCarts();
-    model.addAttribute("carts", carts);
-    return "cart";
-}
+        List<Cart> carts=this.cartService.queryCarts();
+        model.addAttribute("carts",carts);
+        return"cart";
+        }
 ```
 
 接下来看cart.html页面:
@@ -1734,14 +1643,14 @@ new Vue({
         carts: [[${carts}]],
         discount: 0
     },
-    mounted(){
+    mounted() {
         this.carts.forEach(cart => cart.saleAttrs = JSON.parse(cart.saleAttrs));
     },
     computed: {
-        totalCount(){
+        totalCount() {
             return this.carts.reduce((a, b) => a + b.count, 0)
         },
-        totalMoney(){
+        totalMoney() {
             return this.carts.reduce((a, b) => a + b.count * b.price, 0)
         }
     }
@@ -1751,8 +1660,6 @@ new Vue({
 渲染效果：
 
 ![1590670196010](assets/1590670196010.png)
-
-
 
 ## 5.2. 修改商品数量
 
@@ -1766,8 +1673,6 @@ new Vue({
 
 - 响应数据：`ResponseVo<Object>`
 
-
-
 > CartController
 
 ```java
@@ -1775,61 +1680,59 @@ new Vue({
 @ResponseBody
 public ResponseVo<Object> updateNum(@RequestBody Cart cart){
 
-    this.cartService.updateNum(cart);
-    return ResponseVo.ok();
-}
+        this.cartService.updateNum(cart);
+        return ResponseVo.ok();
+        }
 ```
 
 > CartService
 
 ```java
-public void updateNum(Cart cart) {
+public void updateNum(Cart cart){
 
-    // 获取外层map的key
-    String userId = this.getUserId();
-    String key = KEY_PREFIX + userId;
+        // 获取外层map的key
+        String userId=this.getUserId();
+        String key=KEY_PREFIX+userId;
 
-    BoundHashOperations<String, Object, Object> hashOps = this.redisTemplate.boundHashOps(key);
+        BoundHashOperations<String, Object, Object> hashOps=this.redisTemplate.boundHashOps(key);
 
-    // 判断该用户的购物车中是否包含该商品
-    if (hashOps.hasKey(cart.getSkuId().toString())) {
-        String cartJson = hashOps.get(cart.getSkuId().toString()).toString();
-        BigDecimal count = cart.getCount();
-        cart = JSON.parseObject(cartJson, Cart.class);
+        // 判断该用户的购物车中是否包含该商品
+        if(hashOps.hasKey(cart.getSkuId().toString())){
+        String cartJson=hashOps.get(cart.getSkuId().toString()).toString();
+        BigDecimal count=cart.getCount();
+        cart=JSON.parseObject(cartJson,Cart.class);
         cart.setCount(count);
         this.cartAsyncService.updateCartByUserIdAndSkuId(cart);
-        hashOps.put(cart.getSkuId().toString(), JSON.toJSONString(cart));
-    }
-}
+        hashOps.put(cart.getSkuId().toString(),JSON.toJSONString(cart));
+        }
+        }
 ```
 
 > cart.html
 
 ```java
-methods: {
-    incr(cart){
-        let count = cart.count + 1;
-        axios.post('http://cart.gmall.com/updateNum', {skuId: cart.skuId, count: count}).then(({data})=>{
-            if (data.code === 0) {
-                cart.count++;
-            }
+methods:{
+        incr(cart){
+        let count=cart.count+1;
+        axios.post('http://cart.gmall.com/updateNum',{skuId:cart.skuId,count:count}).then(({data})=>{
+        if(data.code===0){
+        cart.count++;
+        }
         })
-    },
-    decr(cart){
-        let count = cart.count - 1;
-        axios.post('http://cart.gmall.com/updateNum', {skuId: cart.skuId, count: count}).then(({data})=>{
-            if (data.code === 0) {
-                cart.count--;
-            }
+        },
+        decr(cart){
+        let count=cart.count-1;
+        axios.post('http://cart.gmall.com/updateNum',{skuId:cart.skuId,count:count}).then(({data})=>{
+        if(data.code===0){
+        cart.count--;
+        }
         })
-    },
-    changeNum(cart){
-        axios.post('http://cart.gmall.com/updateNum', {skuId: cart.skuId, count: cart.count})
-    }
-}
+        },
+        changeNum(cart){
+        axios.post('http://cart.gmall.com/updateNum',{skuId:cart.skuId,count:cart.count})
+        }
+        }
 ```
-
-
 
 ## 5.3. 删除购物车
 
@@ -1851,42 +1754,36 @@ methods: {
 @ResponseBody
 public ResponseVo<Object> deleteCart(@RequestParam("skuId")Long skuId){
 
-    this.cartService.deleteCart(skuId);
-    return ResponseVo.ok();
-}
+        this.cartService.deleteCart(skuId);
+        return ResponseVo.ok();
+        }
 ```
-
-
 
 > CartService
 
 ```java
-public void deleteCart(Long skuId) {
-    // 获取外层map的key
-    String userId = this.getUserId();
-    String key = KEY_PREFIX + userId;
+public void deleteCart(Long skuId){
+        // 获取外层map的key
+        String userId=this.getUserId();
+        String key=KEY_PREFIX+userId;
 
-    BoundHashOperations<String, Object, Object> hashOps = this.redisTemplate.boundHashOps(key);
+        BoundHashOperations<String, Object, Object> hashOps=this.redisTemplate.boundHashOps(key);
 
-    if (hashOps.hasKey(skuId.toString())) {
-        this.cartAsyncService.deleteByUserIdAndSkuId(userId, skuId);
+        if(hashOps.hasKey(skuId.toString())){
+        this.cartAsyncService.deleteByUserIdAndSkuId(userId,skuId);
         hashOps.delete(skuId.toString());
-    }
-}
+        }
+        }
 ```
-
-
 
 > CartAsyncService
 
 ```java
 @Async
-public void deleteByUserIdAndSkuId(String userKey, Long skuId){
-    this.cartMapper.delete(new UpdateWrapper<Cart>().eq("user_id", userKey).eq("sku_id", skuId));
-}
+public void deleteByUserIdAndSkuId(String userKey,Long skuId){
+        this.cartMapper.delete(new UpdateWrapper<Cart>().eq("user_id",userKey).eq("sku_id",skuId));
+        }
 ```
-
-
 
 # 6. 购物车价格同步
 
@@ -1898,8 +1795,6 @@ public void deleteByUserIdAndSkuId(String userKey, Long skuId){
 
 1. 每次查询购物车从数据库查询当前价格（需要远程调用，影响系统并发能力）
 2. 商品修改后发送消息给购物车同步价格（推荐）
-
-
 
 pms-service微服务价格修改后，发送消息给购物车，购物车获取消息后，怎么进行价格的同步？
 
@@ -1916,8 +1811,6 @@ pms-service微服务价格修改后，发送消息给购物车，购物车获取
 
 那么查询购物车时，需要从redis中查询最新价格。
 
-
-
 ## 6.1. 改造新增购物车
 
 给Cart追加一个字段：currentPrice
@@ -1932,15 +1825,11 @@ pms-service微服务价格修改后，发送消息给购物车，购物车获取
 
 ![1590755961788](assets/1590755961788.png)
 
-
-
 ## 6.2. 改造查询购物车
 
 ![1590756256814](assets/1590756256814.png)
 
 ![1590756328931](assets/1590756328931.png)
-
-
 
 ## 6.3. 修改时的价格同步
 

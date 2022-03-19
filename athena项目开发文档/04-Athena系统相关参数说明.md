@@ -1,6 +1,7 @@
 # Athena系统相关参数说明
 
 ## 项目的软件依赖版本
+
 ```shell
 #Springboot的版本
 
@@ -38,12 +39,8 @@
 
 ```
 
-
-
-
-
-
 ## 项目相关参数
+
 - QPS指标
 - TPS指标
 - mysql的数据量
@@ -55,8 +52,7 @@
 - Nacos集群的数量
 - 微服务的数量
 
-
-
 博文参考
 **springcloud与nacos的需要的版本的适配问题**
+
 - https://www.cnblogs.com/joshua317/p/15302934.html

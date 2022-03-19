@@ -16,25 +16,31 @@ import java.util.Map;
 
 public class OrderConfirmVo {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     /** 会员收获地址列表 **/
-    List<MemberAddressVo> memberAddressVos;
+            List<MemberAddressVo> memberAddressVos;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     /** 所有选中的购物项 **/
-    List<OrderItemVo> items;
-
-    /** 发票记录 **/
-    @Getter @Setter
+            List<OrderItemVo> items;
+    @Getter
+    @Setter
+    Map<Long, Boolean> stocks;
+    /**
+     * 发票记录
+     **/
+    @Getter
+    @Setter
     /** 优惠券（会员积分） **/
     private Integer integration;
-
-    /** 防止重复提交的令牌 **/
-    @Getter @Setter
+    /**
+     * 防止重复提交的令牌
+     **/
+    @Getter
+    @Setter
     private String orderToken;
-
-    @Getter @Setter
-    Map<Long,Boolean> stocks;
 
     public Integer getCount() {
         Integer count = 0;
@@ -46,8 +52,9 @@ public class OrderConfirmVo {
         return count;
     }
 
-
-    /** 订单总额 **/
+    /**
+     * 订单总额
+     **/
     //BigDecimal total;
     //计算订单总额
     public BigDecimal getTotal() {
@@ -63,8 +70,9 @@ public class OrderConfirmVo {
         return totalNum;
     }
 
-
-    /** 应付价格 **/
+    /**
+     * 应付价格
+     **/
     //BigDecimal payPrice;
     public BigDecimal getPayPrice() {
         return getTotal();

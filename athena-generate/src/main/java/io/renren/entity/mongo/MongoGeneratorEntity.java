@@ -1,6 +1,5 @@
 package io.renren.entity.mongo;
 
-
 import io.renren.entity.TableEntity;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public class MongoGeneratorEntity {
     /***主类的列名信息**/
     private List<Map<String, String>> columns;
 
-
     public TableEntity toTableEntity() {
         TableEntity tableEntity = new TableEntity();
         Map<String, String> tableInfo = this.tableInfo;
@@ -27,7 +25,6 @@ public class MongoGeneratorEntity {
         tableEntity.setComments("");
         return tableEntity;
     }
-
 
     public Map<String, String> getTableInfo() {
         return tableInfo;

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 优惠券领取历史记录
  *
@@ -34,7 +33,6 @@ public class CouponHistoryController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

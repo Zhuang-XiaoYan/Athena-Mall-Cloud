@@ -15,8 +15,6 @@ import com.atguigu.gulimall.product.service.CommentReplayService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
-
-
 /**
  * 商品评价回复关系
  *
@@ -35,20 +33,19 @@ public class CommentReplayController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:commentreplay:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = commentReplayService.queryPage(params);
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:commentreplay:info")
-    public R info(@PathVariable("id") Long id){
-		CommentReplayEntity commentReplay = commentReplayService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        CommentReplayEntity commentReplay = commentReplayService.getById(id);
 
         return R.ok().put("commentReplay", commentReplay);
     }
@@ -58,8 +55,8 @@ public class CommentReplayController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:commentreplay:save")
-    public R save(@RequestBody CommentReplayEntity commentReplay){
-		commentReplayService.save(commentReplay);
+    public R save(@RequestBody CommentReplayEntity commentReplay) {
+        commentReplayService.save(commentReplay);
 
         return R.ok();
     }
@@ -69,8 +66,8 @@ public class CommentReplayController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:commentreplay:update")
-    public R update(@RequestBody CommentReplayEntity commentReplay){
-		commentReplayService.updateById(commentReplay);
+    public R update(@RequestBody CommentReplayEntity commentReplay) {
+        commentReplayService.updateById(commentReplay);
 
         return R.ok();
     }
@@ -80,8 +77,8 @@ public class CommentReplayController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:commentreplay:delete")
-    public R delete(@RequestBody Long[] ids){
-		commentReplayService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        commentReplayService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

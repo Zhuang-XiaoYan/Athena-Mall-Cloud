@@ -20,7 +20,6 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 public class MyThreadConfig {
 
-
     @Bean
     public ThreadPoolExecutor executor(ThreadPoolConfigProperties pool) {
         return new ThreadPoolExecutor(

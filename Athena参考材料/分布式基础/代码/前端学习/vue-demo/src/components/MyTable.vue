@@ -1,9 +1,9 @@
 <template>
   <div>
     <el-table :data="tableData">
-      <el-table-column prop="date" label="日期" width="140"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+      <el-table-column label="日期" prop="date" width="140"></el-table-column>
+      <el-table-column label="姓名" prop="name" width="120"></el-table-column>
+      <el-table-column label="地址" prop="address"></el-table-column>
     </el-table>
   </div>
 </template>
@@ -34,16 +34,25 @@ export default {
   //方法集合
   methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
-  beforeMount() {}, //生命周期 - 挂载之前
-  beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
-  beforeDestroy() {}, //生命周期 - 销毁之前
-  destroyed() {}, //生命周期 - 销毁完成
-  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
+  mounted() {
+  },
+  beforeCreate() {
+  }, //生命周期 - 创建之前
+  beforeMount() {
+  }, //生命周期 - 挂载之前
+  beforeUpdate() {
+  }, //生命周期 - 更新之前
+  updated() {
+  }, //生命周期 - 更新之后
+  beforeDestroy() {
+  }, //生命周期 - 销毁之前
+  destroyed() {
+  }, //生命周期 - 销毁完成
+  activated() {
+  } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
 <style scoped>

@@ -2,7 +2,7 @@
   <div class="mod-config">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item>
-        <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
+        <el-input v-model="dataForm.key" clearable placeholder="参数名"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
@@ -10,89 +10,92 @@
           v-if="isAuth('product:brand:save')"
           type="primary"
           @click="addOrUpdateHandle()"
-        >新增</el-button>
+        >新增
+        </el-button>
         <el-button
           v-if="isAuth('product:brand:delete')"
+          :disabled="dataListSelections.length <= 0"
           type="danger"
           @click="deleteHandle()"
-          :disabled="dataListSelections.length <= 0"
-        >批量删除</el-button>
+        >批量删除
+        </el-button>
       </el-form-item>
     </el-form>
     <el-table
+      v-loading="dataListLoading"
       :data="dataList"
       border
-      v-loading="dataListLoading"
-      @selection-change="selectionChangeHandle"
       style="width: 100%;"
+      @selection-change="selectionChangeHandle"
     >
-      <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
-      <el-table-column prop="brandId" header-align="center" align="center" label="品牌id"></el-table-column>
-      <el-table-column prop="name" header-align="center" align="center" label="品牌名"></el-table-column>
-      <el-table-column prop="logo" header-align="center" align="center" label="品牌logo地址">
+      <el-table-column align="center" header-align="center" type="selection" width="50"></el-table-column>
+      <el-table-column align="center" header-align="center" label="品牌id" prop="brandId"></el-table-column>
+      <el-table-column align="center" header-align="center" label="品牌名" prop="name"></el-table-column>
+      <el-table-column align="center" header-align="center" label="品牌logo地址" prop="logo">
         <template slot-scope="scope">
           <!-- <el-image
               style="width: 100px; height: 80px"
               :src="scope.row.logo"
           fit="fill"></el-image>-->
-          <img :src="scope.row.logo" style="width: 100px; height: 80px" />
+          <img :src="scope.row.logo" style="width: 100px; height: 80px"/>
         </template>
       </el-table-column>
-      <el-table-column prop="descript" header-align="center" align="center" label="介绍"></el-table-column>
-      <el-table-column prop="showStatus" header-align="center" align="center" label="显示状态">
+      <el-table-column align="center" header-align="center" label="介绍" prop="descript"></el-table-column>
+      <el-table-column align="center" header-align="center" label="显示状态" prop="showStatus">
         <template slot-scope="scope">
           <el-switch
             v-model="scope.row.showStatus"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
             :active-value="1"
             :inactive-value="0"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
             @change="updateBrandStatus(scope.row)"
           ></el-switch>
         </template>
       </el-table-column>
-      <el-table-column prop="firstLetter" header-align="center" align="center" label="检索首字母"></el-table-column>
-      <el-table-column prop="sort" header-align="center" align="center" label="排序"></el-table-column>
-      <el-table-column fixed="right" header-align="center" align="center" width="250" label="操作">
+      <el-table-column align="center" header-align="center" label="检索首字母" prop="firstLetter"></el-table-column>
+      <el-table-column align="center" header-align="center" label="排序" prop="sort"></el-table-column>
+      <el-table-column align="center" fixed="right" header-align="center" label="操作" width="250">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="updateCatelogHandle(scope.row.brandId)">关联分类</el-button>
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.brandId)">修改</el-button>
-          <el-button type="text" size="small" @click="deleteHandle(scope.row.brandId)">删除</el-button>
+          <el-button size="small" type="text" @click="updateCatelogHandle(scope.row.brandId)">关联分类</el-button>
+          <el-button size="small" type="text" @click="addOrUpdateHandle(scope.row.brandId)">修改</el-button>
+          <el-button size="small" type="text" @click="deleteHandle(scope.row.brandId)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-      @size-change="sizeChangeHandle"
-      @current-change="currentChangeHandle"
       :current-page="pageIndex"
-      :page-sizes="[10, 20, 50, 100]"
       :page-size="pageSize"
+      :page-sizes="[10, 20, 50, 100]"
       :total="totalPage"
       layout="total, sizes, prev, pager, next, jumper"
+      @size-change="sizeChangeHandle"
+      @current-change="currentChangeHandle"
     ></el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
 
-    <el-dialog title="关联分类" :visible.sync="cateRelationDialogVisible" width="30%">
-      <el-popover placement="right-end" v-model="popCatelogSelectVisible">
+    <el-dialog :visible.sync="cateRelationDialogVisible" title="关联分类" width="30%">
+      <el-popover v-model="popCatelogSelectVisible" placement="right-end">
         <category-cascader :catelogPath.sync="catelogPath"></category-cascader>
         <div style="text-align: right; margin: 0">
           <el-button size="mini" type="text" @click="popCatelogSelectVisible = false">取消</el-button>
-          <el-button type="primary" size="mini" @click="addCatelogSelect">确定</el-button>
+          <el-button size="mini" type="primary" @click="addCatelogSelect">确定</el-button>
         </div>
         <el-button slot="reference">新增关联</el-button>
       </el-popover>
       <el-table :data="cateRelationTableData" style="width: 100%">
-        <el-table-column prop="id" label="#"></el-table-column>
-        <el-table-column prop="brandName" label="品牌名"></el-table-column>
-        <el-table-column prop="catelogName" label="分类名"></el-table-column>
-        <el-table-column fixed="right" header-align="center" align="center" label="操作">
+        <el-table-column label="#" prop="id"></el-table-column>
+        <el-table-column label="品牌名" prop="brandName"></el-table-column>
+        <el-table-column label="分类名" prop="catelogName"></el-table-column>
+        <el-table-column align="center" fixed="right" header-align="center" label="操作">
           <template slot-scope="scope">
             <el-button
-              type="text"
               size="small"
+              type="text"
               @click="deleteCateRelationHandle(scope.row.id,scope.row.brandId)"
-            >移除</el-button>
+            >移除
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -107,6 +110,7 @@
 <script>
 import AddOrUpdate from "./brand-add-or-update";
 import CategoryCascader from "../common/category-cascader";
+
 export default {
   data() {
     return {
@@ -137,12 +141,15 @@ export default {
   methods: {
     addCatelogSelect() {
       //{"brandId":1,"catelogId":2}
-      this.popCatelogSelectVisible =false;
+      this.popCatelogSelectVisible = false;
       this.$http({
         url: this.$http.adornUrl("/product/categorybrandrelation/save"),
         method: "post",
-        data: this.$http.adornData({brandId:this.brandId,catelogId:this.catelogPath[this.catelogPath.length-1]}, false)
-      }).then(({ data }) => {
+        data: this.$http.adornData({
+          brandId: this.brandId,
+          catelogId: this.catelogPath[this.catelogPath.length - 1]
+        }, false)
+      }).then(({data}) => {
         this.getCateRelation();
       });
     },
@@ -151,7 +158,7 @@ export default {
         url: this.$http.adornUrl("/product/categorybrandrelation/delete"),
         method: "post",
         data: this.$http.adornData([id], false)
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.getCateRelation();
       });
     },
@@ -167,7 +174,7 @@ export default {
         params: this.$http.adornParams({
           brandId: this.brandId
         })
-      }).then(({ data }) => {
+      }).then(({data}) => {
         this.cateRelationTableData = data.data;
       });
     },
@@ -182,7 +189,7 @@ export default {
           limit: this.pageSize,
           key: this.dataForm.key
         })
-      }).then(({ data }) => {
+      }).then(({data}) => {
         if (data && data.code === 0) {
           this.dataList = data.page.list;
           this.totalPage = data.page.totalCount;
@@ -195,13 +202,13 @@ export default {
     },
     updateBrandStatus(data) {
       console.log("最新信息", data);
-      let { brandId, showStatus } = data;
+      let {brandId, showStatus} = data;
       //发送请求修改状态
       this.$http({
         url: this.$http.adornUrl("/product/brand/update/status"),
         method: "post",
-        data: this.$http.adornData({ brandId, showStatus }, false)
-      }).then(({ data }) => {
+        data: this.$http.adornData({brandId, showStatus}, false)
+      }).then(({data}) => {
         this.$message({
           type: "success",
           message: "状态更新成功"
@@ -235,8 +242,8 @@ export default {
       var ids = id
         ? [id]
         : this.dataListSelections.map(item => {
-            return item.brandId;
-          });
+          return item.brandId;
+        });
       this.$confirm(
         `确定对[id=${ids.join(",")}]进行[${id ? "删除" : "批量删除"}]操作?`,
         "提示",
@@ -250,7 +257,7 @@ export default {
           url: this.$http.adornUrl("/product/brand/delete"),
           method: "post",
           data: this.$http.adornData(ids, false)
-        }).then(({ data }) => {
+        }).then(({data}) => {
           if (data && data.code === 0) {
             this.$message({
               message: "操作成功",

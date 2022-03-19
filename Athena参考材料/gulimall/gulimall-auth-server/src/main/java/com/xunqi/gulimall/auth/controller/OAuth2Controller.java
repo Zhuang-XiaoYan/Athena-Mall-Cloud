@@ -35,16 +35,15 @@ public class OAuth2Controller {
     @Autowired
     private MemberFeignService memberFeignService;
 
-
     @GetMapping(value = "/oauth2.0/weibo/success")
     public String weibo(@RequestParam("code") String code, HttpSession session) throws Exception {
 
         Map<String, String> map = new HashMap<>();
-        map.put("client_id","2077705774");
-        map.put("client_secret","40af02bd1c7e435ba6a6e9cd3bf799fd");
-        map.put("grant_type","authorization_code");
-        map.put("redirect_uri","http://auth.gulimall.com/oauth2.0/weibo/success");
-        map.put("code",code);
+        map.put("client_id", "2077705774");
+        map.put("client_secret", "40af02bd1c7e435ba6a6e9cd3bf799fd");
+        map.put("grant_type", "authorization_code");
+        map.put("redirect_uri", "http://auth.gulimall.com/oauth2.0/weibo/success");
+        map.put("code", code);
 
         //1、根据用户授权返回的code换取access_token
         HttpResponse response = HttpUtils.doPost("https://api.weibo.com", "/oauth2/access_token", "post", new HashMap<>(), map, new HashMap<>());
@@ -63,19 +62,20 @@ public class OAuth2Controller {
             //调用远程服务
             R oauthLogin = memberFeignService.oauthLogin(socialUser);
             if (oauthLogin.getCode() == 0) {
-                MemberResponseVo data = oauthLogin.getData("data", new TypeReference<MemberResponseVo>() {});
-                log.info("登录成功：用户信息：{}",data.toString());
+                MemberResponseVo data = oauthLogin.getData("data", new TypeReference<MemberResponseVo>() {
+                });
+                log.info("登录成功：用户信息：{}", data.toString());
 
                 //1、第一次使用session，命令浏览器保存卡号，JSESSIONID这个cookie
                 //以后浏览器访问哪个网站就会带上这个网站的cookie
                 //TODO 1、默认发的令牌。当前域（解决子域session共享问题）
                 //TODO 2、使用JSON的序列化方式来序列化对象到Redis中
-                session.setAttribute(LOGIN_USER,data);
-                
+                session.setAttribute(LOGIN_USER, data);
+
                 //2、登录成功跳回首页
                 return "redirect:http://gulimall.com";
             } else {
-                
+
                 return "redirect:http://auth.gulimall.com/login.html";
             }
 

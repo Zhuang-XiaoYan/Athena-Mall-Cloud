@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Map;
 
-
 /**
  * 商品满减信息
  *
@@ -34,7 +33,6 @@ public class SkuFullReductionController {
 
         return R.ok().put("page", page);
     }
-
 
     /**
      * 信息

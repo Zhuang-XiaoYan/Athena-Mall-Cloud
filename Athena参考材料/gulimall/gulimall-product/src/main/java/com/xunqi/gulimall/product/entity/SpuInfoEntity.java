@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * spu信息
- * 
+ *
  * @author 夏沫止水
  * @email HeJieLin@gulimall.com
  * @date 2020-05-22 19:00:18
@@ -19,51 +19,51 @@ import java.util.Date;
 @Data
 @TableName("pms_spu_info")
 public class SpuInfoEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 商品id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * 商品名称
-	 */
-	private String spuName;
-	/**
-	 * 商品描述
-	 */
-	private String spuDescription;
-	/**
-	 * 所属分类id
-	 */
-	private Long catalogId;
-	/**
-	 * 品牌id
-	 */
-	private Long brandId;
+    /**
+     * 商品id
+     */
+    @TableId
+    private Long id;
+    /**
+     * 商品名称
+     */
+    private String spuName;
+    /**
+     * 商品描述
+     */
+    private String spuDescription;
+    /**
+     * 所属分类id
+     */
+    private Long catalogId;
+    /**
+     * 品牌id
+     */
+    private Long brandId;
 
-	/**
-	 * 品牌名
-	 */
-	@TableField(exist = false)
-	private String brandName;
+    /**
+     * 品牌名
+     */
+    @TableField(exist = false)
+    private String brandName;
 
-	/**
-	 * 
-	 */
-	private BigDecimal weight;
-	/**
-	 * 上架状态[0 - 下架，1 - 上架]
-	 */
-	private Integer publishStatus;
-	/**
-	 * 
-	 */
-	private Date createTime;
-	/**
-	 * 
-	 */
-	private Date updateTime;
+    /**
+     *
+     */
+    private BigDecimal weight;
+    /**
+     * 上架状态[0 - 下架，1 - 上架]
+     */
+    private Integer publishStatus;
+    /**
+     *
+     */
+    private Date createTime;
+    /**
+     *
+     */
+    private Date updateTime;
 
 }

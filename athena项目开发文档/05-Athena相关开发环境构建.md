@@ -6,13 +6,13 @@
 
 ## KubeSphere容器平台构建
 
-KubeSphere 愿景是打造一个以 Kubernetes 为内核的云原生分布式操作系统，
-它的架构可以非常方便地使第三方应用与云原生生态组件进行即插即用（plug-and-play）的集成，
+KubeSphere 愿景是打造一个以 Kubernetes 为内核的云原生分布式操作系统， 它的架构可以非常方便地使第三方应用与云原生生态组件进行即插即用（plug-and-play）的集成，
 支持云原生应用在多云与多集群的统一分发和运维管理。
 
 ![img.png](images/KubeSphere.png)
 
 ### KubeSphere单节点的机器准备
+
 ```shell
 # 机器最低要求：
  
@@ -72,6 +72,7 @@ yum install -y conntrack
 ./kk upgrade [--with-kubernetes version] [--with-kubesphere version] 
 
 ```
+
 ![img.png](images/kubekey_intsall.png)
 
 ### KubeSphere系统测试
@@ -79,24 +80,18 @@ yum install -y conntrack
 ![img.png](images/kubeSphere_controller.png)
 ![img.png](images/kubeSphere_account.png)
 
-
 ## Athena系统基础镜像构建
 
-由于个人资源有限，因此在构建整体系统采用的单节点构建KubeSphere容器平台。
-在后期的项目真实的上线的时候可能多集群架构来实现的项目的安装与部署工作。同时后期本人将介绍相关的实战内容。
+由于个人资源有限，因此在构建整体系统采用的单节点构建KubeSphere容器平台。 在后期的项目真实的上线的时候可能多集群架构来实现的项目的安装与部署工作。同时后期本人将介绍相关的实战内容。
 
-请确保已启用 OpenPitrix 系统。
-您需要创建一个企业空间、一个项目和一个用户帐户 (project-regular) 供本教程操作使用。该帐户需要是平台普通用户，
-并邀请至项目中赋予 operator 角色作为项目操作员。以project-regular 身份登录控制台，
-在企业空间 demo-workspace 中的 demo-project 项目中进行操作。
-
+请确保已启用 OpenPitrix 系统。 您需要创建一个企业空间、一个项目和一个用户帐户 (project-regular) 供本教程操作使用。该帐户需要是平台普通用户， 并邀请至项目中赋予 operator
+角色作为项目操作员。以project-regular 身份登录控制台， 在企业空间 demo-workspace 中的 demo-project 项目中进行操作。
 
 ### Harobr仓库的部署构建
 
 Harobr是一个开源仓库，通过各种策略和基于角色的访问控制来保护制品，确保镜像经过扫描且没有漏洞，并对镜像签名使其受信。
 
-在 demo-project 项目的概览页面，点击左上角的应用商店。找到 Harbor，点击应用信息页面上的安装。
-设置名称并选择应用版本。请确保将 Harbor 部署在 demo-project 中，点击下一步。
+在 demo-project 项目的概览页面，点击左上角的应用商店。找到 Harbor，点击应用信息页面上的安装。 设置名称并选择应用版本。请确保将 Harbor 部署在 demo-project 中，点击下一步。
 
 **从应用商店中部署 Harbor**
 
@@ -158,8 +153,8 @@ Harbor常见问题
 
 **如何启用 HTTP 登录？**
 
-在步骤 1 中将 tls.enabled 设置为 false。externalURL 的协议必须和 expose.nodePort.ports 相同。
-如果您使用 Docker 登录，请在 daemon.json 中将 externalURL 设置为 insecure-registries 其中之一，然后重新加载 Docker。
+在步骤 1 中将 tls.enabled 设置为 false。externalURL 的协议必须和 expose.nodePort.ports 相同。 如果您使用 Docker 登录，请在 daemon.json 中将
+externalURL 设置为 insecure-registries 其中之一，然后重新加载 Docker。
 
 **如何启用 HTTPS 登录？**
 
@@ -174,11 +169,12 @@ b. 使用公共 SSL。
 - 将证书添加为密钥 (Secret)。
 - 在步骤 1 中将配置文件中的 tls.enabled 设置为 true，并对应编辑 externalURL。
 - 编辑 tls.secretName。
-- 
+-
+
 ### Nacos部署k8s
 
-Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。
-Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
+Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。 Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos
+是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
 
 ```shell
 # docker拉取镜像
@@ -211,8 +207,7 @@ docker image push registry-host:5000/myadmin/rhel-httpd:latest
  
 ```
 
-为了解决系统服务注册中心的高可用服务问题，在运行过程中会保存数据或状态。利用的Nacos的来构建Nacos集群的构建。
-登录 KubeSphere 控制台，在已创建的项目下选择 工作负载 → 有状态副本集，进入列表页。
+为了解决系统服务注册中心的高可用服务问题，在运行过程中会保存数据或状态。利用的Nacos的来构建Nacos集群的构建。 登录 KubeSphere 控制台，在已创建的项目下选择 工作负载 → 有状态副本集，进入列表页。
 
 ![img.png](images/nacos.png)
 
@@ -253,7 +248,7 @@ Mysql是一个开源的关系型数据库管理系统 (RDBMS)，它基于最常�
 - 您可以在端口区域查看暴露的端口。该端口号和公网 IP 地址将在下一步用于访问 MySQL 数据库。
 
 - 您需要使用 MySQL Client 或第三方应用（例如 SQLPro Studio）才能访问 MySQL 数据库。以下演示如何使用 SQLPro Studio 访问 MySQL 数据库
- 
+
 ![img.png](images/Mysql.png)
 
 ### Redis的部署
@@ -282,10 +277,9 @@ Redis是一个开源的（遵循 BSD 协议）、内存中的 (in-memory) 数据
 
 - 在弹出窗口的终端中运行 redis-cli 命令来使用该应用。
 
-
 ### MQ的部署
-RabbitMQ是部署最广泛的开源消息代理。它轻量且易于在本地和云上部署，支持多种消息协议。
-RabbitMQ 可在分布和联邦的配置中部署，以满足大规模和高可用性需求。
+
+RabbitMQ是部署最广泛的开源消息代理。它轻量且易于在本地和云上部署，支持多种消息协议。 RabbitMQ 可在分布和联邦的配置中部署，以满足大规模和高可用性需求。
 
 **从应用商店部署 RabbitMQ**
 
@@ -318,10 +312,11 @@ RabbitMQ 可在分布和联邦的配置中部署，以满足大规模和高可�
 ![img.png](images/MQ.png)
 
 ### Elasticsearch的部署
+
 **从应用商店部署elasticsearch**
 
-Elasticsearch 是一个分布式的、开源的搜索分析引擎，支持各种数据类型，包括文本、数字、地理、结构化、非结构化。
-Elasticsearch 是 Elastic 产品栈的核心，Elastic 产品栈是个开源工具集合，用于数据接收、存储、分析、可视化。
+Elasticsearch 是一个分布式的、开源的搜索分析引擎，支持各种数据类型，包括文本、数字、地理、结构化、非结构化。 Elasticsearch 是 Elastic 产品栈的核心，Elastic
+产品栈是个开源工具集合，用于数据接收、存储、分析、可视化。
 
 - 在 demo-project 的概览页面，点击左上角的应用商店。
 

@@ -49,7 +49,6 @@ public class ProductSaveServiceImpl implements ProductSaveService {
             bulkRequest.add(indexRequest);
         }
 
-
         BulkResponse bulk = esRestClient.bulk(bulkRequest, GulimallElasticSearchConfig.COMMON_OPTIONS);
 
         //TODO 如果批量错误
@@ -59,7 +58,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
             return item.getId();
         }).collect(Collectors.toList());
 
-        log.info("商品上架完成：{}",collect);
+        log.info("商品上架完成：{}", collect);
 
         return hasFailures;
     }

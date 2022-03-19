@@ -22,25 +22,15 @@ import java.util.stream.Collectors;
  * @author: gxz  514190950@qq.com
  **/
 public class MongoScanner {
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
-    private MongoCollection<Document> collection;
-
-    final private int scanCount;
-
-    private List<String> colNames;
-
-    private MongoDefinition mongoDefinition;
-
-
     private final static int[] TYPE = {3, 16, 18, 8, 9, 2, 1};
-
     private final static int ARRAY_TYPE = 4;
-
     private final static int MAX_COUNT = 200000;
-
     private final static int DEFAULT_COUNT = 100000;
-
+    final private int scanCount;
+    private Logger logger = LoggerFactory.getLogger(getClass());
+    private MongoCollection<Document> collection;
+    private List<String> colNames;
+    private MongoDefinition mongoDefinition;
 
     public MongoScanner(MongoCollection<Document> collection) {
         this.collection = collection;
@@ -62,7 +52,6 @@ public class MongoScanner {
     public MongoDefinition getProduct() {
         return mongoDefinition;
     }
-
 
     /**
      * 功能描述:分组发送聚合函数(获得一级属性名)
@@ -100,7 +89,6 @@ public class MongoScanner {
 
     }
 
-
     /**
      * 如果一个文档是对象类型  获得这个属性的下一级的属性名的集合
      * 例子: user:{name:"张三",age:12}  传入user  返回[name,age]
@@ -132,7 +120,6 @@ public class MongoScanner {
         logger.info("解析" + parameterName + "有" + names.size() + "个子属性");
         return names;
     }
-
 
     /**
      * 功能描述:提供属性名 解析属性类型
@@ -187,7 +174,6 @@ public class MongoScanner {
         return result;
     }
 
-
     private List<MongoDefinition> produceChildList(String parentName) {
         Set<String> nextParameterNames = this.getNextParameterNames(parentName);
         List<String> strings = new ArrayList<>(nextParameterNames);
@@ -202,7 +188,6 @@ public class MongoScanner {
         a.addAll(b);
         return a;
     }
-
 
     /**
      * 功能描述:解析这个集合的列名  用ForkJoin框架实现
@@ -232,12 +217,17 @@ public class MongoScanner {
         return result.setChild(invoke).setPropertyName(this.collection.getNamespace().getCollectionName());
     }
 
+    public <T> List<T> mergeList(List<T> list1, List<T> list2) {
+        list1.addAll(list2);
+        return list1;
+    }
+
     /**
      * 功能描述:forkJoin多线程框架的实现  通过业务拆分解析类型
      */
     class ForkJoinProcessType extends RecursiveTask<List<MongoDefinition>> {
-        List<String> names;
         private final int THRESHOLD = 6;
+        List<String> names;
 
         ForkJoinProcessType(List<String> names) {
             this.names = names;
@@ -270,9 +260,9 @@ public class MongoScanner {
      * 功能描述:forkJoin多线程框架的实现  通过业务拆分获得属性名
      */
     class ForkJoinGetProcessName extends RecursiveTask<List<String>> {
+        private final int THRESHOLD = 5000;
         private int begin; //查询开始位置
         private int end;
-        private final int THRESHOLD = 5000;
 
         ForkJoinGetProcessName(int begin, int end) {
             this.begin = begin;
@@ -293,9 +283,5 @@ public class MongoScanner {
                 return distinctAndJoin(pre.join(), next.join()); //去重合并
             }
         }
-    }
-    public  <T> List<T> mergeList(List<T> list1, List<T> list2){
-        list1.addAll(list2);
-        return list1;
     }
 }
