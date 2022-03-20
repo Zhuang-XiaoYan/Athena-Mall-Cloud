@@ -102,8 +102,7 @@ Fast DFS系统有三个角色：跟踪服务器(Tracker Server)、存储服务�
     - 不支持POSIX通用接口访问，通用性较低
     - 只能通过专有API对文件进行存取访问,不支持 POSIX接口方式，不能mount使用
 
-
-
+    
 ## 2.1 文件的上传原理
 
 Storage server会连接集群中所有的Tracker server，定时向他们报告自己的状态，包括磁盘剩余空间、文件同步状况、文件上传下载次数等统计信息。
@@ -340,13 +339,15 @@ sh /usr/local/src/storage.sh
 ### Athena-SSO的的连接与下载与访问测试服务
 ![img.png](分布式文件存储/athena-oss服务.png)
 
-
-#基于原原生的Minio分布式存储解决方案
+#五、基于原原生的Minio分布式存储解决方案
 https://github.com/minio/minio
 
 MinIO是个高性能，云原生的对象存储。Github有近30K的Star。
 
-#DELL EMC存储解决方案
+#六、DELL EMC存储解决方案
+DELL EMC的数据的存储
+
+
 
 
 
