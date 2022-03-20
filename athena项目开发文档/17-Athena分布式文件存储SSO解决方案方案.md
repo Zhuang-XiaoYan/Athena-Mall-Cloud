@@ -251,9 +251,9 @@ echo hello i am zhuang xiaoyan , welcome to my gitee>a.txt
 
 到这里就表示Athena-SSO的FASTDFS文件存储单节点的服务构建已经构建完成了。后面将介绍的Athena-SSO的FASTDFS文件存储单节点的服务的；连接测试服务。
 
-#四、Athena-SSO的FASTDFS文件存储多集群服务构建
+# 四、Athena-SSO的FASTDFS文件存储多集群服务构建
 
-##4.1 构建的一个当前仅支持1个tracker，一组storage的部署
+## 4.1 构建的一个当前仅支持1个tracker，一组storage的部署
 
 ### 4.1.1 构建镜像并推送到私有仓库
 ```shell
@@ -339,12 +339,12 @@ sh /usr/local/src/storage.sh
 ### Athena-SSO的的连接与下载与访问测试服务
 ![img.png](分布式文件存储/athena-oss服务.png)
 
-#五、基于原原生的Minio分布式存储解决方案
+# 五、基于原原生的Minio分布式存储解决方案
 https://github.com/minio/minio
 
 MinIO是个高性能，云原生的对象存储。Github有近30K的Star。
 
-#六、DELL EMC存储解决方案
+# 六、DELL EMC存储解决方案
 DELL EMC的数据的存储
 
 
