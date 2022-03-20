@@ -10,15 +10,20 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>athena-common</module>
+        <module>athena-getway</module>
         <module>athena-admin</module>
+        <module>athena-generate</module>
         <module>athena-coupon</module>
         <module>athena-member</module>
         <module>athena-order</module>
         <module>athena-product</module>
         <module>athena-ware</module>
-        <module>athena-generate</module>
-        <module>athena-common</module>
-        <module>athena-getway</module>
         <module>athena-oss</module>
+        <module>athena-search</module>
+        <module>athena-pay</module>
+        <module>athena-sso</module>
+        <module>athena-sms</module>
+        <module>athena-ai</module>
     </modules>
 </project>
