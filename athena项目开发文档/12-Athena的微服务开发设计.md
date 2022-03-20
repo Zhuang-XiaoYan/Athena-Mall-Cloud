@@ -45,3 +45,39 @@
 ![img.png](images/RCS_success_login.png)
 
 ## athena-ware微服务设计
+
+
+## athena-oss 文件存储服务设计
+
+### athena-oss 单docker服务构建
+
+### athena-oss 多集群docker服务构建
+
+### athena-oss service 服务构建设计
+```shell
+# 创建tracker容器 
+
+docker run -ti -d --name trakcer --network=host -v /home/xjl/jiale/docker_data/fastdfs/tracker_data:/fastdfs/tracker/data  season/fastdfs tracker
+
+docker run -dti --network=host --name tracker -v /var/fdfs/tracker:/var/fdfs -v /etc/localtime:/etc/localtime delron/fastdfs tracker
+
+docker run -ti -d --name trakcer --network=host -v /home/xjl/jiale/docker_data/fastdfs/fdfs/trackerv
+```
+
+```shell
+# 创建tracker容器 
+
+docker run -tid --name storage -v /home/xjl/jiale/docker_data/fastdfs/storage_data:/fastdfs/storage/data -v /home/xjl/jiale/docker_data/fastdfs/store_path:/fastdfs/store_path --net=host -e TRACKER_SERVER:192.168.25.138:22122 -e GROUP_NAME=group1 season/fastdfs storage
+
+docker run -dti  --network=host --name storage -e TRACKER_SERVER=192.168.25.138:22122 -v /var/fdfs/storage:/var/fdfs  -v /etc/localtime:/etc/localtime  delron/fastdfs storage
+
+```
+
+
+### 虚拟机的进行的磁盘的扩展操作
+
+
+
+## athena system微服务的总结
+
+
