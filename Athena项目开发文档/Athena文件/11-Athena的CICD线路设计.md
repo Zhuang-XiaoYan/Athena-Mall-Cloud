@@ -22,6 +22,6 @@
 
 ## Athena的CICD系统监控设计
 
-### 利用kubesphere来来实现的系统的监控
+### 利用kubesphere来实现的系统的监控
 
-### 利用kubesphere来来实现的系统通知
+### 利用kubesphere来实现的系统通知
