@@ -19,7 +19,7 @@
 ## athena-vue微服务设计
 
 这是的人人开源的项目，做的很烂，但是为了完成的流程设计，还是用了。在使用的athena-vue的项目进行安装的时候在下载的时候会失败。
-![img.png](images/athena-vue-error.png)
+![img.png](../images/athena-vue-error.png)
 
 ```shell
 1、先删除 node_modules 文件夹
@@ -41,8 +41,8 @@
 
 ### 跨域网访问解决方案
 
-![img.png](images/RCS跨域访问请求.png)
-![img.png](images/RCS_success_login.png)
+![img.png](../images/RCS跨域访问请求.png)
+![img.png](../images/RCS_success_login.png)
 
 ## athena-ware微服务设计
 

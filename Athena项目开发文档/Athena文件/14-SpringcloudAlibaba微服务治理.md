@@ -18,11 +18,11 @@ Nacos文档:https://nacos.io/zh-cn/docs/deployment.html
 
 Nacos1.4.0下载地址:https://github.com/alibaba/nacos/releases/tag/1.4.0
 
-![img.png](./images/nacos_download.png)
+![img.png](../images/nacos_download.png)
 
 nacos1.4.0目录结构
 
-![img.png](./images/nacos_structure.png)
+![img.png](../images/nacos_structure.png)
 
 nacos1.4.0 Win10单机启动正确方式
 
@@ -35,19 +35,19 @@ nacos1.4.0 Win10单机启动正确方式
 - 2.然后输入命令startup.cmd -m standalone 这里是将nacos以单机模式运行
 ```
 
-![img.png](./images/nacos_start_up.png)
+![img.png](../images/nacos_start_up.png)
 
 如果启动看到如下，说明启动成功。
 
-![img.png](./images/nacos_standlone.png)
+![img.png](../images/nacos_standlone.png)
 
 然后在浏览器输入网址:http://IP:8848/nacos/index.html#/login, 用户名和密码默认都是nacos
 
-![img.png](./images/nacos_login.png)
+![img.png](../images/nacos_login.png)
 
 登录成功后是这个页面，到这里单机模式启动就结束了。
 
-![img.png](./images/nacos_admin.png)
+![img.png](../images/nacos_admin.png)
 
 ### Nacos在dockerz中部署
 
@@ -62,11 +62,11 @@ docker run -d -p 8848:8848 -e MODE=standalone \
 
 然后在浏览器输入网址:http://IP:8848/nacos/index.html#/login, 用户名和密码默认都是nacos
 
-![img.png](./images/nacos_login.png)
+![img.png](../images/nacos_login.png)
 
 登录成功后是这个页面，到这里单机模式启动就结束了。
 
-![img.png](./images/nacos_admin.png)
+![img.png](../images/nacos_admin.png)
 
 ### 远程调用与服务发现
 
@@ -107,10 +107,10 @@ mybatis-plus:
 ### 服务配置注册中心
 
 给每一个服务建立自己的命令空间。同时每一个的命名空间设置对象的dev test online等
-![img.png](./images/nacos_service.png)
-![img.png](./images/nacos_config_online.png)
-![img.png](./images/Athena微服务配置.png)
-![img.png](./images/nacos_discovery.png)
+![img.png](../images/nacos_service.png)
+![img.png](../images/nacos_config_online.png)
+![img.png](../images/Athena微服务配置.png)
+![img.png](../images/nacos_discovery.png)
 
 ## SpringCloud Ribbon的原理
 
