@@ -29,7 +29,7 @@ drop table if exists pms_spu_info;
 drop table if exists pms_spu_info_desc;
 
 /*==============================================================*/
-/* Table: pms_attr                                              */
+/* Table: athena商品管理                                          */
 /*==============================================================*/
 create table pms_attr
 (

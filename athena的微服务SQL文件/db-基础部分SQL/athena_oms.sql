@@ -15,7 +15,7 @@ drop table if exists oms_payment_info;
 drop table if exists oms_refund_info;
 
 /*==============================================================*/
-/* Table: oms_order                                             */
+/* Table: athena 订单系统                                         */
 /*==============================================================*/
 create table oms_order
 (
