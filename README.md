@@ -33,9 +33,9 @@
 
 # Athena系统源码
 
-> - Athena-admin 
-> - Athena-
-> - Athena-
+> - Athena-admin    （athena后台管理系统）
+> - Athena-ai       （athenaAI系统）
+> - Athena-common   （athena通用服务）
 
 
 
