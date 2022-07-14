@@ -74,8 +74,6 @@ public class CommentReplayController {
     //@RequiresPermissions("product:commentreplay:delete")
     public R delete(@RequestBody Long[] ids) {
         commentReplayService.removeByIds(Arrays.asList(ids));
-
         return R.ok();
     }
-
 }
