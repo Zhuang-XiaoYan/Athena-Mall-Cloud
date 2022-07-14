@@ -1,6 +1,6 @@
 #Spring service的属性
 server:
-  port: 11000
+  port: 9007
   servlet:
     session:
       timeout: 30m
@@ -21,7 +21,7 @@ spring:
     nacos:
       # 配置的Springcloud服务注册中心
       discovery:
-        server-addr: 192.168.25.137:30768
+        server-addr: 192.168.25.137:8848
 
 # mybatis-plus的系列的属性
 mybatis-plus:
