@@ -2,7 +2,6 @@ spring:
   cloud:
     gateway:
       routes:
-
         # high level athena-product service
         - id: athena-product-route
           uri: lb://athena-product

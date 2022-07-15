@@ -14,6 +14,9 @@
 
 ![img.png](images/vue-login.png)
 
+- 部署端口：9009
+
+![img.png](images/athena-vue端口号.png)
 
 
 # 2、商品服务
