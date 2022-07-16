@@ -118,7 +118,9 @@ docker restart 6c0e160aafa1
 ![img.png](images/MicroService.png)
 
 
+# 24、网关服务
 
+![img.png](Springcloud-getway.png)
 
 
 

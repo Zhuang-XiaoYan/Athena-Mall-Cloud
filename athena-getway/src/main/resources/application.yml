@@ -1,5 +1,19 @@
+#Spring getway service的属性
+server:
+  port: 9010
+  servlet:
+    session:
+      timeout: 30m
+
 spring:
+  #配置Spring服务的名称
+  application:
+    name: athena-getway
   cloud:
+    nacos:
+      # 配置的Springcloud服务注册中心
+      discovery:
+        server-addr: 192.168.25.137:8848
     gateway:
       routes:
         # high level athena-product service
@@ -9,6 +23,13 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+      # high level athena-product service
+        - id: athena-coupon-route
+          uri: lb://athena-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
         # low level athena-admin service
         - id: athena-admin-route
           uri: lb://athena-admin
@@ -16,6 +37,7 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /athena-admin/$\{segment}
+
 
 
 
