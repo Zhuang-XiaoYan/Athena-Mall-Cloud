@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+      // 1、拷贝对象（深拷贝）
+      let person1 = { name: "Amy", age: 15 }
+      let someone = { ...person1 }
+      console.log(someone) //{name: "Amy", age: 15}
+
+      // 2、合并对象
+      let age = { age: 15 }
+      let name = { name: "Amy" }
+      let person2 = { ...age, ...name } //如果两个对象的字段名重复，后面对象字 参数的值传递
+      //段值会覆盖前面对象的字段值
+      console.log(person2) //{age: 15, name: "Amy"}
+  </script>
+</body>
+</html>

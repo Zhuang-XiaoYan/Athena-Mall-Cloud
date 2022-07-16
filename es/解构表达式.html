@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 数组解构
+    let arr = [1, 2, 3]
+    //
+    // let a=arr[0]
+    // let b=arr[1]
+    // let c=arr[2]
+    // console.log(a,b,c)
+
+    let [a, b, c] = arr;
+
+    console.log(a, b, c)
+
+    const person = {
+        name: "jack",
+        age: 21,
+        language: ['java', 'js', 'css']
+    }
+    // 解构表达式获取值，将person 里面每一个属性和左边对应赋值
+    // const { name, age, language } = person;
+    // 等价于下面
+    const name = person.name;
+    const age = person.age;
+    const language = person.language;
+    // 可以分别打印
+    console.log(name);
+    console.log(age);
+    console.log(language);
+    // 赋值新的操作
+    const {name: aaa, age: bbb, language: ccc} = person;
+
+    let str = "hello.vue";
+    console.log(str.startsWith("hello"));//true
+    console.log(str.endsWith(".vue"));//true
+    console.log(str.includes("e"));//true
+    console.log(str.includes("hello"));//true
+
+
+    let ss = `
+            <div>
+                <span>hello world<span>
+            </div>
+            `
+    console.log(ss)
+
+    // 2、字符串插入变量和表达式。变量名写在${} 中，${} 中可以放入JavaScript 表达式。
+    let name1 = "张三";
+    let age1 = 18;
+    let info = `我是${name1}，今年${age1}了`;
+    console.log(info)
+
+    // 3、字符串中调用函数
+    function fun() {
+        return "这是一个函数"
+    }
+    let sss = `O(∩_∩)O 哈哈~，${fun()}`;
+    console.log(sss); // O(∩_∩)O 哈哈~，这是一个函数
+
+</script>
+</body>
+</html>
