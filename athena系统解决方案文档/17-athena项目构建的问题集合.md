@@ -17,9 +17,10 @@
 
 > Linux虚拟机（lvm）报Unmount and run xfs_repair
 > ![img.png](images/服务器断电问题.png)
-> 原因：因为突然断电，导致机器关闭 导致sda3分区损坏，修复就可以了。
-> 结果：发现有一台虚拟机无法启动，一直报错 Unmount and run xfs_repair 
-> 分析：主机异常掉电后里面的虚拟机无法启动，主要是损坏的分区
+
+- 原因：因为突然断电，导致机器关闭 导致sda3分区损坏，修复就可以了。
+- 结果：发现有一台虚拟机无法启动，一直报错 Unmount and run xfs_repair 
+- 分析：主机异常掉电后里面的虚拟机无法启动，主要是损坏的分区
 
 解决办法：
 

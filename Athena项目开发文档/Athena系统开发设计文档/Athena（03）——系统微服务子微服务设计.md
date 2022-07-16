@@ -104,4 +104,11 @@
 ![img.png](images/MicroService.png)
 
 
+# 24、远程调用服务
+
+![img.png](images/远程调用.png)
+
+![img.png](images/远程调用服务启动.png)
+
+
 # 博文参考

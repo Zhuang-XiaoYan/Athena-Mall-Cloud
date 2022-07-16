@@ -1,6 +1,7 @@
 package com.zhuangxiaoyan.athena.member.controller;
 
 import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
+import com.zhuangxiaoyan.athena.member.fegin.CouponFeginService;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.R;

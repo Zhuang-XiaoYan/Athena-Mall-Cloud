@@ -1,5 +1,6 @@
 package com.zhuangxiaoyan.athena.member.controller;
 
+import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
 import com.zhuangxiaoyan.athena.member.fegin.CouponFeginService;
 import com.zhuangxiaoyan.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ public class CouponFeginServiceFegin {
      */
     @RequestMapping("/coupons")
     public R test() {
-        R membercoupons = couponFeginService.membercoupons();
-        return R.ok().put("athean-member", "athean-member fegin call athena-coupons").put("coupon", membercoupons);
+        MemberEntity member = new MemberEntity();
+        member.setNickname("庄小焱");
+        R result = couponFeginService.membercoupons();
+        return R.ok().put("member", member).put("coupons", result.get("coupons"));
     }
 }
