@@ -94,7 +94,21 @@
 
 服务启动
 
+```shell
+docker restart 6c0e160aafa1
+```
+
 ![img.png](images/nacos.png)
+
+远程调用服务
+
+![img.png](images/远程调用服务启动.png)
+
+![img.png](images/远程调用.png)
+
+配置中心
+
+![img_1.png](images/nacos-dev.png)
 
 
 # 23、会员服务
@@ -104,11 +118,8 @@
 ![img.png](images/MicroService.png)
 
 
-# 24、远程调用服务
 
-![img.png](images/远程调用.png)
 
-![img.png](images/远程调用服务启动.png)
 
 
 # 博文参考
