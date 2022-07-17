@@ -92,6 +92,8 @@
 
 ![img.png](images/admin-vue.jpg)
 
+![img.png](images/admi-success.png)
+
 # 16、直播服务
 
 # 17、评论服务
