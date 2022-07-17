@@ -19,11 +19,19 @@
 ![img.png](images/athena-vue端口号.png)
 
 
+
 # 2、商品服务
 
 服务启动
 
 ![img.png](images/MicroService.png)
+
+商品服务的查询与三级分类功能实现
+
+![img.png](images/commodity_search.png)
+
+![img.png](images/商品的三级分类结果.png)
+
 
 # 3、支付服务
 
@@ -120,7 +128,7 @@ docker restart 6c0e160aafa1
 
 # 24、网关服务
 
-![img.png](Springcloud-getway.png)
+![img.png](images/Springcloud-getway.png)
 
 
 

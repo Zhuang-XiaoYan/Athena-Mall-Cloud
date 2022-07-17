@@ -25,7 +25,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     /**
-     * @description TODO 查询出所有的分类以及子分类，以及树形结构
+     * @description 查询出所有的分类以及子分类，以及树形结构
      * @param:
      * @date: 2022/3/13 17:35
      * @return: com.zhuangxiaoyan.common.utils.R
