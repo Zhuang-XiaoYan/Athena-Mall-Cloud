@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="num">
+    <button v-on:click="num++"> 点赞</button>
+    <button v-on:click="cancle">取消</button>
+    <h1>{{ name }} 是傻逼, 有{{ num }}个人为他点赞</h1>
+</div>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 1.0 声明式的渲染
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            name: "装逼",
+            num: 1
+        },
+        methods:{
+            cancle(){
+                this.num--;
+            }
+        }
+    })
+    // 2.0 双向绑定 模型变化 视图变化 反之亦然
+
+    // 3.0 事件处理
+
+    // v-*** 指令
+
+    // 1、创建的vue的实例 关联到页面的模板 将自己的数据的渲染到相关的模板中，响应式的
+    // 2、指令的简化对dom的一些操作
+    // 3、使用
+
+    /*
+    *
+    * */
+
+
+</script>
+</body>
+</html>

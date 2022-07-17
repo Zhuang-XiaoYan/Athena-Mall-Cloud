@@ -1,6 +1,6 @@
 // 导入相关的文件
-import util from 'hello.js'
-import {name, age} from 'user.js'
+import util from './hello'
+import {name, age} from './user'
 
 // 调用util 中的属性
 util.sum(1,2)

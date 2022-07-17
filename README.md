@@ -6,6 +6,8 @@
 -----------------------------------------------------------------------------------------------
 **个人社区账号**
 
+> [庄小焱的个人博客](https://2462612540.github.io/SeniorArchitect/)
+> 
 > [庄小焱的github](https://github.com/2462612540)
 >
 > [庄小焱的gitee](https://gitee.com/xjl2462612540)
@@ -13,8 +15,8 @@
 > [庄小焱的CSDN](https://blog.csdn.net/weixin_41605937?type=blog)
 >
 > [庄小焱的雀语](https://www.yuque.com/dashboard/my_books)
->
-> [庄小焱的github网站](https://github.com/2462612540)
+
+
 
 
 # Athena 电商系统开发
