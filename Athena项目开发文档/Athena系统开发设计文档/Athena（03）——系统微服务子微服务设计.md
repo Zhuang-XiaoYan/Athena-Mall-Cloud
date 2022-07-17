@@ -86,6 +86,12 @@
 
 ![img.png](images/athena-admin.png)
 
+注册到nacos
+
+![img.png](images/athena-admin-naocs.png)
+
+![img.png](images/admin-vue.jpg)
+
 # 16、直播服务
 
 # 17、评论服务
@@ -129,6 +135,10 @@ docker restart 6c0e160aafa1
 # 24、网关服务
 
 ![img.png](images/Springcloud-getway.png)
+
+请求的转发
+
+![img.png](images/服务请求转发.png)
 
 
 

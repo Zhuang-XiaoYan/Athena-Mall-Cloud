@@ -62,8 +62,7 @@
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import 《组件名称》 from '《组件路径》';
-
+//例如：import《组件名称》from'《组件路径》';
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -96,7 +95,7 @@ export default {
     };
   },
 
-  //计算属性 类似于data概念
+  //计算属性类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {},
@@ -111,6 +110,7 @@ export default {
         this.menus = data.data;
       });
     },
+
     batchDelete() {
       let catIds = [];
       let checkedNodes = this.$refs.menuTree.getCheckedNodes();
@@ -139,6 +139,7 @@ export default {
         .catch(() => {
         });
     },
+
     batchSave() {
       this.$http({
         url: this.$http.adornUrl("/product/category/update/sort"),
@@ -158,6 +159,7 @@ export default {
         // this.pCid = 0;
       });
     },
+
     handleDrop(draggingNode, dropNode, dropType, ev) {
       console.log("handleDrop: ", draggingNode, dropNode, dropType);
       //1、当前节点最新的父节点id
@@ -200,6 +202,7 @@ export default {
       //3、当前拖拽节点的最新层级
       console.log("updateNodes", this.updateNodes);
     },
+
     updateChildNodeLevel(node) {
       if (node.childNodes.length > 0) {
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -212,6 +215,7 @@ export default {
         }
       }
     },
+
     allowDrop(draggingNode, dropNode, type) {
       //1、被拖动的当前节点以及所在的父节点总层数不能大于3
 
@@ -233,6 +237,7 @@ export default {
         return deep + dropNode.parent.level <= 3;
       }
     },
+
     countNodeLevel(node) {
       //找到所有子节点，求出最大深度
       if (node.childNodes != null && node.childNodes.length > 0) {
@@ -244,6 +249,7 @@ export default {
         }
       }
     },
+
     edit(data) {
       console.log("要修改的数据", data);
       this.dialogType = "edit";
@@ -273,6 +279,7 @@ export default {
          */
       });
     },
+
     append(data) {
       console.log("append", data);
       this.dialogType = "add";
@@ -366,28 +373,30 @@ export default {
       console.log("remove", node, data);
     }
   },
-  //生命周期 - 创建完成（可以访问当前this实例）
+  //生命周期-创建完成（可以访问当前this实例）
   created() {
     this.getMenus();
   },
-  //生命周期 - 挂载完成（可以访问DOM元素）
+  //生命周期-挂载完成（可以访问DOM元素）
   mounted() {
   },
   beforeCreate() {
-  }, //生命周期 - 创建之前
+  }, //生命周期-创建之前
   beforeMount() {
-  }, //生命周期 - 挂载之前
+  }, //生命周期-挂载之前
   beforeUpdate() {
-  }, //生命周期 - 更新之前
+  }, //生命周期-更新之前
   updated() {
-  }, //生命周期 - 更新之后
+  }, //生命周期-更新之后
   beforeDestroy() {
-  }, //生命周期 - 销毁之前
+  }, //生命周期-销毁之前
   destroyed() {
-  }, //生命周期 - 销毁完成
+  }, //生命周期-销毁完成
   activated() {
   } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
+
 <style scoped>
+
 </style>
