@@ -1,16 +1,16 @@
 <template>
   <el-dialog
-    :close-on-click-modal="false"
     :title="!dataForm.id ? '新增' : '修改'"
+    :close-on-click-modal="false"
     :visible.sync="visible"
     @closed="dialogClose"
   >
     <el-form
-      ref="dataForm"
       :model="dataForm"
       :rules="dataRule"
-      label-width="120px"
+      ref="dataForm"
       @keyup.enter.native="dataFormSubmit()"
+      label-width="120px"
     >
       <el-form-item label="组名" prop="attrGroupName">
         <el-input v-model="dataForm.attrGroupName" placeholder="组名"></el-input>
@@ -40,14 +40,13 @@
 
 <script>
 import CategoryCascader from '../common/category-cascader'
-
 export default {
   data() {
     return {
-      props: {
-        value: "catId",
-        label: "name",
-        children: "children"
+      props:{
+        value:"catId",
+        label:"name",
+        children:"children"
       },
       visible: false,
       categorys: [],
@@ -62,30 +61,30 @@ export default {
       },
       dataRule: {
         attrGroupName: [
-          {required: true, message: "组名不能为空", trigger: "blur"}
+          { required: true, message: "组名不能为空", trigger: "blur" }
         ],
-        sort: [{required: true, message: "排序不能为空", trigger: "blur"}],
+        sort: [{ required: true, message: "排序不能为空", trigger: "blur" }],
         descript: [
-          {required: true, message: "描述不能为空", trigger: "blur"}
+          { required: true, message: "描述不能为空", trigger: "blur" }
         ],
-        icon: [{required: true, message: "组图标不能为空", trigger: "blur"}],
+        icon: [{ required: true, message: "组图标不能为空", trigger: "blur" }],
         catelogId: [
-          {required: true, message: "所属分类id不能为空", trigger: "blur"}
+          { required: true, message: "所属分类id不能为空", trigger: "blur" }
         ]
       }
     };
   },
-  components: {CategoryCascader},
-
+  components:{CategoryCascader},
+  
   methods: {
-    dialogClose() {
+    dialogClose(){
       this.catelogPath = [];
     },
-    getCategorys() {
+    getCategorys(){
       this.$http({
         url: this.$http.adornUrl("/product/category/list/tree"),
         method: "get"
-      }).then(({data}) => {
+      }).then(({ data }) => {
         this.categorys = data.data;
       });
     },
@@ -101,7 +100,7 @@ export default {
             ),
             method: "get",
             params: this.$http.adornParams()
-          }).then(({data}) => {
+          }).then(({ data }) => {
             if (data && data.code === 0) {
               this.dataForm.attrGroupName = data.attrGroup.attrGroupName;
               this.dataForm.sort = data.attrGroup.sort;
@@ -109,7 +108,7 @@ export default {
               this.dataForm.icon = data.attrGroup.icon;
               this.dataForm.catelogId = data.attrGroup.catelogId;
               //查出catelogId的完整路径
-              this.catelogPath = data.attrGroup.catelogPath;
+              this.catelogPath =  data.attrGroup.catelogPath;
             }
           });
         }
@@ -132,9 +131,9 @@ export default {
               sort: this.dataForm.sort,
               descript: this.dataForm.descript,
               icon: this.dataForm.icon,
-              catelogId: this.catelogPath[this.catelogPath.length - 1]
+              catelogId: this.catelogPath[this.catelogPath.length-1]
             })
-          }).then(({data}) => {
+          }).then(({ data }) => {
             if (data && data.code === 0) {
               this.$message({
                 message: "操作成功",
@@ -153,7 +152,7 @@ export default {
       });
     }
   },
-  created() {
+  created(){
     this.getCategorys();
   }
 };

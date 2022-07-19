@@ -4,42 +4,37 @@
     <el-button v-if="draggable" @click="batchSave">批量保存</el-button>
     <el-button type="danger" @click="batchDelete">批量删除</el-button>
     <el-tree
-      ref="menuTree"
-      :allow-drop="allowDrop"
       :data="menus"
+      :props="defaultProps"
+      :expand-on-click-node="false"
+      show-checkbox
+      node-key="catId"
       :default-expanded-keys="expandedKey"
       :draggable="draggable"
-      :expand-on-click-node="false"
-      :props="defaultProps"
-      node-key="catId"
-      show-checkbox
+      :allow-drop="allowDrop"
       @node-drop="handleDrop"
+      ref="menuTree"
     >
-      <span slot-scope="{ node, data }" class="custom-tree-node">
+      <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
         <span>
           <el-button
             v-if="node.level <=2"
-            size="mini"
             type="text"
+            size="mini"
             @click="() => append(data)"
           >Append</el-button>
-          <el-button size="mini" type="text" @click="edit(data)">edit</el-button>
-          <el-button
-            v-if="node.childNodes.length==0"
-            size="mini"
-            type="text"
-            @click="() => remove(node, data)"
-          >Delete</el-button>
+          <el-button type="text" size="mini" @click="edit(data)">edit</el-button>
+          <el-button v-if="node.childNodes.length==0"  type="text"  size="mini" @click="() => remove(node, data)">Delete</el-button>
         </span>
       </span>
     </el-tree>
 
     <el-dialog
-      :close-on-click-modal="false"
       :title="title"
       :visible.sync="dialogVisible"
       width="30%"
+      :close-on-click-modal="false"
     >
       <el-form :model="category">
         <el-form-item label="分类名称">
@@ -63,6 +58,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import《组件名称》from'《组件路径》';
+
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -110,7 +106,6 @@ export default {
         this.menus = data.data;
       });
     },
-
     batchDelete() {
       let catIds = [];
       let checkedNodes = this.$refs.menuTree.getCheckedNodes();
@@ -139,7 +134,6 @@ export default {
         .catch(() => {
         });
     },
-
     batchSave() {
       this.$http({
         url: this.$http.adornUrl("/product/category/update/sort"),
@@ -159,7 +153,6 @@ export default {
         // this.pCid = 0;
       });
     },
-
     handleDrop(draggingNode, dropNode, dropType, ev) {
       console.log("handleDrop: ", draggingNode, dropNode, dropType);
       //1、当前节点最新的父节点id
@@ -202,7 +195,6 @@ export default {
       //3、当前拖拽节点的最新层级
       console.log("updateNodes", this.updateNodes);
     },
-
     updateChildNodeLevel(node) {
       if (node.childNodes.length > 0) {
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -279,7 +271,6 @@ export default {
          */
       });
     },
-
     append(data) {
       console.log("append", data);
       this.dialogType = "add";
@@ -303,6 +294,7 @@ export default {
         this.editCategory();
       }
     },
+
     //修改三级分类数据
     editCategory() {
       var {catId, name, icon, productUnit} = this.category;
@@ -323,6 +315,7 @@ export default {
         this.expandedKey = [this.category.parentCid];
       });
     },
+
     //添加三级分类
     addCategory() {
       console.log("提交的三级分类数据", this.category);
@@ -369,7 +362,6 @@ export default {
         })
         .catch(() => {
         });
-
       console.log("remove", node, data);
     }
   },
@@ -396,7 +388,5 @@ export default {
   } //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-
 <style scoped>
-
 </style>

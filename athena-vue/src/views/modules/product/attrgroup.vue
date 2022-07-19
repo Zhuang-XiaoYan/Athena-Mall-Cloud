@@ -7,7 +7,7 @@
       <div class="mod-config">
         <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
           <el-form-item>
-            <el-input v-model="dataForm.key" clearable placeholder="参数名"></el-input>
+            <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click="getDataList()">查询</el-button>
@@ -16,58 +16,55 @@
               v-if="isAuth('product:attrgroup:save')"
               type="primary"
               @click="addOrUpdateHandle()"
-            >新增
-            </el-button>
+            >新增</el-button>
             <el-button
               v-if="isAuth('product:attrgroup:delete')"
-              :disabled="dataListSelections.length <= 0"
               type="danger"
               @click="deleteHandle()"
-            >批量删除
-            </el-button>
+              :disabled="dataListSelections.length <= 0"
+            >批量删除</el-button>
           </el-form-item>
         </el-form>
         <el-table
-          v-loading="dataListLoading"
           :data="dataList"
           border
-          style="width: 100%;"
+          v-loading="dataListLoading"
           @selection-change="selectionChangeHandle"
+          style="width: 100%;"
         >
-          <el-table-column align="center" header-align="center" type="selection" width="50"></el-table-column>
-          <el-table-column align="center" header-align="center" label="分组id" prop="attrGroupId"></el-table-column>
-          <el-table-column align="center" header-align="center" label="组名" prop="attrGroupName"></el-table-column>
-          <el-table-column align="center" header-align="center" label="排序" prop="sort"></el-table-column>
-          <el-table-column align="center" header-align="center" label="描述" prop="descript"></el-table-column>
-          <el-table-column align="center" header-align="center" label="组图标" prop="icon"></el-table-column>
-          <el-table-column align="center" header-align="center" label="所属分类id" prop="catelogId"></el-table-column>
+          <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
+          <el-table-column prop="attrGroupId" header-align="center" align="center" label="分组id"></el-table-column>
+          <el-table-column prop="attrGroupName" header-align="center" align="center" label="组名"></el-table-column>
+          <el-table-column prop="sort" header-align="center" align="center" label="排序"></el-table-column>
+          <el-table-column prop="descript" header-align="center" align="center" label="描述"></el-table-column>
+          <el-table-column prop="icon" header-align="center" align="center" label="组图标"></el-table-column>
+          <el-table-column prop="catelogId" header-align="center" align="center" label="所属分类id"></el-table-column>
           <el-table-column
-            align="center"
             fixed="right"
             header-align="center"
-            label="操作"
+            align="center"
             width="150"
+            label="操作"
           >
             <template slot-scope="scope">
-              <el-button size="small" type="text" @click="relationHandle(scope.row.attrGroupId)">关联</el-button>
+              <el-button type="text" size="small" @click="relationHandle(scope.row.attrGroupId)">关联</el-button>
               <el-button
-                size="small"
                 type="text"
+                size="small"
                 @click="addOrUpdateHandle(scope.row.attrGroupId)"
-              >修改
-              </el-button>
-              <el-button size="small" type="text" @click="deleteHandle(scope.row.attrGroupId)">删除</el-button>
+              >修改</el-button>
+              <el-button type="text" size="small" @click="deleteHandle(scope.row.attrGroupId)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <el-pagination
-          :current-page="pageIndex"
-          :page-size="pageSize"
-          :page-sizes="[10, 20, 50, 100]"
-          :total="totalPage"
-          layout="total, sizes, prev, pager, next, jumper"
           @size-change="sizeChangeHandle"
           @current-change="currentChangeHandle"
+          :current-page="pageIndex"
+          :page-sizes="[10, 20, 50, 100]"
+          :page-size="pageSize"
+          :total="totalPage"
+          layout="total, sizes, prev, pager, next, jumper"
         ></el-pagination>
         <!-- 弹窗, 新增 / 修改 -->
         <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
@@ -91,10 +88,9 @@
 import Category from "../common/category";
 import AddOrUpdate from "./attrgroup-add-or-update";
 import RelationUpdate from "./attr-group-relation";
-
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {Category, AddOrUpdate, RelationUpdate},
+  components: { Category, AddOrUpdate, RelationUpdate },
   props: {},
   data() {
     return {
@@ -130,7 +126,7 @@ export default {
         this.getDataList(); //重新查询
       }
     },
-    getAllDataList() {
+    getAllDataList(){
       this.catId = 0;
       this.getDataList();
     },
@@ -145,7 +141,7 @@ export default {
           limit: this.pageSize,
           key: this.dataForm.key
         })
-      }).then(({data}) => {
+      }).then(({ data }) => {
         if (data && data.code === 0) {
           this.dataList = data.page.list;
           this.totalPage = data.page.totalCount;
@@ -183,8 +179,8 @@ export default {
       var ids = id
         ? [id]
         : this.dataListSelections.map(item => {
-          return item.attrGroupId;
-        });
+            return item.attrGroupId;
+          });
       this.$confirm(
         `确定对[id=${ids.join(",")}]进行[${id ? "删除" : "批量删除"}]操作?`,
         "提示",
@@ -198,7 +194,7 @@ export default {
           url: this.$http.adornUrl("/product/attrgroup/delete"),
           method: "post",
           data: this.$http.adornData(ids, false)
-        }).then(({data}) => {
+        }).then(({ data }) => {
           if (data && data.code === 0) {
             this.$message({
               message: "操作成功",
@@ -217,5 +213,5 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped>
 </style>

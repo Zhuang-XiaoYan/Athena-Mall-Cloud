@@ -51,7 +51,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * @description TODO 递归查找所有的子分类
+     * @description 递归查找所有的子分类
      * @param:
      * @date: 2022/3/13 17:49
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
@@ -72,7 +72,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * @description TODO
+     * @description TODO 检查的删除的菜单 是否被其他地方引用
       * @param: asList
      * @date: 2022/3/19 13:57
      * @return: void
@@ -80,7 +80,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     */
     @Override
     public void removeMenuByIds(List<Long> asList) {
-        //TODO 检查的删除的菜单 是否被其他地方引用
         //逻辑删除 一般不做删除
         baseMapper.deleteBatchIds(asList);
     }

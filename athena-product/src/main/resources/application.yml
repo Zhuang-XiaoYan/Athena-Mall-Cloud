@@ -37,4 +37,4 @@ mybatis-plus:
 # 日志数据输出
 logging:
   level:
-    com.xunqi.gulimall: error
+    com.zhuangxiaoyan.athena: debug

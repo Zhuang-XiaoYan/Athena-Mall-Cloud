@@ -32,6 +32,8 @@
 
 ![img.png](images/商品的三级分类结果.png)
 
+![img.png](images/商品的三级分类前端有问题.png)
+
 
 # 3、支付服务
 

@@ -1,22 +1,22 @@
 <template>
   <el-dialog
-    :close-on-click-modal="false"
     :title="!dataForm.id ? '新增' : '修改'"
+    :close-on-click-modal="false"
     :visible.sync="visible"
   >
     <el-form
-      ref="dataForm"
       :model="dataForm"
       :rules="dataRule"
-      label-width="120px"
+      ref="dataForm"
       @keyup.enter.native="dataFormSubmit()"
+      label-width="120px"
     >
       <el-form-item label="优惠卷类型" prop="couponType">
         <el-select v-model="dataForm.couponType" placeholder="请选择">
-          <el-option :value="0" label="全场赠券"></el-option>
-          <el-option :value="1" label="会员赠券"></el-option>
-          <el-option :value="2" label="购物赠券"></el-option>
-          <el-option :value="3" label="注册赠券"></el-option>
+          <el-option label="全场赠券" :value="0"></el-option>
+          <el-option label="会员赠券" :value="1"></el-option>
+          <el-option label="购物赠券" :value="2"></el-option>
+          <el-option label="注册赠券" :value="3"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="优惠券图片" prop="couponImg">
@@ -26,24 +26,24 @@
         <el-input v-model="dataForm.couponName" placeholder="优惠卷名字"></el-input>
       </el-form-item>
       <el-form-item label="数量" prop="num">
-        <el-input-number v-model="dataForm.num" :min="0"></el-input-number>
+        <el-input-number :min="0" v-model="dataForm.num"></el-input-number>
       </el-form-item>
       <el-form-item label="金额" prop="amount">
-        <el-input-number v-model="dataForm.amount" :min="0" :precision="2"></el-input-number>
+        <el-input-number :min="0" v-model="dataForm.amount" :precision="2"></el-input-number>
       </el-form-item>
       <el-form-item label="每人限领张数" prop="perLimit">
-        <el-input-number v-model="dataForm.perLimit" :min="0"></el-input-number>
+        <el-input-number :min="0" v-model="dataForm.perLimit"></el-input-number>
       </el-form-item>
       <el-form-item label="使用门槛（最小积分）" prop="minPoint">
-        <el-input-number v-model="dataForm.minPoint" :min="0"></el-input-number>
+        <el-input-number :min="0" v-model="dataForm.minPoint"></el-input-number>
       </el-form-item>
       <el-form-item label="有效时间" prop="useTimeRange">
         <el-date-picker
           v-model="dataForm.useTimeRange"
-          end-placeholder="结束时间"
+          type="daterange"
           range-separator="至"
           start-placeholder="开始时间"
-          type="daterange"
+          end-placeholder="结束时间"
         ></el-date-picker>
       </el-form-item>
       <el-form-item label="使用类型" prop="useType">
@@ -62,10 +62,10 @@
       <el-form-item label="领取日期" prop="enableStartTime">
         <el-date-picker
           v-model="dataForm.timeRange"
-          end-placeholder="结束日期"
+          type="daterange"
           range-separator="至"
           start-placeholder="开始日期"
-          type="daterange"
+          end-placeholder="结束日期"
         ></el-date-picker>
       </el-form-item>
       <el-form-item label="优惠码" prop="code">
@@ -92,9 +92,8 @@
 
 <script>
 import SingleUpload from "@/components/upload/singleUpload";
-
 export default {
-  components: {SingleUpload},
+  components: { SingleUpload },
   data() {
     return {
       visible: false,
@@ -121,7 +120,7 @@ export default {
         memberLevel: "",
         publish: 0,
         timeRange: [],
-        useTimeRange: []
+        useTimeRange:[]
       },
       dataRule: {
         couponType: [
@@ -133,18 +132,18 @@ export default {
           }
         ],
         couponImg: [
-          {required: true, message: "优惠券图片不能为空", trigger: "blur"}
+          { required: true, message: "优惠券图片不能为空", trigger: "blur" }
         ],
         couponName: [
-          {required: true, message: "优惠卷名字不能为空", trigger: "blur"}
+          { required: true, message: "优惠卷名字不能为空", trigger: "blur" }
         ],
-        num: [{required: true, message: "数量不能为空", trigger: "blur"}],
-        amount: [{required: true, message: "金额不能为空", trigger: "blur"}],
+        num: [{ required: true, message: "数量不能为空", trigger: "blur" }],
+        amount: [{ required: true, message: "金额不能为空", trigger: "blur" }],
         perLimit: [
-          {required: true, message: "每人限领张数不能为空", trigger: "blur"}
+          { required: true, message: "每人限领张数不能为空", trigger: "blur" }
         ],
         minPoint: [
-          {required: true, message: "使用门槛不能为空", trigger: "blur"}
+          { required: true, message: "使用门槛不能为空", trigger: "blur" }
         ],
         useType: [
           {
@@ -153,9 +152,9 @@ export default {
             trigger: "blur"
           }
         ],
-        note: [{required: true, message: "备注不能为空", trigger: "blur"}],
+        note: [{ required: true, message: "备注不能为空", trigger: "blur" }],
         publishCount: [
-          {required: true, message: "发行数量不能为空", trigger: "blur"}
+          { required: true, message: "发行数量不能为空", trigger: "blur" }
         ],
         enableStartTime: [
           {
@@ -171,7 +170,7 @@ export default {
             trigger: "blur"
           }
         ],
-        code: [{required: true, message: "优惠码不能为空", trigger: "blur"}],
+        code: [{ required: true, message: "优惠码不能为空", trigger: "blur" }],
         memberLevel: [
           {
             required: true,
@@ -195,7 +194,7 @@ export default {
           page: 1,
           limit: 500
         })
-      }).then(({data}) => {
+      }).then(({ data }) => {
         this.memberLevels = data.page.list;
       });
     },
@@ -209,7 +208,7 @@ export default {
             url: this.$http.adornUrl(`/coupon/coupon/info/${this.dataForm.id}`),
             method: "get",
             params: this.$http.adornParams()
-          }).then(({data}) => {
+          }).then(({ data }) => {
             if (data && data.code === 0) {
               this.dataForm.couponType = data.coupon.couponType;
               this.dataForm.couponImg = data.coupon.couponImg;
@@ -270,7 +269,7 @@ export default {
               memberLevel: this.dataForm.memberLevel,
               publish: this.dataForm.publish
             })
-          }).then(({data}) => {
+          }).then(({ data }) => {
             if (data && data.code === 0) {
               this.$message({
                 message: "操作成功",

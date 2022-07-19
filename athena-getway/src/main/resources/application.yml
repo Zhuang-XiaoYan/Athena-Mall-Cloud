@@ -16,13 +16,6 @@ spring:
         server-addr: 192.168.25.137:8848
     gateway:
       routes:
-        # low level athena-admin service
-        - id: athena-admin-route
-          uri: lb://athena-admin
-          predicates:
-            - Path=/api/**
-          filters:
-            - RewritePath=/api/(?<segment>/?.*), /athena-admin/$\{segment}
         # high level athena-product service
         - id: athena-product-route
           uri: lb://athena-product
@@ -30,14 +23,20 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
-        # high level athena-product service
+        # high level athena-coupon service
         - id: athena-coupon-route
           uri: lb://athena-coupon
           predicates:
             - Path=/api/coupon/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
-
+        # low level athena-admin service
+        - id: athena-admin-route
+          uri: lb://athena-admin
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /athena-admin/$\{segment}
 
 
 

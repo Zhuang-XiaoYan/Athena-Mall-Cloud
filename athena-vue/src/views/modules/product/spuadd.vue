@@ -10,9 +10,9 @@
           <el-step title="保存完成"></el-step>
         </el-steps>
       </el-col>
-      <el-col v-show="step==0" :span="24">
+      <el-col :span="24" v-show="step==0">
         <el-card class="box-card" style="width:80%;margin:20px auto">
-          <el-form ref="spuBaseForm" :model="spu" :rules="spuBaseInfoRules" label-width="120px">
+          <el-form ref="spuBaseForm" :model="spu" label-width="120px" :rules="spuBaseInfoRules">
             <el-form-item label="商品名称" prop="spuName">
               <el-input v-model="spu.spuName"></el-input>
             </el-form-item>
@@ -31,19 +31,19 @@
             <el-form-item label="设置积分" prop="bounds">
               <label>金币</label>
               <el-input-number
+                style="width:130px"
+                placeholder="金币"
                 v-model="spu.bounds.buyBounds"
                 :min="0"
                 controls-position="right"
-                placeholder="金币"
-                style="width:130px"
               ></el-input-number>
               <label style="margin-left:15px">成长值</label>
               <el-input-number
+                style="width:130px"
+                placeholder="成长值"
                 v-model="spu.bounds.growBounds"
                 :min="0"
                 controls-position="right"
-                placeholder="成长值"
-                style="width:130px"
               >
                 <template slot="prepend">成长值</template>
               </el-input-number>
@@ -61,32 +61,32 @@
           </el-form>
         </el-card>
       </el-col>
-      <el-col v-show="step==1" :span="24">
+      <el-col :span="24" v-show="step==1">
         <el-card class="box-card" style="width:80%;margin:20px auto">
-          <el-tabs style="width:98%" tab-position="left">
+          <el-tabs tab-position="left" style="width:98%">
             <el-tab-pane
+              :label="group.attrGroupName"
               v-for="(group,gidx) in dataResp.attrGroups"
               :key="group.attrGroupId"
-              :label="group.attrGroupName"
             >
               <!-- 遍历属性,每个tab-pane对应一个表单，每个属性是一个表单项  spu.baseAttrs[0] = [{attrId:xx,val:}]-->
               <el-form ref="form" :model="spu">
                 <el-form-item
+                  :label="attr.attrName"
                   v-for="(attr,aidx) in group.attrs"
                   :key="attr.attrId"
-                  :label="attr.attrName"
                 >
                   <el-input
-                    v-show="false"
                     v-model="dataResp.baseAttrs[gidx][aidx].attrId"
                     type="hidden"
+                    v-show="false"
                   ></el-input>
                   <el-select
                     v-model="dataResp.baseAttrs[gidx][aidx].attrValues"
                     :multiple="attr.valueType == 1"
+                    filterable
                     allow-create
                     default-first-option
-                    filterable
                     placeholder="请选择或输入值"
                   >
                     <el-option
@@ -98,10 +98,9 @@
                   </el-select>
                   <el-checkbox
                     v-model="dataResp.baseAttrs[gidx][aidx].showDesc"
-                    :false-label="0"
                     :true-label="1"
-                  >快速展示
-                  </el-checkbox>
+                    :false-label="0"
+                  >快速展示</el-checkbox>
                 </el-form-item>
               </el-form>
             </el-tab-pane>
@@ -112,28 +111,28 @@
           </div>
         </el-card>
       </el-col>
-      <el-col v-show="step==2" :span="24">
+      <el-col :span="24" v-show="step==2">
         <el-card class="box-card" style="width:80%;margin:20px auto">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
               <span>选择销售属性</span>
               <el-form ref="saleform" :model="spu">
                 <el-form-item
+                  :label="attr.attrName"
                   v-for="(attr,aidx) in dataResp.saleAttrs"
                   :key="attr.attrId"
-                  :label="attr.attrName"
                 >
                   <el-input
-                    v-show="false"
                     v-model="dataResp.tempSaleAttrs[aidx].attrId"
                     type="hidden"
+                    v-show="false"
                   ></el-input>
                   <el-checkbox-group v-model="dataResp.tempSaleAttrs[aidx].attrValues">
                     <el-checkbox
-                      v-for="val in dataResp.saleAttrs[aidx].valueSelect.split(';')"
                       v-if="dataResp.saleAttrs[aidx].valueSelect != ''"
-                      :key="val"
                       :label="val"
+                      v-for="val in dataResp.saleAttrs[aidx].valueSelect.split(';')"
+                      :key="val"
                     ></el-checkbox>
                     <div style="margin-left:20px;display:inline">
                       <el-button
@@ -141,16 +140,15 @@
                         class="button-new-tag"
                         size="mini"
                         @click="showInput(aidx)"
-                      >+自定义
-                      </el-button>
+                      >+自定义</el-button>
                       <el-input
                         v-show="inputVisible[aidx].view"
-                        :ref="'saveTagInput'+aidx"
                         v-model="inputValue[aidx].val"
+                        :ref="'saveTagInput'+aidx"
                         size="mini"
                         style="width:150px"
-                        @blur="handleInputConfirm(aidx)"
                         @keyup.enter.native="handleInputConfirm(aidx)"
+                        @blur="handleInputConfirm(aidx)"
                       ></el-input>
                     </div>
                   </el-checkbox-group>
@@ -162,14 +160,14 @@
           </el-card>
         </el-card>
       </el-col>
-      <el-col v-show="step==3" :span="24">
+      <el-col :span="24" v-show="step==3">
         <el-card class="box-card" style="width:80%;margin:20px auto">
           <el-table :data="spu.skus" style="width: 100%">
             <el-table-column label="属性组合">
               <el-table-column
+                :label="item.attrName"
                 v-for="(item,index) in dataResp.tableAttrColumn"
                 :key="item.attrId"
-                :label="item.attrName"
               >
                 <template slot-scope="scope">
                   <span style="margin-left: 10px">{{ scope.row.attr[index].attrValue }}</span>
@@ -202,10 +200,10 @@
                   <el-col :span="24">
                     <label style="display:block;float:left">选择图集 或</label>
                     <multi-upload
-                      v-model="uploadImages"
-                      :listType="'text'"
-                      :showFile="false"
                       style="float:left;margin-left:10px;"
+                      :showFile="false"
+                      :listType="'text'"
+                      v-model="uploadImages"
                     ></multi-upload>
                   </el-col>
                   <el-col :span="24">
@@ -213,12 +211,12 @@
                   </el-col>
                   <el-col :span="24">
                     <el-card
+                      style="width:170px;float:left;margin-left:15px;margin-top:15px;"
+                      :body-style="{ padding: '0px' }"
                       v-for="(img,index) in spu.images"
                       :key="index"
-                      :body-style="{ padding: '0px' }"
-                      style="width:170px;float:left;margin-left:15px;margin-top:15px;"
                     >
-                      <img :src="img" style="width:160px;height:120px"/>
+                      <img :src="img" style="width:160px;height:120px" />
                       <div style="padding: 14px;">
                         <el-row>
                           <el-col :span="12">
@@ -231,16 +229,16 @@
                           <el-col :span="12">
                             <el-tag v-if="scope.row.images[index].defaultImg == 1">
                               <input
-                                :name="scope.row.skuName"
-                                checked
                                 type="radio"
+                                checked
+                                :name="scope.row.skuName"
                                 @change="checkDefaultImg(scope.row,index,img)"
                               />设为默认
                             </el-tag>
                             <el-tag v-else>
                               <input
-                                :name="scope.row.skuName"
                                 type="radio"
+                                :name="scope.row.skuName"
                                 @change="checkDefaultImg(scope.row,index,img)"
                               />设为默认
                             </el-tag>
@@ -257,73 +255,71 @@
                       <el-form-item label="设置折扣">
                         <label>满</label>
                         <el-input-number
-                          v-model="scope.row.fullCount"
+                          style="width:160px"
                           :min="0"
                           controls-position="right"
-                          style="width:160px"
+                          v-model="scope.row.fullCount"
                         ></el-input-number>
                         <label>件</label>
 
                         <label style="margin-left:15px;">打</label>
                         <el-input-number
+                          style="width:160px"
                           v-model="scope.row.discount"
+                          :precision="2"
                           :max="1"
                           :min="0"
-                          :precision="2"
                           :step="0.01"
                           controls-position="right"
-                          style="width:160px"
                         ></el-input-number>
                         <label>折</label>
                         <el-checkbox
                           v-model="scope.row.countStatus"
-                          :false-label="0"
                           :true-label="1"
-                        >可叠加优惠
-                        </el-checkbox>
+                          :false-label="0"
+                        >可叠加优惠</el-checkbox>
                       </el-form-item>
                     </el-col>
                     <el-col :span="24">
                       <el-form-item label="设置满减">
                         <label>满</label>
                         <el-input-number
-                          v-model="scope.row.fullPrice"
-                          :min="0"
-                          :step="100"
-                          controls-position="right"
                           style="width:160px"
+                          v-model="scope.row.fullPrice"
+                          :step="100"
+                          :min="0"
+                          controls-position="right"
                         ></el-input-number>
                         <label>元</label>
                         <label style="margin-left:15px;">减</label>
                         <el-input-number
-                          v-model="scope.row.reducePrice"
-                          :min="0"
-                          :step="10"
-                          controls-position="right"
                           style="width:160px"
+                          v-model="scope.row.reducePrice"
+                          :step="10"
+                          :min="0"
+                          controls-position="right"
                         ></el-input-number>
                         <label>元</label>
                         <el-checkbox
                           v-model="scope.row.priceStatus"
-                          :false-label="0"
                           :true-label="1"
-                        >可叠加优惠
-                        </el-checkbox>
+                          :false-label="0"
+                        >可叠加优惠</el-checkbox>
                       </el-form-item>
                     </el-col>
 
                     <el-col :span="24">
-                      <el-form-item v-if="scope.row.memberPrice.length>0" label="设置会员价">
-                        <br/>
+                      <el-form-item label="设置会员价" v-if="scope.row.memberPrice.length>0">
+                        <br />
                         <!--   @change="handlePriceChange(scope,mpidx,$event)" -->
                         <el-form-item v-for="(mp,mpidx) in scope.row.memberPrice" :key="mp.id">
-                          {{ mp.name }}
+                          {{mp.name}}
                           <el-input-number
-                            v-model="scope.row.memberPrice[mpidx].price"
-                            :min="0"
-                            :precision="2"
-                            controls-position="right"
                             style="width:160px"
+                            v-model="scope.row.memberPrice[mpidx].price"
+                            :precision="2"
+                            :min="0"
+                            controls-position="right"
                           ></el-input-number>
                         </el-form-item>
                       </el-form-item>
@@ -337,7 +333,7 @@
           <el-button type="success" @click="submitSkus">下一步：保存商品信息</el-button>
         </el-card>
       </el-col>
-      <el-col v-show="step==4" :span="24">
+      <el-col :span="24" v-show="step==4">
         <el-card class="box-card" style="width:80%;margin:20px auto">
           <h1>保存成功</h1>
           <el-button type="primary" @click="addAgian">继续添加</el-button>
@@ -353,10 +349,9 @@
 import CategoryCascader from "../common/category-cascader";
 import BrandSelect from "../common/brand-select";
 import MultiUpload from "@/components/upload/multiUpload";
-
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {CategoryCascader, BrandSelect, MultiUpload},
+  components: { CategoryCascader, BrandSelect, MultiUpload },
   props: {},
   data() {
     return {
@@ -386,22 +381,22 @@ export default {
       },
       spuBaseInfoRules: {
         spuName: [
-          {required: true, message: "请输入商品名字", trigger: "blur"}
+          { required: true, message: "请输入商品名字", trigger: "blur" }
         ],
         spuDescription: [
-          {required: true, message: "请编写一个简单描述", trigger: "blur"}
+          { required: true, message: "请编写一个简单描述", trigger: "blur" }
         ],
         catalogId: [
-          {required: true, message: "请选择一个分类", trigger: "blur"}
+          { required: true, message: "请选择一个分类", trigger: "blur" }
         ],
         brandId: [
-          {required: true, message: "请选择一个品牌", trigger: "blur"}
+          { required: true, message: "请选择一个品牌", trigger: "blur" }
         ],
         decript: [
-          {required: true, message: "请上传商品详情图集", trigger: "blur"}
+          { required: true, message: "请上传商品详情图集", trigger: "blur" }
         ],
         images: [
-          {required: true, message: "请上传商品图片集", trigger: "blur"}
+          { required: true, message: "请上传商品图片集", trigger: "blur" }
         ],
         weight: [
           {
@@ -440,7 +435,7 @@ export default {
         let len = imgArr.length - this.spu.skus[index].images.length; //还差这么多
         if (len > 0) {
           let imgs = new Array(len);
-          imgs = imgs.fill({imgUrl: "", defaultImg: 0});
+          imgs = imgs.fill({ imgUrl: "", defaultImg: 0 });
           this.spu.skus[index].images = item.images.concat(imgs);
         }
       });
@@ -463,13 +458,13 @@ export default {
         brandId: "",
         weight: "",
         publishStatus: 0,
-        decript: [],
-        images: [],
+        decript: [], 
+        images: [], 
         bounds: {
           buyBounds: 0,
           growBounds: 0
         },
-        baseAttrs: [],
+        baseAttrs: [], 
         skus: []
       };
     },
@@ -485,7 +480,7 @@ export default {
           limit: 500
         })
       })
-        .then(({data}) => {
+        .then(({ data }) => {
           this.dataResp.memberLevels = data.page.list;
         })
         .catch(e => {
@@ -538,14 +533,14 @@ export default {
       this.spu.baseAttrs = [];
       this.dataResp.baseAttrs.forEach(item => {
         item.forEach(attr => {
-          let {attrId, attrValues, showDesc} = attr;
+          let { attrId, attrValues, showDesc } = attr;
           //跳过没有录入值的属性
           if (attrValues != "") {
             if (attrValues instanceof Array) {
               //多个值用;隔开
               attrValues = attrValues.join(";");
             }
-            this.spu.baseAttrs.push({attrId, attrValues, showDesc});
+            this.spu.baseAttrs.push({ attrId, attrValues, showDesc });
           }
         });
       });
@@ -588,7 +583,7 @@ export default {
         //先初始化几个images，后面的上传还要加
         let imgs = [];
         this.spu.images.forEach((img, idx) => {
-          imgs.push({imgUrl: "", defaultImg: 0});
+          imgs.push({ imgUrl: "", defaultImg: 0 });
         });
 
         //会员价，也必须在循环里面生成，否则会导致数据绑定问题
@@ -654,7 +649,7 @@ export default {
             page: 1,
             limit: 500
           })
-        }).then(({data}) => {
+        }).then(({ data }) => {
           this.dataResp.saleAttrs = data.page.list;
           data.page.list.forEach(item => {
             this.dataResp.tempSaleAttrs.push({
@@ -662,8 +657,8 @@ export default {
               attrValues: [],
               attrName: item.attrName
             });
-            this.inputVisible.push({view: false});
-            this.inputValue.push({val: ""});
+            this.inputVisible.push({ view: false });
+            this.inputValue.push({ val: "" });
           });
           this.dataResp.steped[1] = true;
         });
@@ -677,7 +672,7 @@ export default {
           ),
           method: "get",
           params: this.$http.adornParams({})
-        }).then(({data}) => {
+        }).then(({ data }) => {
           //先对表单的baseAttrs进行初始化
           data.data.forEach(item => {
             let attrArray = [];
@@ -708,7 +703,7 @@ export default {
             url: this.$http.adornUrl("/product/spuinfo/save"),
             method: "post",
             data: this.$http.adornData(this.spu, false)
-          }).then(({data}) => {
+          }).then(({ data }) => {
             if (data.code == 0) {
               this.$message({
                 type: "success",
@@ -744,7 +739,7 @@ export default {
       //根据参数列生成指针对象
       for (var index in list) {
         if (typeof list[index] == "object") {
-          point[index] = {parent: pIndex, count: 0};
+          point[index] = { parent: pIndex, count: 0 };
           pIndex = index;
         }
       }
@@ -785,8 +780,7 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-  },
+  created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     this.catPathSub = PubSub.subscribe("catPath", (msg, val) => {
@@ -797,23 +791,17 @@ export default {
     });
     this.getMemberLevels();
   },
-  beforeCreate() {
-  }, //生命周期 - 创建之前
-  beforeMount() {
-  }, //生命周期 - 挂载之前
-  beforeUpdate() {
-  }, //生命周期 - 更新之前
-  updated() {
-  }, //生命周期 - 更新之后
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
   beforeDestroy() {
     PubSub.unsubscribe(this.catPathSub);
     PubSub.unsubscribe(this.brandIdSub);
   }, //生命周期 - 销毁之前
-  destroyed() {
-  }, //生命周期 - 销毁完成
-  activated() {
-  } //如果页面有keep-alive缓存功能，这个函数会触发
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style scoped>
+<style scoped>
 </style>
