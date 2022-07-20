@@ -1,13 +1,14 @@
 package com.zhuangxiaoyan.athena.oss;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaOssApplicationTests {
+public class AthenaOssApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

@@ -22,12 +22,12 @@
     </properties>
 
     <dependencies>
-        <!--aliyun oss-->
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <version>3.10.2</version>
-        </dependency>
+        <!--        &lt;!&ndash;aliyun oss&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.aliyun.oss</groupId>-->
+        <!--            <artifactId>aliyun-sdk-oss</artifactId>-->
+        <!--            <version>3.10.2</version>-->
+        <!--        </dependency>-->
         <!--公共类-->
         <dependency>
             <groupId>com.zhuangxiaoyan</groupId>
@@ -50,6 +50,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

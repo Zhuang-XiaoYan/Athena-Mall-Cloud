@@ -22,6 +22,11 @@ spring:
       # 配置的Springcloud服务注册中心
       discovery:
         server-addr: 192.168.25.137:8848
+    alicloud:
+      access-key: LTAI5tEEw2Enr8eaZo2jd5j6
+      secret-key: 3XdiJv6fCZ3XrrESMd4I58XZT83t2x
+      oss:
+        endpoint: athena-oss
 
 # mybatis-plus的系列的属性
 mybatis-plus:

@@ -9,8 +9,8 @@
         <relativePath/>
     </parent>
 
-    <groupId>io.renren</groupId>
-    <artifactId>renren-generator</artifactId>
+    <groupId>athena</groupId>
+    <artifactId>athena-generator</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <description>athena-generator</description>
