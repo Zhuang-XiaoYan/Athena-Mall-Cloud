@@ -60,6 +60,7 @@ public class BrandController {
 
     /**
      * 修改
+     * @Validated(UpdateGroup.class)
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
