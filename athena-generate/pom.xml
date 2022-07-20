@@ -13,7 +13,7 @@
     <artifactId>renren-generator</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <description>renren-generator</description>
+    <description>athena-generator</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
