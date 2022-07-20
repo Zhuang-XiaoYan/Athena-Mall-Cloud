@@ -23,5 +23,6 @@
         <module>athena-pay</module>
         <module>athena-sms</module>
         <module>athena-ai</module>
+        <module>athena-oss</module>
     </modules>
 </project>

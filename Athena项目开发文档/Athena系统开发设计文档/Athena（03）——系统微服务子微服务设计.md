@@ -148,6 +148,22 @@ docker restart 6c0e160aafa1
 
 ![img.png](images/服务请求转发.png)
 
+# 25、OSS对象存储服务
+
+![img.png](images/aliyun-oss.png)
+
+![img.png](images/athena-oss测试成功.png)
+
+![img.png](images/网关转发成功.png)
+
+
+![img.png](images/oss错误.png)
+
+需要在的你自己的OSS中设置允许跨域的方式。
+
+
+![img.png](images/表单校验.png)
+
 
 
 # 博文参考

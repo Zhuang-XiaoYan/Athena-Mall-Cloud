@@ -5,9 +5,12 @@ import com.zhuangxiaoyan.athena.product.service.BrandService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,7 +33,6 @@ public class BrandController {
     //@RequiresPermissions("product:brand:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = brandService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -41,18 +43,26 @@ public class BrandController {
     //@RequiresPermissions("product:brand:info")
     public R info(@PathVariable("brandId") Long brandId) {
         BrandEntity brand = brandService.getById(brandId);
-
         return R.ok().put("brand", brand);
     }
 
     /**
-     * 保存
+     * 保存 同时的对的相关的输入的数据的前端进行校验
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
-    public R save(@RequestBody BrandEntity brand) {
-        brandService.save(brand);
-
+    public R save(@Valid @RequestBody BrandEntity brand, BindingResult result) {
+        if (result.hasErrors()){
+            Map<String, String> map=new HashMap<>();
+            result.getFieldErrors().forEach((item)->{
+                String message=item.getDefaultMessage();
+                String field=item.getField();
+                map.put(message,field);
+            });
+            return R.error(400,"提交的数据不合法").put("data",map);
+        }else {
+            brandService.save(brand);
+        }
         return R.ok();
     }
 
@@ -63,7 +73,6 @@ public class BrandController {
     //@RequiresPermissions("product:brand:update")
     public R update(@RequestBody BrandEntity brand) {
         brandService.updateById(brand);
-
         return R.ok();
     }
 
@@ -74,7 +83,6 @@ public class BrandController {
     //@RequiresPermissions("product:brand:delete")
     public R delete(@RequestBody Long[] brandIds) {
         brandService.removeByIds(Arrays.asList(brandIds));
-
         return R.ok();
     }
 

@@ -22,7 +22,7 @@ import java.util.Map;
 */
 
 @Slf4j
-@RestControllerAdvice(basePackages = "com.xunqi.gulimall.product.controller")
+@RestControllerAdvice(basePackages = "com.zhuangxiaoyan.athena.product.controller")
 public class ExceptionControllerAdvice {
 
     /**

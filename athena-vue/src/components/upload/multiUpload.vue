@@ -11,7 +11,7 @@
       :on-remove="handleRemove"
       :on-success="handleUploadSuccess"
       :show-file-list="showFile"
-      action="http://gulimall-clouds.oss-cn-beijing.aliyuncs.com"
+      action="http://athena-oss.oss-cn-shanghai.aliyuncs.com"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
