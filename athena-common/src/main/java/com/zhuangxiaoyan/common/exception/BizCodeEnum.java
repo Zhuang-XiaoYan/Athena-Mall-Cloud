@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.common.exception;
 /**
  * @Description: 错误状态码枚举
  * @Created: with IntelliJ IDEA.
- * @author:
+ * @author: xjl
  * @createTime: 2020-05-27 17:29
  * <p>
  * 错误码和错误信息定义类
@@ -30,8 +30,7 @@ public enum BizCodeEnum {
     USER_EXIST_EXCEPTION(15001, "存在相同的用户"),
     PHONE_EXIST_EXCEPTION(15002, "存在相同的手机号"),
     NO_STOCK_EXCEPTION(21000, "商品库存不足"),
-    LOGINACCT_PASSWORD_EXCEPTION(15003, "账号或密码错误"),
-    ;
+    LOGINACCT_PASSWORD_EXCEPTION(15003, "账号或密码错误");
 
     private final Integer code;
 

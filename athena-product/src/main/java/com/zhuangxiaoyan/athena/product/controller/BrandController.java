@@ -4,8 +4,10 @@ import com.zhuangxiaoyan.athena.product.entity.BrandEntity;
 import com.zhuangxiaoyan.athena.product.service.BrandService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.valid.UpdateGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -51,18 +53,8 @@ public class BrandController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
-    public R save(@Valid @RequestBody BrandEntity brand, BindingResult result) {
-        if (result.hasErrors()){
-            Map<String, String> map=new HashMap<>();
-            result.getFieldErrors().forEach((item)->{
-                String message=item.getDefaultMessage();
-                String field=item.getField();
-                map.put(message,field);
-            });
-            return R.error(400,"提交的数据不合法").put("data",map);
-        }else {
-            brandService.save(brand);
-        }
+    public R save(@Valid @RequestBody BrandEntity brand) {
+        brandService.save(brand);
         return R.ok();
     }
 
@@ -71,7 +63,7 @@ public class BrandController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
-    public R update(@RequestBody BrandEntity brand) {
+    public R update(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand) {
         brandService.updateById(brand);
         return R.ok();
     }
