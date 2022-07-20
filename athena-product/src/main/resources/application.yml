@@ -26,7 +26,7 @@ spring:
       access-key: LTAI5tEEw2Enr8eaZo2jd5j6
       secret-key: 3XdiJv6fCZ3XrrESMd4I58XZT83t2x
       oss:
-        endpoint: athena-oss
+        endpoint: oss-cn-shanghai.aliyuncs.com
 
 # mybatis-plus的系列的属性
 mybatis-plus:
@@ -42,4 +42,4 @@ mybatis-plus:
 # 日志数据输出
 logging:
   level:
-    com.zhuangxiaoyan.athena: debug
+    com.zhuangxiaoyan.athena: ERROR
