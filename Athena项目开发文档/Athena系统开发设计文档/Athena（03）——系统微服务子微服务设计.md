@@ -41,11 +41,12 @@
 
 ![img.png](images/商品的三级分类的功能完成.png)
 
+![img.png](images/商品的属性分组.png)
+
 
 商品的品牌管理
 
 ![img.png](images/商品的品牌管理.png)
-
 
 前后端参数检验
 

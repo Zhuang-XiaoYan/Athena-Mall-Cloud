@@ -10,8 +10,7 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("categoryService")
@@ -82,5 +81,31 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public void removeMenuByIds(List<Long> asList) {
         //逻辑删除 一般不做删除
         baseMapper.deleteBatchIds(asList);
+    }
+    /**
+     * @description 查询的CateglogID的所有的路径
+      * @param:
+     * @date: 2022/7/22 23:14
+     * @return: java.lang.Long[]
+     * @author: xjl
+     * @param categoryId
+    */
+    @Override
+    public Long[] findCateglogPath(Long categoryId) {
+        List<Long> paths=new ArrayList<>();
+        List<Long> parentPath = findParentPath(categoryId, paths);
+        Collections.reverse(parentPath);
+        return parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+
+    private List<Long> findParentPath(Long categoryId,List<Long> paths){
+        paths.add(categoryId);
+
+        CategoryEntity byId = this.getById(categoryId);
+        if (byId.getParentCid()!=0){
+            findParentPath(byId.getParentCid(),paths);
+        }
+        return paths;
     }
 }

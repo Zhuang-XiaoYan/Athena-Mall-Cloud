@@ -8,6 +8,7 @@ import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrGroupService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import org.eclipse.jetty.util.StringUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -25,4 +26,30 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
         return new PageUtils(page);
     }
 
+    /**
+     * @description 查询的catelogId所对应的结果
+     * @param: params
+     * @param: catelogId
+     * @date: 2022/7/22 22:21
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
+    @Override
+    public PageUtils queryPage(Map<String, Object> params, Long catelogId) {
+        // 如果是的0 那就查询所有的分类属性
+        if (catelogId == 0) {
+            IPage<AttrGroupEntity> page = this.page(new Query<AttrGroupEntity>().getPage(params), new QueryWrapper<AttrGroupEntity>());
+            return new PageUtils(page);
+        } else {
+            String key = (String) params.get("key");
+            QueryWrapper<AttrGroupEntity> wrapper = new QueryWrapper<AttrGroupEntity>().eq("catelog_id",catelogId);
+            if (StringUtil.isEmpty(key)){
+                wrapper.and((object)->{
+                    object.eq("attr_group_id",key).or().like("attr_group_name",key);
+                });
+            }
+            IPage<AttrGroupEntity> page = this.page(new Query<AttrGroupEntity>().getPage(params), wrapper);
+            return new PageUtils(page);
+        }
+    }
 }

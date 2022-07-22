@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.product.controller;
 
 import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrGroupService;
+import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,16 @@ public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/{catelogId}")
     //@RequiresPermissions("product:attrgroup:list")
-    public R list(@RequestParam Map<String, Object> params) {
-        PageUtils page = attrGroupService.queryPage(params);
-
+    public R list(@RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogId) {
+        PageUtils page = attrGroupService.queryPage(params, catelogId);
         return R.ok().put("page", page);
     }
 
@@ -41,7 +44,8 @@ public class AttrGroupController {
     //@RequiresPermissions("product:attrgroup:info")
     public R info(@PathVariable("attrGroupId") Long attrGroupId) {
         AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
-
+        Long categoryId = attrGroup.getAttrGroupId();
+        Long[] path = categoryService.findCateglogPath(categoryId);
         return R.ok().put("attrGroup", attrGroup);
     }
 

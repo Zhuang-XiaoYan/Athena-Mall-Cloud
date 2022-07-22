@@ -33,7 +33,7 @@ export default {
       }
     };
   },
-  //计算属性 类似于data概念
+  //计算属性类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {

@@ -42,4 +42,4 @@ mybatis-plus:
 # 日志数据输出
 logging:
   level:
-    com.zhuangxiaoyan.athena: ERROR
+    com.zhuangxiaoyan.athena: DEBUG
