@@ -12,7 +12,13 @@
 
 ![img.png](images/vue-dev.png)
 
+解决方案：
+
+由于的语法的检查有太严格，导致的运行的检查错误。
+
+
 ![img.png](images/athena-admin-login.png)
+
 
 - 部署端口：9009
 
@@ -30,6 +36,10 @@
 ![img.png](images/商品的三级分类结果.png)
 
 ![img.png](images/商品的三级分类前端有问题.png)
+
+![img.png](images/后端的数据的传递的有问题.png)
+
+![img.png](images/商品的三级分类的功能完成.png)
 
 
 商品的品牌管理

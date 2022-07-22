@@ -2,7 +2,7 @@
   <div class="mod-config">
     <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
       <el-form-item>
-        <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
+        <el-input v-model="dataForm.key" clearable placeholder="参数名"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
@@ -10,54 +10,56 @@
           v-if="isAuth('coupon:seckillsession:save')"
           type="primary"
           @click="addOrUpdateHandle()"
-        >新增</el-button>
+        >新增
+        </el-button>
         <el-button
           v-if="isAuth('coupon:seckillsession:delete')"
+          :disabled="dataListSelections.length <= 0"
           type="danger"
           @click="deleteHandle()"
-          :disabled="dataListSelections.length <= 0"
-        >批量删除</el-button>
+        >批量删除
+        </el-button>
       </el-form-item>
     </el-form>
     <el-table
+      v-loading="dataListLoading"
       :data="dataList"
       border
-      v-loading="dataListLoading"
-      @selection-change="selectionChangeHandle"
       style="width: 100%;"
+      @selection-change="selectionChangeHandle"
     >
-      <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
-      <el-table-column prop="id" header-align="center" align="center" label="id"></el-table-column>
-      <el-table-column prop="name" header-align="center" align="center" label="场次名称"></el-table-column>
-      <el-table-column prop="startTime" header-align="center" align="center" label="每日开始时间"></el-table-column>
-      <el-table-column prop="endTime" header-align="center" align="center" label="每日结束时间"></el-table-column>
-      <el-table-column prop="status" header-align="center" align="center" label="启用状态"></el-table-column>
-      <el-table-column prop="createTime" header-align="center" align="center" label="创建时间"></el-table-column>
-      <el-table-column fixed="right" header-align="center" align="center" width="150" label="操作">
+      <el-table-column align="center" header-align="center" type="selection" width="50"></el-table-column>
+      <el-table-column align="center" header-align="center" label="id" prop="id"></el-table-column>
+      <el-table-column align="center" header-align="center" label="场次名称" prop="name"></el-table-column>
+      <el-table-column align="center" header-align="center" label="每日开始时间" prop="startTime"></el-table-column>
+      <el-table-column align="center" header-align="center" label="每日结束时间" prop="endTime"></el-table-column>
+      <el-table-column align="center" header-align="center" label="启用状态" prop="status"></el-table-column>
+      <el-table-column align="center" header-align="center" label="创建时间" prop="createTime"></el-table-column>
+      <el-table-column align="center" fixed="right" header-align="center" label="操作" width="150">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="relationProduct(scope.row.id)">关联商品</el-button>
+          <el-button size="small" type="text" @click="relationProduct(scope.row.id)">关联商品</el-button>
           <br/>
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
-          <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
+          <el-button size="small" type="text" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+          <el-button size="small" type="text" @click="deleteHandle(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-      @size-change="sizeChangeHandle"
-      @current-change="currentChangeHandle"
       :current-page="pageIndex"
-      :page-sizes="[10, 20, 50, 100]"
       :page-size="pageSize"
+      :page-sizes="[10, 20, 50, 100]"
       :total="totalPage"
       layout="total, sizes, prev, pager, next, jumper"
+      @size-change="sizeChangeHandle"
+      @current-change="currentChangeHandle"
     ></el-pagination>
     <!-- 弹窗, 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
     <div>
       <el-dialog
-        append-to-body
         :close-on-click-modal="false"
         :visible.sync="visible"
+        append-to-body
         title="关联秒杀商品"
         width="60%"
       >
@@ -70,6 +72,7 @@
 <script>
 import AddOrUpdate from "./seckillsession-add-or-update";
 import SeckillskuRelation from "./seckillskurelation";
+
 export default {
   data() {
     return {
@@ -106,7 +109,7 @@ export default {
           limit: this.pageSize,
           key: this.dataForm.key
         })
-      }).then(({ data }) => {
+      }).then(({data}) => {
         if (data && data.code === 0) {
           this.dataList = data.page.list;
           this.totalPage = data.page.totalCount;
@@ -117,7 +120,8 @@ export default {
         this.dataListLoading = false;
       });
     },
-    getRealtionDataList() {},
+    getRealtionDataList() {
+    },
     // 每页数
     sizeChangeHandle(val) {
       this.pageSize = val;
@@ -152,8 +156,8 @@ export default {
       var ids = id
         ? [id]
         : this.dataListSelections.map(item => {
-            return item.id;
-          });
+          return item.id;
+        });
       this.$confirm(
         `确定对[id=${ids.join(",")}]进行[${id ? "删除" : "批量删除"}]操作?`,
         "提示",
@@ -167,7 +171,7 @@ export default {
           url: this.$http.adornUrl("/coupon/seckillsession/delete"),
           method: "post",
           data: this.$http.adornData(ids, false)
-        }).then(({ data }) => {
+        }).then(({data}) => {
           if (data && data.code === 0) {
             this.$message({
               message: "操作成功",

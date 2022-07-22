@@ -14,21 +14,22 @@
       <li>个人博客：<a href="https://github.com/2462612540" target="_blank">https://github.com/2462612540</a></li>
       <li>gitee：<a href="https://gitee.com/xjl2462612540" target="_blank">https://gitee.com/xjl2462612540</a></li>
       <li>github：<a href="https://github.com/2462612540" target="_blank">https://github.com/2462612540</a></li>
-      <li>CSDN：<a href="https://blog.csdn.net/weixin_41605937?type=blog" target="_blank">https://blog.csdn.net/weixin_41605937?type=blog</a></li>
-      <li>雀语：<a href="https://www.yuque.com/dashboard/my_books" target="_blank">https://www.yuque.com/dashboard/my_books</a></li>
+      <li>CSDN：<a href="https://blog.csdn.net/weixin_41605937?type=blog" target="_blank">https://blog.csdn.net/weixin_41605937?type=blog</a>
+      </li>
+      <li>雀语：<a href="https://www.yuque.com/dashboard/my_books"
+                target="_blank">https://www.yuque.com/dashboard/my_books</a></li>
       <li>如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持</li>
     </ul>
   </div>
 </template>
 
 <script>
-  export default {
-  }
+export default {}
 </script>
 
 <style>
-  .mod-home {
-    line-height: 1.5;
-  }
+.mod-home {
+  line-height: 1.5;
+}
 </style>
 
