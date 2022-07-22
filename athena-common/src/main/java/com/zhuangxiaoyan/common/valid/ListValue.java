@@ -11,11 +11,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @description 自定义注解规则
- * @param: null
- * @date: 2022/3/19 18:37
+  * @param: null
+ * @date: 2022/7/22 16:59
  * @return:
  * @author: xjl
- */
+*/
 @Documented
 @Constraint(validatedBy = {ListValueConstraintValidator.class})
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})

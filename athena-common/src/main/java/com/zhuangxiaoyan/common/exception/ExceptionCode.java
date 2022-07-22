@@ -1,5 +1,7 @@
 package com.zhuangxiaoyan.common.exception;
 
+import lombok.Data;
+
 /**
  * @Description: 错误状态码枚举
  * @Created: with IntelliJ IDEA.
@@ -12,15 +14,15 @@ package com.zhuangxiaoyan.common.exception;
  * 3. 维护错误码后需要维护错误描述，将他们定义为枚举形式
  * 错误码列表：
  * 10: 通用
- * 001：参数格式校验
- * 002：短信验证码频率太高
+ *    001：参数格式校验
+ *    002：短信验证码频率太高
  * 11: 商品
  * 12: 订单
  * 13: 购物车
  * 14: 物流
  * 15：用户
  */
-public enum BizCodeEnum {
+public enum ExceptionCode {
 
     UNKNOW_EXCEPTION(10000, "系统未知异常"),
     VAILD_EXCEPTION(10001, "参数格式校验失败"),
@@ -33,10 +35,9 @@ public enum BizCodeEnum {
     LOGINACCT_PASSWORD_EXCEPTION(15003, "账号或密码错误");
 
     private final Integer code;
-
     private final String message;
 
-    BizCodeEnum(Integer code, String message) {
+    ExceptionCode(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

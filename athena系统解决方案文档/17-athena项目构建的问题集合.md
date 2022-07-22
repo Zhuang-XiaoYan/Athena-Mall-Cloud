@@ -37,6 +37,23 @@
 5. 再重启虚拟机即可
 
 
+> IDEA 多项目中Services面板不显示SpringBoot 项目的解决方法
+
+解决办法：
+
+打开IDEA项目在项目的根目录当中找到 .idea文件夹,里面会有个xml文件,workspace.xml文件,
+查看文件当中是否有个节点叫RunDashboard ,如果没有,就在某一个component节点下,再新建一个componet节点,内容如下:
+
+```xml
+<component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+</component>
+```
+
 
 
 

@@ -36,6 +36,16 @@
 
 ![img.png](images/商品的品牌管理.png)
 
+
+前后端参数检验
+
+![img.png](images/异常校验.png)
+
+![img.png](images/自定义的异常.png)
+
+![img.png](images/分组校验.png)
+
+
 # 3、支付服务
 
 # 4、优惠服务

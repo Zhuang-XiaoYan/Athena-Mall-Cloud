@@ -7,7 +7,7 @@ import java.util.Set;
 
 /**
  * @Description:
- * @Created: with IntelliJ IDEA.
+ * @Created: 自定义的校验.
  * @author: xjl
  * @createTime: 2020-05-27 17:54
  **/
@@ -22,13 +22,10 @@ public class ListValueConstraintValidator implements ConstraintValidator<ListVal
      */
     @Override
     public void initialize(ListValue constraintAnnotation) {
-
         int[] vals = constraintAnnotation.vals();
-
         for (int val : vals) {
             set.add(val);
         }
-
     }
 
     /**
@@ -40,11 +37,8 @@ public class ListValueConstraintValidator implements ConstraintValidator<ListVal
      */
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-
         //判断是否有包含的值
         boolean contains = set.contains(value);
-
         return contains;
     }
-
 }

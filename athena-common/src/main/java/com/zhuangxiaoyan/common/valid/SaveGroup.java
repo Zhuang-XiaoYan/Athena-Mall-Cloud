@@ -7,5 +7,5 @@ package com.zhuangxiaoyan.common.valid;
  * @return:
  * @author: xjl
  */
-public interface AddGroup {
+public interface SaveGroup {
 }
