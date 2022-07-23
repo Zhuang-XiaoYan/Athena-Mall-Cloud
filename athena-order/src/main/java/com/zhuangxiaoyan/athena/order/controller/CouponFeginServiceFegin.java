@@ -1,7 +1,7 @@
 package com.zhuangxiaoyan.athena.order.controller;
 
 import com.zhuangxiaoyan.athena.order.fegin.CouponFeginService;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +27,8 @@ public class CouponFeginServiceFegin {
      * @author: xjl
      */
     @RequestMapping("/coupons")
-    public R test() {
-        R membercoupons = couponFeginService.membercoupons();
-        return R.ok().put("athena-order ", "athena-order fegin call athena coupons").put("coupon", membercoupons);
+    public Result test() {
+        Result membercoupons = couponFeginService.membercoupons();
+        return Result.ok().put("athena-order ", "athena-order fegin call athena coupons").put("coupon", membercoupons);
     }
 }

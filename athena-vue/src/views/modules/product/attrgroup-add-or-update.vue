@@ -109,7 +109,7 @@ export default {
               this.dataForm.icon = data.attrGroup.icon;
               this.dataForm.catelogId = data.attrGroup.catelogId;
               //查出catelogId的完整路径
-              this.catelogPath = data.attrGroup.catelogPath;
+              this.dataForm.catelogPath = data.attrGroup.catelogPath;
             }
           });
         }
@@ -121,9 +121,7 @@ export default {
         if (valid) {
           this.$http({
             url: this.$http.adornUrl(
-              `/product/attrgroup/${
-                !this.dataForm.attrGroupId ? "save" : "update"
-              }`
+              `/product/attrgroup/${!this.dataForm.attrGroupId ? "save" : "update"}`
             ),
             method: "post",
             data: this.$http.adornData({
@@ -132,7 +130,7 @@ export default {
               sort: this.dataForm.sort,
               descript: this.dataForm.descript,
               icon: this.dataForm.icon,
-              catelogId: this.catelogPath[this.catelogPath.length - 1]
+              catelogId: this.dataForm.catelogPath[this.catelogPath.length - 1]
             })
           }).then(({data}) => {
             if (data && data.code === 0) {

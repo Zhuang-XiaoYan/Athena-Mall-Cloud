@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.order.controller;
 import com.zhuangxiaoyan.athena.order.entity.OrderEntity;
 import com.zhuangxiaoyan.athena.order.service.OrderService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class OrderController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:order:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class OrderController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:order:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         OrderEntity order = orderService.getById(id);
 
-        return R.ok().put("order", order);
+        return Result.ok().put("order", order);
     }
 
     /**
@@ -50,10 +50,10 @@ public class OrderController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:order:save")
-    public R save(@RequestBody OrderEntity order) {
+    public Result save(@RequestBody OrderEntity order) {
         orderService.save(order);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class OrderController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:order:update")
-    public R update(@RequestBody OrderEntity order) {
+    public Result update(@RequestBody OrderEntity order) {
         orderService.updateById(order);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class OrderController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:order:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         orderService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.ware.controller;
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
 import com.zhuangxiaoyan.athena.ware.service.WareSkuService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class WareSkuController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:waresku:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareSkuService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class WareSkuController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ware:waresku:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         WareSkuEntity wareSku = wareSkuService.getById(id);
 
-        return R.ok().put("wareSku", wareSku);
+        return Result.ok().put("wareSku", wareSku);
     }
 
     /**
@@ -50,10 +50,10 @@ public class WareSkuController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("ware:waresku:save")
-    public R save(@RequestBody WareSkuEntity wareSku) {
+    public Result save(@RequestBody WareSkuEntity wareSku) {
         wareSkuService.save(wareSku);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class WareSkuController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("ware:waresku:update")
-    public R update(@RequestBody WareSkuEntity wareSku) {
+    public Result update(@RequestBody WareSkuEntity wareSku) {
         wareSkuService.updateById(wareSku);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class WareSkuController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("ware:waresku:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         wareSkuService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

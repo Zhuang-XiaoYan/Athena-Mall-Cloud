@@ -3,6 +3,8 @@ package com.zhuangxiaoyan.athena.product;
 import com.aliyun.oss.*;
 import com.zhuangxiaoyan.athena.product.entity.BrandEntity;
 import com.zhuangxiaoyan.athena.product.service.BrandService;
+import com.zhuangxiaoyan.athena.product.service.CategoryService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
 
 /**
  * @description 单元测试中的两个的注解是原理是什么？如果没有会出现什么错误。为什么会出现的这样的错误。
@@ -19,6 +22,7 @@ import java.io.InputStream;
  * @return:
  * @author: xjl
  */
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AthenaProductApplicationTests {
@@ -78,5 +82,15 @@ public class AthenaProductApplicationTests {
                 ossClient.shutdown();
             }
         }
+    }
+
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Test
+    public void categoryServiceTest(){
+        Long[] categlogPath = categoryService.findCateglogPath(225L);
+        log.info("完整的路径是：{}", Arrays.asList(categlogPath));
     }
 }

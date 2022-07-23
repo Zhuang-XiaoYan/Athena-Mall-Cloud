@@ -107,6 +107,10 @@ export default {
         this.menus = data.data;
       });
     },
+    nodeclick(data, node, component) {
+      // 向父组件发送事件
+      this.$emit("tree-node-click", data, node, component)
+    },
     batchDelete() {
       let catIds = [];
       let checkedNodes = this.$refs.menuTree.getCheckedNodes();
@@ -135,6 +139,7 @@ export default {
         .catch(() => {
         });
     },
+
     batchSave() {
       this.$http({
         url: this.$http.adornUrl("/product/category/update/sort"),
@@ -154,6 +159,7 @@ export default {
         // this.pCid = 0;
       });
     },
+
     handleDrop(draggingNode, dropNode, dropType, ev) {
       console.log("handleDrop: ", draggingNode, dropNode, dropType);
       //1、当前节点最新的父节点id
@@ -196,6 +202,7 @@ export default {
       //3、当前拖拽节点的最新层级
       console.log("updateNodes", this.updateNodes);
     },
+
     updateChildNodeLevel(node) {
       if (node.childNodes.length > 0) {
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -272,6 +279,7 @@ export default {
          */
       });
     },
+
     append(data) {
       console.log("append", data);
       this.dialogType = "add";

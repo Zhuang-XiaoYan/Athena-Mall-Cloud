@@ -1,7 +1,7 @@
 package com.zhuangxiaoyan.athena.product.exception;
 
 import com.zhuangxiaoyan.common.exception.ExceptionCode;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -32,21 +32,21 @@ public class ExceptionControllerAdvice {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleValidException(MethodArgumentNotValidException e) {
+    public Result handleValidException(MethodArgumentNotValidException e) {
         log.error("数据效验出现问题{},异常类型{}",e.getMessage(),e.getClass());
         BindingResult bindingResult = e.getBindingResult();
         Map<String,String> errMap = new HashMap<>();
         bindingResult.getFieldErrors().forEach((fieldError) -> {
             errMap.put(fieldError.getField(),fieldError.getDefaultMessage());
         });
-        return R.error(ExceptionCode.VAILD_EXCEPTION.getCode(), ExceptionCode.VAILD_EXCEPTION.getMessage())
+        return Result.error(ExceptionCode.VAILD_EXCEPTION.getCode(), ExceptionCode.VAILD_EXCEPTION.getMessage())
                 .put("data",errMap);
     }
 
 
     @ExceptionHandler(value = Throwable.class)
-    public R handleException(Throwable throwable) {
+    public Result handleException(Throwable throwable) {
         log.error("错误异常{}",throwable);
-        return R.error(ExceptionCode.UNKNOW_EXCEPTION.getCode(), ExceptionCode.UNKNOW_EXCEPTION.getMessage());
+        return Result.error(ExceptionCode.UNKNOW_EXCEPTION.getCode(), ExceptionCode.UNKNOW_EXCEPTION.getMessage());
     }
 }

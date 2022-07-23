@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.product.controller;
 import com.zhuangxiaoyan.athena.product.entity.SkuSaleAttrValueEntity;
 import com.zhuangxiaoyan.athena.product.service.SkuSaleAttrValueService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skusaleattrvalue:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuSaleAttrValueService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:skusaleattrvalue:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         SkuSaleAttrValueEntity skuSaleAttrValue = skuSaleAttrValueService.getById(id);
 
-        return R.ok().put("skuSaleAttrValue", skuSaleAttrValue);
+        return Result.ok().put("skuSaleAttrValue", skuSaleAttrValue);
     }
 
     /**
@@ -50,10 +50,10 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skusaleattrvalue:save")
-    public R save(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
+    public Result save(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
         skuSaleAttrValueService.save(skuSaleAttrValue);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skusaleattrvalue:update")
-    public R update(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
+    public Result update(@RequestBody SkuSaleAttrValueEntity skuSaleAttrValue) {
         skuSaleAttrValueService.updateById(skuSaleAttrValue);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class SkuSaleAttrValueController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skusaleattrvalue:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         skuSaleAttrValueService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

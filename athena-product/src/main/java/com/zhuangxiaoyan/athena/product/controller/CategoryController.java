@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.product.controller;
 import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,9 +32,9 @@ public class CategoryController {
      * @author: xjl
      */
     @RequestMapping("/list/tree")
-    public R list() {
+    public Result list() {
         List<CategoryEntity> entities = categoryService.listWithTree();
-        return R.ok().put("data", entities);
+        return Result.ok().put("data", entities);
     }
 
     /**
@@ -42,10 +42,10 @@ public class CategoryController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:category:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = categoryService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -53,10 +53,9 @@ public class CategoryController {
      */
     @RequestMapping("/info/{catId}")
     //@RequiresPermissions("product:category:info")
-    public R info(@PathVariable("catId") Long catId) {
+    public Result info(@PathVariable("catId") Long catId) {
         CategoryEntity category = categoryService.getById(catId);
-
-        return R.ok().put("category", category);
+        return Result.ok().put("category", category);
     }
 
     /**
@@ -64,10 +63,10 @@ public class CategoryController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:category:save")
-    public R save(@RequestBody CategoryEntity category) {
+    public Result save(@RequestBody CategoryEntity category) {
         categoryService.save(category);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -75,9 +74,9 @@ public class CategoryController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:category:update")
-    public R update(@RequestBody CategoryEntity category) {
+    public Result update(@RequestBody CategoryEntity category) {
         categoryService.updateById(category);
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -87,10 +86,10 @@ public class CategoryController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:category:delete")
-    public R delete(@RequestBody Long[] catIds) {
+    public Result delete(@RequestBody Long[] catIds) {
         // 检查删除的菜单 是否被其他的地方引用
         categoryService.removeByIds(Arrays.asList(catIds));
         categoryService.removeMenuByIds(Arrays.asList(catIds));
-        return R.ok();
+        return Result.ok();
     }
 }

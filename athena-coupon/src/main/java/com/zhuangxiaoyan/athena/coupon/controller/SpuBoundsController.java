@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.coupon.controller;
 import com.zhuangxiaoyan.athena.coupon.entity.SpuBoundsEntity;
 import com.zhuangxiaoyan.athena.coupon.service.SpuBoundsService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class SpuBoundsController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:spubounds:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = spuBoundsService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class SpuBoundsController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:spubounds:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         SpuBoundsEntity spuBounds = spuBoundsService.getById(id);
 
-        return R.ok().put("spuBounds", spuBounds);
+        return Result.ok().put("spuBounds", spuBounds);
     }
 
     /**
@@ -50,10 +50,10 @@ public class SpuBoundsController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:spubounds:save")
-    public R save(@RequestBody SpuBoundsEntity spuBounds) {
+    public Result save(@RequestBody SpuBoundsEntity spuBounds) {
         spuBoundsService.save(spuBounds);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class SpuBoundsController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:spubounds:update")
-    public R update(@RequestBody SpuBoundsEntity spuBounds) {
+    public Result update(@RequestBody SpuBoundsEntity spuBounds) {
         spuBoundsService.updateById(spuBounds);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class SpuBoundsController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:spubounds:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         spuBoundsService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

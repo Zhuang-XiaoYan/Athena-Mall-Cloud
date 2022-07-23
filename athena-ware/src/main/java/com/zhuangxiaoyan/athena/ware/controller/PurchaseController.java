@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.ware.controller;
 import com.zhuangxiaoyan.athena.ware.entity.PurchaseEntity;
 import com.zhuangxiaoyan.athena.ware.service.PurchaseService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class PurchaseController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("ware:purchase:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class PurchaseController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("ware:purchase:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         PurchaseEntity purchase = purchaseService.getById(id);
 
-        return R.ok().put("purchase", purchase);
+        return Result.ok().put("purchase", purchase);
     }
 
     /**
@@ -50,10 +50,10 @@ public class PurchaseController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("ware:purchase:save")
-    public R save(@RequestBody PurchaseEntity purchase) {
+    public Result save(@RequestBody PurchaseEntity purchase) {
         purchaseService.save(purchase);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class PurchaseController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("ware:purchase:update")
-    public R update(@RequestBody PurchaseEntity purchase) {
+    public Result update(@RequestBody PurchaseEntity purchase) {
         purchaseService.updateById(purchase);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class PurchaseController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("ware:purchase:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         purchaseService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

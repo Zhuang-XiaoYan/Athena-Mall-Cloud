@@ -1,6 +1,6 @@
 package com.zhuangxiaoyan.athena.coupon.controller;
 
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +27,8 @@ public class ConfigController {
      * 提供远程服务调用
      */
     @RequestMapping("/valuetest")
-    public R membercoupons() {
-        return R.ok().put("name", name).put("age", age);
+    public Result membercoupons() {
+        return Result.ok().put("name", name).put("age", age);
     }
 
 }

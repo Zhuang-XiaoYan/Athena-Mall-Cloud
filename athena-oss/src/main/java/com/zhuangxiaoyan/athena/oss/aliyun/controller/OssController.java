@@ -4,7 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
 import com.aliyun.oss.model.PolicyConditions;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +37,7 @@ public class OssController {
     private String accessId;
 
     @RequestMapping("/oss/policy")
-    public R policy() {
+    public Result policy() {
 
         // 填写Host地址，格式为https://bucketname.endpoint。
         String host = "https://" + bucket + "." + endpoint;
@@ -70,6 +70,6 @@ public class OssController {
             // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
         }
-        return R.ok().put("data", respMap);
+        return Result.ok().put("data", respMap);
     }
 }

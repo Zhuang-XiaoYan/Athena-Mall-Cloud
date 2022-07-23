@@ -8,6 +8,7 @@ import com.zhuangxiaoyan.athena.product.entity.BrandEntity;
 import com.zhuangxiaoyan.athena.product.service.BrandService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import org.eclipse.jetty.util.StringUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -17,12 +18,13 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<BrandEntity> page = this.page(
-                new Query<BrandEntity>().getPage(params),
-                new QueryWrapper<BrandEntity>()
-        );
-
+        String key = (String) params.get("key");
+        QueryWrapper<BrandEntity> Wrapper = new QueryWrapper<>();
+        if (!StringUtil.isEmpty(key)) {
+            // 使用字段的模糊查询
+            Wrapper.eq("brand_id", key).or().like("name", key);
+        }
+        IPage<BrandEntity> page = this.page(new Query<BrandEntity>().getPage(params), Wrapper);
         return new PageUtils(page);
     }
-
 }

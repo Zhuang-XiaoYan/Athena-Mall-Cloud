@@ -71,7 +71,6 @@
         ></el-pagination>
         <!-- 弹窗, 新增 / 修改 -->
         <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
-
         <!-- 修改关联关系 -->
         <relation-update v-if="relationVisible" ref="relationUpdate" @refreshData="getDataList"></relation-update>
       </div>
@@ -180,9 +179,7 @@ export default {
     },
     // 删除
     deleteHandle(id) {
-      var ids = id
-        ? [id]
-        : this.dataListSelections.map(item => {
+      var ids = id ? [id] : this.dataListSelections.map(item => {
           return item.attrGroupId;
         });
       this.$confirm(

@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.member.controller;
 import com.zhuangxiaoyan.athena.member.entity.MemberStatisticsInfoEntity;
 import com.zhuangxiaoyan.athena.member.service.MemberStatisticsInfoService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +28,10 @@ public class MemberStatisticsInfoController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:memberstatisticsinfo:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberStatisticsInfoService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -39,10 +39,10 @@ public class MemberStatisticsInfoController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:memberstatisticsinfo:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         MemberStatisticsInfoEntity memberStatisticsInfo = memberStatisticsInfoService.getById(id);
 
-        return R.ok().put("memberStatisticsInfo", memberStatisticsInfo);
+        return Result.ok().put("memberStatisticsInfo", memberStatisticsInfo);
     }
 
     /**
@@ -50,10 +50,10 @@ public class MemberStatisticsInfoController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:memberstatisticsinfo:save")
-    public R save(@RequestBody MemberStatisticsInfoEntity memberStatisticsInfo) {
+    public Result save(@RequestBody MemberStatisticsInfoEntity memberStatisticsInfo) {
         memberStatisticsInfoService.save(memberStatisticsInfo);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -61,10 +61,10 @@ public class MemberStatisticsInfoController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:memberstatisticsinfo:update")
-    public R update(@RequestBody MemberStatisticsInfoEntity memberStatisticsInfo) {
+    public Result update(@RequestBody MemberStatisticsInfoEntity memberStatisticsInfo) {
         memberStatisticsInfoService.updateById(memberStatisticsInfo);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -72,10 +72,10 @@ public class MemberStatisticsInfoController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:memberstatisticsinfo:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         memberStatisticsInfoService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

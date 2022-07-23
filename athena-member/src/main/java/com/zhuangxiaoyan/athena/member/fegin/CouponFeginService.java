@@ -1,6 +1,6 @@
 package com.zhuangxiaoyan.athena.member.fegin;
 
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,5 +20,5 @@ public interface CouponFeginService {
      * @author: xjl
      */
     @RequestMapping("/coupon/coupon/member/list")
-    public R membercoupons();
+    public Result membercoupons();
 }

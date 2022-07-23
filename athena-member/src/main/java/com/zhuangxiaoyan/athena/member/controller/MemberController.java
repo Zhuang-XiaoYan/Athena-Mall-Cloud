@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.athena.member.controller;
 import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
-import com.zhuangxiaoyan.common.utils.R;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +28,9 @@ public class MemberController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:member:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberService.queryPage(params);
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -38,9 +38,9 @@ public class MemberController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:member:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         MemberEntity member = memberService.getById(id);
-        return R.ok().put("member", member);
+        return Result.ok().put("member", member);
     }
 
     /**
@@ -48,9 +48,9 @@ public class MemberController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:member:save")
-    public R save(@RequestBody MemberEntity member) {
+    public Result save(@RequestBody MemberEntity member) {
         memberService.save(member);
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -58,9 +58,9 @@ public class MemberController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:member:update")
-    public R update(@RequestBody MemberEntity member) {
+    public Result update(@RequestBody MemberEntity member) {
         memberService.updateById(member);
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -68,8 +68,8 @@ public class MemberController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:member:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         memberService.removeByIds(Arrays.asList(ids));
-        return R.ok();
+        return Result.ok();
     }
 }
