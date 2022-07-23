@@ -3,6 +3,7 @@ package com.zhuangxiaoyan.athena.product.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhuangxiaoyan.athena.product.entity.CategoryBrandRelationEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 品牌分类关联
@@ -14,4 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CategoryBrandRelationDao extends BaseMapper<CategoryBrandRelationEntity> {
 
+    void updateCategory(@Param("catIDd") Long catId, @Param("name") String name);
 }

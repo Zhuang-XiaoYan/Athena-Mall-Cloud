@@ -3,18 +3,25 @@ package com.zhuangxiaoyan.athena.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhuangxiaoyan.athena.product.service.CategoryBrandRelationService;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.dao.CategoryDao;
 import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.ws.Action;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -97,7 +104,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         Collections.reverse(parentPath);
         return parentPath.toArray(new Long[parentPath.size()]);
     }
+    /**
+     * @description 级联更新所有的关联数据
+      * @param: category
+     * @date: 2022/7/23 11:27
+     * @return: void
+     * @author: xjl
+    */
+    @Transactional
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        // 级联更新
+        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
 
+    }
 
     private List<Long> findParentPath(Long categoryId,List<Long> paths){
         // 收集当前的节点的id数据

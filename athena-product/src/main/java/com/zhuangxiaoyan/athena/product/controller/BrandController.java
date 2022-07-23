@@ -57,13 +57,14 @@ public class BrandController {
     }
 
     /**
-     * 修改
+     * 涉及到多表关联的时候不能只能使用简单的单表的保存，需要的考虑到多表的冗余与数据的同步，因此需要在每每次的基础的操作中的做好相关的检查。
      * @Validated(UpdateGroup.class)
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
     public Result update(@Validated(UpdateGroup.class) @RequestBody BrandEntity brand) {
-        brandService.updateById(brand);
+
+        brandService.updateDetail(brand);
         return Result.ok();
     }
 

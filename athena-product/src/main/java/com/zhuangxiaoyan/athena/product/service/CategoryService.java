@@ -36,5 +36,7 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @author: xjl
     */
     Long[] findCateglogPath(Long categoryId);
+
+    void updateCascade(CategoryEntity category);
 }
 
