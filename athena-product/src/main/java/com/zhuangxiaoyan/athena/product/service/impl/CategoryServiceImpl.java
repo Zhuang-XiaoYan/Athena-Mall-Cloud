@@ -3,18 +3,20 @@ package com.zhuangxiaoyan.athena.product.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhuangxiaoyan.athena.product.service.CategoryBrandRelationService;
-import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.dao.CategoryDao;
 import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
+import com.zhuangxiaoyan.athena.product.service.CategoryBrandRelationService;
+import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.ws.Action;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service("categoryService")
@@ -79,54 +81,56 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * @description TODO 检查的删除的菜单 是否被其他地方引用
-      * @param: asList
+     * @param: asList
      * @date: 2022/3/19 13:57
      * @return: void
      * @author: xjl
-    */
+     */
     @Override
     public void removeMenuByIds(List<Long> asList) {
         //逻辑删除 一般不做删除
         baseMapper.deleteBatchIds(asList);
     }
+
     /**
-     * @description 查询的CateglogID的所有的路径
-      * @param:
+     * @param categoryId
+     * @description 查询的CateglogId的所有的路径
+     * @param:
      * @date: 2022/7/22 23:14
      * @return: java.lang.Long[]
      * @author: xjl
-     * @param categoryId
-    */
+     */
     @Override
     public Long[] findCateglogPath(Long categoryId) {
-        List<Long> paths=new ArrayList<>();
+        List<Long> paths = new ArrayList<>();
         List<Long> parentPath = findParentPath(categoryId, paths);
         Collections.reverse(parentPath);
         return parentPath.toArray(new Long[parentPath.size()]);
     }
+
+    private List<Long> findParentPath(Long categoryId, List<Long> paths) {
+        // 收集当前的节点的id数据
+        paths.add(categoryId);
+        CategoryEntity byId = this.getById(categoryId);
+        if (byId.getParentCid() != 0) {
+            findParentPath(byId.getParentCid(), paths);
+        }
+        return paths;
+    }
+
     /**
      * @description 级联更新所有的关联数据
-      * @param: category
+     * @param: category
      * @date: 2022/7/23 11:27
      * @return: void
      * @author: xjl
-    */
+     */
     @Transactional
     @Override
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
         // 级联更新
-        categoryBrandRelationService.updateCategory(category.getCatId(),category.getName());
+        categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
 
-    }
-
-    private List<Long> findParentPath(Long categoryId,List<Long> paths){
-        // 收集当前的节点的id数据
-        paths.add(categoryId);
-        CategoryEntity byId = this.getById(categoryId);
-        if (byId.getParentCid()!=0){
-            findParentPath(byId.getParentCid(),paths);
-        }
-        return paths;
     }
 }

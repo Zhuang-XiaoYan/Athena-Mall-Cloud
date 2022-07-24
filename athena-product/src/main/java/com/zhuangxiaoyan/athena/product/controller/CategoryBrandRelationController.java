@@ -29,12 +29,14 @@ public class CategoryBrandRelationController {
     /**
      * 获取当前品牌的关联的的所有分类列表
      */
-    @GetMapping(value = "/catelog/list")// @RequestMapping(value = "/catelog/list", method = RequestMethod.GET)
+
+    @GetMapping(value = "/catelog/list")
+    // @RequestMapping(value = "/catelog/list", method = RequestMethod.GET)
     //@RequiresPermissions("product:categorybrandrelation:list")
-    public Result cateloglist(@RequestParam("brand_id") Long brandId) {
-        List<CategoryBrandRelationEntity> list = categoryBrandRelationService.list(
+    public Result cateloglist(@RequestParam("brandId") Long brandId) {
+        List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(
                 new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
-        return Result.ok().put("data", list);
+        return Result.ok().put("data", data);
     }
 
 

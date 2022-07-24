@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.product.controller;
 
 import com.zhuangxiaoyan.athena.product.entity.AttrEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrService;
+import com.zhuangxiaoyan.athena.product.vo.AttrVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/attr")
 public class AttrController {
+
     @Autowired
     private AttrService attrService;
 
@@ -30,7 +32,6 @@ public class AttrController {
     //@RequiresPermissions("product:attr:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = attrService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -41,7 +42,6 @@ public class AttrController {
     //@RequiresPermissions("product:attr:info")
     public Result info(@PathVariable("attrId") Long attrId) {
         AttrEntity attr = attrService.getById(attrId);
-
         return Result.ok().put("attr", attr);
     }
 
@@ -50,9 +50,8 @@ public class AttrController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attr:save")
-    public Result save(@RequestBody AttrEntity attr) {
-        attrService.save(attr);
-
+    public Result save(@RequestBody AttrVo attr) {
+        attrService.saveAttr(attr);
         return Result.ok();
     }
 
@@ -63,7 +62,6 @@ public class AttrController {
     //@RequiresPermissions("product:attr:update")
     public Result update(@RequestBody AttrEntity attr) {
         attrService.updateById(attr);
-
         return Result.ok();
     }
 
@@ -74,7 +72,6 @@ public class AttrController {
     //@RequiresPermissions("product:attr:delete")
     public Result delete(@RequestBody Long[] attrIds) {
         attrService.removeByIds(Arrays.asList(attrIds));
-
         return Result.ok();
     }
 

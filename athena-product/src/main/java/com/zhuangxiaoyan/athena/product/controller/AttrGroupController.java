@@ -21,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("product/attrgroup")
 public class AttrGroupController {
+
     @Autowired
     private AttrGroupService attrGroupService;
 
@@ -38,14 +39,14 @@ public class AttrGroupController {
     }
 
     /**
-     * 信息
+     * 查询的catelogId的完整的路径
      */
     @RequestMapping("/info/{attrGroupId}")
     //@RequiresPermissions("product:attrgroup:info")
     public Result info(@PathVariable("attrGroupId") Long attrGroupId) {
         AttrGroupEntity attrGroup = attrGroupService.getById(attrGroupId);
-        Long categoryId = attrGroup.getCatelogId();
-        Long[] path = categoryService.findCateglogPath(categoryId);
+        Long catelogId = attrGroup.getCatelogId();
+        Long[] path = categoryService.findCateglogPath(catelogId);
         attrGroup.setCatelogpath(path);
         return Result.ok().put("attrGroup", attrGroup);
     }
@@ -57,7 +58,6 @@ public class AttrGroupController {
     //@RequiresPermissions("product:attrgroup:save")
     public Result save(@RequestBody AttrGroupEntity attrGroup) {
         attrGroupService.save(attrGroup);
-
         return Result.ok();
     }
 
@@ -68,7 +68,6 @@ public class AttrGroupController {
     //@RequiresPermissions("product:attrgroup:update")
     public Result update(@RequestBody AttrGroupEntity attrGroup) {
         attrGroupService.updateById(attrGroup);
-
         return Result.ok();
     }
 
@@ -79,7 +78,6 @@ public class AttrGroupController {
     //@RequiresPermissions("product:attrgroup:delete")
     public Result delete(@RequestBody Long[] attrGroupIds) {
         attrGroupService.removeByIds(Arrays.asList(attrGroupIds));
-
         return Result.ok();
     }
 

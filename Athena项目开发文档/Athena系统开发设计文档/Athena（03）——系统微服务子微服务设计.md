@@ -61,6 +61,12 @@
 
 ![img.png](images/商品的属性分组有bug.png)
 
+商品管理的模糊查询
+
+![img.png](images/商品管理的模糊查询.png)
+
+![img.png](images/关联分类功能.png)
+
 
 # 3、支付服务
 

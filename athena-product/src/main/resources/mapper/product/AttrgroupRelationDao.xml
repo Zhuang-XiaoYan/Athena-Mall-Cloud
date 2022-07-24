@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.zhuangxiaoyan.athena.product.dao.AttrAttrgroupRelationDao">
+<mapper namespace="com.zhuangxiaoyan.athena.product.dao.AttrgroupRelationDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.zhuangxiaoyan.athena.product.entity.AttrAttrgroupRelationEntity" id="attrAttrgroupRelationMap">
+    <resultMap type="com.zhuangxiaoyan.athena.product.entity.AttrgroupRelationEntity" id="attrAttrgroupRelationMap">
         <result property="id" column="id"/>
         <result property="attrId" column="attr_id"/>
         <result property="attrGroupId" column="attr_group_id"/>
@@ -12,7 +12,7 @@
     </resultMap>
 
     <delete id="deleteBatchRelation">
-        DELETE FROM pms_attr_attrgroup_relation WHERE
+        DELETE FROM pms_attrgroup_relation WHERE
         <foreach collection="entities" item="item" separator=" OR ">
             (attr_id = #{item.attrId} AND attr_group_id = #{item.attrGroupId})
         </foreach>

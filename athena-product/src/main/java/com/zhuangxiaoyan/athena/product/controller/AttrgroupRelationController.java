@@ -1,7 +1,7 @@
 package com.zhuangxiaoyan.athena.product.controller;
 
-import com.zhuangxiaoyan.athena.product.entity.AttrAttrgroupRelationEntity;
-import com.zhuangxiaoyan.athena.product.service.AttrAttrgroupRelationService;
+import com.zhuangxiaoyan.athena.product.entity.AttrgroupRelationEntity;
+import com.zhuangxiaoyan.athena.product.service.AttrgroupRelationService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,11 @@ import java.util.Map;
  * @date 2022-03-09 21:43:56
  */
 @RestController
-@RequestMapping("product/attrattrgrouprelation")
-public class AttrAttrgroupRelationController {
+@RequestMapping("product/attrgrouprelation")
+public class AttrgroupRelationController {
+
     @Autowired
-    private AttrAttrgroupRelationService attrAttrgroupRelationService;
+    private AttrgroupRelationService attrrgroupRelationService;
 
     /**
      * 列表
@@ -29,8 +30,7 @@ public class AttrAttrgroupRelationController {
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
     public Result list(@RequestParam Map<String, Object> params) {
-        PageUtils page = attrAttrgroupRelationService.queryPage(params);
-
+        PageUtils page = attrrgroupRelationService.queryPage(params);
         return Result.ok().put("page", page);
     }
 
@@ -40,7 +40,7 @@ public class AttrAttrgroupRelationController {
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:attrattrgrouprelation:info")
     public Result info(@PathVariable("id") Long id) {
-        AttrAttrgroupRelationEntity attrAttrgroupRelation = attrAttrgroupRelationService.getById(id);
+        AttrgroupRelationEntity attrAttrgroupRelation = attrrgroupRelationService.getById(id);
 
         return Result.ok().put("attrAttrgroupRelation", attrAttrgroupRelation);
     }
@@ -50,9 +50,8 @@ public class AttrAttrgroupRelationController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attrattrgrouprelation:save")
-    public Result save(@RequestBody AttrAttrgroupRelationEntity attrAttrgroupRelation) {
-        attrAttrgroupRelationService.save(attrAttrgroupRelation);
-
+    public Result save(@RequestBody AttrgroupRelationEntity attrAttrgroupRelation) {
+        attrrgroupRelationService.save(attrAttrgroupRelation);
         return Result.ok();
     }
 
@@ -61,9 +60,8 @@ public class AttrAttrgroupRelationController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attrattrgrouprelation:update")
-    public Result update(@RequestBody AttrAttrgroupRelationEntity attrAttrgroupRelation) {
-        attrAttrgroupRelationService.updateById(attrAttrgroupRelation);
-
+    public Result update(@RequestBody AttrgroupRelationEntity attrAttrgroupRelation) {
+        attrrgroupRelationService.updateById(attrAttrgroupRelation);
         return Result.ok();
     }
 
@@ -73,8 +71,7 @@ public class AttrAttrgroupRelationController {
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attrattrgrouprelation:delete")
     public Result delete(@RequestBody Long[] ids) {
-        attrAttrgroupRelationService.removeByIds(Arrays.asList(ids));
-
+        attrrgroupRelationService.removeByIds(Arrays.asList(ids));
         return Result.ok();
     }
 

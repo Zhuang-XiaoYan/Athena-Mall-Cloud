@@ -43,9 +43,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         if (!StringUtil.isEmpty(brand.getName())){
             // 同步更新其他的关联的数据表
             categoryBrandRelationService.updateBrand(brand.getBrandId(),brand.getName());
-
             // 更新其他的关联数据
-
         }
     }
 }

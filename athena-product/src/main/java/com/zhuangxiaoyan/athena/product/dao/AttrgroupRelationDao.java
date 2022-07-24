@@ -1,7 +1,7 @@
 package com.zhuangxiaoyan.athena.product.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zhuangxiaoyan.athena.product.entity.AttrAttrgroupRelationEntity;
+import com.zhuangxiaoyan.athena.product.entity.AttrgroupRelationEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2022-03-09 21:43:56
  */
 @Mapper
-public interface AttrAttrgroupRelationDao extends BaseMapper<AttrAttrgroupRelationEntity> {
+public interface AttrgroupRelationDao extends BaseMapper<AttrgroupRelationEntity> {
 
 }

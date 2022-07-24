@@ -1,37 +1,37 @@
 <template>
   <div>
     <el-dialog :close-on-click-modal="false" :visible.sync="visible" @closed="dialogClose">
-      <el-dialog :visible.sync="innerVisible" append-to-body title="选择属性" width="40%">
+      <el-dialog width="40%" title="选择属性" :visible.sync="innerVisible" append-to-body>
         <div>
           <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
             <el-form-item>
-              <el-input v-model="dataForm.key" clearable placeholder="参数名"></el-input>
+              <el-input v-model="dataForm.key" placeholder="参数名" clearable></el-input>
             </el-form-item>
             <el-form-item>
               <el-button @click="getDataList()">查询</el-button>
             </el-form-item>
           </el-form>
           <el-table
-            v-loading="dataListLoading"
             :data="dataList"
             border
-            style="width: 100%;"
+            v-loading="dataListLoading"
             @selection-change="innerSelectionChangeHandle"
+            style="width: 100%;"
           >
-            <el-table-column align="center" header-align="center" type="selection"></el-table-column>
-            <el-table-column align="center" header-align="center" label="属性id" prop="attrId"></el-table-column>
-            <el-table-column align="center" header-align="center" label="属性名" prop="attrName"></el-table-column>
-            <el-table-column align="center" header-align="center" label="属性图标" prop="icon"></el-table-column>
-            <el-table-column align="center" header-align="center" label="可选值列表" prop="valueSelect"></el-table-column>
+            <el-table-column type="selection" header-align="center" align="center"></el-table-column>
+            <el-table-column prop="attrId" header-align="center" align="center" label="属性id"></el-table-column>
+            <el-table-column prop="attrName" header-align="center" align="center" label="属性名"></el-table-column>
+            <el-table-column prop="icon" header-align="center" align="center" label="属性图标"></el-table-column>
+            <el-table-column prop="valueSelect" header-align="center" align="center" label="可选值列表"></el-table-column>
           </el-table>
           <el-pagination
-            :current-page="pageIndex"
-            :page-size="pageSize"
-            :page-sizes="[10, 20, 50, 100]"
-            :total="totalPage"
-            layout="total, sizes, prev, pager, next, jumper"
             @size-change="sizeChangeHandle"
             @current-change="currentChangeHandle"
+            :current-page="pageIndex"
+            :page-sizes="[10, 20, 50, 100]"
+            :page-size="pageSize"
+            :total="totalPage"
+            layout="total, sizes, prev, pager, next, jumper"
           ></el-pagination>
         </div>
         <div slot="footer" class="dialog-footer">
@@ -43,22 +43,22 @@
         <el-col :span="24">
           <el-button type="primary" @click="addRelation">新建关联</el-button>
           <el-button
-            :disabled="dataListSelections.length <= 0"
             type="danger"
             @click="batchDeleteRelation"
+            :disabled="dataListSelections.length <= 0"
           >批量删除
           </el-button>
           <!--  -->
           <el-table
             :data="relationAttrs"
-            border
             style="width: 100%"
             @selection-change="selectionChangeHandle"
+            border
           >
-            <el-table-column align="center" header-align="center" type="selection" width="50"></el-table-column>
-            <el-table-column label="#" prop="attrId"></el-table-column>
-            <el-table-column label="属性名" prop="attrName"></el-table-column>
-            <el-table-column label="可选值" prop="valueSelect">
+            <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
+            <el-table-column prop="attrId" label="#"></el-table-column>
+            <el-table-column prop="attrName" label="属性名"></el-table-column>
+            <el-table-column prop="valueSelect" label="可选值">
               <template slot-scope="scope">
                 <el-tooltip placement="top">
                   <div slot="content">
@@ -71,9 +71,9 @@
                 </el-tooltip>
               </template>
             </el-table-column>
-            <el-table-column align="center" fixed="right" header-align="center" label="操作">
+            <el-table-column fixed="right" header-align="center" align="center" label="操作">
               <template slot-scope="scope">
-                <el-button size="small" type="text" @click="relationRemove(scope.row.attrId)">移除</el-button>
+                <el-button type="text" size="small" @click="relationRemove(scope.row.attrId)">移除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -119,20 +119,23 @@ export default {
     selectionChangeHandle(val) {
       this.dataListSelections = val;
     },
+
     innerSelectionChangeHandle(val) {
       this.innerdataListSelections = val;
     },
+
     addRelation() {
       this.getDataList();
       this.innerVisible = true;
     },
+
     batchDeleteRelation(val) {
       let postData = [];
       this.dataListSelections.forEach(item => {
         postData.push({attrId: item.attrId, attrGroupId: this.attrGroupId});
       });
       this.$http({
-        url: this.$http.adornUrl("/product/attrgroup/attr/relation/delete"),
+        url: this.$http.adornUrl("/product/attrgrouprelation/attr/relation/delete"),
         method: "post",
         data: this.$http.adornData(postData, false)
       }).then(({data}) => {
@@ -144,12 +147,13 @@ export default {
         }
       });
     },
+
     //移除关联
     relationRemove(attrId) {
       let data = [];
       data.push({attrId, attrGroupId: this.attrGroupId});
       this.$http({
-        url: this.$http.adornUrl("/product/attrgroup/attr/relation/delete"),
+        url: this.$http.adornUrl("/product/attrgrouprelation/attr/relation/delete"),
         method: "post",
         data: this.$http.adornData(data, false)
       }).then(({data}) => {
@@ -161,6 +165,7 @@ export default {
         }
       });
     },
+
     submitAddRealtion() {
       this.innerVisible = false;
       //准备数据
@@ -171,7 +176,7 @@ export default {
           postData.push({attrId: item.attrId, attrGroupId: this.attrGroupId});
         });
         this.$http({
-          url: this.$http.adornUrl("/product/attrgroup/attr/relation"),
+          url: this.$http.adornUrl("/product/attrgrouprelation/attr/relation"),
           method: "post",
           data: this.$http.adornData(postData, false)
         }).then(({data}) => {
@@ -184,12 +189,13 @@ export default {
       } else {
       }
     },
+
     init(id) {
       this.attrGroupId = id || 0;
       this.visible = true;
       this.$http({
         url: this.$http.adornUrl(
-          "/product/attrgroup/" + this.attrGroupId + "/attr/relation"
+          "/product/attrgrouprelation/" + this.attrGroupId + "/attr/relation"
         ),
         method: "get",
         params: this.$http.adornParams({})
@@ -197,6 +203,7 @@ export default {
         this.relationAttrs = data.data;
       });
     },
+
     dialogClose() {
     },
 
@@ -239,5 +246,5 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped>
 </style>

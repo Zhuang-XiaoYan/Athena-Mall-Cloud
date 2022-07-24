@@ -1,6 +1,7 @@
 package com.zhuangxiaoyan.athena.product.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.dao.BrandDao;
@@ -50,15 +51,30 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         // 数据的保存
         this.save(categoryBrandRelation);
     }
-
+    /**
+     * @description 采用的QueryWrapper的方式来实现
+      * @param: brandId
+     * @param: name
+     * @date: 2022/7/24 8:12
+     * @return: void
+     * @author: xjl
+    */
     @Override
     public void updateBrand(Long brandId, String name) {
         CategoryBrandRelationEntity categoryBrandRelationEntity = new CategoryBrandRelationEntity();
         categoryBrandRelationEntity.setBrandId(brandId);
         categoryBrandRelationEntity.setBrandName(name);
-        this.update(categoryBrandRelationEntity,new QueryWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId));
+        // 更新用UpdateWrapper  查询是的QueryWrapper
+        this.update(categoryBrandRelationEntity,new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId));
     }
-
+    /**
+     * @description 采用的是自定义的baseMapper机制
+      * @param: catId
+     * @param: name
+     * @date: 2022/7/24 8:12
+     * @return: void
+     * @author: xjl
+    */
     @Override
     public void updateCategory(Long catId, String name) {
         this.baseMapper.updateCategory(catId,name);

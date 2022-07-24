@@ -4,38 +4,42 @@
     <el-button v-if="draggable" @click="batchSave">批量保存</el-button>
     <el-button type="danger" @click="batchDelete">批量删除</el-button>
     <el-tree
-      ref="menuTree"
-      :allow-drop="allowDrop"
       :data="menus"
+      :props="defaultProps"
+      :expand-on-click-node="false"
+      show-checkbox
+      node-key="catId"
       :default-expanded-keys="expandedKey"
       :draggable="draggable"
-      :expand-on-click-node="false"
-      :props="defaultProps"
-      node-key="catId"
-      show-checkbox
+      :allow-drop="allowDrop"
       @node-drop="handleDrop"
+      ref="menuTree"
     >
-      <span slot-scope="{ node, data }" class="custom-tree-node">
+      <span class="custom-tree-node" slot-scope="{ node, data }">
         <span>{{ node.label }}</span>
         <span>
           <el-button
             v-if="node.level <=2"
-            size="mini"
             type="text"
+            size="mini"
             @click="() => append(data)"
           >Append</el-button>
-          <el-button size="mini" type="text" @click="edit(data)">edit</el-button>
-          <el-button v-if="node.childNodes.length==0" size="mini" type="text"
-                     @click="() => remove(node, data)">Delete</el-button>
+          <el-button type="text" size="mini" @click="edit(data)">edit</el-button>
+          <el-button
+            v-if="node.childNodes.length==0"
+            type="text"
+            size="mini"
+            @click="() => remove(node, data)"
+          >Delete</el-button>
         </span>
       </span>
     </el-tree>
 
     <el-dialog
-      :close-on-click-modal="false"
       :title="title"
       :visible.sync="dialogVisible"
       width="30%"
+      :close-on-click-modal="false"
     >
       <el-form :model="category">
         <el-form-item label="分类名称">
@@ -58,7 +62,7 @@
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-//例如：import《组件名称》from'《组件路径》';
+//例如：import 《组件名称》 from '《组件路径》';
 
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -92,7 +96,7 @@ export default {
     };
   },
 
-  //计算属性类似于data概念
+  //计算属性 类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {},
@@ -106,10 +110,6 @@ export default {
         console.log("成功获取到菜单数据...", data.data);
         this.menus = data.data;
       });
-    },
-    nodeclick(data, node, component) {
-      // 向父组件发送事件
-      this.$emit("tree-node-click", data, node, component)
     },
     batchDelete() {
       let catIds = [];
@@ -139,7 +139,6 @@ export default {
         .catch(() => {
         });
     },
-
     batchSave() {
       this.$http({
         url: this.$http.adornUrl("/product/category/update/sort"),
@@ -159,7 +158,6 @@ export default {
         // this.pCid = 0;
       });
     },
-
     handleDrop(draggingNode, dropNode, dropType, ev) {
       console.log("handleDrop: ", draggingNode, dropNode, dropType);
       //1、当前节点最新的父节点id
@@ -202,7 +200,6 @@ export default {
       //3、当前拖拽节点的最新层级
       console.log("updateNodes", this.updateNodes);
     },
-
     updateChildNodeLevel(node) {
       if (node.childNodes.length > 0) {
         for (let i = 0; i < node.childNodes.length; i++) {
@@ -215,7 +212,6 @@ export default {
         }
       }
     },
-
     allowDrop(draggingNode, dropNode, type) {
       //1、被拖动的当前节点以及所在的父节点总层数不能大于3
 
@@ -237,7 +233,6 @@ export default {
         return deep + dropNode.parent.level <= 3;
       }
     },
-
     countNodeLevel(node) {
       //找到所有子节点，求出最大深度
       if (node.childNodes != null && node.childNodes.length > 0) {
@@ -249,7 +244,6 @@ export default {
         }
       }
     },
-
     edit(data) {
       console.log("要修改的数据", data);
       this.dialogType = "edit";
@@ -279,7 +273,6 @@ export default {
          */
       });
     },
-
     append(data) {
       console.log("append", data);
       this.dialogType = "add";
@@ -303,7 +296,6 @@ export default {
         this.editCategory();
       }
     },
-
     //修改三级分类数据
     editCategory() {
       var {catId, name, icon, productUnit} = this.category;
@@ -324,7 +316,6 @@ export default {
         this.expandedKey = [this.category.parentCid];
       });
     },
-
     //添加三级分类
     addCategory() {
       console.log("提交的三级分类数据", this.category);
@@ -371,6 +362,7 @@ export default {
         })
         .catch(() => {
         });
+
       console.log("remove", node, data);
     }
   },
