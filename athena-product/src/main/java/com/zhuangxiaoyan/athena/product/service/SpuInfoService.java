@@ -1,7 +1,9 @@
 package com.zhuangxiaoyan.athena.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhuangxiaoyan.athena.product.entity.SpuInfoDescEntity;
 import com.zhuangxiaoyan.athena.product.entity.SpuInfoEntity;
+import com.zhuangxiaoyan.athena.product.vo.SpuSaveVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.Map;
@@ -16,5 +18,9 @@ import java.util.Map;
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSpuInfo(SpuSaveVo spuSaveVo);
+
+    void saveBaseSpuInfo(SpuInfoEntity spuInfoEntity);
 }
 

@@ -7,6 +7,7 @@ import com.zhuangxiaoyan.athena.product.service.AttrService;
 import com.zhuangxiaoyan.athena.product.service.AttrgroupRelationService;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.vo.AttrGroupRelationVo;
+import com.zhuangxiaoyan.athena.product.vo.AttrGroupWithAttrsVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,14 @@ public class AttrGroupController {
 
     @Autowired
     private AttrgroupRelationService attrgroupRelationService;
+
+    @GetMapping("/{catelogId}/withattr")
+    public Result getAttrGroupWithAttrs(@PathVariable("attrgroupId") Long catelogId) {
+        // 查询的当前分类下的所有的属性分组
+        // 查询的每一个属性分组的所有的属性
+        List<AttrGroupWithAttrsVo> vos = attrGroupService.getAttrGroupWithAttrsByCatelogId(catelogId);
+        return Result.ok().put("data", vos);
+    }
 
     @PostMapping("/attr/relation")
     public Result addRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVos) {

@@ -172,6 +172,10 @@ docker restart 6c0e160aafa1
 
 ![img.png](images/MicroService.png)
 
+![img.png](images/会员服务查询.png)
+
+![img.png](会员服务等级查询.png)
+
 
 # 24、网关服务
 
@@ -188,7 +192,6 @@ docker restart 6c0e160aafa1
 ![img.png](images/athena-oss测试成功.png)
 
 ![img.png](images/网关转发成功.png)
-
 
 ![img.png](images/oss错误.png)
 

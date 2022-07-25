@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.product.controller;
 
 import com.zhuangxiaoyan.athena.product.entity.SpuInfoEntity;
 import com.zhuangxiaoyan.athena.product.service.SpuInfoService;
+import com.zhuangxiaoyan.athena.product.vo.SpuSaveVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,8 @@ public class SpuInfoController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:spuinfo:save")
-    public Result save(@RequestBody SpuInfoEntity spuInfo) {
-        spuInfoService.save(spuInfo);
-
+    public Result save(@RequestBody SpuSaveVo spuSaveVo) {
+        spuInfoService.saveSpuInfo(spuSaveVo);
         return Result.ok();
     }
 

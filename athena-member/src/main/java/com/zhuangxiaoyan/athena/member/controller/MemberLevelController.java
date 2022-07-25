@@ -30,7 +30,6 @@ public class MemberLevelController {
     //@RequiresPermissions("member:memberlevel:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberLevelService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 

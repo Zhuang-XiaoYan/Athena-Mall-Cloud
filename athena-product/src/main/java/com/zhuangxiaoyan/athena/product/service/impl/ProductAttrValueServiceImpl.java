@@ -10,6 +10,7 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 @Service("productAttrValueService")
@@ -21,8 +22,11 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
                 new Query<ProductAttrValueEntity>().getPage(params),
                 new QueryWrapper<ProductAttrValueEntity>()
         );
-
         return new PageUtils(page);
     }
 
+    @Override
+    public void saveProductAttr(List<ProductAttrValueEntity> collect) {
+        this.saveBatch(collect);
+    }
 }
