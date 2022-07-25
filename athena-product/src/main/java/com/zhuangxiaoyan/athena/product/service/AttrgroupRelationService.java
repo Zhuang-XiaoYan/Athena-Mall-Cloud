@@ -2,8 +2,10 @@ package com.zhuangxiaoyan.athena.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.AttrgroupRelationEntity;
+import com.zhuangxiaoyan.athena.product.vo.AttrGroupRelationVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface AttrgroupRelationService extends IService<AttrgroupRelationEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveBatch(List<AttrGroupRelationVo> attrGroupRelationVos);
 }
 

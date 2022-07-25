@@ -1,14 +1,19 @@
 package com.zhuangxiaoyan.athena.product.controller;
 
+import com.zhuangxiaoyan.athena.product.entity.AttrEntity;
 import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrGroupService;
+import com.zhuangxiaoyan.athena.product.service.AttrService;
+import com.zhuangxiaoyan.athena.product.service.AttrgroupRelationService;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
+import com.zhuangxiaoyan.athena.product.vo.AttrGroupRelationVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +32,52 @@ public class AttrGroupController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private AttrService attrService;
+
+    @Autowired
+    private AttrgroupRelationService attrgroupRelationService;
+
+    @PostMapping("/attr/relation")
+    public Result addRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVos) {
+        attrgroupRelationService.saveBatch(attrGroupRelationVos);
+        return Result.ok();
+    }
+
+    @GetMapping("/{attrgroupId}/attr/relation")
+    public Result attrRelation(@PathVariable("attrgroupId") Long attrgroupId) {
+        List<AttrEntity> entities = attrService.getAttrRelation(attrgroupId);
+        return Result.ok().put("data", entities);
+    }
+
+    /**
+     * @description 查询的没有关联的分组属性
+     * @param: null
+     * @date: 2022/7/24 16:58
+     * @return:
+     * @author: xjl
+     */
+    @GetMapping("/{attrgroupId}/noattr/relation")
+    //@RequiresPermissions("product:attr:delete")
+    public Result attrNoRelation(@RequestParam Map<String, Object> params, @PathVariable("attrgroupId") Long attrgroupId) {
+        PageUtils page = attrService.getNotAttrRelation(params, attrgroupId);
+        return Result.ok().put("page", page);
+    }
+
+    /**
+     * @description 删除分组管理的分组的属性
+     * @param: attrGroupRelationVos
+     * @date: 2022/7/24 16:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
+    @PostMapping("/attr/realation/delete")
+    //@RequiresPermissions("product:attr:delete")
+    public Result deleteRelation(@RequestBody AttrGroupRelationVo[] attrGroupRelationVos) {
+        attrService.deleteRelation(attrGroupRelationVos);
+        return Result.ok();
+    }
 
     /**
      * 列表

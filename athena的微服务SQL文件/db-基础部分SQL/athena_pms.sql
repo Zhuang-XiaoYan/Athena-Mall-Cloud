@@ -1,6 +1,6 @@
 drop table if exists pms_attr;
 
-drop table if exists pms_attr_attrgroup_relation;
+drop table if exists pms_attrgroup_relation;
 
 drop table if exists pms_attr_group;
 
@@ -51,7 +51,7 @@ alter table pms_attr comment '商品属性';
 /*==============================================================*/
 /* Table: pms_attr_attrgroup_relation                           */
 /*==============================================================*/
-create table pms_attr_attrgroup_relation
+create table pms_attrgroup_relation
 (
    id                   bigint not null auto_increment comment 'id',
    attr_id              bigint comment '属性id',
@@ -60,7 +60,7 @@ create table pms_attr_attrgroup_relation
    primary key (id)
 );
 
-alter table pms_attr_attrgroup_relation comment '属性&属性分组关联';
+alter table pms_attrgroup_relation comment '属性&属性分组关联';
 
 /*==============================================================*/
 /* Table: pms_attr_group                                        */

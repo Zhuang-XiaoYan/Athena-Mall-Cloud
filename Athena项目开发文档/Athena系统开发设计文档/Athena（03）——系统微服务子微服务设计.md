@@ -67,6 +67,10 @@
 
 ![img.png](images/关联分类功能.png)
 
+商品屬性查詢
+
+![img.png](images/商品屬性查詢.png)
+
 
 # 3、支付服务
 

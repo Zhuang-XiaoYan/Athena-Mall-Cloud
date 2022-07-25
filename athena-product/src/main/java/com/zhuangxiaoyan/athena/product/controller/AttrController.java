@@ -2,6 +2,8 @@ package com.zhuangxiaoyan.athena.product.controller;
 
 import com.zhuangxiaoyan.athena.product.entity.AttrEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrService;
+import com.zhuangxiaoyan.athena.product.vo.AttrGroupRelationVo;
+import com.zhuangxiaoyan.athena.product.vo.AttrRespVo;
 import com.zhuangxiaoyan.athena.product.vo.AttrVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
@@ -25,6 +27,12 @@ public class AttrController {
     @Autowired
     private AttrService attrService;
 
+    @GetMapping("/{attrType}/list/{catelogId}")
+    public Result baseAttrList(@RequestParam Map<String, Object> params, @PathVariable("catelogId") Long catelogId,@PathVariable("attrType") String attrType) {
+        PageUtils page = attrService.queryBaseAttrQuery(params, catelogId,attrType);
+        return Result.ok().put("page", page);
+    }
+
     /**
      * 列表
      */
@@ -41,8 +49,8 @@ public class AttrController {
     @RequestMapping("/info/{attrId}")
     //@RequiresPermissions("product:attr:info")
     public Result info(@PathVariable("attrId") Long attrId) {
-        AttrEntity attr = attrService.getById(attrId);
-        return Result.ok().put("attr", attr);
+        AttrRespVo attrRespVo = attrService.getAttrInfo(attrId);
+        return Result.ok().put("attr", attrRespVo);
     }
 
     /**
@@ -50,18 +58,19 @@ public class AttrController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attr:save")
-    public Result save(@RequestBody AttrVo attr) {
-        attrService.saveAttr(attr);
+    public Result save(@RequestBody AttrVo attrVo) {
+        attrService.saveAttr(attrVo);
         return Result.ok();
     }
+
 
     /**
      * 修改
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attr:update")
-    public Result update(@RequestBody AttrEntity attr) {
-        attrService.updateById(attr);
+    public Result update(@RequestBody AttrVo attrVo) {
+        attrService.updateAttr(attrVo);
         return Result.ok();
     }
 

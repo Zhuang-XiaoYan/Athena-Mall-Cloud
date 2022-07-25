@@ -3,6 +3,9 @@ package com.zhuangxiaoyan.athena.product.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhuangxiaoyan.athena.product.entity.AttrgroupRelationEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 /**
  * 属性&属性分组关联
@@ -14,4 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AttrgroupRelationDao extends BaseMapper<AttrgroupRelationEntity> {
 
+    void deleteBatchRealtion(@PathVariable("entities") List<AttrgroupRelationEntity> entities);
 }
