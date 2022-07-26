@@ -27,6 +27,8 @@ spring:
       secret-key: 3XdiJv6fCZ3XrrESMd4I58XZT83t2x
       oss:
         endpoint: oss-cn-shanghai.aliyuncs.com
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 # mybatis-plus的系列的属性
 mybatis-plus:
