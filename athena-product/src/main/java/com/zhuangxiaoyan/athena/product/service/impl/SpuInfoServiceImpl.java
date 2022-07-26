@@ -5,10 +5,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.dao.SpuInfoDao;
 import com.zhuangxiaoyan.athena.product.entity.*;
+import com.zhuangxiaoyan.athena.product.fegin.CouponFeginService;
 import com.zhuangxiaoyan.athena.product.service.*;
 import com.zhuangxiaoyan.athena.product.vo.*;
+import com.zhuangxiaoyan.common.to.SkuReductionTo;
+import com.zhuangxiaoyan.common.to.SpuBoundTo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +46,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     SkuSaleAttrValueService skuSaleAttrValueService;
+
+    @Autowired
+    CouponFeginService  couponFeginService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -89,6 +96,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         productAttrValueService.saveProductAttr(collect);
 
         // 5、保存的spu的积分信息 athena-sms->sms_spu_bounds
+        Bounds bounds = spuSaveVo.getBounds();
+        SpuBoundTo spuBoundTo = new SpuBoundTo();
+        BeanUtils.copyProperties(bounds,spuBoundTo);
+        spuBoundTo.setSpuId(spuInfoEntity.getId());
+        Result result = couponFeginService.saveSpuBounds(spuBoundTo);
+        if (result.getCode()!=0){
+            log.error("远程保存spu的积分信息失败");
+        }
 
         // 6、保存当前spu对应的所有的sku的信息
 
@@ -136,10 +151,15 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 skuSaleAttrValueService.saveBatch(skuSaleAttrValueEntities);
 
                 // 6.4 sku的优惠满减的等信息 athena-sms-中sms_sku_full_reduction\ sms_member_price
+                SkuReductionTo skuReductionTo = new SkuReductionTo();
+                BeanUtils.copyProperties(item,skuReductionTo);
+                skuReductionTo.setSkuId(skuId);
+                Result result1 = couponFeginService.saveSkuReduction(skuReductionTo);
+                if (result.getCode()!=0){
+                    log.error("远程sku的优惠满减信息保存失败");
+                }
             });
         }
-
-
     }
 
     @Override

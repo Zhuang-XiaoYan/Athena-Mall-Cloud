@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.coupon.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.coupon.entity.SkuFullReductionEntity;
+import com.zhuangxiaoyan.common.to.SkuReductionTo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.Map;
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface SkuFullReductionService extends IService<SkuFullReductionEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void saveSkuReduction(SkuReductionTo skuReductionTo);
 }
 

@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.coupon.controller;
 
 import com.zhuangxiaoyan.athena.coupon.entity.SkuFullReductionEntity;
 import com.zhuangxiaoyan.athena.coupon.service.SkuFullReductionService;
+import com.zhuangxiaoyan.common.to.SkuReductionTo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ import java.util.Map;
 public class SkuFullReductionController {
     @Autowired
     private SkuFullReductionService skuFullReductionService;
+
+    /**
+     * 列表
+     */
+    @RequestMapping("/saveinfo")
+    public Result saveInfo(@RequestBody SkuReductionTo skuReductionTo) {
+        skuFullReductionService.saveSkuReduction(skuReductionTo);
+        return Result.ok();
+    }
 
     /**
      * 列表

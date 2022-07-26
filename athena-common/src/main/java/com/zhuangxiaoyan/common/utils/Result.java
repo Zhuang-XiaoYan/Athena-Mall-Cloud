@@ -89,8 +89,6 @@ public class Result extends HashMap<String, Object> {
     }
 
     public Integer getCode() {
-
         return (Integer) this.get("code");
     }
-
 }
