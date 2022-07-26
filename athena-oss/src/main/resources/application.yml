@@ -28,6 +28,9 @@ spring:
       oss:
         endpoint: oss-cn-shanghai.aliyuncs.com
         bucket : athena-oss
+  # 配置日期相关的格式的输出
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 # mybatis-plus的系列的属性
 mybatis-plus:

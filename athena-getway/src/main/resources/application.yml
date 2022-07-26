@@ -31,6 +31,13 @@ spring:
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
         # high level athena-product service
+        - id: athena-ware-route
+          uri: lb://athena-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # high level athena-product service
         - id: athena-product-route
           uri: lb://athena-product
           predicates:
