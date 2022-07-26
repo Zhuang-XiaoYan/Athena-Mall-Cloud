@@ -8,6 +8,7 @@ import com.zhuangxiaoyan.athena.ware.entity.WareInfoEntity;
 import com.zhuangxiaoyan.athena.ware.service.WareInfoService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -17,11 +18,15 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<WareInfoEntity> page = this.page(
-                new Query<WareInfoEntity>().getPage(params),
-                new QueryWrapper<WareInfoEntity>()
-        );
-
+        QueryWrapper<WareInfoEntity> queryWrapper = new QueryWrapper<>();
+        String key = (String) params.get("key");
+        if (!StringUtils.isEmpty(key)) {
+            queryWrapper.eq("id", key).
+                    or().like("name", key).
+                    or().like("address", key).
+                    or().like("areacode", key);
+        }
+        IPage<WareInfoEntity> page = this.page(new Query<WareInfoEntity>().getPage(params), queryWrapper);
         return new PageUtils(page);
     }
 

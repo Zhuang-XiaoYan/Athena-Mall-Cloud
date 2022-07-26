@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.ware.dao.PurchaseDao;
 import com.zhuangxiaoyan.athena.ware.entity.PurchaseEntity;
 import com.zhuangxiaoyan.athena.ware.service.PurchaseService;
+import com.zhuangxiaoyan.athena.ware.vo.MergeVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Map;
 
 @Service("purchaseService")
@@ -21,8 +23,35 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 new Query<PurchaseEntity>().getPage(params),
                 new QueryWrapper<PurchaseEntity>()
         );
-
         return new PageUtils(page);
+    }
+
+    @Override
+    public PageUtils queryPageUnrecaive(Map<String, Object> params) {
+        IPage<PurchaseEntity> page = this.page(
+                new Query<PurchaseEntity>().getPage(params),
+                new QueryWrapper<PurchaseEntity>().eq("status",0).or().eq("status",1)
+        );
+        return new PageUtils(page);
+    }
+    /**
+     * @description 合并工单
+      * @param: mergeVo
+     * @date: 2022/7/27 0:00
+     * @return: void
+     * @author: xjl
+    */
+    @Override
+    public void merge(MergeVo mergeVo) {
+        Long purchaseId = mergeVo.getPurchaseId();
+        if (purchaseId==null){
+            PurchaseEntity purchaseEntity = new PurchaseEntity();
+            purchaseEntity.setCreateTime(new Date());
+            purchaseEntity.setUpdateTime(new Date());
+            this.save(purchaseEntity);
+        }else {
+
+        }
     }
 
 }

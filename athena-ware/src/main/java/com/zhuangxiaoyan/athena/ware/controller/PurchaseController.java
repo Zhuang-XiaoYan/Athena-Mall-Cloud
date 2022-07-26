@@ -2,12 +2,14 @@ package com.zhuangxiaoyan.athena.ware.controller;
 
 import com.zhuangxiaoyan.athena.ware.entity.PurchaseEntity;
 import com.zhuangxiaoyan.athena.ware.service.PurchaseService;
+import com.zhuangxiaoyan.athena.ware.vo.MergeVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -20,8 +22,21 @@ import java.util.Map;
 @RestController
 @RequestMapping("ware/purchase")
 public class PurchaseController {
+
     @Autowired
     private PurchaseService purchaseService;
+
+    @PostMapping("/merge")
+    public Result merge(@RequestBody MergeVo mergeVo) {
+        purchaseService.merge(mergeVo);
+        return Result.ok();
+    }
+
+    @GetMapping("/unrecaive/list")
+    public Result unrecaivelist(@RequestParam Map<String, Object> params) {
+        PageUtils page = purchaseService.queryPageUnrecaive(params);
+        return Result.ok().put("page", page);
+    }
 
     /**
      * 列表
@@ -51,8 +66,9 @@ public class PurchaseController {
     @RequestMapping("/save")
     //@RequiresPermissions("ware:purchase:save")
     public Result save(@RequestBody PurchaseEntity purchase) {
+        purchase.setUpdateTime(new Date());
+        purchase.setCreateTime(new Date());
         purchaseService.save(purchase);
-
         return Result.ok();
     }
 

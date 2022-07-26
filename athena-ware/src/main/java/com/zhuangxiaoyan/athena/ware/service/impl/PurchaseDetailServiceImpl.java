@@ -8,6 +8,7 @@ import com.zhuangxiaoyan.athena.ware.entity.PurchaseDetailEntity;
 import com.zhuangxiaoyan.athena.ware.service.PurchaseDetailService;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -17,10 +18,29 @@ public class PurchaseDetailServiceImpl extends ServiceImpl<PurchaseDetailDao, Pu
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<PurchaseDetailEntity> page = this.page(
-                new Query<PurchaseDetailEntity>().getPage(params),
-                new QueryWrapper<PurchaseDetailEntity>()
-        );
+        QueryWrapper<PurchaseDetailEntity> queryWrapper = new QueryWrapper<PurchaseDetailEntity>();
+
+        String key = (String) params.get("key");
+        if (!StringUtils.isEmpty(key)) {
+            queryWrapper.and(wrapper -> {
+                wrapper.eq("purchase_id", key).or().eq("sku_id", key);
+            });
+        }
+
+        String status = (String) params.get("status");
+        if (!StringUtils.isEmpty(status)) {
+            queryWrapper.and(wrapper -> {
+                wrapper.eq("status", status);
+            });
+        }
+
+        String wareId = (String) params.get("wareId");
+        if (!StringUtils.isEmpty(wareId)) {
+            queryWrapper.and(wrapper -> {
+                wrapper.eq("ware_id", wareId);
+            });
+        }
+        IPage<PurchaseDetailEntity> page = this.page(new Query<PurchaseDetailEntity>().getPage(params), queryWrapper);
 
         return new PageUtils(page);
     }

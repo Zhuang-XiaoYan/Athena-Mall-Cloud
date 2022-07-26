@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.ware.entity.PurchaseEntity;
+import com.zhuangxiaoyan.athena.ware.vo.MergeVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.Map;
@@ -16,5 +17,9 @@ import java.util.Map;
 public interface PurchaseService extends IService<PurchaseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    PageUtils queryPageUnrecaive(Map<String, Object> params);
+
+    void merge(MergeVo mergeVo);
 }
 
