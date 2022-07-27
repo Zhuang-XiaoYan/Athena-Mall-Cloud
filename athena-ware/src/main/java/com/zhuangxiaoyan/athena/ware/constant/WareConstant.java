@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.common.constant;
+package com.zhuangxiaoyan.athena.ware.constant;
 
 /**
  * @description TODO

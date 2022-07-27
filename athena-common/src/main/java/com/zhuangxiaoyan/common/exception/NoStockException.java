@@ -1,19 +1,17 @@
 package com.zhuangxiaoyan.common.exception;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * @description 无库存抛出的异常
- * @param: null
+ * @description 库存异常枚举类
  * @date: 2022/3/19 18:34
  * @return:
  * @author: xjl
  */
+
+@Data
 public class NoStockException extends RuntimeException {
 
-    @Getter
-    @Setter
     private Long skuId;
 
     public NoStockException(Long skuId) {

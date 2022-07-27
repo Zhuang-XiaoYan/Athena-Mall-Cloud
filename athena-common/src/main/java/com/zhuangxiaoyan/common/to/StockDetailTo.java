@@ -1,9 +1,9 @@
-package com.zhuangxiaoyan.common.to.mq;
+package com.zhuangxiaoyan.common.to;
 
 import lombok.Data;
 
 /**
- * @description TODO
+ * @description 仓库详情传输对象
  * @param: null
  * @date: 2022/3/19 18:34
  * @return:
@@ -13,19 +13,26 @@ import lombok.Data;
 @Data
 public class StockDetailTo {
 
+    /**
+     * id
+     */
     private Long id;
+
     /**
      * sku_id
      */
     private Long skuId;
+
     /**
      * sku_name
      */
     private String skuName;
+
     /**
      * 购买个数
      */
     private Integer skuNum;
+
     /**
      * 工作单id
      */

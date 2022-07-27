@@ -8,8 +8,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @description TODO
- * @param: null
+ * @description 会员的价格对象
  * @date: 2022/3/19 18:34
  * @return:
  * @author: xjl
@@ -18,7 +17,18 @@ import java.math.BigDecimal;
 @Data
 public class MemberPrice {
 
+    /**
+     * id
+     */
     private Long id;
+
+    /**
+     * name
+     */
     private String name;
+
+    /**
+     * price
+     */
     private BigDecimal price;
 }

@@ -11,7 +11,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @description 自定义注解规则
-  * @param: null
  * @date: 2022/7/22 16:59
  * @return:
  * @author: xjl

@@ -17,7 +17,7 @@ import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.vo.AttrGroupRelationVo;
 import com.zhuangxiaoyan.athena.product.vo.AttrRespVo;
 import com.zhuangxiaoyan.athena.product.vo.AttrVo;
-import com.zhuangxiaoyan.common.constant.ProductConstant;
+import com.zhuangxiaoyan.athena.product.constant.ProductConstant;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.eclipse.jetty.util.StringUtil;

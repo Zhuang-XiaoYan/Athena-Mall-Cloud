@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * @description TODO
+ * @description SpuBoundTo传输对象
  * @param: null
  * @date: 2022/3/19 18:34
  * @return:
@@ -15,10 +15,19 @@ import java.math.BigDecimal;
 @Data
 public class SpuBoundTo {
 
+    /**
+     * spuId
+     */
     private Long spuId;
 
+    /**
+     * buyBounds
+     */
     private BigDecimal buyBounds;
 
+    /**
+     * growBounds
+     */
     private BigDecimal growBounds;
 
 }

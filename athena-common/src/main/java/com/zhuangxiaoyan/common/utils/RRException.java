@@ -8,55 +8,80 @@
 
 package com.zhuangxiaoyan.common.utils;
 
+import lombok.Data;
+
 /**
  * @description 自定义异常
- * @param: null
  * @date: 2022/3/19 18:37
  * @return:
  * @author: xjl
  */
+@Data
 public class RRException extends RuntimeException {
+
     private static final long serialVersionUID = 1L;
 
-    private String msg;
+    /**
+     * message
+     */
+    private String message;
+
+    /**
+     * code
+     */
     private int code = 500;
 
+    /**
+     * @description RRException 构造函数
+     * @param: msg
+     * @date: 2022/7/27 22:01
+     * @return:
+     * @author: xjl
+     */
     public RRException(String msg) {
         super(msg);
-        this.msg = msg;
+        this.message = msg;
     }
 
+    /**
+     * @description RRException 构造函数
+     * @param: msg
+     * @param: e
+     * @date: 2022/7/27 22:02
+     * @return:
+     * @author: xjl
+     */
     public RRException(String msg, Throwable e) {
         super(msg, e);
-        this.msg = msg;
+        this.message = msg;
     }
 
+    /**
+     * @description RRException 构造函数
+     * @param: msg
+     * @param: code
+     * @date: 2022/7/27 22:03
+     * @return:
+     * @author: xjl
+     */
     public RRException(String msg, int code) {
         super(msg);
-        this.msg = msg;
+        this.message = msg;
         this.code = code;
     }
 
+    /**
+     * @description RRException 构造函数
+     * @param: msg
+     * @param: code
+     * @param: e
+     * @date: 2022/7/27 22:03
+     * @return:
+     * @author: xjl
+     */
     public RRException(String msg, int code, Throwable e) {
         super(msg, e);
-        this.msg = msg;
+        this.message = msg;
         this.code = code;
     }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
 }

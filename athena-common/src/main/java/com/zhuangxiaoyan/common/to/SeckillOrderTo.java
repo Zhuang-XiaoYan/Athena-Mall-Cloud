@@ -1,11 +1,11 @@
-package com.zhuangxiaoyan.common.to.mq;
+package com.zhuangxiaoyan.common.to;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
- * @description TODO
+ * @description 秒杀订单详情传输对象
  * @param: null
  * @date: 2022/3/19 18:34
  * @return:
@@ -23,10 +23,12 @@ public class SeckillOrderTo {
      * 活动场次id
      */
     private Long promotionSessionId;
+
     /**
      * 商品id
      */
     private Long skuId;
+
     /**
      * 秒杀价格
      */

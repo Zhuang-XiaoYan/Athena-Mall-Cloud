@@ -10,32 +10,37 @@ package com.zhuangxiaoyan.common.utils;
 
 /**
  * @description 常量
- * @param: null
  * @date: 2022/3/19 18:35
  * @return:
  * @author: xjl
  */
 public class Constant {
+
     /**
      * 超级管理员ID
      */
     public static final int SUPER_ADMIN = 1;
+
     /**
      * 当前页码
      */
     public static final String PAGE = "page";
+
     /**
      * 每页显示记录数
      */
     public static final String LIMIT = "limit";
+
     /**
      * 排序字段
      */
     public static final String ORDER_FIELD = "sidx";
+
     /**
      * 排序方式
      */
     public static final String ORDER = "order";
+
     /**
      * 升序
      */
@@ -43,10 +48,6 @@ public class Constant {
 
     /**
      * 菜单类型
-     *
-     * @author chenshun
-     * @email sunlightcs@gmail.com
-     * @date 2016年11月15日 下午1:24:29
      */
     public enum MenuType {
         /**
@@ -75,10 +76,6 @@ public class Constant {
 
     /**
      * 定时任务状态
-     *
-     * @author chenshun
-     * @email sunlightcs@gmail.com
-     * @date 2016年12月3日 上午12:07:22
      */
     public enum ScheduleStatus {
         /**
@@ -128,5 +125,4 @@ public class Constant {
             return value;
         }
     }
-
 }

@@ -12,7 +12,7 @@ import com.zhuangxiaoyan.athena.ware.service.WareSkuService;
 import com.zhuangxiaoyan.athena.ware.vo.MergeVo;
 import com.zhuangxiaoyan.athena.ware.vo.PurchaseDoneVo;
 import com.zhuangxiaoyan.athena.ware.vo.PurchaseItemDoneVo;
-import com.zhuangxiaoyan.common.constant.WareConstant;
+import com.zhuangxiaoyan.athena.ware.constant.WareConstant;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.beans.factory.annotation.Autowired;

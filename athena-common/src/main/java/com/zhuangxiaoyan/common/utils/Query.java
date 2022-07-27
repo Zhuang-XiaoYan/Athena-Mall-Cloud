@@ -18,17 +18,32 @@ import java.util.Map;
 
 /**
  * @description 分页查询相关类
- * @param: null
  * @date: 2022/3/19 18:36
  * @return:
  * @author: xjl
  */
 public class Query<T> {
 
+    /**
+     * @description getPage
+     * @param: params
+     * @date: 2022/7/27 21:32
+     * @return: com.baomidou.mybatisplus.core.metadata.IPage<T>
+     * @author: xjl
+     */
     public IPage<T> getPage(Map<String, Object> params) {
         return this.getPage(params, null, false);
     }
 
+    /**
+     * @description getPage
+     * @param: params
+     * @param: defaultOrderField
+     * @param: isAsc
+     * @date: 2022/7/27 21:32
+     * @return: com.baomidou.mybatisplus.core.metadata.IPage<T>
+     * @author: xjl
+     */
     public IPage<T> getPage(Map<String, Object> params, String defaultOrderField, boolean isAsc) {
         //分页参数
         long curPage = 1;
@@ -47,7 +62,6 @@ public class Query<T> {
         //防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
         String orderField = SQLFilter.sqlInject((String) params.get(Constant.ORDER_FIELD));
         String order = (String) params.get(Constant.ORDER);
-
         //前端字段排序
         if (StringUtils.isNotEmpty(orderField) && StringUtils.isNotEmpty(order)) {
             if (Constant.ASC.equalsIgnoreCase(order)) {

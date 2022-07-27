@@ -6,10 +6,11 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @Description:
+ * @description SkuEsModel类
+ * @date: 2022/7/27 21:04
+ * @return:
  * @author: xjl
- * @createTime: 2020-06-06 14:07
- **/
+*/
 
 @Data
 public class SkuEsModel {

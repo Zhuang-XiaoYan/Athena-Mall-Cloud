@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @Description:
- * @Created: 自定义的校验.
+ * @Description: 自定义的校验.
+ * @Created:
  * @author: xjl
  * @createTime: 2020-05-27 17:54
  **/
@@ -17,7 +17,6 @@ public class ListValueConstraintValidator implements ConstraintValidator<ListVal
 
     /**
      * 初始化方法
-     *
      * @param constraintAnnotation
      */
     @Override
@@ -30,8 +29,7 @@ public class ListValueConstraintValidator implements ConstraintValidator<ListVal
 
     /**
      * 判断是否效验成功
-     *
-     * @param value   需要效验的值
+     * @param value 需要效验的值
      * @param context
      * @return
      */

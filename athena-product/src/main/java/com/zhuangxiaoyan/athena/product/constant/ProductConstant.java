@@ -1,8 +1,7 @@
-package com.zhuangxiaoyan.common.constant;
+package com.zhuangxiaoyan.athena.product.constant;
 
 /**
  * @description 商品常量属性
- * @param: null
  * @date: 2022/3/19 18:33
  * @return:
  * @author: xjl

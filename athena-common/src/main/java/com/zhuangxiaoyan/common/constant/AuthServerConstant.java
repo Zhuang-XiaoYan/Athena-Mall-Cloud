@@ -1,8 +1,7 @@
 package com.zhuangxiaoyan.common.constant;
 
 /**
- * @description TODO
- * @param: xjl
+ * @description AuthServerConstant
  * @date: 2022/3/19 18:33
  * @return:
  * @author: xjl

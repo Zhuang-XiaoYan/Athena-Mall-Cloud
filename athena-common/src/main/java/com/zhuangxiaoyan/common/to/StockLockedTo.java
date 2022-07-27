@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.common.to.mq;
+package com.zhuangxiaoyan.common.to;
 
 import lombok.Data;
 

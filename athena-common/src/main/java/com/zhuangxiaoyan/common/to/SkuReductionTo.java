@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * @description TODO
+ * @description SkuReductionTo传输对象
  * @param: null
  * @date: 2022/3/19 18:34
  * @return:
@@ -16,13 +16,44 @@ import java.util.List;
 @Data
 public class SkuReductionTo {
 
+    /**
+     * skuId
+     */
     private Long skuId;
+
+    /**
+     * fullCount
+     */
     private int fullCount;
+
+    /**
+     * discount
+     */
     private BigDecimal discount;
+
+    /**
+     * countStatus
+     */
     private int countStatus;
+
+    /**
+     * fullPrice
+     */
     private BigDecimal fullPrice;
+
+    /**
+     * reducePrice
+     */
     private BigDecimal reducePrice;
+
+    /**
+     * priceStatus
+     */
     private int priceStatus;
+
+    /**
+     * memberPrice
+     */
     private List<MemberPrice> memberPrice;
 
 }

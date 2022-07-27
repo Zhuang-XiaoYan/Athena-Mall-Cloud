@@ -3,7 +3,7 @@ package com.zhuangxiaoyan.common.to;
 import lombok.Data;
 
 /**
- * @description TODO
+ * @description SkuHasStockVo传输对象
  * @param: null
  * @date: 2022/3/19 18:34
  * @return:
@@ -13,8 +13,14 @@ import lombok.Data;
 @Data
 public class SkuHasStockVo {
 
+    /**
+     * skuId
+     */
     private Long skuId;
 
+    /**
+     * hasStock
+     */
     private Boolean hasStock;
 
 }

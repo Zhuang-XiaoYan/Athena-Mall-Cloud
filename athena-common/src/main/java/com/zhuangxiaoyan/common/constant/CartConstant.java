@@ -2,7 +2,6 @@ package com.zhuangxiaoyan.common.constant;
 
 /**
  * @description 购物车常量
- * @param: xjl
  * @date: 2022/3/19 18:33
  * @return:
  * @author: xjl
