@@ -5,8 +5,8 @@
     <groupId>com.zhuangxiaoyan.Athenamall</groupId>
     <artifactId>Athenamall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Athena-mall</name>
-    <description>Athena-总项目聚合</description>
+    <name>Athenamall</name>
+    <description>Athenamall基于Springcloud的微服务分布式电商系统</description>
     <packaging>pom</packaging>
 
     <modules>
