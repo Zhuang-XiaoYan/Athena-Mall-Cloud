@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.product.config;
+package com.zhuangxiaoyan.athena.ware.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -13,9 +13,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @Created by xjl
  */
 @Configuration
-@EnableTransactionManagement// 开启事务注解
-@MapperScan("com.zhuangxiaoyan.athena.product.dao")
-public class MybatisConfig {
+@MapperScan("com.zhuangxiaoyan.athena.ware.dao")
+public class WareMybatisConfig {
 
     /**
      * @description 引入分页插件

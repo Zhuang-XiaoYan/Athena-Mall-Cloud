@@ -3,6 +3,7 @@ package com.zhuangxiaoyan.athena.ware.controller;
 import com.zhuangxiaoyan.athena.ware.entity.PurchaseEntity;
 import com.zhuangxiaoyan.athena.ware.service.PurchaseService;
 import com.zhuangxiaoyan.athena.ware.vo.MergeVo;
+import com.zhuangxiaoyan.athena.ware.vo.PurchaseDoneVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +27,19 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService purchaseService;
+
+    @PostMapping("/done")
+    public Result finish(@RequestBody PurchaseDoneVo purchaseDoneVo) {
+        purchaseService.done(purchaseDoneVo);
+        return Result.ok();
+    }
+
+
+    @PostMapping("/received")
+    public Result received(@RequestBody List<Long> ids) {
+        purchaseService.received(ids);
+        return Result.ok();
+    }
 
     @PostMapping("/merge")
     public Result merge(@RequestBody MergeVo mergeVo) {

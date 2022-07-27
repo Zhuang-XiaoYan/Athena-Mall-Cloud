@@ -23,14 +23,14 @@ spring:
             - Path=/api/oss/policy/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
-        # high level athena-product service
+        # high level athena-member service
         - id: athena-member-route
           uri: lb://athena-member
           predicates:
             - Path=/api/member/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
-        # high level athena-product service
+        # high level athena-ware service
         - id: athena-ware-route
           uri: lb://athena-ware
           predicates:

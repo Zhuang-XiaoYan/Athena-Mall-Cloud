@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableFeignClients(basePackages = "com.zhuangxiaoyan.athena.ware.fegin")
 @MapperScan("com.zhuangxiaoyan.athena.ware.dao")
-@EnableTransactionManagement
+@EnableTransactionManagement// 表示的开启事务
 @EnableDiscoveryClient
 @SpringBootApplication
 public class AthenaWareApplication {

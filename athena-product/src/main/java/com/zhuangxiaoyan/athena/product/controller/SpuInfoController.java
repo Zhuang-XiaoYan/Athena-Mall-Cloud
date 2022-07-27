@@ -32,7 +32,6 @@ public class SpuInfoController {
     //@RequiresPermissions("product:spuinfo:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = spuInfoService.queryPageByCondition(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -43,8 +42,7 @@ public class SpuInfoController {
     //@RequiresPermissions("product:spuinfo:info")
     public Result info(@PathVariable("id") Long id) {
         SpuInfoEntity spuInfo = spuInfoService.getById(id);
-
-        return Result.ok().put("spuInfo", spuInfo);
+        return Result.ok().put("skuInfo", spuInfo);
     }
 
     /**
@@ -64,7 +62,6 @@ public class SpuInfoController {
     //@RequiresPermissions("product:spuinfo:update")
     public Result update(@RequestBody SpuInfoEntity spuInfo) {
         spuInfoService.updateById(spuInfo);
-
         return Result.ok();
     }
 
@@ -75,7 +72,6 @@ public class SpuInfoController {
     //@RequiresPermissions("product:spuinfo:delete")
     public Result delete(@RequestBody Long[] ids) {
         spuInfoService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 
