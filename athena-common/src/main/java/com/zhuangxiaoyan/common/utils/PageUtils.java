@@ -9,18 +9,21 @@
 package com.zhuangxiaoyan.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @description 分页工具类
- * @param: null
- * @date: 2022/3/19 18:36
+ * 使用的@Data的注解 可以再类中省略相关的get set的方法
+ * @date: 2022/7/27 11:32
  * @return:
  * @author: xjl
  */
+@Data
 public class PageUtils implements Serializable {
+
     private static final long serialVersionUID = 1L;
     /**
      * 总记录数
@@ -45,6 +48,17 @@ public class PageUtils implements Serializable {
 
     /**
      * 分页
+     */
+    public PageUtils(IPage<?> page) {
+        this.list = page.getRecords();
+        this.totalCount = (int) page.getTotal();
+        this.pageSize = (int) page.getSize();
+        this.currPage = (int) page.getCurrent();
+        this.totalPage = (int) page.getPages();
+    }
+
+    /**
+     * 分页
      *
      * @param list       列表数据
      * @param totalCount 总记录数
@@ -58,56 +72,4 @@ public class PageUtils implements Serializable {
         this.currPage = currPage;
         this.totalPage = (int) Math.ceil((double) totalCount / pageSize);
     }
-
-    /**
-     * 分页
-     */
-    public PageUtils(IPage<?> page) {
-        this.list = page.getRecords();
-        this.totalCount = (int) page.getTotal();
-        this.pageSize = (int) page.getSize();
-        this.currPage = (int) page.getCurrent();
-        this.totalPage = (int) page.getPages();
-    }
-
-    public int getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(int totalCount) {
-        this.totalCount = totalCount;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
-    public int getCurrPage() {
-        return currPage;
-    }
-
-    public void setCurrPage(int currPage) {
-        this.currPage = currPage;
-    }
-
-    public List<?> getList() {
-        return list;
-    }
-
-    public void setList(List<?> list) {
-        this.list = list;
-    }
-
 }

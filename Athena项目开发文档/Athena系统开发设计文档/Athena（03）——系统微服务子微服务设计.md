@@ -174,7 +174,7 @@ docker restart 6c0e160aafa1
 
 ![img.png](images/会员服务查询.png)
 
-![img.png](会员服务等级查询.png)
+![img.png](images/会员服务等级查询.png)
 
 
 # 24、网关服务
