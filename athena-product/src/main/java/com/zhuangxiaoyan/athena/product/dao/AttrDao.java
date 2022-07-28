@@ -5,11 +5,10 @@ import com.zhuangxiaoyan.athena.product.entity.AttrEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 商品属性
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品属性接口
+ * @date: 2022/7/28 12:52
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface AttrDao extends BaseMapper<AttrEntity> {

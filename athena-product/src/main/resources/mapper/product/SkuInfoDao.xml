@@ -17,6 +17,4 @@
         <result property="price" column="price"/>
         <result property="saleCount" column="sale_count"/>
     </resultMap>
-
-
 </mapper>

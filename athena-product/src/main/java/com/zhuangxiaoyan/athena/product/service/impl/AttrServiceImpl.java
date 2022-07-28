@@ -32,26 +32,49 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description AttrServiceImpl
+ * @date: 2022/7/28 14:06
+ * @author: xjl
+ */
+
 @Service("attrService")
 public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
 
     @Autowired
     CategoryService categoryService;
+
     @Autowired
     private AttrgroupRelationDao attrgroupRelationDao;
+
     @Autowired
     private AttrGroupDao attrGroupDao;
+
     @Autowired
     private CategoryDao categoryDao;
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:06
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<AttrEntity> page = this.page(new Query<AttrEntity>().getPage(params), new QueryWrapper<AttrEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveAttrVo
+     * @param: attr
+     * @date: 2022/7/28 14:06
+     * @return: void
+     * @author: xjl
+     */
     @Override
-    public void saveAttr(AttrVo attr) {
+    public void saveAttrVo(AttrVo attr) {
         AttrEntity attrEntity = new AttrEntity();
         BeanUtils.copyProperties(attr, attrEntity);
         // 保存基本的数据库中
@@ -65,13 +88,21 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         }
     }
 
+    /**
+     * @description queryBaseAttrQuery
+     * @param: params
+     * @param: catelogId
+     * @param: attrType
+     * @date: 2022/7/28 14:06
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryBaseAttrQuery(Map<String, Object> params, Long catelogId, String attrType) {
         QueryWrapper<AttrEntity> attrEntityQueryWrapper = new QueryWrapper<AttrEntity>().eq("attr_type", "base".equalsIgnoreCase(attrType) ? ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode() : ProductConstant.AttrEnum.ATTR_TYPE_SALE.getCode());
         if (catelogId != 0) {
             attrEntityQueryWrapper.eq("catelog_id", catelogId);
         }
-
         String key = (String) params.get("key");
         if (!StringUtil.isEmpty(key)) {
             attrEntityQueryWrapper.and((wapper) -> {
@@ -102,13 +133,18 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return pageUtils;
     }
 
+    /**
+     * @description getAttrInfo
+     * @param: attrId
+     * @date: 2022/7/28 14:07
+     * @return: com.zhuangxiaoyan.athena.product.vo.AttrRespVo
+     * @author: xjl
+     */
     @Override
     public AttrRespVo getAttrInfo(Long attrId) {
         AttrRespVo attrRespVo = new AttrRespVo();
         AttrEntity attrEntity = this.getById(attrId);
-
         BeanUtils.copyProperties(attrEntity, attrRespVo);
-
         if (attrEntity.getAttrType() == ProductConstant.AttrEnum.ATTR_TYPE_BASE.getCode()) {
             // 设置分组信息
             AttrgroupRelationEntity attrgroupRelation = attrgroupRelationDao.selectOne(new QueryWrapper<AttrgroupRelationEntity>().eq("attr_id", attrId));
@@ -131,6 +167,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return attrRespVo;
     }
 
+    /**
+     * @description updateAttr
+     * @param: attrVo
+     * @date: 2022/7/28 14:08
+     * @return: void
+     * @author: xjl
+     */
     @Transactional(rollbackFor = Exception.class, timeout = 30)
     @Override
     public void updateAttr(AttrVo attrVo) {
@@ -174,6 +217,13 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         return (List<AttrEntity>) attrEntities;
     }
 
+    /**
+     * @description deleteRelation
+     * @param: attrGroupRelationVos
+     * @date: 2022/7/28 14:08
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void deleteRelation(AttrGroupRelationVo[] attrGroupRelationVos) {
         List<AttrgroupRelationEntity> entities = Arrays.asList(attrGroupRelationVos).stream().map((item) -> {

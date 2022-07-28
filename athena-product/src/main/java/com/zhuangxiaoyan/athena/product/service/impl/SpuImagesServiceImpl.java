@@ -23,6 +23,14 @@ public class SpuImagesServiceImpl extends ServiceImpl<SpuImagesDao, SpuImagesEnt
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveImages
+     * @param: id
+     * @param: images
+     * @date: 2022/7/28 14:24
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveImages(Long id, List<String> images) {
         if (images.size() <= 0 || images == null) {

@@ -3,11 +3,10 @@ package com.zhuangxiaoyan.athena.product.vo;
 import lombok.Data;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description AttrVo
+ * @date: 2022/7/28 14:45
  * @author: xjl
- * @createTime: 2020-05-29 08:43
- **/
+*/
 
 @Data
 public class AttrVo {

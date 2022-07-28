@@ -16,15 +16,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description AttrgroupRelationServiceImpl
+ * @date: 2022/7/28 13:53
+ * @author: xjl
+ */
+
 @Service("attrAttrgroupRelationService")
 public class AttrgroupRelationServiceImpl extends ServiceImpl<AttrgroupRelationDao, AttrgroupRelationEntity> implements AttrgroupRelationService {
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:53
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<AttrgroupRelationEntity> page = this.page(new Query<AttrgroupRelationEntity>().getPage(params), new QueryWrapper<AttrgroupRelationEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveBatch
+     * @param: attrGroupRelationVos
+     * @date: 2022/7/28 13:53
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveBatch(List<AttrGroupRelationVo> attrGroupRelationVos) {
         List<AttrgroupRelationEntity> collect = attrGroupRelationVos.stream().map(item -> {

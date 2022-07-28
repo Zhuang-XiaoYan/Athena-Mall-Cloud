@@ -14,20 +14,24 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 品牌
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 品牌信息
+ * @date: 2022/7/28 12:13
+ * @return:
+ * @author: xjl
  */
 @RestController
 @RequestMapping("product/brand")
 public class BrandController {
+
     @Autowired
     private BrandService brandService;
 
     /**
-     * 列表
+     * @description 查询所有的信息
+     * @param: params
+     * @date: 2022/7/28 12:13
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:brand:list")
@@ -37,7 +41,11 @@ public class BrandController {
     }
 
     /**
-     * 信息
+     * @description 通过的brandId查询的信息
+     * @param: brandId
+     * @date: 2022/7/28 12:13
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{brandId}")
     //@RequiresPermissions("product:brand:info")
@@ -47,7 +55,11 @@ public class BrandController {
     }
 
     /**
-     * 保存 同时的对的相关的输入的数据的前端进行校验
+     * @description 保存 同时的对的相关的输入的数据的前端进行校验
+     * @param: null
+     * @date: 2022/7/28 12:14
+     * @return:
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
@@ -57,8 +69,13 @@ public class BrandController {
     }
 
     /**
-     * 涉及到多表关联的时候不能只能使用简单的单表的保存，需要的考虑到多表的冗余与数据的同步，因此需要在每每次的基础的操作中的做好相关的检查。
+     * @description 涉及到多表关联的时候不能只能使用简单的单表的保存，需要的考虑到多表的冗余与数据的同步，
+     * 因此需要在每每次的基础的操作中的做好相关的检查。
      * @Validated(UpdateGroup.class)
+     * @param: null
+     * @date: 2022/7/28 12:14
+     * @return:
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
@@ -69,7 +86,11 @@ public class BrandController {
     }
 
     /**
-     * 删除
+     * @description 删除相关数据
+     * @param: brandIds
+     * @date: 2022/7/28 12:14
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:brand:delete")

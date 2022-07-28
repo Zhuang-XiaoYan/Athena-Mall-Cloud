@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * sku图片
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku图片
+ * @date: 2022/7/28 12:24
+ * @return:
+ * @author: xjl
  */
 @RestController
 @RequestMapping("product/skuimages")
 public class SkuImagesController {
+
     @Autowired
     private SkuImagesService skuImagesService;
 
     /**
-     * 列表
+     * @description 查询所有的sku的图片信息
+     * @param: params
+     * @date: 2022/7/28 12:24
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuimages:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuImagesService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询信息
+     * @param: id
+     * @date: 2022/7/28 12:24
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:skuimages:info")
     public Result info(@PathVariable("id") Long id) {
         SkuImagesEntity skuImages = skuImagesService.getById(id);
-
         return Result.ok().put("skuImages", skuImages);
     }
 
     /**
-     * 保存
+     * @description 保存信息
+     * @param: skuImages
+     * @date: 2022/7/28 12:25
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skuimages:save")
     public Result save(@RequestBody SkuImagesEntity skuImages) {
         skuImagesService.save(skuImages);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新信息
+     * @param: skuImages
+     * @date: 2022/7/28 12:25
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skuimages:update")
     public Result update(@RequestBody SkuImagesEntity skuImages) {
         skuImagesService.updateById(skuImages);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除信息
+     * @param: ids
+     * @date: 2022/7/28 12:25
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skuimages:delete")
     public Result delete(@RequestBody Long[] ids) {
         skuImagesService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

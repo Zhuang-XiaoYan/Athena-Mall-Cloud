@@ -20,12 +20,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description AttrGroupServiceImpl
+ * @date: 2022/7/28 13:56
+ * @author: xjl
+ */
+
 @Service("attrGroupService")
 public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEntity> implements AttrGroupService {
 
     @Autowired
     AttrService attrService;
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:57
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<AttrGroupEntity> page = this.page(new Query<AttrGroupEntity>().getPage(params), new QueryWrapper<AttrGroupEntity>());

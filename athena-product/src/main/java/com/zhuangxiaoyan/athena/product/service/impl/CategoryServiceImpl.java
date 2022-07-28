@@ -19,12 +19,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description CategoryServiceImpl
+ * @date: 2022/7/28 14:13
+ * @author: xjl
+ */
+
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
 
+    /**
+     * @description queryPage()
+     * @param: params
+     * @date: 2022/7/28 14:10
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryEntity> page = this.page(new Query<CategoryEntity>().getPage(params), new QueryWrapper<CategoryEntity>());
@@ -55,8 +68,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * @description 递归查找所有的子分类
-     * @param:
-     * @date: 2022/3/13 17:49
+     * @param: root
+     * @param: all
+     * @date: 2022/7/28 14:11
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
      * @author: xjl
      */
@@ -75,7 +89,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * @description TODO 检查的删除的菜单 是否被其他地方引用
+     * @description 检查的删除的菜单 是否被其他地方引用
      * @param: asList
      * @date: 2022/3/19 13:57
      * @return: void
@@ -88,11 +102,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * @param categoryId
      * @description 查询的CateglogId的所有的路径
-     * @param:
-     * @date: 2022/7/22 23:14
-     * @return: java.lang.Long[]
+     * @param: null
+     * @date: 2022/7/28 14:11
+     * @return:
      * @author: xjl
      */
     @Override
@@ -103,6 +116,14 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         return parentPath.toArray(new Long[parentPath.size()]);
     }
 
+    /**
+     * @description findParentPath()
+     * @param: categoryId
+     * @param: paths
+     * @date: 2022/7/28 14:11
+     * @return: java.util.List<java.lang.Long>
+     * @author: xjl
+     */
     private List<Long> findParentPath(Long categoryId, List<Long> paths) {
         // 收集当前的节点的id数据
         paths.add(categoryId);

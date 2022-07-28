@@ -17,7 +17,7 @@ import ${mainPath}.common.utils.PageUtils;
 import ${mainPath}.common.utils.R;
 
 /**
- * ${comments}
+ * @Description: ${comments}
  *
  * @author ${author}
  * @email ${email}
@@ -26,17 +26,21 @@ import ${mainPath}.common.utils.R;
 @RestController
 @RequestMapping("${moduleName}/${pathName}")
 public class ${className}Controller {
+
     @Autowired
     private ${className}Service ${classname}Service;
 
     /**
-     * 列表
-     */
+     * @description 查询列表信息
+      * @param: null
+     * @date: 2022/7/28 10:42
+     * @return:
+     * @author: xjl
+    */
     @RequestMapping("/list")
     @RequiresPermissions("${moduleName}:${pathName}:list")
     public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = ${classname}Service.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
@@ -80,8 +84,6 @@ public class ${className}Controller {
     @RequiresPermissions("${moduleName}:${pathName}:delete")
     public R delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s) {
             ${classname}Service.removeByIds(Arrays.asList(${pk.attrname}s));
-
         return R.ok();
     }
-
 }

@@ -27,6 +27,7 @@ spring:
       secret-key: 3XdiJv6fCZ3XrrESMd4I58XZT83t2x
       oss:
         endpoint: oss-cn-shanghai.aliyuncs.com
+  # 配置的时间输出格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 

@@ -6,12 +6,10 @@ import lombok.ToString;
 import java.util.List;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description TODO
+ * @date: 2022/7/28 14:47
  * @author: xjl
- * @createTime: 2020-06-19 18:17
- **/
-
+*/
 @Data
 @ToString
 public class SkuItemSaleAttrVo {
@@ -20,6 +18,6 @@ public class SkuItemSaleAttrVo {
 
     private String attrName;
 
-    private List<AttrValueWithSkuIdVO> attrValues;
+    private List<AttrValueWithSkuIdVo> attrValues;
 
 }

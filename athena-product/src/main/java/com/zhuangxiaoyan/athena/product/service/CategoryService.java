@@ -8,18 +8,23 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 商品三级分类
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品三级分类
+ * @date: 2022/7/28 8:26
+ * @author: xjl
  */
-public interface CategoryService extends IService<CategoryEntity> {
 
+public interface CategoryService extends IService<CategoryEntity> {
+    /**
+     * @description queryPage页查询
+     * @param: params
+     * @date: 2022/7/28 13:45
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 
     /**
-     * @description TODO 查询出所有的分类以及子分类，以及树形结构
+     * @description 查询出所有的分类以及子分类，以及树形结构
      * @param:
      * @date: 2022/3/13 17:37
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
@@ -27,16 +32,31 @@ public interface CategoryService extends IService<CategoryEntity> {
      */
     List<CategoryEntity> listWithTree();
 
+    /**
+     * @description removeMenuByIds
+     * @param: asList
+     * @date: 2022/7/28 13:46
+     * @return: void
+     * @author: xjl
+     */
     void removeMenuByIds(List<Long> asList);
+
     /**
      * @description 查找的到categoryiD的完整路径 【父 子 …………】
-      * @param: categoryId
+     * @param: categoryId
      * @date: 2022/7/23 8:56
      * @return: java.lang.Long[]
      * @author: xjl
-    */
+     */
     Long[] findCateglogPath(Long categoryId);
 
+    /**
+     * @description updateCascade()
+     * @param: category
+     * @date: 2022/7/28 13:47
+     * @return: void
+     * @author: xjl
+     */
     void updateCascade(CategoryEntity category);
 }
 

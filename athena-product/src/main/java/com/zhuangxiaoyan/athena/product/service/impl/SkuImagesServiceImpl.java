@@ -15,6 +15,13 @@ import java.util.Map;
 @Service("skuImagesService")
 public class SkuImagesServiceImpl extends ServiceImpl<SkuImagesDao, SkuImagesEntity> implements SkuImagesService {
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:20
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SkuImagesEntity> page = this.page(new Query<SkuImagesEntity>().getPage(params), new QueryWrapper<SkuImagesEntity>());

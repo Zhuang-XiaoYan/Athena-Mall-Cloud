@@ -7,14 +7,20 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * sku销售属性&值
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku销售属性&值接口
+ * @date: 2022/7/28 8:27
+ * @return:
+ * @author: xjl
  */
-public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity> {
 
+public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity> {
+    /**
+     * @description queryPage()
+     * @param: params
+     * @date: 2022/7/28 13:50
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 }
 

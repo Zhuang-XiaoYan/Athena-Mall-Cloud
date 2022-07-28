@@ -10,37 +10,35 @@ import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * 品牌分类关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 品牌分类关联
+ * @date: 2022/7/28 12:15
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("product/categorybrandrelation")
 public class CategoryBrandRelationController {
 
     @Autowired
     private CategoryBrandRelationService categoryBrandRelationService;
+
     /**
      * @description 查询的
-      * @param:
+     * @param:
      * @date: 2022/7/25 12:31
      * @return: com.zhuangxiaoyan.common.utils.Result
      * @author: xjl
-     * controller 处理请求和接受参数和数据的校验的工作，同时接受的service的返回的数据同时返回给这个页面
-     * service 接受的controller的请求，进行的业务处理
-    */
+     */
     @GetMapping("/brands/list")
-    public Result releationBrandRelation(@RequestParam(value = "catId",required = true) Long catId){
-        List<BrandEntity> brandVos=categoryBrandRelationService.getBrandsBycatId(catId);
+    public Result releationBrandRelation(@RequestParam(value = "catId", required = true) Long catId) {
+        List<BrandEntity> brandVos = categoryBrandRelationService.getBrandsBycatId(catId);
         List<BrandVo> collectBrandVos = brandVos.stream().map(item -> {
             BrandVo brand = new BrandVo();
             brand.setBrandId(item.getBrandId());
@@ -51,11 +49,13 @@ public class CategoryBrandRelationController {
     }
 
     /**
-     * 获取当前品牌的关联的的所有分类列表
+     * @description 获取当前品牌的关联的的所有分类列表
+     * @param: brandId
+     * @date: 2022/7/28 12:16
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
-
     @GetMapping(value = "/catelog/list")
-    // @RequestMapping(value = "/catelog/list", method = RequestMethod.GET)
     //@RequiresPermissions("product:categorybrandrelation:list")
     public Result cateloglist(@RequestParam("brandId") Long brandId) {
         List<CategoryBrandRelationEntity> data = categoryBrandRelationService.list(
@@ -63,9 +63,12 @@ public class CategoryBrandRelationController {
         return Result.ok().put("data", data);
     }
 
-
     /**
-     * 列表
+     * @description 列表信息
+     * @param: params
+     * @date: 2022/7/28 12:16
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:categorybrandrelation:list")
@@ -76,7 +79,11 @@ public class CategoryBrandRelationController {
     }
 
     /**
-     * 信息
+     * @description 通过id查询信息
+     * @param: id
+     * @date: 2022/7/28 12:16
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:categorybrandrelation:info")
@@ -86,7 +93,11 @@ public class CategoryBrandRelationController {
     }
 
     /**
-     * 保存
+     * @description 保存信息
+     * @param: categoryBrandRelation
+     * @date: 2022/7/28 12:17
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:categorybrandrelation:save")
@@ -97,7 +108,11 @@ public class CategoryBrandRelationController {
     }
 
     /**
-     * 修改
+     * @description 更新信息
+     * @param: categoryBrandRelation
+     * @date: 2022/7/28 12:17
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:categorybrandrelation:update")
@@ -107,7 +122,11 @@ public class CategoryBrandRelationController {
     }
 
     /**
-     * 删除
+     * @description 删除信息数据
+     * @param: ids
+     * @date: 2022/7/28 12:17
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:categorybrandrelation:delete")

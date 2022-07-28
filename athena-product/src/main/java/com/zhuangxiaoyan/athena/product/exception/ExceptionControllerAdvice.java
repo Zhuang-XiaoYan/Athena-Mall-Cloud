@@ -15,38 +15,44 @@ import java.util.Map;
 
 /**
  * @description 集中处理所有异常
-  * @param: null
- * @date: 2022/3/19 18:26
- * @return:
+ * @date: 2022/7/28 13:17
  * @author: xjl
-*/
+ */
 
 @Slf4j
 @RestControllerAdvice(basePackages = "com.zhuangxiaoyan.athena.product.controller")
 public class ExceptionControllerAdvice {
 
     /**
-     * 参数非法（效验参数）异常 MethodArgumentNotValidException
-     * @param e
-     * @return
+     * @description 参数非法（效验参数）异常 MethodArgumentNotValidException
+     * @param: e
+     * @date: 2022/7/28 13:17
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Result handleValidException(MethodArgumentNotValidException e) {
-        log.error("数据效验出现问题{},异常类型{}",e.getMessage(),e.getClass());
+        log.error("数据效验出现问题{},异常类型{}", e.getMessage(), e.getClass());
         BindingResult bindingResult = e.getBindingResult();
-        Map<String,String> errMap = new HashMap<>();
+        Map<String, String> errMap = new HashMap<>();
         bindingResult.getFieldErrors().forEach((fieldError) -> {
-            errMap.put(fieldError.getField(),fieldError.getDefaultMessage());
+            errMap.put(fieldError.getField(), fieldError.getDefaultMessage());
         });
         return Result.error(ExceptionCode.VAILD_EXCEPTION.getCode(), ExceptionCode.VAILD_EXCEPTION.getMessage())
-                .put("data",errMap);
+                .put("data", errMap);
     }
 
-
+    /**
+     * @description handleException
+     * @param: throwable
+     * @date: 2022/7/28 13:17
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @ExceptionHandler(value = Throwable.class)
     public Result handleException(Throwable throwable) {
-        log.error("错误异常{}",throwable);
+        log.error("错误异常{}", throwable);
         return Result.error(ExceptionCode.UNKNOW_EXCEPTION.getCode(), ExceptionCode.UNKNOW_EXCEPTION.getMessage());
     }
 }

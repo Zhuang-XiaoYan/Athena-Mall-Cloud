@@ -21,6 +21,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description CategoryBrandRelationServiceImpl
+ * @param: null
+ * @date: 2022/7/28 14:14
+ * @return:
+ * @author: xjl
+ */
+
 @Service("categoryBrandRelationService")
 public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandRelationDao, CategoryBrandRelationEntity> implements CategoryBrandRelationService {
 
@@ -36,12 +44,26 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Autowired
     BrandService brandService;
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:10
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CategoryBrandRelationEntity> page = this.page(new Query<CategoryBrandRelationEntity>().getPage(params), new QueryWrapper<CategoryBrandRelationEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveDetial
+     * @param: categoryBrandRelation
+     * @date: 2022/7/28 14:10
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveDetial(CategoryBrandRelationEntity categoryBrandRelation) {
         Long brandId = categoryBrandRelation.getBrandId();

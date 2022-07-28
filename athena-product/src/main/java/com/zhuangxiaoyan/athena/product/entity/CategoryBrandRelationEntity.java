@@ -7,15 +7,14 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 品牌分类关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 品牌分类关联模型类
+ * @date: 2022/7/28 13:10
+ * @author: xjl
  */
 @Data
 @TableName("pms_category_brand_relation")
 public class CategoryBrandRelationEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -23,18 +22,22 @@ public class CategoryBrandRelationEntity implements Serializable {
      */
     @TableId
     private Long id;
+
     /**
      * 品牌id
      */
     private Long brandId;
+
     /**
      * 分类id
      */
     private Long catelogId;
+
     /**
      *
      */
     private String brandName;
+
     /**
      *
      */

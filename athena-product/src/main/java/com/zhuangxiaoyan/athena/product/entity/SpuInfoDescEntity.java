@@ -8,15 +8,16 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * spu信息介绍
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu信息介绍模型类
+ * @date: 2022/7/28 13:14
+ * @return:
+ * @author: xjl
  */
+
 @Data
 @TableName("pms_spu_info_desc")
 public class SpuInfoDescEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -24,6 +25,7 @@ public class SpuInfoDescEntity implements Serializable {
      */
     @TableId(type = IdType.INPUT)
     private Long spuId;
+
     /**
      * 商品介绍
      */

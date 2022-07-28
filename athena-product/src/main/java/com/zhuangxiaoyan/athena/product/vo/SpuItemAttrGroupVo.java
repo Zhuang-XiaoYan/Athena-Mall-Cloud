@@ -6,11 +6,10 @@ import lombok.ToString;
 import java.util.List;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description SpuItemAttrGroupVo
+ * @date: 2022/7/28 14:47
  * @author: xjl
- * @createTime: 2020-06-19 18:18
- **/
+*/
 
 @Data
 @ToString
@@ -18,6 +17,6 @@ public class SpuItemAttrGroupVo {
 
     private String groupName;
 
-    private List<Attr> attrs;
+    private List<AttrSubVo> attrs;
 
 }

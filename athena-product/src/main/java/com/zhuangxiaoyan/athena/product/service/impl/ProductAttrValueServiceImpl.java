@@ -15,26 +15,61 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description ProductAttrValueServiceImpl
+ * @date: 2022/7/28 14:15
+ * @author: xjl
+ */
+
 @Service("productAttrValueService")
 public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao, ProductAttrValueEntity> implements ProductAttrValueService {
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:13
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<ProductAttrValueEntity> page = this.page(new Query<ProductAttrValueEntity>().getPage(params), new QueryWrapper<ProductAttrValueEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveProductAttr
+     * @param: collect
+     * @date: 2022/7/28 14:18
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveProductAttr(List<ProductAttrValueEntity> collect) {
         this.saveBatch(collect);
     }
 
+    /**
+     * @description baseAttrListSpu
+     * @param: spuId
+     * @date: 2022/7/28 14:18
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.ProductAttrValueEntity>
+     * @author: xjl
+     */
     @Override
     public List<ProductAttrValueEntity> baseAttrListSpu(Long spuId) {
         List<ProductAttrValueEntity> entities = this.baseMapper.selectList(new QueryWrapper<ProductAttrValueEntity>().eq("spu_id", spuId));
         return entities;
     }
 
+    /**
+     * @description updateSpuAttr
+     * @param: spuId
+     * @param: entities
+     * @date: 2022/7/28 14:19
+     * @return: void
+     * @author: xjl
+     */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateSpuAttr(Long spuId, List<ProductAttrValueEntity> entities) {

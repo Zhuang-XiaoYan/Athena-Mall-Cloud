@@ -22,6 +22,4 @@
         <result property="memberIcon" column="member_icon"/>
         <result property="commentType" column="comment_type"/>
     </resultMap>
-
-
 </mapper>

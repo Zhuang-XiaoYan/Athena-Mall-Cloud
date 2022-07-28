@@ -7,15 +7,16 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * spu图片
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu图片模型类
+ * @date: 2022/7/28 13:14
+ * @return:
+ * @author: xjl
  */
+
 @Data
 @TableName("pms_spu_images")
 public class SpuImagesEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -23,22 +24,27 @@ public class SpuImagesEntity implements Serializable {
      */
     @TableId
     private Long id;
+
     /**
      * spu_id
      */
     private Long spuId;
+
     /**
      * 图片名
      */
     private String imgName;
+
     /**
      * 图片地址
      */
     private String imgUrl;
+
     /**
      * 顺序
      */
     private Integer imgSort;
+
     /**
      * 是否默认图
      */

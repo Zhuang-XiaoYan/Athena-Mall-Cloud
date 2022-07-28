@@ -25,6 +25,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description SpuInfoServiceImpl
+ * @date: 2022/7/28 14:26
+ * @author: xjl
+ */
+
 @Service("spuInfoService")
 public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> implements SpuInfoService {
 
@@ -52,12 +58,26 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
     @Autowired
     CouponFeginService couponFeginService;
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:28
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SpuInfoEntity> page = this.page(new Query<SpuInfoEntity>().getPage(params), new QueryWrapper<SpuInfoEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveSpuInfo
+     * @param: spuSaveVo
+     * @date: 2022/7/28 14:28
+     * @return: void
+     * @author: xjl
+     */
     @Transactional(rollbackFor = Exception.class, timeout = 50)
     @Override
     public void saveSpuInfo(SpuSaveVo spuSaveVo) {
@@ -77,7 +97,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         List<String> images = spuSaveVo.getImages();
         spuImagesService.saveImages(spuInfoEntity.getId(), images);
         // 4、保存spu的规格参数  psm_product_attr_value
-        List<BaseAttrs> baseAttrs = spuSaveVo.getBaseAttrs();
+        List<BaseAttrsVo> baseAttrs = spuSaveVo.getBaseAttrs();
         List<ProductAttrValueEntity> collect = baseAttrs.stream().map(attr -> {
             ProductAttrValueEntity productAttrValueEntity = new ProductAttrValueEntity();
             productAttrValueEntity.setAttrId(attr.getAttrId());
@@ -90,9 +110,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }).collect(Collectors.toList());
         productAttrValueService.saveProductAttr(collect);
         // 5、保存的spu的积分信息 athena-sms->sms_spu_bounds
-        Bounds bounds = spuSaveVo.getBounds();
+        BoundsVo boundvos = spuSaveVo.getBounds();
         SpuBoundTo spuBoundTo = new SpuBoundTo();
-        BeanUtils.copyProperties(bounds, spuBoundTo);
+        BeanUtils.copyProperties(boundvos, spuBoundTo);
         spuBoundTo.setSpuId(spuInfoEntity.getId());
         Result result = couponFeginService.saveSpuBounds(spuBoundTo);
         if (result.getCode() != 0) {
@@ -100,11 +120,11 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }
         // 6、保存当前spu对应的所有的sku的信息
         // 6.1  sku的基本信息： pms_sku_info
-        List<Skus> skus = spuSaveVo.getSkus();
+        List<SkusVo> skus = spuSaveVo.getSkus();
         if (skus != null && skus.size() > 0) {
             skus.forEach(item -> {
                 String defaultImg = "";
-                for (Images img : item.getImages()) {
+                for (ImagesVo img : item.getImages()) {
                     if (img.getDefaultImg() == 1) {
                         defaultImg = img.getImgUrl();
                     }
@@ -131,7 +151,7 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
                 // 6.2 保存的sku的图片信息 pms_sku_images
                 skuImagesService.saveBatch(imagesEntities);
                 // 6.3 销售属性的sku信息  pms_sku_sale_attr_value
-                List<Attr> attr = item.getAttr();
+                List<AttrSubVo> attr = item.getAttr();
                 List<SkuSaleAttrValueEntity> skuSaleAttrValueEntities = attr.stream().map(at -> {
                     SkuSaleAttrValueEntity skuSaleAttrValueEntity = new SkuSaleAttrValueEntity();
                     BeanUtils.copyProperties(at, skuSaleAttrValueEntity);
@@ -153,11 +173,25 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }
     }
 
+    /**
+     * @description saveBaseSpuInfo
+     * @param: spuInfoEntity
+     * @date: 2022/7/28 14:28
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveBaseSpuInfo(SpuInfoEntity spuInfoEntity) {
         this.baseMapper.insert(spuInfoEntity);
     }
 
+    /**
+     * @description queryPageByCondition
+     * @param: params
+     * @date: 2022/7/28 14:29
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPageByCondition(Map<String, Object> params) {
         QueryWrapper<SpuInfoEntity> queryWrapper = new QueryWrapper<>();

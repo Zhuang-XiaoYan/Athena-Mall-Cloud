@@ -3,15 +3,13 @@ package com.zhuangxiaoyan.athena.product.vo;
 import lombok.Data;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description AttrValueWithSkuIdVo
+ * @date: 2022/7/28 14:45
  * @author: xjl
- * @createTime: 2020-06-23 18:59
- **/
-
+*/
 
 @Data
-public class AttrValueWithSkuIdVO {
+public class AttrValueWithSkuIdVo {
 
     private String attrValue;
 

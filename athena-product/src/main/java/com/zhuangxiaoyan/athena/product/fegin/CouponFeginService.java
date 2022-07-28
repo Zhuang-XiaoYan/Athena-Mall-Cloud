@@ -9,15 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @Classname CouponFeginService
- * @Description
- * 声明式的远程调用功能
- * 将参数的转为json
- * 远程调用微服务给/coupon/spubounds/save/ 发送请求 将上一步的json放在请求体中，发送请求。
- * 对方服务收到请求请求体中的sjon数据
- * 将数据的转为对应的数据的封装
- * @Date 2022/3/12 15:16
- * @Created by xjl
+ * @description 远程调用微服务给/coupon/spubounds/save/ 发送请求 将上一步的json放在请求体中，发送请求。
+ * @date: 2022/7/28 13:18
+ * @author: xjl
  */
 @FeignClient("athena-coupon")
 public interface CouponFeginService {
@@ -29,18 +23,25 @@ public interface CouponFeginService {
      * @author: xjl
      */
     @RequestMapping("/coupon/coupon/member/list")
-    public Result membercoupons();
+    Result membercoupons();
+
     /**
-     * @description
-     * 只要json数据模型是的兼容的，
-      * @param: spuBoundTo
+     * @description 只要json数据模型是的兼容的，
+     * @param: spuBoundTo
      * @date: 2022/7/26 7:47
      * @return: com.zhuangxiaoyan.common.utils.Result
      * @author: xjl
-    */
+     */
     @PostMapping("/coupon/spubounds/save")
-    public Result saveSpuBounds(@RequestBody SpuBoundTo spuBoundTo);
+    Result saveSpuBounds(@RequestBody SpuBoundTo spuBoundTo);
 
+    /**
+     * @description saveSkuReduction
+     * @param: skuReductionTo
+     * @date: 2022/7/28 14:41
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @PostMapping("/coupon/skufullreduction/saveinfo")
     Result saveSkuReduction(@RequestBody SkuReductionTo skuReductionTo);
 }

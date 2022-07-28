@@ -16,12 +16,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
+/**
+ * @description BrandServiceImpl
+ * @date: 2022/7/28 14:14
+ * @author: xjl
+ */
+
 @Service("brandService")
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:09
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         String key = (String) params.get("key");
@@ -34,6 +47,13 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         return new PageUtils(page);
     }
 
+    /**
+     * @description updateDetail
+     * @param: brand
+     * @date: 2022/7/28 14:09
+     * @return: void
+     * @author: xjl
+     */
     @Transactional(rollbackFor = Exception.class, timeout = 30)
     @Override
     public void updateDetail(BrandEntity brand) {

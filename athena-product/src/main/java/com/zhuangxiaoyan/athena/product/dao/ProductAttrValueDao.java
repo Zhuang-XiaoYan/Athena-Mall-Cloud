@@ -5,11 +5,10 @@ import com.zhuangxiaoyan.athena.product.entity.ProductAttrValueEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * spu属性值
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu属性值接口
+ * @date: 2022/7/28 12:53
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface ProductAttrValueDao extends BaseMapper<ProductAttrValueEntity> {

@@ -5,11 +5,11 @@ import com.zhuangxiaoyan.athena.product.entity.SkuInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * sku信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku信息接口
+ * @param: null
+ * @date: 2022/7/28 13:04
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface SkuInfoDao extends BaseMapper<SkuInfoEntity> {

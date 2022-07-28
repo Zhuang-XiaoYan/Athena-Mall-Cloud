@@ -7,16 +7,28 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 品牌
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 品牌
+ * @date: 2022/7/28 8:26
+ * @author: xjl
  */
-public interface BrandService extends IService<BrandEntity> {
 
+public interface BrandService extends IService<BrandEntity> {
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:43
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 
+    /**
+     * @description updateDetail
+     * @param: brand
+     * @date: 2022/7/28 13:44
+     * @return: void
+     * @author: xjl
+     */
     void updateDetail(BrandEntity brand);
 }
 

@@ -7,15 +7,15 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 商品评价回复关系
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品评价回复关系
+ * @date: 2022/7/28 13:11
+ * @author: xjl
  */
+
 @Data
 @TableName("pms_comment_replay")
 public class CommentReplayEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -23,10 +23,12 @@ public class CommentReplayEntity implements Serializable {
      */
     @TableId
     private Long id;
+
     /**
      * 评论id
      */
     private Long commentId;
+
     /**
      * 回复id
      */

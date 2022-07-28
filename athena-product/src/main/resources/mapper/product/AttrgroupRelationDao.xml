@@ -17,6 +17,4 @@
             (attr_id = #{item.attrId} AND attr_group_id = #{item.attrGroupId})
         </foreach>
     </delete>
-
-
 </mapper>

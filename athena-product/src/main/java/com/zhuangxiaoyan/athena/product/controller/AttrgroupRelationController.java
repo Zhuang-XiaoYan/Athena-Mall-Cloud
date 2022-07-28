@@ -11,12 +11,12 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 属性&属性分组关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 属性&属性分组关联
+ * @date: 2022/7/28 11:00
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("product/attrgrouprelation")
 public class AttrgroupRelationController {
@@ -25,7 +25,11 @@ public class AttrgroupRelationController {
     private AttrgroupRelationService attrrgroupRelationService;
 
     /**
-     * 列表
+     * @description 简单列表信息查询
+     * @param: params
+     * @date: 2022/7/28 11:00
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:attrattrgrouprelation:list")
@@ -35,7 +39,11 @@ public class AttrgroupRelationController {
     }
 
     /**
-     * 信息
+     * @description 查询基础信息
+     * @param: id
+     * @date: 2022/7/28 11:00
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:attrattrgrouprelation:info")
@@ -46,7 +54,11 @@ public class AttrgroupRelationController {
     }
 
     /**
-     * 保存
+     * @description 简单保存信息
+     * @param: attrAttrgroupRelation
+     * @date: 2022/7/28 11:01
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attrattrgrouprelation:save")
@@ -56,7 +68,11 @@ public class AttrgroupRelationController {
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: attrAttrgroupRelation
+     * @date: 2022/7/28 12:12
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attrattrgrouprelation:update")
@@ -66,7 +82,11 @@ public class AttrgroupRelationController {
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 12:13
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attrattrgrouprelation:delete")

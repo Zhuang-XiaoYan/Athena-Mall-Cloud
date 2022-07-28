@@ -18,11 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 属性分组
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 属性分组
+ * @date: 2022/7/28 10:41
+ * @return:
+ * @author: xjl
  */
 @RestController
 @RequestMapping("product/attrgroup")
@@ -40,6 +39,13 @@ public class AttrGroupController {
     @Autowired
     private AttrgroupRelationService attrgroupRelationService;
 
+    /**
+     * @description 获取组的属性
+     * @param: catelogId
+     * @date: 2022/7/28 10:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @GetMapping("/{catelogId}/withattr")
     public Result getAttrGroupWithAttrs(@PathVariable("attrgroupId") Long catelogId) {
         // 查询的当前分类下的所有的属性分组
@@ -48,12 +54,26 @@ public class AttrGroupController {
         return Result.ok().put("data", vos);
     }
 
+    /**
+     * @description 添加相关属性
+     * @param: attrGroupRelationVos
+     * @date: 2022/7/28 10:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @PostMapping("/attr/relation")
     public Result addRelation(@RequestBody List<AttrGroupRelationVo> attrGroupRelationVos) {
         attrgroupRelationService.saveBatch(attrGroupRelationVos);
         return Result.ok();
     }
 
+    /**
+     * @description 属性的相关
+     * @param: attrgroupId
+     * @date: 2022/7/28 10:58
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @GetMapping("/{attrgroupId}/attr/relation")
     public Result attrRelation(@PathVariable("attrgroupId") Long attrgroupId) {
         List<AttrEntity> entities = attrService.getAttrRelation(attrgroupId);
@@ -89,7 +109,12 @@ public class AttrGroupController {
     }
 
     /**
-     * 列表
+     * @description 查询属性列表
+     * @param: params
+     * @param: catelogId
+     * @date: 2022/7/28 10:58
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list/{catelogId}")
     //@RequiresPermissions("product:attrgroup:list")
@@ -99,7 +124,11 @@ public class AttrGroupController {
     }
 
     /**
-     * 查询的catelogId的完整的路径
+     * @description 查询的catelogId的完整的路径
+     * @param: attrGroupId
+     * @date: 2022/7/28 10:59
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{attrGroupId}")
     //@RequiresPermissions("product:attrgroup:info")
@@ -112,7 +141,11 @@ public class AttrGroupController {
     }
 
     /**
-     * 保存
+     * @description 简单保存
+     * @param: attrGroup
+     * @date: 2022/7/28 10:59
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:attrgroup:save")
@@ -122,7 +155,11 @@ public class AttrGroupController {
     }
 
     /**
-     * 修改
+     * @description 简单更新
+     * @param: attrGroup
+     * @date: 2022/7/28 10:59
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:attrgroup:update")
@@ -132,7 +169,11 @@ public class AttrGroupController {
     }
 
     /**
-     * 删除
+     * @description 简单删除操作
+     * @param: attrGroupIds
+     * @date: 2022/7/28 10:59
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:attrgroup:delete")

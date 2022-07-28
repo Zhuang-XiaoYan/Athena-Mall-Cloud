@@ -7,13 +7,10 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description Catelog2Vo
+ * @date: 2022/7/28 14:47
  * @author: xjl
- * @createTime: 2020-06-08 14:50
- *
- * 二级分类id
- **/
+*/
 
 @Data
 @AllArgsConstructor
@@ -33,7 +30,6 @@ public class Catelog2Vo {
     private String id;
 
     private String name;
-
 
     /**
      * 三级分类vo

@@ -14,20 +14,47 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.Map;
 
+/**
+ * @description SkuInfoServiceImpl
+ * @date: 2022/7/28 14:23
+ * @author: xjl
+ */
+
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:20
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SkuInfoEntity> page = this.page(new Query<SkuInfoEntity>().getPage(params), new QueryWrapper<SkuInfoEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveSkuInfo
+     * @param: skuInfoEntity
+     * @date: 2022/7/28 14:20
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void saveSkuInfo(SkuInfoEntity skuInfoEntity) {
         this.baseMapper.insert(skuInfoEntity);
     }
 
+    /**
+     * @description queryPageByCondition
+     * @param: params
+     * @date: 2022/7/28 14:21
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPageByCondition(Map<String, Object> params) {
         QueryWrapper<SkuInfoEntity> queryWrapper = new QueryWrapper<>();

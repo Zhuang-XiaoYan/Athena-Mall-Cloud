@@ -7,16 +7,28 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * spu信息介绍
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu信息介绍接口
+ * @date: 2022/7/28 8:28
+ * @author: xjl
  */
-public interface SpuInfoDescService extends IService<SpuInfoDescEntity> {
 
+public interface SpuInfoDescService extends IService<SpuInfoDescEntity> {
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:50
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 
+    /**
+     * @description queryPage
+     * @param: descEntity
+     * @date: 2022/7/28 13:51
+     * @return: void
+     * @author: xjl
+     */
     void saveSpuInforDescript(SpuInfoDescEntity descEntity);
 }
 

@@ -1,20 +1,15 @@
 package com.zhuangxiaoyan.athena.product.config;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Classname MybatisConfig
- * @Description TODO
+ * @Description MybatisConfig
  * @Date 2022/7/23 10:02
  * @Created by xjl
  */
 @Configuration
-@EnableTransactionManagement// 开启事务注解
-@MapperScan("com.zhuangxiaoyan.athena.product.dao")
 public class ProductMybatisConfig {
 
     /**

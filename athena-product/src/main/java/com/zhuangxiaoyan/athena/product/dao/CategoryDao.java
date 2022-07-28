@@ -5,11 +5,11 @@ import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 商品三级分类
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品三级分类接口
+ * @param: null
+ * @date: 2022/7/28 13:03
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface CategoryDao extends BaseMapper<CategoryEntity> {

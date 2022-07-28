@@ -7,12 +7,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * sku图片
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku图片模型类
+ * @date: 2022/7/28 13:12
+ * @return:
+ * @author: xjl
  */
+
 @Data
 @TableName("pms_sku_images")
 public class SkuImagesEntity implements Serializable {
@@ -23,18 +23,22 @@ public class SkuImagesEntity implements Serializable {
      */
     @TableId
     private Long id;
+
     /**
      * sku_id
      */
     private Long skuId;
+
     /**
      * 图片地址
      */
     private String imgUrl;
+
     /**
      * 排序
      */
     private Integer imgSort;
+
     /**
      * 默认图[0 - 不是默认图，1 - 是默认图]
      */

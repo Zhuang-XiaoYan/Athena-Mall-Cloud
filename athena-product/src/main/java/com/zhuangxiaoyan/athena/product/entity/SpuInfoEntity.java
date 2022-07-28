@@ -9,15 +9,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * spu信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu信息模型类
+ * @date: 2022/7/28 13:16
+ * @author: xjl
  */
+
 @Data
 @TableName("pms_spu_info")
 public class SpuInfoEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -25,34 +25,42 @@ public class SpuInfoEntity implements Serializable {
      */
     @TableId
     private Long id;
+
     /**
      * 商品名称
      */
     private String spuName;
+
     /**
      * 商品描述
      */
     private String spuDescription;
+
     /**
      * 所属分类id
      */
     private Long catalogId;
+
     /**
      * 品牌id
      */
     private Long brandId;
+
     /**
      *
      */
     private BigDecimal weight;
+
     /**
      * 上架状态[0 - 下架，1 - 上架]
      */
     private Integer publishStatus;
+
     /**
      *
      */
     private Date createTime;
+
     /**
      *
      */

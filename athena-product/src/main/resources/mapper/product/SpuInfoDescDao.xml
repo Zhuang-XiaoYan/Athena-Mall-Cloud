@@ -8,6 +8,4 @@
         <result property="spuId" column="spu_id"/>
         <result property="decript" column="decript"/>
     </resultMap>
-
-
 </mapper>

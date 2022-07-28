@@ -12,9 +12,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description CommentReplayServiceImpl
+ * @date: 2022/7/28 14:13
+ * @author: xjl
+ */
+
 @Service("commentReplayService")
 public class CommentReplayServiceImpl extends ServiceImpl<CommentReplayDao, CommentReplayEntity> implements CommentReplayService {
 
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 14:12
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CommentReplayEntity> page = this.page(new Query<CommentReplayEntity>().getPage(params), new QueryWrapper<CommentReplayEntity>());

@@ -5,11 +5,10 @@ import com.zhuangxiaoyan.athena.product.entity.SpuImagesEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * spu图片
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu图片接口
+ * @date: 2022/7/28 13:04
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface SpuImagesDao extends BaseMapper<SpuImagesEntity> {

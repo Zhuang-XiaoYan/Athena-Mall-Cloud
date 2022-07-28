@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 商品评价
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品评价接口
+ * @date: 2022/7/28 8:28
+ * @author: xjl
  */
-public interface SpuCommentService extends IService<SpuCommentEntity> {
 
+public interface SpuCommentService extends IService<SpuCommentEntity> {
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:50
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 }
 

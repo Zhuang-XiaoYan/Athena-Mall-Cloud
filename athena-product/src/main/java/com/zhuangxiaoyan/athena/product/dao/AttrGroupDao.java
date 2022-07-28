@@ -5,11 +5,10 @@ import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 属性分组
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 属性分组接口
+ * @date: 2022/7/28 12:52
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface AttrGroupDao extends BaseMapper<AttrGroupEntity> {

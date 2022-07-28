@@ -12,12 +12,13 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * spu信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu信息
+ * @param: null
+ * @date: 2022/7/28 12:46
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("product/spuinfo")
 public class SpuInfoController {
@@ -26,7 +27,11 @@ public class SpuInfoController {
     private SpuInfoService spuInfoService;
 
     /**
-     * 列表
+     * @description: 查询所有的数据
+     * @param: params
+     * @date: 2022/7/28 12:46
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuinfo:list")
@@ -36,7 +41,11 @@ public class SpuInfoController {
     }
 
     /**
-     * 信息
+     * @description 通过id进行查询
+     * @param: id
+     * @date: 2022/7/28 12:47
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:spuinfo:info")
@@ -46,7 +55,11 @@ public class SpuInfoController {
     }
 
     /**
-     * 保存
+     * @description 保存信息数据
+     * @param: spuSaveVo
+     * @date: 2022/7/28 12:48
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:spuinfo:save")
@@ -56,7 +69,11 @@ public class SpuInfoController {
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: spuInfo
+     * @date: 2022/7/28 12:48
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:spuinfo:update")
@@ -66,7 +83,11 @@ public class SpuInfoController {
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 12:48
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:spuinfo:delete")

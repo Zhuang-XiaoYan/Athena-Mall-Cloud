@@ -5,11 +5,11 @@ import com.zhuangxiaoyan.athena.product.entity.SpuInfoDescEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * spu信息介绍
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description spu信息介绍接口
+ * @param: null
+ * @date: 2022/7/28 13:06
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface SpuInfoDescDao extends BaseMapper<SpuInfoDescEntity> {

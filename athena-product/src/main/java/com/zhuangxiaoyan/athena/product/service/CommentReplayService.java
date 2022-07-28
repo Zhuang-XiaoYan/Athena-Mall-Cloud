@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 商品评价回复关系
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品评价回复关系
+ * @date: 2022/7/28 8:26
+ * @author: xjl
  */
-public interface CommentReplayService extends IService<CommentReplayEntity> {
 
+public interface CommentReplayService extends IService<CommentReplayEntity> {
+    /**
+     * @description queryPage()
+     * @param: params
+     * @date: 2022/7/28 13:48
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 }
 

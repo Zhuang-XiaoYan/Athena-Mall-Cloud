@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * sku图片
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku图片接口
+ * @date: 2022/7/28 8:26
+ * @author: xjl
  */
-public interface SkuImagesService extends IService<SkuImagesEntity> {
 
+public interface SkuImagesService extends IService<SkuImagesEntity> {
+    /**
+     * @description queryPage
+     * @param: params
+     * @date: 2022/7/28 13:49
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     PageUtils queryPage(Map<String, Object> params);
 }
 

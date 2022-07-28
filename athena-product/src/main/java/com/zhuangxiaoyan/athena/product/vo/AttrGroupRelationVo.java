@@ -3,16 +3,15 @@ package com.zhuangxiaoyan.athena.product.vo;
 import lombok.Data;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
+ * @description AttrGroupRelationVo
+ * @date: 2022/7/28 8:38
+ * @return:
  * @author: xjl
- * @createTime: 2020-05-29 17:21
- **/
+ */
 
 @Data
 public class AttrGroupRelationVo {
 
-    //[{"attrId":1,"attrGroupId":2}]
     private Long attrId;
 
     private Long attrGroupId;

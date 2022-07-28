@@ -12,15 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 商品三级分类
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 商品三级分类
+ * @date: 2022/7/28 12:18
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("product/category")
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
 
@@ -38,7 +39,11 @@ public class CategoryController {
     }
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/28 12:18
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:category:list")
@@ -49,7 +54,11 @@ public class CategoryController {
     }
 
     /**
-     * 信息
+     * @description 通过catid查询数据
+     * @param: catId
+     * @date: 2022/7/28 12:18
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{catId}")
     //@RequiresPermissions("product:category:info")
@@ -59,7 +68,11 @@ public class CategoryController {
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: category
+     * @date: 2022/7/28 12:18
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:category:save")
@@ -70,7 +83,11 @@ public class CategoryController {
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: category
+     * @date: 2022/7/28 12:18
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:category:update")
@@ -80,9 +97,13 @@ public class CategoryController {
     }
 
     /**
-     * 删除
+     * @description 删除
      * @RequestBody 获取请求数据 必须是发送的是post请求
      * Springmvc 自动的请求的数据的json 转为对应的对象
+     * @param: catIds
+     * @date: 2022/7/28 12:19
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:category:delete")
@@ -92,4 +113,5 @@ public class CategoryController {
         categoryService.removeMenuByIds(Arrays.asList(catIds));
         return Result.ok();
     }
+
 }

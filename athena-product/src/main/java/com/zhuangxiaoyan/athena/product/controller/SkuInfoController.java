@@ -11,31 +11,39 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * sku信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description sku信息
+ * @date: 2022/7/28 12:25
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("product/skuinfo")
 public class SkuInfoController {
+
     @Autowired
     private SkuInfoService skuInfoService;
 
     /**
-     * 列表
+     * @description 查询所有的sku的信息
+     * @param: params
+     * @date: 2022/7/28 12:26
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:skuinfo:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = skuInfoService.queryPageByCondition(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过skuid查询信息数据
+     * @param: skuId
+     * @date: 2022/7/28 12:26
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{skuId}")
     //@RequiresPermissions("product:skuinfo:info")
@@ -46,35 +54,44 @@ public class SkuInfoController {
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: skuInfo
+     * @date: 2022/7/28 12:27
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:skuinfo:save")
     public Result save(@RequestBody SkuInfoEntity skuInfo) {
         skuInfoService.save(skuInfo);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: skuInfo
+     * @date: 2022/7/28 12:27
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:skuinfo:update")
     public Result update(@RequestBody SkuInfoEntity skuInfo) {
         skuInfoService.updateById(skuInfo);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: skuIds
+     * @date: 2022/7/28 12:27
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:skuinfo:delete")
     public Result delete(@RequestBody Long[] skuIds) {
         skuInfoService.removeByIds(Arrays.asList(skuIds));
-
         return Result.ok();
     }
 

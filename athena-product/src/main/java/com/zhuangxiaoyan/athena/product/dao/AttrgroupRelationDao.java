@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 /**
- * 属性&属性分组关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-09 21:43:56
+ * @description 属性&属性分组关联
+ * @date: 2022/7/28 12:52
+ * @return:
+ * @author: xjl
  */
 @Mapper
 public interface AttrgroupRelationDao extends BaseMapper<AttrgroupRelationEntity> {
