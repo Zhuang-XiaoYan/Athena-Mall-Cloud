@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 商品会员价格
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 商品会员价格
+ * @date: 2022/7/28 15:38
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("coupon/memberprice")
 public class MemberPriceController {
+
     @Autowired
     private MemberPriceService memberPriceService;
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/28 15:38
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:memberprice:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberPriceService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/28 15:38
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:memberprice:info")
     public Result info(@PathVariable("id") Long id) {
         MemberPriceEntity memberPrice = memberPriceService.getById(id);
-
         return Result.ok().put("memberPrice", memberPrice);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: memberPrice
+     * @date: 2022/7/28 15:38
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:memberprice:save")
     public Result save(@RequestBody MemberPriceEntity memberPrice) {
         memberPriceService.save(memberPrice);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: memberPrice
+     * @date: 2022/7/28 15:39
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:memberprice:update")
     public Result update(@RequestBody MemberPriceEntity memberPrice) {
         memberPriceService.updateById(memberPrice);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 15:39
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:memberprice:delete")
     public Result delete(@RequestBody Long[] ids) {
         memberPriceService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

@@ -8,15 +8,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 优惠券领取历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 优惠券领取历史记录
+ * @param: null
+ * @date: 2022/7/28 16:14
+ * @return:
+ * @author: xjl
  */
+
 @Data
 @TableName("sms_coupon_history")
 public class CouponHistoryEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 配置中心测试文件
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 配置中心测试服务
+ * @param: null
+ * @date: 2022/7/28 15:19
+ * @return:
+ * @author: xjl
  */
 @RefreshScope
 @RestController
@@ -20,11 +20,16 @@ public class ConfigController {
 
     @Value("${coupon.user.name}")
     private String name;
+
     @Value("${coupon.user.age}")
     private Integer age;
 
     /**
-     * 提供远程服务调用
+     * @description 提供远程服务调用
+     * @param:
+     * @date: 2022/7/28 15:20
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/valuetest")
     public Result membercoupons() {

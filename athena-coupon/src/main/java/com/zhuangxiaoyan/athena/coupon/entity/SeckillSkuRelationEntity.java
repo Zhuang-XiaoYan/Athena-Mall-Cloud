@@ -8,15 +8,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 秒杀活动商品关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 秒杀活动商品关联
+ * @date: 2022/7/28 16:18
+ * @author: xjl
  */
 @Data
 @TableName("sms_seckill_sku_relation")
 public class SeckillSkuRelationEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

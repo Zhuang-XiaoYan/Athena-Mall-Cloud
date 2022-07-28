@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 优惠券领取历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
- */
+ * @description 优惠券领取历史记录
+ * @date: 2022/7/28 16:19
+ * @return:
+ * @author: xjl
+*/
 public interface CouponHistoryService extends IService<CouponHistoryEntity> {
-
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:20
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     PageUtils queryPage(Map<String, Object> params);
 }
 

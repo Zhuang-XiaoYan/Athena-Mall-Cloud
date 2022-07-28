@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.coupon.entity.SeckillPromotionEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 秒杀活动
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 秒杀活动
+ * @date: 2022/7/28 16:03
+ * @author: xjl
  */
+
 @Mapper
 public interface SeckillPromotionDao extends BaseMapper<SeckillPromotionEntity> {
 

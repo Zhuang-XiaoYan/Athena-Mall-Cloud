@@ -11,31 +11,40 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 优惠券分类关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 优惠券分类关联
+ * @param: null
+ * @date: 2022/7/28 15:30
+ * @return:
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("coupon/couponspucategoryrelation")
 public class CouponSpuCategoryRelationController {
+
     @Autowired
     private CouponSpuCategoryRelationService couponSpuCategoryRelationService;
 
     /**
-     * 列表
+     * @description 查询所有的信息数据
+     * @param: params
+     * @date: 2022/7/28 15:30
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:couponspucategoryrelation:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = couponSpuCategoryRelationService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/28 15:30
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:couponspucategoryrelation:info")
@@ -46,35 +55,44 @@ public class CouponSpuCategoryRelationController {
     }
 
     /**
-     * 保存
+     * @description 保存数据信息
+     * @param: couponSpuCategoryRelation
+     * @date: 2022/7/28 15:30
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:couponspucategoryrelation:save")
     public Result save(@RequestBody CouponSpuCategoryRelationEntity couponSpuCategoryRelation) {
         couponSpuCategoryRelationService.save(couponSpuCategoryRelation);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据信息
+     * @param: couponSpuCategoryRelation
+     * @date: 2022/7/28 15:30
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:couponspucategoryrelation:update")
     public Result update(@RequestBody CouponSpuCategoryRelationEntity couponSpuCategoryRelation) {
         couponSpuCategoryRelationService.updateById(couponSpuCategoryRelation);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 15:31
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:couponspucategoryrelation:delete")
     public Result delete(@RequestBody Long[] ids) {
         couponSpuCategoryRelationService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

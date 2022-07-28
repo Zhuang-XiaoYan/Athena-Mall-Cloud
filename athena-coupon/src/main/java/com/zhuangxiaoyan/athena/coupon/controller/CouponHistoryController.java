@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 优惠券领取历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 优惠券领取历史记录
+ * @date: 2022/7/28 15:28
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("coupon/couponhistory")
 public class CouponHistoryController {
+
     @Autowired
     private CouponHistoryService couponHistoryService;
 
     /**
-     * 列表
+     * @description 查询所有信息
+     * @param: params
+     * @date: 2022/7/28 15:28
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:couponhistory:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = couponHistoryService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询
+     * @param: id
+     * @date: 2022/7/28 15:28
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:couponhistory:info")
     public Result info(@PathVariable("id") Long id) {
         CouponHistoryEntity couponHistory = couponHistoryService.getById(id);
-
         return Result.ok().put("couponHistory", couponHistory);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: couponHistory
+     * @date: 2022/7/28 15:29
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:couponhistory:save")
     public Result save(@RequestBody CouponHistoryEntity couponHistory) {
         couponHistoryService.save(couponHistory);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: couponHistory
+     * @date: 2022/7/28 15:29
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:couponhistory:update")
     public Result update(@RequestBody CouponHistoryEntity couponHistory) {
         couponHistoryService.updateById(couponHistory);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 15:29
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:couponhistory:delete")
     public Result delete(@RequestBody Long[] ids) {
         couponHistoryService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

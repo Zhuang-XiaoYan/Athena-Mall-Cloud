@@ -8,15 +8,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 商品spu积分设置
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 商品spu积分设置
+ * @date: 2022/7/28 16:19
+ * @author: xjl
  */
 @Data
 @TableName("sms_spu_bounds")
 public class SpuBoundsEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -37,7 +36,12 @@ public class SpuBoundsEntity implements Serializable {
      */
     private BigDecimal buyBounds;
     /**
-     * 优惠生效情况[1111（四个状态位，从右到左）;0 - 无优惠，成长积分是否赠送;1 - 无优惠，购物积分是否赠送;2 - 有优惠，成长积分是否赠送;3 - 有优惠，购物积分是否赠送【状态位0：不赠送，1：赠送】]
+     * 优惠生效情况[1111（四个状态位，从右到左）;
+     * 0 - 无优惠，成长积分是否赠送;
+     * 1 - 无优惠，购物积分是否赠送;
+     * 2 - 有优惠，成长积分是否赠送;
+     * 3 - 有优惠，购物积分是否赠送
+     * 【状态位0：不赠送，1：赠送】]
      */
     private Integer work;
 

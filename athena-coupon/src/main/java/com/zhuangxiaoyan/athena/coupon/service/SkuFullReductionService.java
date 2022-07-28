@@ -8,16 +8,28 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 商品满减信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
- */
+ * @description 商品满减信息
+ * @date: 2022/7/28 16:34
+ * @author: xjl
+*/
 public interface SkuFullReductionService extends IService<SkuFullReductionEntity> {
 
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:34
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     PageUtils queryPage(Map<String, Object> params);
 
+    /**
+     * @description 保存sku关联属性
+      * @param: skuReductionTo
+     * @date: 2022/7/28 16:34
+     * @return: void
+     * @author: xjl
+    */
     void saveSkuReduction(SkuReductionTo skuReductionTo);
 }
 

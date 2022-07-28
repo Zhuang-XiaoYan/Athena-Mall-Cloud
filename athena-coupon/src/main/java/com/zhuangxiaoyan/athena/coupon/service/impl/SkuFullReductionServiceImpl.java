@@ -23,6 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @description SkuFullReductionServiceImpl
+ * @date: 2022/7/28 16:36
+ * @return:
+ * @author: xjl
+ */
+
 @Service("skuFullReductionService")
 public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao, SkuFullReductionEntity> implements SkuFullReductionService {
 
@@ -32,15 +39,26 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
     @Autowired
     MemberPriceService memberPriceService;
 
+    /**
+     * @description 分页查询数据
+      * @param: params
+     * @date: 2022/7/28 16:39
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SkuFullReductionEntity> page = this.page(
-                new Query<SkuFullReductionEntity>().getPage(params),
-                new QueryWrapper<SkuFullReductionEntity>()
-        );
+        IPage<SkuFullReductionEntity> page = this.page(new Query<SkuFullReductionEntity>().getPage(params),new QueryWrapper<SkuFullReductionEntity>());
         return new PageUtils(page);
     }
 
+    /**
+     * @description saveSkuReduction
+      * @param: skuReductionTo
+     * @date: 2022/7/28 16:39
+     * @return: void
+     * @author: xjl
+    */
     @Override
     public void saveSkuReduction(SkuReductionTo skuReductionTo) {
         //1、保存sku的优惠服务
@@ -58,10 +76,8 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
         if (skuFullReductionEntity.getFullPrice().compareTo(new BigDecimal("0")) == 1) {
             this.save(skuFullReductionEntity);
         }
-
         //3、会员价格
         List<MemberPrice> memberPrice = skuReductionTo.getMemberPrice();
-
         List<MemberPriceEntity> collect = memberPrice.stream().map(item -> {
             MemberPriceEntity memberPriceEntity = new MemberPriceEntity();
             memberPriceEntity.setSkuId(skuReductionTo.getSkuId());
@@ -73,7 +89,6 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
         }).filter(item -> {
             return item.getMemberPrice().compareTo(new BigDecimal("0")) == 1;
         }).collect(Collectors.toList());
-
         memberPriceService.saveBatch(collect);
     }
 }

@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.coupon.entity.SeckillSkuNoticeEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 秒杀商品通知订阅
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 秒杀商品通知订阅
+ * @date: 2022/7/28 16:03
+ * @author: xjl
  */
+
 @Mapper
 public interface SeckillSkuNoticeDao extends BaseMapper<SeckillSkuNoticeEntity> {
 

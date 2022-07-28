@@ -12,17 +12,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description CouponHistoryServiceImpl
+ * @date: 2022/7/28 16:36
+ * @return:
+ * @author: xjl
+ */
+
 @Service("spuBoundsService")
 public class SpuBoundsServiceImpl extends ServiceImpl<SpuBoundsDao, SpuBoundsEntity> implements SpuBoundsService {
 
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:37
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SpuBoundsEntity> page = this.page(
-                new Query<SpuBoundsEntity>().getPage(params),
-                new QueryWrapper<SpuBoundsEntity>()
-        );
-
+        IPage<SpuBoundsEntity> page = this.page(new Query<SpuBoundsEntity>().getPage(params),new QueryWrapper<SpuBoundsEntity>());
         return new PageUtils(page);
     }
-
 }

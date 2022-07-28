@@ -7,15 +7,14 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 优惠券与产品关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 优惠券与产品关联
+ * @date: 2022/7/28 16:15
+ * @author: xjl
  */
 @Data
 @TableName("sms_coupon_spu_relation")
 public class CouponSpuRelationEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

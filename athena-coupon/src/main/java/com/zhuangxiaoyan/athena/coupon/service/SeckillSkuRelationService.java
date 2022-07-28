@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 秒杀活动商品关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
- */
+ * @description 秒杀活动商品关联
+ * @date: 2022/7/28 16:34
+ * @author: xjl
+*/
 public interface SeckillSkuRelationService extends IService<SeckillSkuRelationEntity> {
 
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:34
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     PageUtils queryPage(Map<String, Object> params);
 }
 

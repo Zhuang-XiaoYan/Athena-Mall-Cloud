@@ -12,6 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description CouponHistoryServiceImpl
+ * @date: 2022/7/28 16:36
+ * @return:
+ * @author: xjl
+ */
+
 @Service("memberPriceService")
 public class MemberPriceServiceImpl extends ServiceImpl<MemberPriceDao, MemberPriceEntity> implements MemberPriceService {
 

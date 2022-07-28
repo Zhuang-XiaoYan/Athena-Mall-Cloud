@@ -7,15 +7,14 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 专题商品
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 专题商品
+ * @date: 2022/7/28 16:17
+ * @author: xjl
  */
 @Data
 @TableName("sms_home_subject_spu")
 public class HomeSubjectSpuEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

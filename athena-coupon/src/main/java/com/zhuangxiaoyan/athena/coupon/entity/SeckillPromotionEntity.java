@@ -8,15 +8,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 秒杀活动
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 秒杀活动
+ * @date: 2022/7/28 16:17
+ * @author: xjl
  */
 @Data
 @TableName("sms_seckill_promotion")
 public class SeckillPromotionEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

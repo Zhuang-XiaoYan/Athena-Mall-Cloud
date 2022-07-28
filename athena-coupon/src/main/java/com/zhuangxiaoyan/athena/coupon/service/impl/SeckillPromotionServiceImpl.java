@@ -12,17 +12,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description SeckillPromotionServiceImpl
+ * @date: 2022/7/28 16:36
+ * @return:
+ * @author: xjl
+ */
+
 @Service("seckillPromotionService")
 public class SeckillPromotionServiceImpl extends ServiceImpl<SeckillPromotionDao, SeckillPromotionEntity> implements SeckillPromotionService {
 
+    /**
+     * @description 分页查询
+     * @param: params
+     * @date: 2022/7/28 16:42
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SeckillPromotionEntity> page = this.page(
-                new Query<SeckillPromotionEntity>().getPage(params),
-                new QueryWrapper<SeckillPromotionEntity>()
-        );
-
+        IPage<SeckillPromotionEntity> page = this.page(new Query<SeckillPromotionEntity>().getPage(params), new QueryWrapper<SeckillPromotionEntity>());
         return new PageUtils(page);
     }
-
 }

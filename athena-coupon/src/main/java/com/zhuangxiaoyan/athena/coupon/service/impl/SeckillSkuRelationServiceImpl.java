@@ -12,17 +12,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description SeckillSkuRelationServiceImpl
+ * @date: 2022/7/28 16:36
+ * @return:
+ * @author: xjl
+ */
+
 @Service("seckillSkuRelationService")
 public class SeckillSkuRelationServiceImpl extends ServiceImpl<SeckillSkuRelationDao, SeckillSkuRelationEntity> implements SeckillSkuRelationService {
 
+    /**
+     * @description 分页查询
+      * @param: params
+     * @date: 2022/7/28 16:40
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SeckillSkuRelationEntity> page = this.page(
-                new Query<SeckillSkuRelationEntity>().getPage(params),
-                new QueryWrapper<SeckillSkuRelationEntity>()
-        );
-
+        IPage<SeckillSkuRelationEntity> page = this.page(new Query<SeckillSkuRelationEntity>().getPage(params),new QueryWrapper<SeckillSkuRelationEntity>());
         return new PageUtils(page);
     }
-
 }

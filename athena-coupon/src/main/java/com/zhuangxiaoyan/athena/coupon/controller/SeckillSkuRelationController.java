@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 秒杀活动商品关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 秒杀活动商品关联
+ * @date: 2022/7/28 15:55
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("coupon/seckillskurelation")
 public class SeckillSkuRelationController {
+
     @Autowired
     private SeckillSkuRelationService seckillSkuRelationService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/28 15:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("coupon:seckillskurelation:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = seckillSkuRelationService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id进行查询
+     * @param: id
+     * @date: 2022/7/28 15:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("coupon:seckillskurelation:info")
     public Result info(@PathVariable("id") Long id) {
         SeckillSkuRelationEntity seckillSkuRelation = seckillSkuRelationService.getById(id);
-
         return Result.ok().put("seckillSkuRelation", seckillSkuRelation);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: seckillSkuRelation
+     * @date: 2022/7/28 15:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("coupon:seckillskurelation:save")
     public Result save(@RequestBody SeckillSkuRelationEntity seckillSkuRelation) {
         seckillSkuRelationService.save(seckillSkuRelation);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: seckillSkuRelation
+     * @date: 2022/7/28 15:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("coupon:seckillskurelation:update")
     public Result update(@RequestBody SeckillSkuRelationEntity seckillSkuRelation) {
         seckillSkuRelationService.updateById(seckillSkuRelation);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/28 15:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("coupon:seckillskurelation:delete")
     public Result delete(@RequestBody Long[] ids) {
         seckillSkuRelationService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

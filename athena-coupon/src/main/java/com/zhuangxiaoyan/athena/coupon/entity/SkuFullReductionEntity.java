@@ -8,15 +8,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 商品满减信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
+ * @description 商品满减信息
+ * @date: 2022/7/28 16:18
+ * @author: xjl
  */
 @Data
 @TableName("sms_sku_full_reduction")
 public class SkuFullReductionEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

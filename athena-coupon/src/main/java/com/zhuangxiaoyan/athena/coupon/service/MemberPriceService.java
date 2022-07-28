@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 商品会员价格
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
- */
+ * @description 商品会员价格
+ * @date: 2022/7/28 16:32
+ * @author: xjl
+*/
 public interface MemberPriceService extends IService<MemberPriceEntity> {
 
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:32
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     PageUtils queryPage(Map<String, Object> params);
 }
 

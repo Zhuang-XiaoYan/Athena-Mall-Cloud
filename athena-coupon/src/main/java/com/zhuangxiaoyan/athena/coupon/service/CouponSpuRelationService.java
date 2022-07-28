@@ -7,14 +7,19 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 优惠券与产品关联
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 11:14:46
- */
+ * @description 优惠券与产品关联
+ * @date: 2022/7/28 16:31
+ * @author: xjl
+*/
 public interface CouponSpuRelationService extends IService<CouponSpuRelationEntity> {
 
+    /**
+     * @description queryPage
+      * @param: params
+     * @date: 2022/7/28 16:31
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+    */
     PageUtils queryPage(Map<String, Object> params);
 }
 
