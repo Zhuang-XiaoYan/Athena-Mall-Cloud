@@ -36,14 +36,9 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     @Autowired
     BrandService brandService;
 
-
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<CategoryBrandRelationEntity> page = this.page(
-                new Query<CategoryBrandRelationEntity>().getPage(params),
-                new QueryWrapper<CategoryBrandRelationEntity>()
-        );
-
+        IPage<CategoryBrandRelationEntity> page = this.page(new Query<CategoryBrandRelationEntity>().getPage(params), new QueryWrapper<CategoryBrandRelationEntity>());
         return new PageUtils(page);
     }
 
@@ -61,42 +56,45 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         // 数据的保存
         this.save(categoryBrandRelation);
     }
+
     /**
      * @description 采用的QueryWrapper的方式来实现
-      * @param: brandId
+     * @param: brandId
      * @param: name
      * @date: 2022/7/24 8:12
      * @return: void
      * @author: xjl
-    */
+     */
     @Override
     public void updateBrand(Long brandId, String name) {
         CategoryBrandRelationEntity categoryBrandRelationEntity = new CategoryBrandRelationEntity();
         categoryBrandRelationEntity.setBrandId(brandId);
         categoryBrandRelationEntity.setBrandName(name);
         // 更新用UpdateWrapper  查询是的QueryWrapper
-        this.update(categoryBrandRelationEntity,new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId));
+        this.update(categoryBrandRelationEntity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
     }
+
     /**
      * @description 采用的是自定义的baseMapper机制
-      * @param: catId
+     * @param: catId
      * @param: name
      * @date: 2022/7/24 8:12
      * @return: void
      * @author: xjl
-    */
+     */
     @Override
     public void updateCategory(Long catId, String name) {
-        this.baseMapper.updateCategory(catId,name);
+        this.baseMapper.updateCategory(catId, name);
     }
+
     /**
+     * @param catId
      * @description 查询指定的品牌的分类信息
-      * @param:
+     * @param:
      * @date: 2022/7/25 12:44
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.BrandEntity>
      * @author: xjl
-     * @param catId
-    */
+     */
     @Override
     public List<BrandEntity> getBrandsBycatId(Long catId) {
         List<CategoryBrandRelationEntity> catelog_ids = relationDao.selectList(new QueryWrapper<CategoryBrandRelationEntity>().eq("catelog_id", catId));

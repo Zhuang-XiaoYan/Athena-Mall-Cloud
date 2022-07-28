@@ -17,12 +17,7 @@ public class SpuCommentServiceImpl extends ServiceImpl<SpuCommentDao, SpuComment
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<SpuCommentEntity> page = this.page(
-                new Query<SpuCommentEntity>().getPage(params),
-                new QueryWrapper<SpuCommentEntity>()
-        );
-
+        IPage<SpuCommentEntity> page = this.page(new Query<SpuCommentEntity>().getPage(params), new QueryWrapper<SpuCommentEntity>());
         return new PageUtils(page);
     }
-
 }

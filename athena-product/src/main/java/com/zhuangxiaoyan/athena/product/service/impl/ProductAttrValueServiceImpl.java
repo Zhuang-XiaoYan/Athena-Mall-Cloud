@@ -20,10 +20,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<ProductAttrValueEntity> page = this.page(
-                new Query<ProductAttrValueEntity>().getPage(params),
-                new QueryWrapper<ProductAttrValueEntity>()
-        );
+        IPage<ProductAttrValueEntity> page = this.page(new Query<ProductAttrValueEntity>().getPage(params), new QueryWrapper<ProductAttrValueEntity>());
         return new PageUtils(page);
     }
 
@@ -38,7 +35,7 @@ public class ProductAttrValueServiceImpl extends ServiceImpl<ProductAttrValueDao
         return entities;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateSpuAttr(Long spuId, List<ProductAttrValueEntity> entities) {
         //删除所有的SpuId之前的的所有的属性

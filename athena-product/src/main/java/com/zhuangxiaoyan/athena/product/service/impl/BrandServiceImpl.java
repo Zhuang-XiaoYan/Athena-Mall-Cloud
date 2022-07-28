@@ -22,7 +22,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
 
-
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         String key = (String) params.get("key");
@@ -35,14 +34,14 @@ public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> impleme
         return new PageUtils(page);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class, timeout = 30)
     @Override
     public void updateDetail(BrandEntity brand) {
         // 冗余数据字段的额一致性
         this.updateById(brand);
-        if (!StringUtil.isEmpty(brand.getName())){
+        if (!StringUtil.isEmpty(brand.getName())) {
             // 同步更新其他的关联的数据表
-            categoryBrandRelationService.updateBrand(brand.getBrandId(),brand.getName());
+            categoryBrandRelationService.updateBrand(brand.getBrandId(), brand.getName());
             // 更新其他的关联数据
         }
     }

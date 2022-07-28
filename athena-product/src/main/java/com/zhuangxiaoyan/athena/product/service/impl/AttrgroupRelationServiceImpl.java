@@ -21,18 +21,15 @@ public class AttrgroupRelationServiceImpl extends ServiceImpl<AttrgroupRelationD
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<AttrgroupRelationEntity> page = this.page(
-                new Query<AttrgroupRelationEntity>().getPage(params),
-                new QueryWrapper<AttrgroupRelationEntity>()
-        );
+        IPage<AttrgroupRelationEntity> page = this.page(new Query<AttrgroupRelationEntity>().getPage(params), new QueryWrapper<AttrgroupRelationEntity>());
         return new PageUtils(page);
     }
 
     @Override
     public void saveBatch(List<AttrGroupRelationVo> attrGroupRelationVos) {
         List<AttrgroupRelationEntity> collect = attrGroupRelationVos.stream().map(item -> {
-            AttrgroupRelationEntity attrgroupRelationEntity=new AttrgroupRelationEntity();
-            BeanUtils.copyProperties(item,attrgroupRelationEntity);
+            AttrgroupRelationEntity attrgroupRelationEntity = new AttrgroupRelationEntity();
+            BeanUtils.copyProperties(item, attrgroupRelationEntity);
             return attrgroupRelationEntity;
         }).collect(Collectors.toList());
         // 批量保存的方式

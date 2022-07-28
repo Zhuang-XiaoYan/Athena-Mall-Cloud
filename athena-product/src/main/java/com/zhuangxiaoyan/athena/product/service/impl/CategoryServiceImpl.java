@@ -27,16 +27,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<CategoryEntity> page = this.page(
-                new Query<CategoryEntity>().getPage(params),
-                new QueryWrapper<CategoryEntity>()
-        );
-
+        IPage<CategoryEntity> page = this.page(new Query<CategoryEntity>().getPage(params), new QueryWrapper<CategoryEntity>());
         return new PageUtils(page);
     }
 
     /**
-     * @description TODO  查询出所有的分类以及子分类，以及树形结构
+     * @description 查询出所有的分类以及子分类，以及树形结构
      * @param:
      * @date: 2022/3/13 17:38
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
@@ -46,7 +42,6 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     public List<CategoryEntity> listWithTree() {
         // 查询出所有的分类
         List<CategoryEntity> entities = baseMapper.selectList(null);
-
         // 组装成为的父子结构返回 找到的所有的以及分类
         // 一级分类
         List<CategoryEntity> level1Menus = entities.stream().filter(categoryEntity -> categoryEntity.getParentCid() == 0).map((menu) -> {
@@ -125,12 +120,11 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return: void
      * @author: xjl
      */
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateCascade(CategoryEntity category) {
         this.updateById(category);
         // 级联更新
         categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
-
     }
 }
