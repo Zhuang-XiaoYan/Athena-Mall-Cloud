@@ -13,7 +13,6 @@ import lombok.Data;
 /**
  * @description 自定义异常
  * @date: 2022/3/19 18:37
- * @return:
  * @author: xjl
  */
 @Data

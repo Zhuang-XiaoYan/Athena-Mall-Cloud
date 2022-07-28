@@ -19,7 +19,6 @@ import java.util.Map;
 /**
  * @description 分页查询相关类
  * @date: 2022/3/19 18:36
- * @return:
  * @author: xjl
  */
 public class Query<T> {

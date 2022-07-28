@@ -8,9 +8,7 @@ import java.util.Date;
 
 /**
  * @description MemberResponseVo
- * @param: null
  * @date: 2022/3/19 18:38
- * @return:
  * @author: xjl
  */
 

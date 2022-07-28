@@ -11,7 +11,6 @@ package com.zhuangxiaoyan.common.utils;
 /**
  * @description 常量
  * @date: 2022/3/19 18:35
- * @return:
  * @author: xjl
  */
 public class Constant {

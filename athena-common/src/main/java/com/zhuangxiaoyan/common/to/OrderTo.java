@@ -7,9 +7,7 @@ import java.util.Date;
 
 /**
  * @description 订单传输对象
- * @param: null
  * @date: 2022/3/19 18:34
- * @return:
  * @author: xjl
  */
 

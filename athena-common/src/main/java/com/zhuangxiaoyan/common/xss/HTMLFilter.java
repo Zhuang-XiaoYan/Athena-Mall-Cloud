@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 /**
  * @description HTMLFilter
  * @date: 2022/3/19 18:38
- * @return:
  * @author: xjl
  */
 public final class HTMLFilter {

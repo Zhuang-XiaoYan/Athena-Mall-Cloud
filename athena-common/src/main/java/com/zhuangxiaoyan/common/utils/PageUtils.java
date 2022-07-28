@@ -18,7 +18,6 @@ import java.util.List;
  * @description 分页工具类
  * 使用的@Data的注解 可以再类中省略相关的get set的方法
  * @date: 2022/7/27 11:32
- * @return:
  * @author: xjl
  */
 @Data
