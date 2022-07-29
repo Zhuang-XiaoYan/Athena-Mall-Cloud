@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.code.utils;
+package com.zhuangxiaoyan.athena.code.service.utils;
 
 import com.zhuangxiaoyan.athena.code.config.MongoManager;
 import com.zhuangxiaoyan.athena.code.entity.ColumnEntity;

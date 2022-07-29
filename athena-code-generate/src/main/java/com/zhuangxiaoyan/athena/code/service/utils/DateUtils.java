@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.code.utils;
+package com.zhuangxiaoyan.athena.code.service.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

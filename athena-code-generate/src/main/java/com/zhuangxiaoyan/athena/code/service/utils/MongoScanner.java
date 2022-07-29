@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.code.utils;
+package com.zhuangxiaoyan.athena.code.service.utils;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoCommandException;
