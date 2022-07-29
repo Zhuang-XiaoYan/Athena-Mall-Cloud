@@ -19,7 +19,7 @@ public class MongoNullCondition implements Condition {
      */
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        String database = context.getEnvironment().getProperty("renren.database");
+        String database = context.getEnvironment().getProperty("athena.database");
         return !"mongodb".equalsIgnoreCase(database);
     }
 }
