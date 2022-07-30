@@ -7,15 +7,15 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 商品库存
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 商品库存
+ * @date: 2022/7/30 23:58
+ * @author: xjl
  */
+
 @Data
 @TableName("wms_ware_sku")
 public class WareSkuEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

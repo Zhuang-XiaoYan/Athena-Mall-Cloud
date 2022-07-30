@@ -11,15 +11,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 商品库存
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 商品库存
+ * @date: 2022/7/30 23:53
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/waresku")
 public class WareSkuController {
+
     @Autowired
     private WareSkuService wareSkuService;
 
@@ -30,7 +30,6 @@ public class WareSkuController {
     //@RequiresPermissions("ware:waresku:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareSkuService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -41,7 +40,6 @@ public class WareSkuController {
     //@RequiresPermissions("ware:waresku:info")
     public Result info(@PathVariable("id") Long id) {
         WareSkuEntity wareSku = wareSkuService.getById(id);
-
         return Result.ok().put("wareSku", wareSku);
     }
 
@@ -52,7 +50,6 @@ public class WareSkuController {
     //@RequiresPermissions("ware:waresku:save")
     public Result save(@RequestBody WareSkuEntity wareSku) {
         wareSkuService.save(wareSku);
-
         return Result.ok();
     }
 
@@ -63,7 +60,6 @@ public class WareSkuController {
     //@RequiresPermissions("ware:waresku:update")
     public Result update(@RequestBody WareSkuEntity wareSku) {
         wareSkuService.updateById(wareSku);
-
         return Result.ok();
     }
 
@@ -74,7 +70,6 @@ public class WareSkuController {
     //@RequiresPermissions("ware:waresku:delete")
     public Result delete(@RequestBody Long[] ids) {
         wareSkuService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

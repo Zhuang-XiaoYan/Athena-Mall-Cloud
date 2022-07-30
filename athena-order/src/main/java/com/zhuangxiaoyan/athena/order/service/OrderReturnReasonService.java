@@ -7,12 +7,10 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 退货原因
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 退货原因
+ * @date: 2022/7/30 23:37
+ * @author: xjl
+*/
 public interface OrderReturnReasonService extends IService<OrderReturnReasonEntity> {
 
     PageUtils queryPage(Map<String, Object> params);

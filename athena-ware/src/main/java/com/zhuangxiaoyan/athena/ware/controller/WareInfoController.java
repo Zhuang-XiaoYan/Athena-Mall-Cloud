@@ -11,15 +11,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 仓库信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 仓库信息
+ * @date: 2022/7/30 23:52
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/wareinfo")
 public class WareInfoController {
+
     @Autowired
     private WareInfoService wareInfoService;
 
@@ -30,7 +30,6 @@ public class WareInfoController {
     //@RequiresPermissions("ware:wareinfo:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareInfoService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -41,7 +40,6 @@ public class WareInfoController {
     //@RequiresPermissions("ware:wareinfo:info")
     public Result info(@PathVariable("id") Long id) {
         WareInfoEntity wareInfo = wareInfoService.getById(id);
-
         return Result.ok().put("wareInfo", wareInfo);
     }
 
@@ -52,7 +50,6 @@ public class WareInfoController {
     //@RequiresPermissions("ware:wareinfo:save")
     public Result save(@RequestBody WareInfoEntity wareInfo) {
         wareInfoService.save(wareInfo);
-
         return Result.ok();
     }
 
@@ -63,7 +60,6 @@ public class WareInfoController {
     //@RequiresPermissions("ware:wareinfo:update")
     public Result update(@RequestBody WareInfoEntity wareInfo) {
         wareInfoService.updateById(wareInfo);
-
         return Result.ok();
     }
 
@@ -74,7 +70,6 @@ public class WareInfoController {
     //@RequiresPermissions("ware:wareinfo:delete")
     public Result delete(@RequestBody Long[] ids) {
         wareInfoService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

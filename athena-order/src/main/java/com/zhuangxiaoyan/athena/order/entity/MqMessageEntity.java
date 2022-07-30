@@ -8,13 +8,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description MqMessageEntity
+ * @date: 2022/7/30 23:29
+ * @author: xjl
+*/
+
 @Data
 @TableName("mq_message")
 public class MqMessageEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

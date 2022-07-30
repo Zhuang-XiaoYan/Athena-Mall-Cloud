@@ -9,15 +9,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 订单
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 订单
+ * @date: 2022/7/30 23:33
+ * @author: xjl
+*/
+
 @Data
 @TableName("oms_order")
 public class OrderEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

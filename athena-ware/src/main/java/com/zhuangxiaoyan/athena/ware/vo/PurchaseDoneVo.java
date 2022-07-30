@@ -6,11 +6,10 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-06-01 20:33
- **/
+ * @description PurchaseDoneVo
+ * @date: 2022/7/31 0:07
+ * @author: xjl
+ */
 
 @Data
 public class PurchaseDoneVo {

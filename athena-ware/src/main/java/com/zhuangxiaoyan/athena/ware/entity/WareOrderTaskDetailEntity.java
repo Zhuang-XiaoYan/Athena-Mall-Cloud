@@ -7,15 +7,15 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 库存工作单
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 库存工作单
+ * @date: 2022/7/30 23:57
+ * @author: xjl
  */
+
 @Data
 @TableName("wms_ware_order_task_detail")
 public class WareOrderTaskDetailEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

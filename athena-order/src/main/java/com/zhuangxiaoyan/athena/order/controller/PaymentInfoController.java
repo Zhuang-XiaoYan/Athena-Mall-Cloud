@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 支付信息表
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 支付信息表
+ * @date: 2022/7/30 23:04
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/paymentinfo")
 public class PaymentInfoController {
+
     @Autowired
     private PaymentInfoService paymentInfoService;
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/30 23:04
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:paymentinfo:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = paymentInfoService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 23:05
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:paymentinfo:info")
     public Result info(@PathVariable("id") Long id) {
         PaymentInfoEntity paymentInfo = paymentInfoService.getById(id);
-
         return Result.ok().put("paymentInfo", paymentInfo);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: paymentInfo
+     * @date: 2022/7/30 23:05
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:paymentinfo:save")
     public Result save(@RequestBody PaymentInfoEntity paymentInfo) {
         paymentInfoService.save(paymentInfo);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: paymentInfo
+     * @date: 2022/7/30 23:06
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:paymentinfo:update")
     public Result update(@RequestBody PaymentInfoEntity paymentInfo) {
         paymentInfoService.updateById(paymentInfo);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 23:06
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:paymentinfo:delete")
     public Result delete(@RequestBody Long[] ids) {
         paymentInfoService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

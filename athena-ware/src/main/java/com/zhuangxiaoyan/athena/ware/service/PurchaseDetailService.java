@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description PurchaseDetailService
+ * @date: 2022/7/30 23:59
+ * @author: xjl
  */
+
 public interface PurchaseDetailService extends IService<PurchaseDetailEntity> {
 
     PageUtils queryPage(Map<String, Object> params);

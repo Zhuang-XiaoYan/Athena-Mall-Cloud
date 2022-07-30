@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 退款信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 退款信息
+ * @date: 2022/7/30 23:07
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/refundinfo")
 public class RefundInfoController {
+
     @Autowired
     private RefundInfoService refundInfoService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 23:08
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:refundinfo:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = refundInfoService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询
+     * @param: id
+     * @date: 2022/7/30 23:24
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:refundinfo:info")
     public Result info(@PathVariable("id") Long id) {
         RefundInfoEntity refundInfo = refundInfoService.getById(id);
-
         return Result.ok().put("refundInfo", refundInfo);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: refundInfo
+     * @date: 2022/7/30 23:25
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:refundinfo:save")
     public Result save(@RequestBody RefundInfoEntity refundInfo) {
         refundInfoService.save(refundInfo);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: refundInfo
+     * @date: 2022/7/30 23:25
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:refundinfo:update")
     public Result update(@RequestBody RefundInfoEntity refundInfo) {
         refundInfoService.updateById(refundInfo);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 23:26
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:refundinfo:delete")
     public Result delete(@RequestBody Long[] ids) {
         refundInfoService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

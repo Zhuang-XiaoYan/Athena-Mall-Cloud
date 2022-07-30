@@ -8,12 +8,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 退款信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 退款信息
+ * @date: 2022/7/30 23:35
+ * @author: xjl
+*/
+
 @Data
 @TableName("oms_refund_info")
 public class RefundInfoEntity implements Serializable {

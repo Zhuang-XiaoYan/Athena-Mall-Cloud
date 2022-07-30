@@ -11,13 +11,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description PurchaseDetailController
+ * @date: 2022/7/30 23:52
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/purchasedetail")
 public class PurchaseDetailController {
+
     @Autowired
     private PurchaseDetailService purchaseDetailService;
 
@@ -28,7 +30,6 @@ public class PurchaseDetailController {
     //@RequiresPermissions("ware:purchasedetail:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseDetailService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -39,7 +40,6 @@ public class PurchaseDetailController {
     //@RequiresPermissions("ware:purchasedetail:info")
     public Result info(@PathVariable("id") Long id) {
         PurchaseDetailEntity purchaseDetail = purchaseDetailService.getById(id);
-
         return Result.ok().put("purchaseDetail", purchaseDetail);
     }
 
@@ -50,7 +50,6 @@ public class PurchaseDetailController {
     //@RequiresPermissions("ware:purchasedetail:save")
     public Result save(@RequestBody PurchaseDetailEntity purchaseDetail) {
         purchaseDetailService.save(purchaseDetail);
-
         return Result.ok();
     }
 
@@ -61,7 +60,6 @@ public class PurchaseDetailController {
     //@RequiresPermissions("ware:purchasedetail:update")
     public Result update(@RequestBody PurchaseDetailEntity purchaseDetail) {
         purchaseDetailService.updateById(purchaseDetail);
-
         return Result.ok();
     }
 
@@ -72,7 +70,6 @@ public class PurchaseDetailController {
     //@RequiresPermissions("ware:purchasedetail:delete")
     public Result delete(@RequestBody Long[] ids) {
         purchaseDetailService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

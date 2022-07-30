@@ -11,15 +11,15 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 库存工作单
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 库存工作单
+ * @date: 2022/7/30 23:53
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/wareordertaskdetail")
 public class WareOrderTaskDetailController {
+
     @Autowired
     private WareOrderTaskDetailService wareOrderTaskDetailService;
 
@@ -30,7 +30,6 @@ public class WareOrderTaskDetailController {
     //@RequiresPermissions("ware:wareordertaskdetail:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = wareOrderTaskDetailService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -41,7 +40,6 @@ public class WareOrderTaskDetailController {
     //@RequiresPermissions("ware:wareordertaskdetail:info")
     public Result info(@PathVariable("id") Long id) {
         WareOrderTaskDetailEntity wareOrderTaskDetail = wareOrderTaskDetailService.getById(id);
-
         return Result.ok().put("wareOrderTaskDetail", wareOrderTaskDetail);
     }
 
@@ -52,7 +50,6 @@ public class WareOrderTaskDetailController {
     //@RequiresPermissions("ware:wareordertaskdetail:save")
     public Result save(@RequestBody WareOrderTaskDetailEntity wareOrderTaskDetail) {
         wareOrderTaskDetailService.save(wareOrderTaskDetail);
-
         return Result.ok();
     }
 
@@ -63,7 +60,6 @@ public class WareOrderTaskDetailController {
     //@RequiresPermissions("ware:wareordertaskdetail:update")
     public Result update(@RequestBody WareOrderTaskDetailEntity wareOrderTaskDetail) {
         wareOrderTaskDetailService.updateById(wareOrderTaskDetail);
-
         return Result.ok();
     }
 
@@ -74,7 +70,6 @@ public class WareOrderTaskDetailController {
     //@RequiresPermissions("ware:wareordertaskdetail:delete")
     public Result delete(@RequestBody Long[] ids) {
         wareOrderTaskDetailService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

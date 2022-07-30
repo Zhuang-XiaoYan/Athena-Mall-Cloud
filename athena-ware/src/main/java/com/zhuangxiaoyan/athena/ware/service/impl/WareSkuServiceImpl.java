@@ -17,6 +17,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @description WareSkuServiceImpl
+ * @date: 2022/7/31 0:02
+ * @author: xjl
+ */
+
 @Service("wareSkuService")
 public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> implements WareSkuService {
 
@@ -33,12 +39,10 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         if (!StringUtils.isEmpty(skuId)) {
             queryWrapper.eq("sku_id", skuId);
         }
-
         String wareId = (String) params.get("wareId");
         if (!StringUtils.isEmpty(wareId)) {
             queryWrapper.eq("sku_id", wareId);
         }
-
         IPage<WareSkuEntity> page = this.page(new Query<WareSkuEntity>().getPage(params), queryWrapper);
         return new PageUtils(page);
     }
@@ -47,7 +51,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     public void addStock(Long skuId, Long wareId, Integer skuNum) {
         // 判断还没有这个库存记录
         List<WareSkuEntity> entities = wareSkuDao.selectList(new QueryWrapper<WareSkuEntity>().eq("sku_id", skuId).eq("ware_id", wareId));
-        if (entities==null || entities.size()==0){
+        if (entities == null || entities.size() == 0) {
             WareSkuEntity wareSkuEntity = new WareSkuEntity();
             wareSkuEntity.setSkuId(skuId);
             wareSkuEntity.setWareId(wareId);
@@ -56,16 +60,16 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
             // TODO 调用远程服务查询的相关的名字 如果失败了,那也不需要是事务回滚
             try {
                 Result info = productFeginService.info(skuId);
-                Map<String, Object> map= (Map<String, Object>) info.get("skuInfo");
-                if (info.getCode()==0){
+                Map<String, Object> map = (Map<String, Object>) info.get("skuInfo");
+                if (info.getCode() == 0) {
                     wareSkuEntity.setSkuName((String) map.get("skuName"));
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
             wareSkuDao.insert(wareSkuEntity);
-        }else {
-            wareSkuDao.addStock(skuId,wareId,skuNum);
+        } else {
+            wareSkuDao.addStock(skuId, wareId, skuNum);
         }
     }
 }

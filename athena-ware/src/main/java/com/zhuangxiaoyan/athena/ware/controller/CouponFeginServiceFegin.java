@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Classname CouponFeginServiceFegin
- * @Description
- * @Date 2022/3/13 14:08
- * @Created by xjl
+ * @description CouponFeginServiceFegin
+ * @date: 2022/7/30 23:51
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/ware")
 public class CouponFeginServiceFegin {

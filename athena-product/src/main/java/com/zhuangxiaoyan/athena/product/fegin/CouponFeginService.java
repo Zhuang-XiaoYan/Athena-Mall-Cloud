@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @FeignClient("athena-coupon")
 public interface CouponFeginService {
+
     /**
      * @description 远程调用的方式
      * @param:

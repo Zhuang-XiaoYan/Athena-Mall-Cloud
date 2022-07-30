@@ -6,12 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 商品库存
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 商品库存
+ * @date: 2022/7/30 23:56
+ * @author: xjl
  */
+
 @Mapper
 public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
 

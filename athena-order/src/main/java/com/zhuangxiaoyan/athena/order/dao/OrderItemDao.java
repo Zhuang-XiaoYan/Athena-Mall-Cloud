@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.order.entity.OrderItemEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 订单项信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 订单项信息
+ * @date: 2022/7/30 23:27
+ * @author: xjl
+*/
+
 @Mapper
 public interface OrderItemDao extends BaseMapper<OrderItemEntity> {
 

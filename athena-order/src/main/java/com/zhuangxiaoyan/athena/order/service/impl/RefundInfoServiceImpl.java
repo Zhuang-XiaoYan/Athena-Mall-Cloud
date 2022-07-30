@@ -12,16 +12,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description RefundInfoServiceImpl
+ * @date: 2022/7/30 23:42
+ * @author: xjl
+*/
 @Service("refundInfoService")
 public class RefundInfoServiceImpl extends ServiceImpl<RefundInfoDao, RefundInfoEntity> implements RefundInfoService {
 
+    /**
+     * @description 查询
+     * @param: params
+     * @date: 2022/7/30 23:44
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<RefundInfoEntity> page = this.page(
-                new Query<RefundInfoEntity>().getPage(params),
-                new QueryWrapper<RefundInfoEntity>()
-        );
-
+        IPage<RefundInfoEntity> page = this.page(new Query<RefundInfoEntity>().getPage(params),new QueryWrapper<RefundInfoEntity>());
         return new PageUtils(page);
     }
 

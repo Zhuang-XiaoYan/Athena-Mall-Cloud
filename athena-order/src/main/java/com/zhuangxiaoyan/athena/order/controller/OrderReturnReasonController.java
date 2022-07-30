@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 退货原因
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 退货原因
+ * @date: 2022/7/30 22:57
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/orderreturnreason")
 public class OrderReturnReasonController {
+
     @Autowired
     private OrderReturnReasonService orderReturnReasonService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 22:58
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderreturnreason:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderReturnReasonService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 22:58
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:orderreturnreason:info")
     public Result info(@PathVariable("id") Long id) {
         OrderReturnReasonEntity orderReturnReason = orderReturnReasonService.getById(id);
-
         return Result.ok().put("orderReturnReason", orderReturnReason);
     }
 
     /**
-     * 保存
+     * @description 通过保存
+     * @param: orderReturnReason
+     * @date: 2022/7/30 22:59
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:orderreturnreason:save")
     public Result save(@RequestBody OrderReturnReasonEntity orderReturnReason) {
         orderReturnReasonService.save(orderReturnReason);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: orderReturnReason
+     * @date: 2022/7/30 23:00
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:orderreturnreason:update")
     public Result update(@RequestBody OrderReturnReasonEntity orderReturnReason) {
         orderReturnReasonService.updateById(orderReturnReason);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 23:01
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:orderreturnreason:delete")
     public Result delete(@RequestBody Long[] ids) {
         orderReturnReasonService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

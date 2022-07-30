@@ -7,12 +7,10 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 订单配置信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 订单配置信息
+ * @date: 2022/7/30 23:38
+ * @author: xjl
+*/
 public interface OrderSettingService extends IService<OrderSettingEntity> {
 
     PageUtils queryPage(Map<String, Object> params);

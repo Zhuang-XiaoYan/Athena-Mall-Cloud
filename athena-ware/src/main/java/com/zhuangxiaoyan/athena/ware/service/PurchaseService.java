@@ -10,12 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 采购信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 采购信息
+ * @date: 2022/7/31 0:00
+ * @author: xjl
  */
+
 public interface PurchaseService extends IService<PurchaseEntity> {
 
     PageUtils queryPage(Map<String, Object> params);

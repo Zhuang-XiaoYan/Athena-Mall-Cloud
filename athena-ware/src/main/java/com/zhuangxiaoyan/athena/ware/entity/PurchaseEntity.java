@@ -9,12 +9,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 采购信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 采购信息
+ * @date: 2022/7/30 23:57
+ * @author: xjl
  */
+
 @Data
 @TableName("wms_purchase")
 public class PurchaseEntity implements Serializable {

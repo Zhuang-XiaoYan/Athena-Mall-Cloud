@@ -11,68 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description MqMessageController
+ * @date: 2022/7/30 22:42
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/mqmessage")
 public class MqMessageController {
+
     @Autowired
     private MqMessageService mqMessageService;
 
     /**
-     * 列表
+     * @description 查询的所有数据
+     * @param: params
+     * @date: 2022/7/30 22:43
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:mqmessage:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = mqMessageService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询
+     * @param: messageId
+     * @date: 2022/7/30 22:44
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{messageId}")
     //@RequiresPermissions("order:mqmessage:info")
     public Result info(@PathVariable("messageId") String messageId) {
         MqMessageEntity mqMessage = mqMessageService.getById(messageId);
-
         return Result.ok().put("mqMessage", mqMessage);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: mqMessage
+     * @date: 2022/7/30 22:44
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:mqmessage:save")
     public Result save(@RequestBody MqMessageEntity mqMessage) {
         mqMessageService.save(mqMessage);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: mqMessage
+     * @date: 2022/7/30 22:44
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:mqmessage:update")
     public Result update(@RequestBody MqMessageEntity mqMessage) {
         mqMessageService.updateById(mqMessage);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: messageIds
+     * @date: 2022/7/30 22:45
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:mqmessage:delete")
     public Result delete(@RequestBody String[] messageIds) {
         mqMessageService.removeByIds(Arrays.asList(messageIds));
-
         return Result.ok();
     }
 

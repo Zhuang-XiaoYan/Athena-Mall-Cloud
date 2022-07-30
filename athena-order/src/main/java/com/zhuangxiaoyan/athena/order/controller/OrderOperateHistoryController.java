@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 订单操作历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 订单操作历史记录
+ * @date: 2022/7/30 22:53
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/orderoperatehistory")
 public class OrderOperateHistoryController {
+
     @Autowired
     private OrderOperateHistoryService orderOperateHistoryService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 22:53
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderoperatehistory:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderOperateHistoryService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 22:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:orderoperatehistory:info")
     public Result info(@PathVariable("id") Long id) {
         OrderOperateHistoryEntity orderOperateHistory = orderOperateHistoryService.getById(id);
-
         return Result.ok().put("orderOperateHistory", orderOperateHistory);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: orderOperateHistory
+     * @date: 2022/7/30 22:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:orderoperatehistory:save")
     public Result save(@RequestBody OrderOperateHistoryEntity orderOperateHistory) {
         orderOperateHistoryService.save(orderOperateHistory);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: orderOperateHistory
+     * @date: 2022/7/30 22:55
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:orderoperatehistory:update")
     public Result update(@RequestBody OrderOperateHistoryEntity orderOperateHistory) {
         orderOperateHistoryService.updateById(orderOperateHistory);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 22:55
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:orderoperatehistory:delete")
     public Result delete(@RequestBody Long[] ids) {
         orderOperateHistoryService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

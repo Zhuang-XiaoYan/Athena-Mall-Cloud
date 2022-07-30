@@ -6,11 +6,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @Description:
- * @Created: with IntelliJ IDEA.
- * @author: 夏沫止水
- * @createTime: 2020-07-06 23:30
- **/
+ * @description OrderVo
+ * @date: 2022/7/31 0:07
+ * @author: xjl
+ */
 
 @Data
 public class OrderVo {

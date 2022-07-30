@@ -9,12 +9,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * 支付信息表
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 支付信息表
+ * @date: 2022/7/30 23:35
+ * @author: xjl
+*/
 @Data
 @TableName("oms_payment_info")
 public class PaymentInfoEntity implements Serializable {

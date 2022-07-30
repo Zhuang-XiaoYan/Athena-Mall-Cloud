@@ -12,16 +12,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description OrderReturnApplyServiceImpl
+ * @date: 2022/7/30 23:39
+ * @author: xjl
+ */
+
 @Service("orderReturnApplyService")
 public class OrderReturnApplyServiceImpl extends ServiceImpl<OrderReturnApplyDao, OrderReturnApplyEntity> implements OrderReturnApplyService {
 
+    /**
+     * @description 查询
+     * @param: params
+     * @date: 2022/7/30 23:44
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<OrderReturnApplyEntity> page = this.page(
-                new Query<OrderReturnApplyEntity>().getPage(params),
-                new QueryWrapper<OrderReturnApplyEntity>()
-        );
-
+        IPage<OrderReturnApplyEntity> page = this.page(new Query<OrderReturnApplyEntity>().getPage(params),new QueryWrapper<OrderReturnApplyEntity>());
         return new PageUtils(page);
     }
 

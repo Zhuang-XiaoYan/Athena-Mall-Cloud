@@ -20,5 +20,5 @@ public interface CouponFeginService {
      * @author: xjl
      */
     @RequestMapping("/coupon/coupon/member/list")
-    public Result membercoupons();
+    Result membercoupons();
 }

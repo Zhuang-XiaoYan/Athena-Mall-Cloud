@@ -15,12 +15,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 采购信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 采购信息
+ * @date: 2022/7/30 23:51
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("ware/purchase")
 public class PurchaseController {
@@ -33,7 +32,6 @@ public class PurchaseController {
         purchaseService.done(purchaseDoneVo);
         return Result.ok();
     }
-
 
     @PostMapping("/received")
     public Result received(@RequestBody List<Long> ids) {
@@ -60,7 +58,6 @@ public class PurchaseController {
     //@RequiresPermissions("ware:purchase:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = purchaseService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
@@ -71,7 +68,6 @@ public class PurchaseController {
     //@RequiresPermissions("ware:purchase:info")
     public Result info(@PathVariable("id") Long id) {
         PurchaseEntity purchase = purchaseService.getById(id);
-
         return Result.ok().put("purchase", purchase);
     }
 
@@ -94,7 +90,6 @@ public class PurchaseController {
     //@RequiresPermissions("ware:purchase:update")
     public Result update(@RequestBody PurchaseEntity purchase) {
         purchaseService.updateById(purchase);
-
         return Result.ok();
     }
 
@@ -105,7 +100,6 @@ public class PurchaseController {
     //@RequiresPermissions("ware:purchase:delete")
     public Result delete(@RequestBody Long[] ids) {
         purchaseService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

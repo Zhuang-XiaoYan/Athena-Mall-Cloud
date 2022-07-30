@@ -5,10 +5,11 @@ import com.zhuangxiaoyan.athena.ware.entity.PurchaseDetailEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description PurchaseDetailDao
+ * @date: 2022/7/30 23:54
+ * @author: xjl
  */
+
 @Mapper
 public interface PurchaseDetailDao extends BaseMapper<PurchaseDetailEntity> {
 

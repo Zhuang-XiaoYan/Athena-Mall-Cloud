@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.ware.entity.WareOrderTaskEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 库存工作单
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 库存工作单
+ * @date: 2022/7/30 23:55
+ * @author: xjl
  */
+
 @Mapper
 public interface WareOrderTaskDao extends BaseMapper<WareOrderTaskEntity> {
 

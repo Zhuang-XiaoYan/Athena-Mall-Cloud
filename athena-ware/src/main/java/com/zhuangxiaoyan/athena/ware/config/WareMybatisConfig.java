@@ -4,14 +4,13 @@ import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Classname MybatisConfig
- * @Description TODO
- * @Date 2022/7/23 10:02
- * @Created by xjl
+ * @description MybatisConfig
+ * @date: 2022/7/30 23:49
+ * @author: xjl
  */
+
 @Configuration
 @MapperScan("com.zhuangxiaoyan.athena.ware.dao")
 public class WareMybatisConfig {

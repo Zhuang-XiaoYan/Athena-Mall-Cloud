@@ -8,15 +8,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 退货原因
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 退货原因
+ * @date: 2022/7/30 23:34
+ * @author: xjl
+*/
+
 @Data
 @TableName("oms_order_return_reason")
 public class OrderReturnReasonEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

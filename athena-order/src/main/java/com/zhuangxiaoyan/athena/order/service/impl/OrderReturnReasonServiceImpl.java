@@ -12,16 +12,25 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description OrderReturnReasonServiceImpl
+ * @date: 2022/7/30 23:41
+ * @author: xjl
+*/
+
 @Service("orderReturnReasonService")
 public class OrderReturnReasonServiceImpl extends ServiceImpl<OrderReturnReasonDao, OrderReturnReasonEntity> implements OrderReturnReasonService {
 
+    /**
+     * @description 查询
+     * @param: params
+     * @date: 2022/7/30 23:44
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<OrderReturnReasonEntity> page = this.page(
-                new Query<OrderReturnReasonEntity>().getPage(params),
-                new QueryWrapper<OrderReturnReasonEntity>()
-        );
-
+        IPage<OrderReturnReasonEntity> page = this.page(new Query<OrderReturnReasonEntity>().getPage(params),new QueryWrapper<OrderReturnReasonEntity>());
         return new PageUtils(page);
     }
 

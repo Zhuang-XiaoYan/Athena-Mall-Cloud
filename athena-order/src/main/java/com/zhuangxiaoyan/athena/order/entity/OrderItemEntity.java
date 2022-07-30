@@ -8,15 +8,15 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 订单项信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 订单项信息
+ * @date: 2022/7/30 23:33
+ * @author: xjl
+*/
+
 @Data
 @TableName("oms_order_item")
 public class OrderItemEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

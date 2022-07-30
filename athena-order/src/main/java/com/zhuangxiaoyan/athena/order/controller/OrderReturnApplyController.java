@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 订单退货申请
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 订单退货申请
+ * @date: 2022/7/30 22:56
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/orderreturnapply")
 public class OrderReturnApplyController {
+
     @Autowired
     private OrderReturnApplyService orderReturnApplyService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 22:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:orderreturnapply:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderReturnApplyService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 22:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:orderreturnapply:info")
     public Result info(@PathVariable("id") Long id) {
         OrderReturnApplyEntity orderReturnApply = orderReturnApplyService.getById(id);
-
         return Result.ok().put("orderReturnApply", orderReturnApply);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: orderReturnApply
+     * @date: 2022/7/30 22:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:orderreturnapply:save")
     public Result save(@RequestBody OrderReturnApplyEntity orderReturnApply) {
         orderReturnApplyService.save(orderReturnApply);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: orderReturnApply
+     * @date: 2022/7/30 22:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:orderreturnapply:update")
     public Result update(@RequestBody OrderReturnApplyEntity orderReturnApply) {
         orderReturnApplyService.updateById(orderReturnApply);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 22:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:orderreturnapply:delete")
     public Result delete(@RequestBody Long[] ids) {
         orderReturnApplyService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

@@ -5,10 +5,10 @@ import com.zhuangxiaoyan.athena.order.entity.MqMessageEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description MqMessageDao
+ * @date: 2022/7/30 23:28
+ * @author: xjl
+*/
 @Mapper
 public interface MqMessageDao extends BaseMapper<MqMessageEntity> {
 

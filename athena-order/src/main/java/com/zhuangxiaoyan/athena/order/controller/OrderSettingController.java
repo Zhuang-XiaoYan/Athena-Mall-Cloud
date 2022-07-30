@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 订单配置信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
+ * @description 订单配置信息
+ * @date: 2022/7/30 23:01
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("order/ordersetting")
 public class OrderSettingController {
+
     @Autowired
     private OrderSettingService orderSettingService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 23:02
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("order:ordersetting:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = orderSettingService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id
+     * @param: id
+     * @date: 2022/7/30 23:02
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("order:ordersetting:info")
     public Result info(@PathVariable("id") Long id) {
         OrderSettingEntity orderSetting = orderSettingService.getById(id);
-
         return Result.ok().put("orderSetting", orderSetting);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: orderSetting
+     * @date: 2022/7/30 23:03
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("order:ordersetting:save")
     public Result save(@RequestBody OrderSettingEntity orderSetting) {
         orderSettingService.save(orderSetting);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: orderSetting
+     * @date: 2022/7/30 23:03
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("order:ordersetting:update")
     public Result update(@RequestBody OrderSettingEntity orderSetting) {
         orderSettingService.updateById(orderSetting);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 23:04
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("order:ordersetting:delete")
     public Result delete(@RequestBody Long[] ids) {
         orderSettingService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

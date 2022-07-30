@@ -8,10 +8,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description PurchaseDetailEntity
+ * @date: 2022/7/30 23:56
+ * @author: xjl
  */
+
 @Data
 @TableName("wms_purchase_detail")
 public class PurchaseDetailEntity implements Serializable {

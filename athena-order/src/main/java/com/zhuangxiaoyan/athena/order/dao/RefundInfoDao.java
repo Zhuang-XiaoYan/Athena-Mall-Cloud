@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.order.entity.RefundInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 退款信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 退款信息
+ * @date: 2022/7/30 23:29
+ * @author: xjl
+*/
+
 @Mapper
 public interface RefundInfoDao extends BaseMapper<RefundInfoEntity> {
 

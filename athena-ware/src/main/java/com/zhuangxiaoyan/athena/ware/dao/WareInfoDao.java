@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.ware.entity.WareInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 仓库信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:38:27
+ * @description 仓库信息
+ * @date: 2022/7/30 23:55
+ * @author: xjl
  */
+
 @Mapper
 public interface WareInfoDao extends BaseMapper<WareInfoEntity> {
 

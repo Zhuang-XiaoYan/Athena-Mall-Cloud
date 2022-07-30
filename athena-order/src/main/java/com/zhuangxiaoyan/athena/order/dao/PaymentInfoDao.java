@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.order.entity.PaymentInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 支付信息表
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 支付信息表
+ * @date: 2022/7/30 23:28
+ * @author: xjl
+*/
+
 @Mapper
 public interface PaymentInfoDao extends BaseMapper<PaymentInfoEntity> {
 

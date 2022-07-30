@@ -6,9 +6,7 @@ import java.util.List;
 
 /**
  * @description MergeVo传输对象
- * @param: null
  * @date: 2022/7/26 23:45
- * @return:
  * @author: xjl
  */
 

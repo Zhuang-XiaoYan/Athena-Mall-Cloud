@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.order.entity.OrderReturnReasonEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 退货原因
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 22:23:49
- */
+ * @description 退货原因
+ * @date: 2022/7/30 23:28
+ * @author: xjl
+*/
+
 @Mapper
 public interface OrderReturnReasonDao extends BaseMapper<OrderReturnReasonEntity> {
 
