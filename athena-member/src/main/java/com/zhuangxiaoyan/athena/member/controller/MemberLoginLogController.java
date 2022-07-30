@@ -11,70 +11,85 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 会员登录记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 会员登录记录
+ * @date: 2022/7/30 17:41
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("member/memberloginlog")
 public class MemberLoginLogController {
+
     @Autowired
     private MemberLoginLogService memberLoginLogService;
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/30 21:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:memberloginlog:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberLoginLogService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 21:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:memberloginlog:info")
     public Result info(@PathVariable("id") Long id) {
         MemberLoginLogEntity memberLoginLog = memberLoginLogService.getById(id);
-
         return Result.ok().put("memberLoginLog", memberLoginLog);
     }
 
     /**
-     * 保存
+     * @description 数据保存
+     * @param: memberLoginLog
+     * @date: 2022/7/30 21:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:memberloginlog:save")
     public Result save(@RequestBody MemberLoginLogEntity memberLoginLog) {
         memberLoginLogService.save(memberLoginLog);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: memberLoginLog
+     * @date: 2022/7/30 21:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:memberloginlog:update")
     public Result update(@RequestBody MemberLoginLogEntity memberLoginLog) {
         memberLoginLogService.updateById(memberLoginLog);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 21:57
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:memberloginlog:delete")
     public Result delete(@RequestBody Long[] ids) {
         memberLoginLogService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

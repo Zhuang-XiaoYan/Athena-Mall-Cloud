@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.member.entity.MemberLevelEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 会员等级
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
- */
+ * @description 会员等级
+ * @date: 2022/7/30 17:42
+ * @author: xjl
+*/
+
 @Mapper
 public interface MemberLevelDao extends BaseMapper<MemberLevelEntity> {
 

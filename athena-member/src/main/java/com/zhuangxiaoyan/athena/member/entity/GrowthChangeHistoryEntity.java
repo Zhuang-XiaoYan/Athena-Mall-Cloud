@@ -8,15 +8,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 成长值变化历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:28
+ * @description 成长值变化历史记录
+ * @date: 2022/7/30 17:43
+ * @author: xjl
  */
+
 @Data
 @TableName("ums_growth_change_history")
 public class GrowthChangeHistoryEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**

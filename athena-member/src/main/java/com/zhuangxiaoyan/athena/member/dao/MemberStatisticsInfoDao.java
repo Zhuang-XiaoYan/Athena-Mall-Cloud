@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.member.entity.MemberStatisticsInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 会员统计信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:28
- */
+ * @description 会员统计信息
+ * @date: 2022/7/30 17:43
+ * @author: xjl
+*/
+
 @Mapper
 public interface MemberStatisticsInfoDao extends BaseMapper<MemberStatisticsInfoEntity> {
 

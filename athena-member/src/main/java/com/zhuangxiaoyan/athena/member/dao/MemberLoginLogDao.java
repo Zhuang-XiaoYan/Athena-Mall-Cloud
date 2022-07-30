@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.member.entity.MemberLoginLogEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 会员登录记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
- */
+ * @description 会员登录记录
+ * @date: 2022/7/30 17:42
+ * @author: xjl
+*/
+
 @Mapper
 public interface MemberLoginLogDao extends BaseMapper<MemberLoginLogEntity> {
 

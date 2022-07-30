@@ -7,12 +7,11 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 会员收货地址
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 会员收货地址
+ * @date: 2022/7/30 22:17
+ * @author: xjl
  */
+
 @Data
 @TableName("ums_member_receive_address")
 public class MemberReceiveAddressEntity implements Serializable {

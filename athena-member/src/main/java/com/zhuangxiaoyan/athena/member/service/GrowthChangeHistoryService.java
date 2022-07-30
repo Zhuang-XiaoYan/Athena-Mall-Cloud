@@ -7,12 +7,11 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 import java.util.Map;
 
 /**
- * 成长值变化历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:28
+ * @description 成长值变化历史记录
+ * @date: 2022/7/30 22:18
+ * @author: xjl
  */
+
 public interface GrowthChangeHistoryService extends IService<GrowthChangeHistoryEntity> {
 
     PageUtils queryPage(Map<String, Object> params);

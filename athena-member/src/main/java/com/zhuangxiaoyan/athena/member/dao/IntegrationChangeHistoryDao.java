@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.member.entity.IntegrationChangeHistoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 积分变化历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 积分变化历史记录
+ * @date: 2022/7/30 17:41
+ * @author: xjl
  */
+
 @Mapper
 public interface IntegrationChangeHistoryDao extends BaseMapper<IntegrationChangeHistoryEntity> {
 

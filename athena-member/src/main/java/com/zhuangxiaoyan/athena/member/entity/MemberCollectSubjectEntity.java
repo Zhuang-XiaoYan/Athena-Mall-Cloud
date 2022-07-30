@@ -7,12 +7,11 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 会员收藏的专题活动
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 会员收藏的专题活动
+ * @date: 2022/7/30 22:11
+ * @author: xjl
  */
+
 @Data
 @TableName("ums_member_collect_subject")
 public class MemberCollectSubjectEntity implements Serializable {

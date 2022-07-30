@@ -11,15 +11,14 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 会员收藏的商品
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
- */
+ * @description 会员收藏的商品
+ * @date: 2022/7/30 17:40
+ * @author: xjl
+*/
 @RestController
 @RequestMapping("member/membercollectspu")
 public class MemberCollectSpuController {
+
     @Autowired
     private MemberCollectSpuService memberCollectSpuService;
 

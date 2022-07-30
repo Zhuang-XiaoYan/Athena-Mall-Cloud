@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description MemberReceiveAddressServiceImpl
+ * @date: 2022/7/30 22:28
+ * @author: xjl
+ */
+
 @Service("memberReceiveAddressService")
 public class MemberReceiveAddressServiceImpl extends ServiceImpl<MemberReceiveAddressDao, MemberReceiveAddressEntity> implements MemberReceiveAddressService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<MemberReceiveAddressEntity> page = this.page(
-                new Query<MemberReceiveAddressEntity>().getPage(params),
-                new QueryWrapper<MemberReceiveAddressEntity>()
-        );
-
+        IPage<MemberReceiveAddressEntity> page = this.page(new Query<MemberReceiveAddressEntity>().getPage(params), new QueryWrapper<MemberReceiveAddressEntity>());
         return new PageUtils(page);
     }
 

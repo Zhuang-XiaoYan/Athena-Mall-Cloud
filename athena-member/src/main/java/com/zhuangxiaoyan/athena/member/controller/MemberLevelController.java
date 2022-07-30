@@ -11,20 +11,24 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 会员等级
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 会员等级
+ * @date: 2022/7/30 17:40
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("member/memberlevel")
 public class MemberLevelController {
+
     @Autowired
     private MemberLevelService memberLevelService;
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/30 21:55
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:memberlevel:list")
@@ -34,46 +38,58 @@ public class MemberLevelController {
     }
 
     /**
-     * 信息
+     * @description 通过的id查询数
+     * @param: id
+     * @date: 2022/7/30 21:55
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:memberlevel:info")
     public Result info(@PathVariable("id") Long id) {
         MemberLevelEntity memberLevel = memberLevelService.getById(id);
-
         return Result.ok().put("memberLevel", memberLevel);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: memberLevel
+     * @date: 2022/7/30 21:55
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:memberlevel:save")
     public Result save(@RequestBody MemberLevelEntity memberLevel) {
         memberLevelService.save(memberLevel);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: memberLevel
+     * @date: 2022/7/30 21:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:memberlevel:update")
     public Result update(@RequestBody MemberLevelEntity memberLevel) {
         memberLevelService.updateById(memberLevel);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 21:56
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:memberlevel:delete")
     public Result delete(@RequestBody Long[] ids) {
         memberLevelService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

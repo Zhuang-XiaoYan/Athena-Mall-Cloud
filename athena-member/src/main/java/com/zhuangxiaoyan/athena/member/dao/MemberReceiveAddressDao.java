@@ -5,12 +5,11 @@ import com.zhuangxiaoyan.athena.member.entity.MemberReceiveAddressEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 会员收货地址
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
- */
+ * @description 会员收货地址
+ * @date: 2022/7/30 17:43
+ * @author: xjl
+*/
+
 @Mapper
 public interface MemberReceiveAddressDao extends BaseMapper<MemberReceiveAddressEntity> {
 

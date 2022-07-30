@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description MemberCollectSubjectServiceImpl
+ * @date: 2022/7/30 22:24
+ * @author: xjl
+ */
+
 @Service("memberCollectSubjectService")
 public class MemberCollectSubjectServiceImpl extends ServiceImpl<MemberCollectSubjectDao, MemberCollectSubjectEntity> implements MemberCollectSubjectService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<MemberCollectSubjectEntity> page = this.page(
-                new Query<MemberCollectSubjectEntity>().getPage(params),
-                new QueryWrapper<MemberCollectSubjectEntity>()
-        );
-
+        IPage<MemberCollectSubjectEntity> page = this.page(new Query<MemberCollectSubjectEntity>().getPage(params), new QueryWrapper<MemberCollectSubjectEntity>());
         return new PageUtils(page);
     }
 

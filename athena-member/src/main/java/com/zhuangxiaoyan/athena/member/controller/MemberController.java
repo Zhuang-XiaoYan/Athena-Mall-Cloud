@@ -11,20 +11,24 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 会员
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:29
+ * @description 会员
+ * @date: 2022/7/30 17:40
+ * @author: xjl
  */
+
 @RestController
 @RequestMapping("member/member")
 public class MemberController {
+
     @Autowired
     private MemberService memberService;
 
     /**
-     * 列表
+     * @description 查询所有的数据
+     * @param: params
+     * @date: 2022/7/30 21:53
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:member:list")
@@ -34,7 +38,11 @@ public class MemberController {
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 21:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:member:info")
@@ -44,7 +52,11 @@ public class MemberController {
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: member
+     * @date: 2022/7/30 21:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:member:save")
@@ -54,7 +66,11 @@ public class MemberController {
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: member
+     * @date: 2022/7/30 21:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:member:update")
@@ -64,7 +80,11 @@ public class MemberController {
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 21:54
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:member:delete")

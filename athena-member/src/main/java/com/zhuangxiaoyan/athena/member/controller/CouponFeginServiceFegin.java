@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Classname CouponFeginServiceFegin
- * @Description TODO
+ * @Description CouponFeginServiceFegin
  * @Date 2022/3/13 14:08
  * @Created by xjl
  */
+
 @RestController
 @RequestMapping("member/member")
 public class CouponFeginServiceFegin {
@@ -21,7 +21,7 @@ public class CouponFeginServiceFegin {
     private CouponFeginService couponFeginService;
 
     /**
-     * @description 调用远程服务
+     * @description 调用远程服务测试
      * @param:
      * @date: 2022/3/13 14:09
      * @return: com.zhuangxiaoyan.common.utils.R

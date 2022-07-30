@@ -11,70 +11,84 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * 成长值变化历史记录
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:28
+ * @description 成长值变化历史记录
+ * @date: 2022/7/30 17:40
+ * @author: xjl
  */
 @RestController
 @RequestMapping("member/growthchangehistory")
 public class GrowthChangeHistoryController {
+
     @Autowired
     private GrowthChangeHistoryService growthChangeHistoryService;
 
     /**
-     * 列表
+     * @description 查询所有数据
+     * @param: params
+     * @date: 2022/7/30 21:50
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/list")
     //@RequiresPermissions("member:growthchangehistory:list")
     public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = growthChangeHistoryService.queryPage(params);
-
         return Result.ok().put("page", page);
     }
 
     /**
-     * 信息
+     * @description 通过id查询数据
+     * @param: id
+     * @date: 2022/7/30 21:51
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("member:growthchangehistory:info")
     public Result info(@PathVariable("id") Long id) {
         GrowthChangeHistoryEntity growthChangeHistory = growthChangeHistoryService.getById(id);
-
         return Result.ok().put("growthChangeHistory", growthChangeHistory);
     }
 
     /**
-     * 保存
+     * @description 保存数据
+     * @param: growthChangeHistory
+     * @date: 2022/7/30 21:51
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/save")
     //@RequiresPermissions("member:growthchangehistory:save")
     public Result save(@RequestBody GrowthChangeHistoryEntity growthChangeHistory) {
         growthChangeHistoryService.save(growthChangeHistory);
-
         return Result.ok();
     }
 
     /**
-     * 修改
+     * @description 更新数据
+     * @param: growthChangeHistory
+     * @date: 2022/7/30 21:51
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/update")
     //@RequiresPermissions("member:growthchangehistory:update")
     public Result update(@RequestBody GrowthChangeHistoryEntity growthChangeHistory) {
         growthChangeHistoryService.updateById(growthChangeHistory);
-
         return Result.ok();
     }
 
     /**
-     * 删除
+     * @description 删除数据
+     * @param: ids
+     * @date: 2022/7/30 21:51
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("member:growthchangehistory:delete")
     public Result delete(@RequestBody Long[] ids) {
         growthChangeHistoryService.removeByIds(Arrays.asList(ids));
-
         return Result.ok();
     }
 

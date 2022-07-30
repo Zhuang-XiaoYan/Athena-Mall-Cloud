@@ -8,12 +8,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * 会员统计信息
- *
- * @author xjl
- * @email 18279148786@163.com
- * @date 2022-03-10 21:59:28
+ * @description 会员统计信息
+ * @date: 2022/7/30 22:18
+ * @author: xjl
  */
+
 @Data
 @TableName("ums_member_statistics_info")
 public class MemberStatisticsInfoEntity implements Serializable {

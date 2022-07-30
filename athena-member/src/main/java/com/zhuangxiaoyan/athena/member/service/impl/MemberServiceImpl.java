@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description MemberServiceImpl
+ * @date: 2022/7/30 22:28
+ * @author: xjl
+ */
+
 @Service("memberService")
 public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> implements MemberService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<MemberEntity> page = this.page(
-                new Query<MemberEntity>().getPage(params),
-                new QueryWrapper<MemberEntity>()
-        );
-
+        IPage<MemberEntity> page = this.page(new Query<MemberEntity>().getPage(params), new QueryWrapper<MemberEntity>());
         return new PageUtils(page);
     }
 

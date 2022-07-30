@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description GrowthChangeHistoryServiceImpl
+ * @date: 2022/7/30 22:21
+ * @author: xjl
+ */
+
 @Service("growthChangeHistoryService")
 public class GrowthChangeHistoryServiceImpl extends ServiceImpl<GrowthChangeHistoryDao, GrowthChangeHistoryEntity> implements GrowthChangeHistoryService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<GrowthChangeHistoryEntity> page = this.page(
-                new Query<GrowthChangeHistoryEntity>().getPage(params),
-                new QueryWrapper<GrowthChangeHistoryEntity>()
-        );
-
+        IPage<GrowthChangeHistoryEntity> page = this.page(new Query<GrowthChangeHistoryEntity>().getPage(params), new QueryWrapper<GrowthChangeHistoryEntity>());
         return new PageUtils(page);
     }
 

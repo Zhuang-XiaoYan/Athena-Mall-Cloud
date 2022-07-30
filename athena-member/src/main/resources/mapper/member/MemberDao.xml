@@ -28,5 +28,4 @@
         <result property="expiresIn" column="expires_in"/>
     </resultMap>
 
-
 </mapper>

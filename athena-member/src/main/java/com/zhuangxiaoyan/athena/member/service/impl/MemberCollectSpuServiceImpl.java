@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * @description MemberCollectSpuServiceImpl
+ * @date: 2022/7/30 22:23
+ * @author: xjl
+ */
+
 @Service("memberCollectSpuService")
 public class MemberCollectSpuServiceImpl extends ServiceImpl<MemberCollectSpuDao, MemberCollectSpuEntity> implements MemberCollectSpuService {
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
-        IPage<MemberCollectSpuEntity> page = this.page(
-                new Query<MemberCollectSpuEntity>().getPage(params),
-                new QueryWrapper<MemberCollectSpuEntity>()
-        );
-
+        IPage<MemberCollectSpuEntity> page = this.page(new Query<MemberCollectSpuEntity>().getPage(params), new QueryWrapper<MemberCollectSpuEntity>());
         return new PageUtils(page);
     }
 
