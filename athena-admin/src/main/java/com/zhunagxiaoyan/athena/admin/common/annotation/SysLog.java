@@ -11,9 +11,7 @@ import java.lang.annotation.*;
 
 /**
  * @description 系统日志注解
- * @param: null
  * @date: 2022/3/16 7:45
- * @return:
  * @author: xjl
  */
 

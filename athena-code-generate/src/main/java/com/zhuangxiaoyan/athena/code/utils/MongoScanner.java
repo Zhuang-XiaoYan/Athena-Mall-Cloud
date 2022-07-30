@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.code.service.utils;
+package com.zhuangxiaoyan.athena.code.utils;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoCommandException;
@@ -20,9 +20,7 @@ import java.util.stream.Collectors;
 
 /**
  * @description MongoScanner
- * @param: null
  * @date: 2022/7/29 12:57
- * @return:
  * @author: xjl
  */
 public class MongoScanner {

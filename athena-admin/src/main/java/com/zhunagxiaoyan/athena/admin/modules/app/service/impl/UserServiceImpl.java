@@ -10,7 +10,7 @@ package com.zhunagxiaoyan.athena.admin.modules.app.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.Assert;
 import com.zhunagxiaoyan.athena.admin.modules.app.dao.UserDao;
 import com.zhunagxiaoyan.athena.admin.modules.app.entity.UserEntity;
@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 
         //密码错误
         if (!user.getPassword().equals(DigestUtils.sha256Hex(form.getPassword()))) {
-            throw new RRException("手机号或密码错误");
+            throw new AthenaException("手机号或密码错误");
         }
 
         return user.getUserId();

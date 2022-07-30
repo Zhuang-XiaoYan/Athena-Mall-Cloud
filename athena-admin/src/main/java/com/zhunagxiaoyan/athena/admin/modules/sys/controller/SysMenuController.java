@@ -9,7 +9,7 @@
 package com.zhunagxiaoyan.athena.admin.modules.sys.controller;
 
 import com.zhunagxiaoyan.athena.admin.common.annotation.SysLog;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.Constant;
 import com.zhunagxiaoyan.athena.admin.common.utils.R;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysMenuEntity;
@@ -157,17 +157,17 @@ public class SysMenuController extends AbstractController {
      */
     private void verifyForm(SysMenuEntity menu) {
         if (StringUtils.isBlank(menu.getName())) {
-            throw new RRException("菜单名称不能为空");
+            throw new AthenaException("菜单名称不能为空");
         }
 
         if (menu.getParentId() == null) {
-            throw new RRException("上级菜单不能为空");
+            throw new AthenaException("上级菜单不能为空");
         }
 
         //菜单
         if (menu.getType() == Constant.MenuType.MENU.getValue()) {
             if (StringUtils.isBlank(menu.getUrl())) {
-                throw new RRException("菜单URL不能为空");
+                throw new AthenaException("菜单URL不能为空");
             }
         }
 
@@ -182,7 +182,7 @@ public class SysMenuController extends AbstractController {
         if (menu.getType() == Constant.MenuType.CATALOG.getValue() ||
                 menu.getType() == Constant.MenuType.MENU.getValue()) {
             if (parentType != Constant.MenuType.CATALOG.getValue()) {
-                throw new RRException("上级菜单只能为目录类型");
+                throw new AthenaException("上级菜单只能为目录类型");
             }
             return;
         }
@@ -190,7 +190,7 @@ public class SysMenuController extends AbstractController {
         //按钮
         if (menu.getType() == Constant.MenuType.BUTTON.getValue()) {
             if (parentType != Constant.MenuType.MENU.getValue()) {
-                throw new RRException("上级菜单只能为菜单类型");
+                throw new AthenaException("上级菜单只能为菜单类型");
             }
             return;
         }

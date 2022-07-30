@@ -22,14 +22,14 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  * @author Mark sunlightcs@gmail.com
  */
 @RestControllerAdvice
-public class RRExceptionHandler {
+public class AthenaExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 处理自定义异常
      */
-    @ExceptionHandler(RRException.class)
-    public R handleRRException(RRException e) {
+    @ExceptionHandler(AthenaException.class)
+    public R handleRRException(AthenaException e) {
         R r = new R();
         r.put("code", e.getCode());
         r.put("msg", e.getMessage());

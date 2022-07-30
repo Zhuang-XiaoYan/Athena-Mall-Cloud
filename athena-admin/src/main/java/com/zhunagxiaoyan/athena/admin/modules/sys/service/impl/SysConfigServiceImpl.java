@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
 import com.zhunagxiaoyan.athena.admin.common.utils.Query;
 import com.zhunagxiaoyan.athena.admin.modules.sys.dao.SysConfigDao;
@@ -98,7 +98,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
         try {
             return clazz.newInstance();
         } catch (Exception e) {
-            throw new RRException("获取参数失败");
+            throw new AthenaException("获取参数失败");
         }
     }
 }

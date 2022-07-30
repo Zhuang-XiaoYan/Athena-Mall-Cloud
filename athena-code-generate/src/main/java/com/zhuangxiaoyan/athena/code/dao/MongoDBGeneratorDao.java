@@ -5,7 +5,7 @@ import com.zhuangxiaoyan.athena.code.config.MongoCondition;
 import com.zhuangxiaoyan.athena.code.config.MongoManager;
 import com.zhuangxiaoyan.athena.code.entity.MongoDefinition;
 import com.zhuangxiaoyan.athena.code.factory.MongoDBCollectionFactory;
-import com.zhuangxiaoyan.athena.code.service.utils.MongoScanner;
+import com.zhuangxiaoyan.athena.code.utils.MongoScanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Repository;

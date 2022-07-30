@@ -11,7 +11,7 @@ package com.zhunagxiaoyan.athena.admin.modules.sys.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.code.kaptcha.Producer;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.DateUtils;
 import com.zhunagxiaoyan.athena.admin.modules.sys.dao.SysCaptchaDao;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysCaptchaEntity;
@@ -36,7 +36,7 @@ public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptcha
     @Override
     public BufferedImage getCaptcha(String uuid) {
         if (StringUtils.isBlank(uuid)) {
-            throw new RRException("uuid不能为空");
+            throw new AthenaException("uuid不能为空");
         }
         //生成文字验证码
         String code = producer.createText();

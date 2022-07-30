@@ -26,9 +26,13 @@ import java.util.stream.Collectors;
 public class MongoDBCollectionFactory {
 
     private static final String TABLE_NAME_KEY = "tableName";
+
     private static final String LIMIT_KEY = "limit";
+
     private static final String OFFSET_KEY = "offset";
+
     private static MongoDatabase mongoDatabase;
+
     /**
      * 此处是为了兼容mongo相关内容和关系型数据库的静态耦合所导致的问题
      */

@@ -8,7 +8,7 @@
 
 package com.zhunagxiaoyan.athena.admin.modules.app.interceptor;
 
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.modules.app.annotation.Login;
 import com.zhunagxiaoyan.athena.admin.modules.app.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -54,12 +54,12 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //凭证为空
         if (StringUtils.isBlank(token)) {
-            throw new RRException(jwtUtils.getHeader() + "不能为空", HttpStatus.UNAUTHORIZED.value());
+            throw new AthenaException(jwtUtils.getHeader() + "不能为空", HttpStatus.UNAUTHORIZED.value());
         }
 
         Claims claims = jwtUtils.getClaimByToken(token);
         if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
-            throw new RRException(jwtUtils.getHeader() + "失效，请重新登录", HttpStatus.UNAUTHORIZED.value());
+            throw new AthenaException(jwtUtils.getHeader() + "失效，请重新登录", HttpStatus.UNAUTHORIZED.value());
         }
 
         //设置userId到request里，后续根据userId，获取用户信息

@@ -1,9 +1,9 @@
 package com.zhuangxiaoyan.athena.code.controller;
 
 import com.zhuangxiaoyan.athena.code.service.SysGeneratorService;
-import com.zhuangxiaoyan.athena.code.service.utils.PageUtils;
-import com.zhuangxiaoyan.athena.code.service.utils.Query;
-import com.zhuangxiaoyan.athena.code.service.utils.Result;
+import com.zhuangxiaoyan.athena.code.utils.PageUtils;
+import com.zhuangxiaoyan.athena.code.utils.Query;
+import com.zhuangxiaoyan.athena.code.utils.Result;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -9,7 +9,7 @@
 package com.zhunagxiaoyan.athena.admin.modules.oss.cloud;
 
 import com.aliyun.oss.OSSClient;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -44,7 +44,7 @@ public class AliyunCloudStorageService extends CloudStorageService {
         try {
             client.putObject(config.getAliyunBucketName(), path, inputStream);
         } catch (Exception e) {
-            throw new RRException("上传文件失败，请检查配置信息", e);
+            throw new AthenaException("上传文件失败，请检查配置信息", e);
         }
 
         return config.getAliyunDomain() + "/" + path;

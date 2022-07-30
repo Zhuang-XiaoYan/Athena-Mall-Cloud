@@ -1,14 +1,13 @@
-package com.zhuangxiaoyan.athena.code.service.utils;
+package com.zhuangxiaoyan.athena.code.exception;
 
 import lombok.Data;
 
 /**
- * 自定义异常
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年10月27日 下午10:11:27
- */
+ * @description 自定义异常
+ * @date: 2022/7/30 8:42
+ * @author: xjl
+*/
+
 @Data
 public class AthenaException extends RuntimeException {
     private static final long serialVersionUID = 1L;

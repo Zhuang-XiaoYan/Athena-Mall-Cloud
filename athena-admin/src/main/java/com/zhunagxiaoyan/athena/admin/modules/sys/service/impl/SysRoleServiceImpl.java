@@ -11,7 +11,7 @@ package com.zhunagxiaoyan.athena.admin.modules.sys.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.Constant;
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
 import com.zhunagxiaoyan.athena.admin.common.utils.Query;
@@ -117,7 +117,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 
         //判断是否越权
         if (!menuIdList.containsAll(role.getMenuIdList())) {
-            throw new RRException("新增角色的权限，已超出你的权限范围");
+            throw new AthenaException("新增角色的权限，已超出你的权限范围");
         }
     }
 }

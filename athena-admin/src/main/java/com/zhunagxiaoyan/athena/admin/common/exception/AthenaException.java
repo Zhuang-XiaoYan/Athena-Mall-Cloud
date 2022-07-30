@@ -12,29 +12,29 @@ package com.zhunagxiaoyan.athena.admin.common.exception;
  *
  * @author Mark sunlightcs@gmail.com
  */
-public class RRException extends RuntimeException {
+public class AthenaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     private String msg;
     private int code = 500;
 
-    public RRException(String msg) {
+    public AthenaException(String msg) {
         super(msg);
         this.msg = msg;
     }
 
-    public RRException(String msg, Throwable e) {
+    public AthenaException(String msg, Throwable e) {
         super(msg, e);
         this.msg = msg;
     }
 
-    public RRException(String msg, int code) {
+    public AthenaException(String msg, int code) {
         super(msg);
         this.msg = msg;
         this.code = code;
     }
 
-    public RRException(String msg, int code, Throwable e) {
+    public AthenaException(String msg, int code, Throwable e) {
         super(msg, e);
         this.msg = msg;
         this.code = code;

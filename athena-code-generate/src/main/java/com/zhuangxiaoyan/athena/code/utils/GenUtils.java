@@ -1,10 +1,11 @@
-package com.zhuangxiaoyan.athena.code.service.utils;
+package com.zhuangxiaoyan.athena.code.utils;
 
 import com.zhuangxiaoyan.athena.code.config.MongoManager;
 import com.zhuangxiaoyan.athena.code.entity.ColumnEntity;
 import com.zhuangxiaoyan.athena.code.entity.MongoDefinition;
 import com.zhuangxiaoyan.athena.code.entity.MongoGeneratorEntity;
 import com.zhuangxiaoyan.athena.code.entity.TableEntity;
+import com.zhuangxiaoyan.athena.code.exception.AthenaException;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;

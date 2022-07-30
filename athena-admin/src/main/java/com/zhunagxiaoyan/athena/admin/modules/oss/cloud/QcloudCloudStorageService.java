@@ -13,7 +13,7 @@ import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.request.UploadFileRequest;
 import com.qcloud.cos.sign.Credentials;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class QcloudCloudStorageService extends CloudStorageService {
 
         JSONObject jsonObject = JSONObject.parseObject(response);
         if (jsonObject.getInteger("code") != 0) {
-            throw new RRException("文件上传失败，" + jsonObject.getString("message"));
+            throw new AthenaException("文件上传失败，" + jsonObject.getString("message"));
         }
 
         return config.getQcloudDomain() + path;
@@ -71,7 +71,7 @@ public class QcloudCloudStorageService extends CloudStorageService {
             byte[] data = IOUtils.toByteArray(inputStream);
             return this.upload(data, path);
         } catch (IOException e) {
-            throw new RRException("上传文件失败", e);
+            throw new AthenaException("上传文件失败", e);
         }
     }
 

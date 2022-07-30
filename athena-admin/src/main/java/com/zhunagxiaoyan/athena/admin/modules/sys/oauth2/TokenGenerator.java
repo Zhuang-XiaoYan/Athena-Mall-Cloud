@@ -8,7 +8,7 @@
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.oauth2;
 
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 
 import java.security.MessageDigest;
 import java.util.UUID;
@@ -46,7 +46,7 @@ public class TokenGenerator {
             byte[] messageDigest = algorithm.digest();
             return toHexString(messageDigest);
         } catch (Exception e) {
-            throw new RRException("生成Token失败", e);
+            throw new AthenaException("生成Token失败", e);
         }
     }
 }

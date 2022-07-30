@@ -8,7 +8,7 @@
 
 package com.zhunagxiaoyan.athena.admin.common.validator.group;
 
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -20,13 +20,13 @@ public abstract class Assert {
 
     public static void isBlank(String str, String message) {
         if (StringUtils.isBlank(str)) {
-            throw new RRException(message);
+            throw new AthenaException(message);
         }
     }
 
     public static void isNull(Object object, String message) {
         if (object == null) {
-            throw new RRException(message);
+            throw new AthenaException(message);
         }
     }
 }

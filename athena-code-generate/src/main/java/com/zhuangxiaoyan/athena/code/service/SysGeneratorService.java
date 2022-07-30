@@ -6,9 +6,9 @@ import com.zhuangxiaoyan.athena.code.config.MongoManager;
 import com.zhuangxiaoyan.athena.code.dao.GeneratorDao;
 import com.zhuangxiaoyan.athena.code.dao.MongoDBGeneratorDao;
 import com.zhuangxiaoyan.athena.code.factory.MongoDBCollectionFactory;
-import com.zhuangxiaoyan.athena.code.service.utils.GenUtils;
-import com.zhuangxiaoyan.athena.code.service.utils.PageUtils;
-import com.zhuangxiaoyan.athena.code.service.utils.Query;
+import com.zhuangxiaoyan.athena.code.utils.GenUtils;
+import com.zhuangxiaoyan.athena.code.utils.PageUtils;
+import com.zhuangxiaoyan.athena.code.utils.Query;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,10 +20,10 @@ import java.util.Map;
 import java.util.zip.ZipOutputStream;
 
 /**
- * 代码生成器
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 代码生成器
+ * @date: 2022/7/30 8:41
+ * @author: xjl
+*/
 @Service
 public class SysGeneratorService {
 

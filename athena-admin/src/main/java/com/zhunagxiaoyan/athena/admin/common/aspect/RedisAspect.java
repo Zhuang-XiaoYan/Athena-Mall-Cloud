@@ -7,7 +7,7 @@
  */
 package com.zhunagxiaoyan.athena.admin.common.aspect;
 
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -18,9 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @description Redis切面处理类
- * @param: null
  * @date: 2022/3/16 7:45
- * @return:
  * @author: xjl
  */
 @Aspect
@@ -39,7 +37,7 @@ public class RedisAspect {
                 result = point.proceed();
             } catch (Exception e) {
                 logger.error("redis error", e);
-                throw new RRException("Redis服务异常");
+                throw new AthenaException("Redis服务异常");
             }
         }
         return result;

@@ -9,7 +9,7 @@
 package com.zhunagxiaoyan.athena.admin.modules.oss.controller;
 
 import com.google.gson.Gson;
-import com.zhunagxiaoyan.athena.admin.common.exception.RRException;
+import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.ConfigConstant;
 import com.zhunagxiaoyan.athena.admin.common.utils.Constant;
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
@@ -100,7 +100,7 @@ public class SysOssController {
     @RequiresPermissions("sys:oss:all")
     public R upload(@RequestParam("file") MultipartFile file) throws Exception {
         if (file.isEmpty()) {
-            throw new RRException("上传文件不能为空");
+            throw new AthenaException("上传文件不能为空");
         }
 
         //上传文件

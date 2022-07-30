@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.code.service.utils;
+package com.zhuangxiaoyan.athena.code.utils;
 
 import java.util.HashMap;
 import java.util.Map;

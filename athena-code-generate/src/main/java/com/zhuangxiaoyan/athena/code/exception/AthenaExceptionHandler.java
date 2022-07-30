@@ -1,6 +1,7 @@
-package com.zhuangxiaoyan.athena.code.service.utils;
+package com.zhuangxiaoyan.athena.code.exception;
 
 import com.alibaba.fastjson.JSON;
+import com.zhuangxiaoyan.athena.code.utils.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -12,12 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 异常处理器
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年10月27日 下午10:16:19
- */
+ * @description 异常处理器
+ * @date: 2022/7/30 8:42
+ * @author: xjl
+*/
 @Component
 public class AthenaExceptionHandler implements HandlerExceptionResolver {
 
