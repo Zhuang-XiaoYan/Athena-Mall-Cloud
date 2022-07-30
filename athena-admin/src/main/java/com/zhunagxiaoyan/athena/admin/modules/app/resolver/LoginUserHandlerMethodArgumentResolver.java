@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.resolver;
 
 import com.zhunagxiaoyan.athena.admin.modules.app.annotation.LoginUser;
@@ -22,12 +14,14 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * 有@LoginUser注解的方法参数，注入当前登录用户
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 有@LoginUser注解的方法参数，注入当前登录用户
+ * @date: 2022/7/30 13:01
+ * @author: xjl
+*/
+
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+
     @Autowired
     private UserService userService;
 
@@ -44,10 +38,8 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
         if (object == null) {
             return null;
         }
-
         //获取用户信息
         UserEntity user = userService.getById((Long) object);
-
         return user;
     }
 }

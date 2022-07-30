@@ -1,13 +1,6 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 package com.zhunagxiaoyan.athena.admin.common.exception;
 
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,10 +10,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
- * 异常处理器
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 异常处理器
+ * @date: 2022/7/30 8:47
+ * @author: xjl
+*/
 @RestControllerAdvice
 public class AthenaExceptionHandler {
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -29,8 +22,8 @@ public class AthenaExceptionHandler {
      * 处理自定义异常
      */
     @ExceptionHandler(AthenaException.class)
-    public R handleRRException(AthenaException e) {
-        R r = new R();
+    public Result handleRRException(AthenaException e) {
+        Result r = new Result();
         r.put("code", e.getCode());
         r.put("msg", e.getMessage());
 
@@ -38,26 +31,26 @@ public class AthenaExceptionHandler {
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public R handlerNoFoundException(Exception e) {
+    public Result handlerNoFoundException(Exception e) {
         logger.error(e.getMessage(), e);
-        return R.error(404, "路径不存在，请检查路径是否正确");
+        return Result.error(404, "路径不存在，请检查路径是否正确");
     }
 
     @ExceptionHandler(DuplicateKeyException.class)
-    public R handleDuplicateKeyException(DuplicateKeyException e) {
+    public Result handleDuplicateKeyException(DuplicateKeyException e) {
         logger.error(e.getMessage(), e);
-        return R.error("数据库中已存在该记录");
+        return Result.error("数据库中已存在该记录");
     }
 
     @ExceptionHandler(AuthorizationException.class)
-    public R handleAuthorizationException(AuthorizationException e) {
+    public Result handleAuthorizationException(AuthorizationException e) {
         logger.error(e.getMessage(), e);
-        return R.error("没有权限，请联系管理员授权");
+        return Result.error("没有权限，请联系管理员授权");
     }
 
     @ExceptionHandler(Exception.class)
-    public R handleException(Exception e) {
+    public Result handleException(Exception e) {
         logger.error(e.getMessage(), e);
-        return R.error();
+        return Result.error();
     }
 }

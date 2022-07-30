@@ -1,16 +1,10 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.controller;
 
 import com.zhunagxiaoyan.athena.admin.common.annotation.SysLog;
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.ValidatorUtils;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysConfigEntity;
 import com.zhunagxiaoyan.athena.admin.modules.sys.service.SysConfigService;
@@ -36,10 +30,10 @@ public class SysConfigController extends AbstractController {
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:config:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = sysConfigService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -47,10 +41,10 @@ public class SysConfigController extends AbstractController {
      */
     @GetMapping("/info/{id}")
     @RequiresPermissions("sys:config:info")
-    public R info(@PathVariable("id") Long id) {
+    public Result info(@PathVariable("id") Long id) {
         SysConfigEntity config = sysConfigService.getById(id);
 
-        return R.ok().put("config", config);
+        return Result.ok().put("config", config);
     }
 
     /**
@@ -59,12 +53,12 @@ public class SysConfigController extends AbstractController {
     @SysLog("保存配置")
     @PostMapping("/save")
     @RequiresPermissions("sys:config:save")
-    public R save(@RequestBody SysConfigEntity config) {
+    public Result save(@RequestBody SysConfigEntity config) {
         ValidatorUtils.validateEntity(config);
 
         sysConfigService.saveConfig(config);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -73,12 +67,12 @@ public class SysConfigController extends AbstractController {
     @SysLog("修改配置")
     @PostMapping("/update")
     @RequiresPermissions("sys:config:update")
-    public R update(@RequestBody SysConfigEntity config) {
+    public Result update(@RequestBody SysConfigEntity config) {
         ValidatorUtils.validateEntity(config);
 
         sysConfigService.update(config);
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -87,10 +81,10 @@ public class SysConfigController extends AbstractController {
     @SysLog("删除配置")
     @PostMapping("/delete")
     @RequiresPermissions("sys:config:delete")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         sysConfigService.deleteBatch(ids);
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

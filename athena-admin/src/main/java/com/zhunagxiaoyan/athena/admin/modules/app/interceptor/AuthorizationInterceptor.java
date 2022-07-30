@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.interceptor;
 
 import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
@@ -23,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 权限(Token)验证
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 权限(Token)验证
+ * @date: 2022/7/30 9:46
+ * @author: xjl
+*/
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     public static final String USER_KEY = "userId";
@@ -41,30 +33,24 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         } else {
             return true;
         }
-
         if (annotation == null) {
             return true;
         }
-
         //获取用户凭证
         String token = request.getHeader(jwtUtils.getHeader());
         if (StringUtils.isBlank(token)) {
             token = request.getParameter(jwtUtils.getHeader());
         }
-
         //凭证为空
         if (StringUtils.isBlank(token)) {
             throw new AthenaException(jwtUtils.getHeader() + "不能为空", HttpStatus.UNAUTHORIZED.value());
         }
-
         Claims claims = jwtUtils.getClaimByToken(token);
         if (claims == null || jwtUtils.isTokenExpired(claims.getExpiration())) {
             throw new AthenaException(jwtUtils.getHeader() + "失效，请重新登录", HttpStatus.UNAUTHORIZED.value());
         }
-
         //设置userId到request里，后续根据userId，获取用户信息
         request.setAttribute(USER_KEY, Long.parseLong(claims.getSubject()));
-
         return true;
     }
 }

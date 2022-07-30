@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.datasource.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -21,10 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 配置多数据源
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 配置多数据源
+ * @date: 2022/7/30 9:34
+ * @author: xjl
+*/
 @Configuration
 @EnableConfigurationProperties(DynamicDataSourceProperties.class)
 public class DynamicDataSourceConfig {

@@ -1,14 +1,6 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.controller;
 
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.ValidatorUtils;
 import com.zhunagxiaoyan.athena.admin.modules.app.form.LoginForm;
 import com.zhunagxiaoyan.athena.admin.modules.app.service.UserService;
@@ -25,10 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * APP登录授权
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description APP登录授权
+ * @date: 2022/7/30 9:44
+ * @author: xjl
+*/
 @RestController
 @RequestMapping("/app")
 @Api("APP登录接口")
@@ -43,7 +35,7 @@ public class AppLoginController {
      */
     @PostMapping("login")
     @ApiOperation("登录")
-    public R login(@RequestBody LoginForm form) {
+    public Result login(@RequestBody LoginForm form) {
         //表单校验
         ValidatorUtils.validateEntity(form);
 
@@ -57,7 +49,7 @@ public class AppLoginController {
         map.put("token", token);
         map.put("expire", jwtUtils.getExpire());
 
-        return R.ok(map);
+        return Result.ok(map);
     }
 
 }

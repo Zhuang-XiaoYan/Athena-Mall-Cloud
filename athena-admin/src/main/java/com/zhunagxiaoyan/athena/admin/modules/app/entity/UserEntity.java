@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -16,10 +8,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 用户
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 用户
+ * @date: 2022/7/30 9:44
+ * @author: xjl
+*/
 @Data
 @TableName("tb_user")
 public class UserEntity implements Serializable {

@@ -1,10 +1,4 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.oss.controller;
 
@@ -13,7 +7,7 @@ import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import com.zhunagxiaoyan.athena.admin.common.utils.ConfigConstant;
 import com.zhunagxiaoyan.athena.admin.common.utils.Constant;
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.AliyunGroup;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.QcloudGroup;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.QiniuGroup;
@@ -51,10 +45,10 @@ public class SysOssController {
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:oss:all")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = sysOssService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
@@ -62,10 +56,10 @@ public class SysOssController {
      */
     @GetMapping("/config")
     @RequiresPermissions("sys:oss:all")
-    public R config() {
+    public Result config() {
         CloudStorageConfig config = sysConfigService.getConfigObject(KEY, CloudStorageConfig.class);
 
-        return R.ok().put("config", config);
+        return Result.ok().put("config", config);
     }
 
     /**
@@ -73,7 +67,7 @@ public class SysOssController {
      */
     @PostMapping("/saveConfig")
     @RequiresPermissions("sys:oss:all")
-    public R saveConfig(@RequestBody CloudStorageConfig config) {
+    public Result saveConfig(@RequestBody CloudStorageConfig config) {
         //校验类型
         ValidatorUtils.validateEntity(config);
 
@@ -90,7 +84,7 @@ public class SysOssController {
 
         sysConfigService.updateValueByKey(KEY, new Gson().toJson(config));
 
-        return R.ok();
+        return Result.ok();
     }
 
     /**
@@ -98,7 +92,7 @@ public class SysOssController {
      */
     @PostMapping("/upload")
     @RequiresPermissions("sys:oss:all")
-    public R upload(@RequestParam("file") MultipartFile file) throws Exception {
+    public Result upload(@RequestParam("file") MultipartFile file) throws Exception {
         if (file.isEmpty()) {
             throw new AthenaException("上传文件不能为空");
         }
@@ -113,7 +107,7 @@ public class SysOssController {
         ossEntity.setCreateDate(new Date());
         sysOssService.save(ossEntity);
 
-        return R.ok().put("url", url);
+        return Result.ok().put("url", url);
     }
 
     /**
@@ -121,10 +115,10 @@ public class SysOssController {
      */
     @PostMapping("/delete")
     @RequiresPermissions("sys:oss:all")
-    public R delete(@RequestBody Long[] ids) {
+    public Result delete(@RequestBody Long[] ids) {
         sysOssService.removeByIds(Arrays.asList(ids));
 
-        return R.ok();
+        return Result.ok();
     }
 
 }

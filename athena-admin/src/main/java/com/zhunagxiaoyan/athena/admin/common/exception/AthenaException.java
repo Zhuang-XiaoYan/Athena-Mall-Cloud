@@ -1,17 +1,11 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 package com.zhunagxiaoyan.athena.admin.common.exception;
 
 /**
- * 自定义异常
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 自定义异常
+ * @date: 2022/7/30 8:47
+ * @author: xjl
+*/
 public class AthenaException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 

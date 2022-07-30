@@ -1,15 +1,9 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.sys.dao.SysUserTokenDao;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysUserTokenEntity;
 import com.zhunagxiaoyan.athena.admin.modules.sys.oauth2.TokenGenerator;
@@ -24,7 +18,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
     private final static int EXPIRE = 3600 * 12;
 
     @Override
-    public R createToken(long userId) {
+    public Result createToken(long userId) {
         //生成一个token
         String token = TokenGenerator.generateValue();
 
@@ -53,7 +47,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
             this.updateById(tokenEntity);
         }
 
-        R r = R.ok().put("token", token).put("expire", EXPIRE);
+        Result r = Result.ok().put("token", token).put("expire", EXPIRE);
 
         return r;
     }

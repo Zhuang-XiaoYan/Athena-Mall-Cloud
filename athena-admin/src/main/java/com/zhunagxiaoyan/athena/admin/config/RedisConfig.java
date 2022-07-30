@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +8,10 @@ import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * Redis配置
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description Redis配置
+ * @date: 2022/7/30 9:32
+ * @author: xjl
+*/
 @Configuration
 public class RedisConfig {
     @Autowired

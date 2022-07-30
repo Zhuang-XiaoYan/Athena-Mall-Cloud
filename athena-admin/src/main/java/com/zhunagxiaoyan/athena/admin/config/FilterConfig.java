@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.config;
 
 import com.zhunagxiaoyan.athena.admin.common.xss.XssFilter;
@@ -17,10 +9,10 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import javax.servlet.DispatcherType;
 
 /**
- * Filter配置
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description Filter配置
+ * @date: 2022/7/30 9:31
+ * @author: xjl
+*/
 @Configuration
 public class FilterConfig {
 

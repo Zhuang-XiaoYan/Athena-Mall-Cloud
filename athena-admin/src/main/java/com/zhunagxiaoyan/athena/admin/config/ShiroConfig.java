@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.config;
 
 import com.zhunagxiaoyan.athena.admin.modules.sys.oauth2.OAuth2Filter;
@@ -24,10 +16,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Shiro配置
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description Shiro配置
+ * @date: 2022/7/30 9:32
+ * @author: xjl
+*/
 @Configuration
 public class ShiroConfig {
 

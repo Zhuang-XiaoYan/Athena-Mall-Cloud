@@ -1,10 +1,10 @@
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 /**
- * 常量
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 常量
+ * @date: 2022/7/30 8:48
+ * @author: xjl
+*/
 public class Constant {
     /**
      * 超级管理员ID

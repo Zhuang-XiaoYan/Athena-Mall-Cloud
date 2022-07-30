@@ -1,21 +1,13 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.xss;
 
 import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * SQL过滤
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description SQL过滤
+ * @date: 2022/7/30 8:55
+ * @author: xjl
+*/
 public class SQLFilter {
 
     /**

@@ -1,14 +1,8 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.controller;
 
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysUserEntity;
 import com.zhunagxiaoyan.athena.admin.modules.sys.form.SysLoginForm;
 import com.zhunagxiaoyan.athena.admin.modules.sys.service.SysCaptchaService;
@@ -66,7 +60,7 @@ public class SysLoginController extends AbstractController {
     public Map<String, Object> login(@RequestBody SysLoginForm form) throws IOException {
         boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
         if (!captcha) {
-            return R.error("验证码不正确");
+            return Result.error("验证码不正确");
         }
 
         //用户信息
@@ -74,16 +68,16 @@ public class SysLoginController extends AbstractController {
 
         //账号不存在、密码错误
         if (user == null || !user.getPassword().equals(new Sha256Hash(form.getPassword(), user.getSalt()).toHex())) {
-            return R.error("账号或密码不正确");
+            return Result.error("账号或密码不正确");
         }
 
         //账号锁定
         if (user.getStatus() == 0) {
-            return R.error("账号已被锁定,请联系管理员");
+            return Result.error("账号已被锁定,请联系管理员");
         }
 
         //生成token，并保存到数据库
-        R r = sysUserTokenService.createToken(user.getUserId());
+        Result r = sysUserTokenService.createToken(user.getUserId());
         return r;
     }
 
@@ -91,9 +85,9 @@ public class SysLoginController extends AbstractController {
      * 退出
      */
     @PostMapping("/sys/logout")
-    public R logout() {
+    public Result logout() {
         sysUserTokenService.logout(getUserId());
-        return R.ok();
+        return Result.ok();
     }
 
 }

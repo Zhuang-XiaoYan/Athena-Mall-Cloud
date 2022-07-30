@@ -1,20 +1,12 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.annotation;
 
 import java.lang.annotation.*;
 
 /**
- * app登录效验
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description app登录效验
+ * @date: 2022/7/30 9:35
+ * @author: xjl
+*/
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

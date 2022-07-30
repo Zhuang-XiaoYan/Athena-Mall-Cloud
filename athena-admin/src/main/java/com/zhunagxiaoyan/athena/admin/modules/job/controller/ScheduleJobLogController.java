@@ -1,15 +1,7 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.job.controller;
 
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.job.entity.ScheduleJobLogEntity;
 import com.zhunagxiaoyan.athena.admin.modules.job.service.ScheduleJobLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -22,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * 定时任务日志
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 定时任务日志
+ * @date: 2022/7/30 13:02
+ * @author: xjl
+*/
 @RestController
 @RequestMapping("/sys/scheduleLog")
 public class ScheduleJobLogController {
@@ -37,19 +29,19 @@ public class ScheduleJobLogController {
      */
     @RequestMapping("/list")
     @RequiresPermissions("sys:schedule:log")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = scheduleJobLogService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
     /**
      * 定时任务日志信息
      */
     @RequestMapping("/info/{logId}")
-    public R info(@PathVariable("logId") Long logId) {
+    public Result info(@PathVariable("logId") Long logId) {
         ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
 
-        return R.ok().put("log", log);
+        return Result.ok().put("log", log);
     }
 }

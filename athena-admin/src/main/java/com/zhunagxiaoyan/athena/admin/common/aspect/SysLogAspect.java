@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
 package com.zhunagxiaoyan.athena.admin.common.aspect;
 
 import com.google.gson.Gson;
@@ -28,10 +21,10 @@ import java.lang.reflect.Method;
 import java.util.Date;
 
 /**
- * 系统日志，切面处理类
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 系统日志，切面处理类
+ * @date: 2022/7/30 8:47
+ * @author: xjl
+*/
 @Aspect
 @Component
 public class SysLogAspect {

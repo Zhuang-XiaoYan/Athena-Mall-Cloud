@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.xss;
 
 import javax.servlet.*;
@@ -13,10 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * XSS过滤
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description XSS过滤
+ * @date: 2022/7/30 8:55
+ * @author: xjl
+*/
 public class XssFilter implements Filter {
 
     @Override

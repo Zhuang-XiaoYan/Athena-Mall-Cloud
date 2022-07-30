@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
@@ -15,10 +7,10 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
 /**
- * Shiro工具类
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description Shiro工具类
+ * @date: 2022/7/30 8:51
+ * @author: xjl
+*/
 public class ShiroUtils {
 
     public static Session getSession() {

@@ -1,15 +1,9 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.sys.entity.SysUserTokenEntity;
 
 /**
@@ -24,7 +18,7 @@ public interface SysUserTokenService extends IService<SysUserTokenEntity> {
      *
      * @param userId 用户ID
      */
-    R createToken(long userId);
+    Result createToken(long userId);
 
     /**
      * 退出，修改token值

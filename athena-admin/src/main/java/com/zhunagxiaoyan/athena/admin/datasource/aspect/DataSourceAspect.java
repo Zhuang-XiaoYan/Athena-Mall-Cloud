@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.datasource.aspect;
 
 import com.zhunagxiaoyan.athena.admin.datasource.annotation.DataSource;
@@ -24,10 +16,10 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 
 /**
- * 多数据源，切面处理类
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 多数据源，切面处理类
+ * @date: 2022/7/30 9:33
+ * @author: xjl
+*/
 @Aspect
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)

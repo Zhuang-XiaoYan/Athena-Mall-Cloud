@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.job.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -17,10 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 定时任务日志
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 定时任务日志
+ * @date: 2022/7/30 13:03
+ * @author: xjl
+*/
+
 @Data
 @TableName("schedule_job_log")
 public class ScheduleJobLogEntity implements Serializable {

@@ -1,14 +1,6 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.app.controller;
 
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.app.annotation.Login;
 import com.zhunagxiaoyan.athena.admin.modules.app.annotation.LoginUser;
 import com.zhunagxiaoyan.athena.admin.modules.app.entity.UserEntity;
@@ -32,21 +24,21 @@ public class AppTestController {
     @Login
     @GetMapping("userInfo")
     @ApiOperation("获取用户信息")
-    public R userInfo(@LoginUser UserEntity user) {
-        return R.ok().put("user", user);
+    public Result userInfo(@LoginUser UserEntity user) {
+        return Result.ok().put("user", user);
     }
 
     @Login
     @GetMapping("userId")
     @ApiOperation("获取用户ID")
-    public R userInfo(@RequestAttribute("userId") Integer userId) {
-        return R.ok().put("userId", userId);
+    public Result userInfo(@RequestAttribute("userId") Integer userId) {
+        return Result.ok().put("userId", userId);
     }
 
     @GetMapping("notToken")
     @ApiOperation("忽略Token验证测试")
-    public R notToken() {
-        return R.ok().put("msg", "无需token也能访问。。。");
+    public Result notToken() {
+        return Result.ok().put("msg", "无需token也能访问。。。");
     }
 
 }

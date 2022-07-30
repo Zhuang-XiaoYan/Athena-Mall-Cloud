@@ -1,21 +1,13 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.datasource.config;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * 多数据源上下文
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 多数据源上下文
+ * @date: 2022/7/30 9:34
+ * @author: xjl
+*/
 public class DynamicContextHolder {
     @SuppressWarnings("unchecked")
     private static final ThreadLocal<Deque<String>> CONTEXT_HOLDER = new ThreadLocal() {

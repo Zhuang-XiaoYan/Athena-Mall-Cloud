@@ -1,17 +1,14 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @description 跨域访问请求
+ * @date: 2022/7/30 9:30
+ * @author: xjl
+*/
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 

@@ -1,10 +1,4 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.app.service;
 
@@ -13,10 +7,10 @@ import com.zhunagxiaoyan.athena.admin.modules.app.entity.UserEntity;
 import com.zhunagxiaoyan.athena.admin.modules.app.form.LoginForm;
 
 /**
- * 用户
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 用户
+ * @date: 2022/7/30 13:01
+ * @author: xjl
+*/
 public interface UserService extends IService<UserEntity> {
 
     UserEntity queryByMobile(String mobile);

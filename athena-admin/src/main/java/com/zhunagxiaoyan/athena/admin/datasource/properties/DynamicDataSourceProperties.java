@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2018 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.datasource.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,11 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 多数据源属性
- *
- * @author Mark sunlightcs@gmail.com
- * @since 1.0.0
- */
+ * @description 多数据源属性
+ * @date: 2022/7/30 9:35
+ * @author: xjl
+*/
 @ConfigurationProperties(prefix = "dynamic")
 public class DynamicDataSourceProperties {
     private Map<String, DataSourceProperties> datasource = new LinkedHashMap<>();

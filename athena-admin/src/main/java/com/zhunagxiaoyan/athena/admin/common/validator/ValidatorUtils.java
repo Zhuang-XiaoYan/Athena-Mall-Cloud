@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.validator.group;
 
 import com.zhunagxiaoyan.athena.admin.common.exception.AthenaException;
@@ -16,13 +8,12 @@ import javax.validation.Validator;
 import java.util.Set;
 
 /**
- * hibernate-validator校验工具类
- * <p>
- * 参考文档：http://docs.jboss.org/hibernate/validator/5.4/reference/en-US/html_single/
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description hibernate-validator校验工具类
+ * @date: 2022/7/30 8:54
+ * @author: xjl
+*/
 public class ValidatorUtils {
+
     private static final Validator validator;
 
     static {

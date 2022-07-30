@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 import org.springframework.beans.BeansException;
@@ -14,10 +6,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * Spring Context 工具类
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description  Spring Context 工具类
+ * @date: 2022/7/30 8:51
+ * @author: xjl
+*/
 @Component
 public class SpringContextUtils implements ApplicationContextAware {
     public static ApplicationContext applicationContext;

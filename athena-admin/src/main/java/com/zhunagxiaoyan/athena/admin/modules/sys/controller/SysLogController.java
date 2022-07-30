@@ -1,15 +1,9 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.sys.controller;
 
 import com.zhunagxiaoyan.athena.admin.common.utils.PageUtils;
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.modules.sys.service.SysLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +32,10 @@ public class SysLogController {
     @ResponseBody
     @GetMapping("/list")
     @RequiresPermissions("sys:log:list")
-    public R list(@RequestParam Map<String, Object> params) {
+    public Result list(@RequestParam Map<String, Object> params) {
         PageUtils page = sysLogService.queryPage(params);
 
-        return R.ok().put("page", page);
+        return Result.ok().put("page", page);
     }
 
 }

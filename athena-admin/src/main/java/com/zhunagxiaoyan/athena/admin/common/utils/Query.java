@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -17,10 +9,10 @@ import org.apache.commons.lang.StringUtils;
 import java.util.Map;
 
 /**
- * 查询参数
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 查询参数
+ * @date: 2022/7/30 8:49
+ * @author: xjl
+*/
 public class Query<T> {
 
     public IPage<T> getPage(Map<String, Object> params) {

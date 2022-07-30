@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.modules.job.config;
 
 import org.springframework.context.annotation.Bean;
@@ -16,10 +8,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * 定时任务配置
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 定时任务配置
+ * @date: 2022/7/30 13:02
+ * @author: xjl
+*/
 @Configuration
 public class ScheduleConfig {
 

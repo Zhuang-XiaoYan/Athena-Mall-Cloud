@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 import org.springframework.web.context.request.RequestContextHolder;
@@ -13,6 +5,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @description HttpContextUtils
+ * @date: 2022/7/30 8:48
+ * @author: xjl
+*/
 public class HttpContextUtils {
 
     public static HttpServletRequest getHttpServletRequest() {

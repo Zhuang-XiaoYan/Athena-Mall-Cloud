@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package com.zhunagxiaoyan.athena.admin.common.utils;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,10 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 日期处理
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 日期处理
+ * @date: 2022/7/30 8:48
+ * @author: xjl
+*/
 public class DateUtils {
     /**
      * 时间格式(yyyy-MM-dd)

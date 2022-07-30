@@ -1,14 +1,8 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
+
 
 package com.zhunagxiaoyan.athena.admin.modules.app.controller;
 
-import com.zhunagxiaoyan.athena.admin.common.utils.R;
+import com.zhunagxiaoyan.athena.admin.common.utils.Result;
 import com.zhunagxiaoyan.athena.admin.common.validator.group.ValidatorUtils;
 import com.zhunagxiaoyan.athena.admin.modules.app.entity.UserEntity;
 import com.zhunagxiaoyan.athena.admin.modules.app.form.RegisterForm;
@@ -25,30 +19,30 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 /**
- * 注册
- *
- * @author Mark sunlightcs@gmail.com
- */
+ * @description 注册
+ * @date: 2022/7/30 9:44
+ * @return:
+ * @author: xjl
+*/
 @RestController
 @RequestMapping("/app")
 @Api("APP注册接口")
 public class AppRegisterController {
+
     @Autowired
     private UserService userService;
 
     @PostMapping("register")
     @ApiOperation("注册")
-    public R register(@RequestBody RegisterForm form) {
+    public Result register(@RequestBody RegisterForm form) {
         //表单校验
         ValidatorUtils.validateEntity(form);
-
         UserEntity user = new UserEntity();
         user.setMobile(form.getMobile());
         user.setUsername(form.getMobile());
         user.setPassword(DigestUtils.sha256Hex(form.getPassword()));
         user.setCreateTime(new Date());
         userService.save(user);
-
-        return R.ok();
+        return Result.ok();
     }
 }
