@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.zhuangxiaoyan.common.utils;
+package com.zhuangxiaoyan.common.exception;
 
 import lombok.Data;
 
@@ -15,6 +15,7 @@ import lombok.Data;
  * @date: 2022/3/19 18:37
  * @author: xjl
  */
+
 @Data
 public class AthenaException extends RuntimeException {
 

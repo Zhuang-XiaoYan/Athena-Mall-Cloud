@@ -12,9 +12,7 @@ import java.util.Map;
 
 /**
  * @description 优惠券分类关联
- * @param: null
  * @date: 2022/7/28 15:30
- * @return:
  * @author: xjl
  */
 

@@ -8,7 +8,7 @@
 
 package com.zhuangxiaoyan.common.xss;
 
-import com.zhuangxiaoyan.common.utils.AthenaException;
+import com.zhuangxiaoyan.common.exception.AthenaException;
 import org.apache.commons.lang.StringUtils;
 
 /**

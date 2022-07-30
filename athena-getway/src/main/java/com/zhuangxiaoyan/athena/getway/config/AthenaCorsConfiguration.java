@@ -9,9 +9,9 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 /**
  * @description 统一在解决跨域的配置
  * @date: 2022/3/17 8:36
- * @return:
  * @author: xjl
  */
+
 @Configuration
 public class AthenaCorsConfiguration {
 

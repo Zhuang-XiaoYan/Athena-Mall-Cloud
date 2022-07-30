@@ -12,9 +12,7 @@ import java.util.Map;
 
 /**
  * @description 商品spu积分设置
- * @param: null
  * @date: 2022/7/28 16:01
- * @return:
  * @author: xjl
  */
 

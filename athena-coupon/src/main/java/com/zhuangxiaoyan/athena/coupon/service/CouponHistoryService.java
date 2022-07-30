@@ -9,7 +9,6 @@ import java.util.Map;
 /**
  * @description 优惠券领取历史记录
  * @date: 2022/7/28 16:19
- * @return:
  * @author: xjl
 */
 public interface CouponHistoryService extends IService<CouponHistoryEntity> {

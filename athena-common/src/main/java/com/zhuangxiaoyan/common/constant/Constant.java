@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.zhuangxiaoyan.common.utils;
+package com.zhuangxiaoyan.common.constant;
 
 /**
  * @description 常量

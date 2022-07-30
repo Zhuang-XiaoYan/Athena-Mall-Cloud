@@ -14,7 +14,6 @@ import java.util.Map;
 /**
  * @description HomeSubjectSpuServiceImpl
  * @date: 2022/7/28 16:36
- * @return:
  * @author: xjl
  */
 @Service("homeSubjectSpuService")

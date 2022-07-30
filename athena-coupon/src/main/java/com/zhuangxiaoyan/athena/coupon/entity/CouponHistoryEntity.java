@@ -9,9 +9,7 @@ import java.util.Date;
 
 /**
  * @description 优惠券领取历史记录
- * @param: null
  * @date: 2022/7/28 16:14
- * @return:
  * @author: xjl
  */
 

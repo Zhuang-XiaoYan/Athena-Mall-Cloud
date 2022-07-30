@@ -12,9 +12,7 @@ import java.util.Map;
 
 /**
  * @description 首页轮播广告
- * @param: null
  * @date: 2022/7/28 15:33
- * @return:
  * @author: xjl
  */
 

@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @description 配置中心测试服务
- * @param: null
  * @date: 2022/7/28 15:19
- * @return:
  * @author: xjl
  */
 @RefreshScope
