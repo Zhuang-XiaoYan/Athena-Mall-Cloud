@@ -26,8 +26,8 @@ public class WareSkuController {
     private WareSkuService wareSkuService;
 
     @PostMapping("/hasstock")
-    public Result getSkuHasStock(@RequestBody List<Long> skuIds){
-        List<SkuHasStockVo> vos=wareSkuService.getSkuHasStock(skuIds);
+    public Result querySkuHasStock(@RequestBody List<Long> skuIds){
+        List<SkuHasStockVo> vos=wareSkuService.querySkuHasStock(skuIds);
         return Result.ok().put("data", vos);
     }
 

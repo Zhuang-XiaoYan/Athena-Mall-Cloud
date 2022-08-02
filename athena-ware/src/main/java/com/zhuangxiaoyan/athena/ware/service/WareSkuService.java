@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
 import com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public interface WareSkuService extends IService<WareSkuEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     /**
-     * @description 添加到的这个仓库
+     * @description 添加到这个仓库
       * @param: skuId
      * @param: wareId
      * @param: skuNum
@@ -42,6 +43,6 @@ public interface WareSkuService extends IService<WareSkuEntity> {
      * @return: java.util.List<com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo>
      * @author: xjl
     */
-    List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds);
+    List<SkuHasStockVo> querySkuHasStock(@Param("skuIds") List<Long> skuIds);
 }
 

@@ -34,6 +34,13 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     @Autowired
     ProductFeginService productFeginService;
 
+    /**
+     * @description 页查询
+     * @param: params
+     * @date: 2022/8/2 8:02
+     * @return: com.zhuangxiaoyan.common.utils.PageUtils
+     * @author: xjl
+     */
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
         QueryWrapper<WareSkuEntity> queryWrapper = new QueryWrapper<>();
@@ -49,6 +56,15 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         return new PageUtils(page);
     }
 
+    /**
+     * @description 添加库存
+     * @param: skuId
+     * @param: wareId
+     * @param: skuNum
+     * @date: 2022/8/2 8:02
+     * @return: void
+     * @author: xjl
+     */
     @Override
     public void addStock(Long skuId, Long wareId, Integer skuNum) {
         // 判断还没有这个库存记录
@@ -83,12 +99,12 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
      * @author: xjl
      */
     @Override
-    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+    public List<SkuHasStockVo> querySkuHasStock(List<Long> skuIds) {
         List<SkuHasStockVo> collect = skuIds.stream().map(skuId -> {
             SkuHasStockVo vo = new SkuHasStockVo();
-            Long count=baseMapper.getSkuStock(skuId);
+            Long count = baseMapper.querySkuHasStock(skuId);
             vo.setSkuId(skuId);
-            vo.setHasStock(count>0);
+            vo.setHasStock(count > 0);
             return vo;
         }).collect(Collectors.toList());
         return collect;
