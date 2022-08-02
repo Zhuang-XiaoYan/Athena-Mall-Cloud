@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.common.es;
+package com.zhuangxiaoyan.athena.search.to;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ import java.util.List;
 */
 
 @Data
-public class SkuEsModel {
+public class SkuEsModelTo {
 
     private Long skuId;
 

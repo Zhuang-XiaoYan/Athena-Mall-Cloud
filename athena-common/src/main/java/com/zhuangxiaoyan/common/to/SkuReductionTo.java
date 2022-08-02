@@ -52,6 +52,6 @@ public class SkuReductionTo {
     /**
      * memberPrice
      */
-    private List<MemberPrice> memberPrice;
+    private List<MemberPriceTo> memberPrice;
 
 }

@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  */
 
 @Data
-public class MemberPrice {
+public class MemberPriceTo {
 
     /**
      * id

@@ -91,4 +91,13 @@ public interface AttrService extends IService<AttrEntity> {
      * @author: xjl
      */
     PageUtils getNotAttrRelation(Map<String, Object> params, Long attrgroupId);
+
+    /**
+     * @description 在制定的所有的属性集合中里面 ，挑选出检索属性
+     * @param: attrIds
+     * @date: 2022/8/1 21:53
+     * @return: java.util.List<java.lang.Long>
+     * @author: xjl
+     */
+    List<Long> selectSearchAttrs(List<Long> attrIds);
 }

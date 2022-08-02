@@ -23,4 +23,5 @@
             </foreach>
          AND search_type = 1
     </select>
+    <select id="selectSearchAttrs" resultType="java.lang.Long"></select>
 </mapper>

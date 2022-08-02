@@ -49,5 +49,14 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
      * @author: xjl
      */
     PageUtils queryPageByCondition(Map<String, Object> params);
+
+    /**
+     * @description 保存数据的es中
+      * @param: spuId
+     * @date: 2022/8/1 21:03
+     * @return: void
+     * @author: xjl
+    */
+    void spusavees(Long spuId);
 }
 

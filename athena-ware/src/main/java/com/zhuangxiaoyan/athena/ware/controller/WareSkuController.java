@@ -2,12 +2,14 @@ package com.zhuangxiaoyan.athena.ware.controller;
 
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
 import com.zhuangxiaoyan.athena.ware.service.WareSkuService;
+import com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +24,12 @@ public class WareSkuController {
 
     @Autowired
     private WareSkuService wareSkuService;
+
+    @PostMapping("/hasstock")
+    public Result getSkuHasStock(@RequestBody List<Long> skuIds){
+        List<SkuHasStockVo> vos=wareSkuService.getSkuHasStock(skuIds);
+        return Result.ok().put("data", vos);
+    }
 
     /**
      * 列表

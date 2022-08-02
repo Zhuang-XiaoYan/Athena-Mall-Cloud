@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,5 +90,18 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
         }
         IPage<SkuInfoEntity> page = this.page(new Query<SkuInfoEntity>().getPage(params), queryWrapper);
         return new PageUtils(page);
+    }
+
+    /**
+     * @description 通过的spuid的查询sku的信息
+     * @param: spuId
+     * @date: 2022/8/1 21:17
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.SkuInfoEntity>
+     * @author: xjl
+     */
+    @Override
+    public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
+        List<SkuInfoEntity> list = this.list(new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
+        return list;
     }
 }

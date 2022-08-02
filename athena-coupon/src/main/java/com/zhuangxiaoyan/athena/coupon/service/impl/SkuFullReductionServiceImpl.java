@@ -10,7 +10,7 @@ import com.zhuangxiaoyan.athena.coupon.entity.SkuLadderEntity;
 import com.zhuangxiaoyan.athena.coupon.service.MemberPriceService;
 import com.zhuangxiaoyan.athena.coupon.service.SkuFullReductionService;
 import com.zhuangxiaoyan.athena.coupon.service.SkuLadderService;
-import com.zhuangxiaoyan.common.to.MemberPrice;
+import com.zhuangxiaoyan.common.to.MemberPriceTo;
 import com.zhuangxiaoyan.common.to.SkuReductionTo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
@@ -76,7 +76,7 @@ public class SkuFullReductionServiceImpl extends ServiceImpl<SkuFullReductionDao
             this.save(skuFullReductionEntity);
         }
         //3、会员价格
-        List<MemberPrice> memberPrice = skuReductionTo.getMemberPrice();
+        List<MemberPriceTo> memberPrice = skuReductionTo.getMemberPrice();
         List<MemberPriceEntity> collect = memberPrice.stream().map(item -> {
             MemberPriceEntity memberPriceEntity = new MemberPriceEntity();
             memberPriceEntity.setSkuId(skuReductionTo.getSkuId());

@@ -27,6 +27,19 @@ public class SpuInfoController {
     private SpuInfoService spuInfoService;
 
     /**
+     * @description 将数据的上传到的es中
+      * @param: spuId
+     * @date: 2022/8/1 21:03
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+    */
+    @PostMapping("/{spuId}/up")
+    public Result spuInfoUp(@PathVariable("spuId") Long spuId) {
+        spuInfoService.spusavees(spuId);
+        return Result.ok();
+    }
+
+    /**
      * @description: 查询所有的数据
      * @param: params
      * @date: 2022/7/28 12:46

@@ -7,6 +7,7 @@ import com.zhuangxiaoyan.athena.ware.dao.WareSkuDao;
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
 import com.zhuangxiaoyan.athena.ware.fegin.ProductFeginService;
 import com.zhuangxiaoyan.athena.ware.service.WareSkuService;
+import com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import com.zhuangxiaoyan.common.utils.Result;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @description WareSkuServiceImpl
@@ -71,5 +73,24 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
         } else {
             wareSkuDao.addStock(skuId, wareId, skuNum);
         }
+    }
+
+    /**
+     * @description 查询是否有库存
+     * @param: skuIds
+     * @date: 2022/8/1 22:57
+     * @return: java.util.List<com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo>
+     * @author: xjl
+     */
+    @Override
+    public List<SkuHasStockVo> getSkuHasStock(List<Long> skuIds) {
+        List<SkuHasStockVo> collect = skuIds.stream().map(skuId -> {
+            SkuHasStockVo vo = new SkuHasStockVo();
+            Long count=baseMapper.getSkuStock(skuId);
+            vo.setSkuId(skuId);
+            vo.setHasStock(count>0);
+            return vo;
+        }).collect(Collectors.toList());
+        return collect;
     }
 }

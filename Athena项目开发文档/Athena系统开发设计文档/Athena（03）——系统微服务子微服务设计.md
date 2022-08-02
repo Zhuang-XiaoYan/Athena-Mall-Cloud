@@ -195,7 +195,7 @@ docker restart 6c0e160aafa1
 
 ![img.png](images/oss错误.png)
 
-需要在的你自己的OSS中设置允许跨域的方式。
+需要在的你自己的OSS中设置允许跨域的方式。 
 
 
 ![img.png](images/表单校验.png)

@@ -1,6 +1,7 @@
 package com.zhuangxiaoyan.athena.search.config;
 
 import org.apache.http.HttpHost;
+import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AthenaElasticSearchConfig {
 
+    public static final RequestOptions COMMON_OPTIONS;
+
+    public static String HostIp = "192.168.25.137";
+    public static Integer Port = 9200;
+    public static String Type = "http";
+
+    static {
+        RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
+        COMMON_OPTIONS = builder.build();
+    }
+
     /**
      * @description 构建一个的es的客户端
      * @param:
@@ -23,8 +35,7 @@ public class AthenaElasticSearchConfig {
      */
     @Bean
     public RestHighLevelClient esRestClient() {
-        RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("192.168.25.137", 9200, "http")));
+        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost(HostIp, Port, Type)));
         return client;
     }
 }
