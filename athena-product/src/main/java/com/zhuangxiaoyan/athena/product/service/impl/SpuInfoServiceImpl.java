@@ -3,12 +3,12 @@ package com.zhuangxiaoyan.athena.product.service.impl;
 import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.constant.ProductConstant;
 import com.zhuangxiaoyan.athena.product.dao.SpuInfoDao;
 import com.zhuangxiaoyan.athena.product.entity.*;
 import com.zhuangxiaoyan.athena.product.fegin.CouponFeginService;
+import com.zhuangxiaoyan.athena.product.fegin.SearchFeginService;
 import com.zhuangxiaoyan.athena.product.fegin.WareFeginService;
 import com.zhuangxiaoyan.athena.product.service.*;
 import com.zhuangxiaoyan.athena.product.to.SkuEsModelTo;
@@ -25,8 +25,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -70,6 +72,9 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
     @Autowired
     WareFeginService wareFeginService;
+
+    @Autowired
+    SearchFeginService searchFeginService;
 
     /**
      * @description queryPage
@@ -273,18 +278,19 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         // 发送远程调用，库存系统查询是否有库存
         Map<Long, Boolean> stockMap = null;
         try {
-            Result skuHasStock = wareFeginService.getSkuHasStock(skuIdList);
-            TypeReference<List<SkuHasStockVo>> typeReference = new TypeReference<List<SkuHasStockVo>>() {};
+            Result skuHasStock = wareFeginService.querySkuHasStock(skuIdList);
+            TypeReference<List<SkuHasStockVo>> typeReference = new TypeReference<List<SkuHasStockVo>>() {
+            };
             stockMap = skuHasStock.getData(typeReference).stream()
                     .collect(Collectors.toMap(SkuHasStockVo::getSkuId, item -> item.getHasStock()));
         } catch (Exception e) {
-            log.error("库存服务查询异常：原因{}",e);
+            log.error("库存服务查询异常：原因{}", e);
         }
         // 封装sku的信息
         Map<Long, Boolean> finalStockMap = stockMap;
-        List<SkuEsModelTo> collect = skuInfoEntities.stream().map(sku -> {
+        List<SkuEsModelTo> upProducts = skuInfoEntities.stream().map(sku -> {
             SkuEsModelTo skuEsModelTo = new SkuEsModelTo();
-            BeanUtils.copyProperties(sku,skuEsModelTo);
+            BeanUtils.copyProperties(sku, skuEsModelTo);
             skuEsModelTo.setSkuPrice(sku.getPrice());
             skuEsModelTo.setSkuImg(sku.getSkuDefaultImg());
             //设置库存信息
@@ -310,6 +316,14 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         }).collect(Collectors.toList());
 
         // 将数据发给es进行保存：gulimall-search
-
+        Result result = searchFeginService.productStateUp(upProducts);
+        if (result.getCode() == 0) {
+            //远程调用成功
+            //TODO 6、修改当前spu的状态
+            this.baseMapper.updateSpuStatus(spuId, ProductConstant.ProductStatusEnum.SPU_UP.getCode());
+        } else {
+            //远程调用失败
+            //TODO 7、重复调用？接口幂等性:重试机制
+        }
     }
 }

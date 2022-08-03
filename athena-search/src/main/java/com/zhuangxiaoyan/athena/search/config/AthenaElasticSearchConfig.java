@@ -27,7 +27,7 @@ public class AthenaElasticSearchConfig {
     }
 
     /**
-     * @description 构建一个的es的客户端
+     * @description 构建一个es的客户端
      * @param:
      * @date: 2022/7/31 17:17
      * @return: org.elasticsearch.client.RestHighLevelClient

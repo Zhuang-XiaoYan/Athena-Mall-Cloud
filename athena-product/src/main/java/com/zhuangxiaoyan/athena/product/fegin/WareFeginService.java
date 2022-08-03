@@ -17,5 +17,5 @@ public interface WareFeginService {
 
 
     @RequestMapping("/ware/waresku/hasstock")
-    Result getSkuHasStock(@RequestBody List<Long> skuIds);
+    Result querySkuHasStock(@RequestBody List<Long> skuIds);
 }
