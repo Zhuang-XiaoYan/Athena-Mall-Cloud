@@ -17,8 +17,6 @@ Elasticsearch 能以支持快速搜索的方式高效地存储和索引它。你
 - 使用 Elasticsearch 作为存储引擎来自动化业务工作流
 - 使用 Elasticsearch 作为地理信息系统（GIS）管理、集成和分析空间信息，以及使用 Elasticsearch 作为生物学信息研究工具处理基因数据
 
-我们一直对人们使用搜索的新奇方式感觉惊奇。但是不论你的实例与其中一个相似，还是你正使用 Elasticsearch 来解决一个新的问题，
-你在 Elasticsearch处理数据、文档和索引的方式是相同的。
 
 # 一、Elasticsearch的原理
 
