@@ -148,4 +148,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         // 级联更新
         categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
     }
+
+    /**
+     * @description 查询的商品的一级分类
+     * @param:
+     * @date: 2022/8/3 23:20
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
+     * @author: xjl
+     */
+    @Override
+    public List<CategoryEntity> queryOneCategory() {
+        List<CategoryEntity> categoryEntities = this.baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_id", 0));
+        return categoryEntities;
+    }
 }

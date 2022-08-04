@@ -58,5 +58,14 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @author: xjl
      */
     void updateCascade(CategoryEntity category);
+
+    /**
+     * @description 查询商品的一级分类
+     * @param:
+     * @date: 2022/8/3 23:18
+     * @return: void
+     * @author: xjl
+     */
+    List<CategoryEntity> queryOneCategory();
 }
 
