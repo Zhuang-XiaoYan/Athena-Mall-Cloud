@@ -52,6 +52,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!--athena-common工程-->
         <dependency>
             <groupId>com.zhuangxiaoyan</groupId>

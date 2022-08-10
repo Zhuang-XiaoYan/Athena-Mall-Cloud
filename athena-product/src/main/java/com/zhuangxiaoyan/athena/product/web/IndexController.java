@@ -22,7 +22,6 @@ public class IndexController {
 
     @GetMapping({"/", "/index.html"})
     public String indexPage(Model model) {
-
         // 查询所有的以及分类
         List<CategoryEntity> categoryEntities = categoryService.queryOneCategory();
         // 设置视图解析器
