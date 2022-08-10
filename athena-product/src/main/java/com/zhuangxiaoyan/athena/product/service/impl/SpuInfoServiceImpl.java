@@ -271,10 +271,10 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
 
         // 查询的当前spuid所对应的sku信息品牌的名字
         List<SkuInfoEntity> skuInfoEntities = skuInfoService.getSkusBySpuId(spuId);
-
         List<Long> skuIdList = skuInfoEntities.stream()
                 .map(SkuInfoEntity::getSkuId)
                 .collect(Collectors.toList());
+
         // 发送远程调用，库存系统查询是否有库存
         Map<Long, Boolean> stockMap = null;
         try {
@@ -286,8 +286,8 @@ public class SpuInfoServiceImpl extends ServiceImpl<SpuInfoDao, SpuInfoEntity> i
         } catch (Exception e) {
             log.error("库存服务查询异常：原因{}", e);
         }
-        // 封装sku的信息
         Map<Long, Boolean> finalStockMap = stockMap;
+        // 封装sku的信息
         List<SkuEsModelTo> upProducts = skuInfoEntities.stream().map(sku -> {
             SkuEsModelTo skuEsModelTo = new SkuEsModelTo();
             BeanUtils.copyProperties(sku, skuEsModelTo);

@@ -25,9 +25,16 @@ public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
 
+    /**
+     * @description 查询的对应的skuIds的是否有库存
+     * @param: skuIds
+     * @date: 2022/8/10 20:00
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
     @PostMapping("/hasstock")
-    public Result querySkuHasStock(@RequestBody List<Long> skuIds){
-        List<SkuHasStockVo> vos=wareSkuService.querySkuHasStock(skuIds);
+    public Result querySkuHasStock(@RequestBody List<Long> skuIds) {
+        List<SkuHasStockVo> vos = wareSkuService.querySkuHasStock(skuIds);
         return Result.ok().put("data", vos);
     }
 

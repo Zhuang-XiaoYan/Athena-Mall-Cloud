@@ -32,5 +32,5 @@ public interface WareSkuDao extends BaseMapper<WareSkuEntity> {
      * @return: java.lang.Long
      * @author: xjl
     */
-    Long querySkuHasStock(Long skuId);
+    Long querySkuHasStock(@Param("skuId") Long skuId);
 }

@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * @description SkuEsModel类
  * @date: 2022/7/27 21:04
- * @return:
  * @author: xjl
 */
 
