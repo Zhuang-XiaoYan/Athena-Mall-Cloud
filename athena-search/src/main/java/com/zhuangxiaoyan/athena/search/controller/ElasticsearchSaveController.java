@@ -20,15 +20,15 @@ import java.util.List;
  */
 
 @Slf4j
-@RequestMapping("/search/save")
 @RestController
+@RequestMapping(value = "/search/save")
 public class ElasticsearchSaveController {
 
     @Autowired
     private ProductSaveService productSaveService;
 
-    @PostMapping("/product")
-    public Result productStateUp(@RequestBody List<SkuEsModelTo> skuEsModelTos) {
+    @PostMapping(value = "/product")
+    public Result productStateSave(@RequestBody List<SkuEsModelTo> skuEsModelTos) {
         try {
             productSaveService.productStateUp(skuEsModelTos);
             return Result.ok();

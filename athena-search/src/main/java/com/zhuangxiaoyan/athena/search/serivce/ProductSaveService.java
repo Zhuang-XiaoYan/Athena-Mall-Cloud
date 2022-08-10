@@ -11,7 +11,6 @@ import java.util.List;
  * @Date 2022/8/2 9:22
  * @Created by xjl
  */
-@Service
 public interface ProductSaveService {
 
     /**
@@ -21,5 +20,5 @@ public interface ProductSaveService {
      * @return: void
      * @author: xjl
      */
-    Boolean productStateUp(List<SkuEsModelTo> skuEsModelTos) throws IOException;
+    boolean productStateUp(List<SkuEsModelTo> skuEsModelTos) throws IOException;
 }

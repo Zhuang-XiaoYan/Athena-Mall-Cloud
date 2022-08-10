@@ -10,20 +10,19 @@ spring:
   # 配置Spring服务的名称
   application:
     name: athena-search
-#  #配置Spring datebase的账户和连接
-#  datasource:
-#    username: root
-#    password: root
-#    url: jdbc:mysql://192.168.25.137:32081/athena_pms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+  #  #配置Spring datebase的账户和连接
+#    datasource:
+#      username: root
+#      password: root
+#      url: jdbc:mysql://192.168.25.137:32081/athena_oss?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#      driver-class-name: com.mysql.cj.jdbc.Driver
   # Springcloud alibaba nacos注册中心
   cloud:
     nacos:
       # 配置的Springcloud服务注册中心
       discovery:
         server-addr: 192.168.25.137:8848
-
-  # 配置的时间输出格式
+  # 配置日期相关的格式的输出
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
@@ -41,4 +40,4 @@ mybatis-plus:
 # 日志数据输出
 logging:
   level:
-    com.zhuangxiaoyan.athena.search: debug
+    com.zhuangxiaoyan.athena: error

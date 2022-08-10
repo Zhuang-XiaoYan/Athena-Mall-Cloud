@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableFeignClients(basePackages = "com.zhuangxiaoyan.athena.search.fegin")
-@MapperScan("com.zhuangxiaoyan.athena.search.dao")
 @EnableTransactionManagement// 开启了事务注解
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})

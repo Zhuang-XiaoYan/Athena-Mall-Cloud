@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableFeignClients(basePackages = "com.zhuangxiaoyan.athena.oss.fegin")
-@MapperScan("com.zhuangxiaoyan.athena.oss")
 @EnableTransactionManagement
 @EnableDiscoveryClient
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})

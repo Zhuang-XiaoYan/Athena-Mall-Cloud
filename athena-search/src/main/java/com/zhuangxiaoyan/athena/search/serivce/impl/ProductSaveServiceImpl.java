@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * @Created by xjl
  */
 @Slf4j
-@Service
+@Service("productSaveService")
 public class ProductSaveServiceImpl implements ProductSaveService {
 
     @Autowired
@@ -39,7 +39,7 @@ public class ProductSaveServiceImpl implements ProductSaveService {
      * @author: xjl
      */
     @Override
-    public Boolean productStateUp(List<SkuEsModelTo> skuEsModelTos) throws IOException {
+    public boolean productStateUp(List<SkuEsModelTo> skuEsModelTos) throws IOException {
         BulkRequest bulkRequest = new BulkRequest();
         for (SkuEsModelTo model:skuEsModelTos ) {
             IndexRequest indexRequest = new IndexRequest(ElasticsearchConstant.PRODUCT_INDEX);

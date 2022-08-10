@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @author: xjl
  */
 
-@Service("attrAttrgroupRelationService")
+@Service("AttrgroupRelationService")
 public class AttrgroupRelationServiceImpl extends ServiceImpl<AttrgroupRelationDao, AttrgroupRelationEntity> implements AttrgroupRelationService {
 
     /**
