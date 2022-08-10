@@ -16,6 +16,12 @@ spring:
         server-addr: 192.168.25.137:8848
     gateway:
       routes:
+        - id: athena-search-route
+          uri: lb://athena-search
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
         # high level athena-product service
         - id: athena-oss-route
           uri: lb://athena-oss
