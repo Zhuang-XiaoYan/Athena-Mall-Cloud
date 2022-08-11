@@ -14,7 +14,7 @@
 
 **文件存储 vs 块存储 vs 对象存储**
 
-![](../athena项目开发文档/images/OSS/对象存储.png)
+![](../athena系统解决方案文档/images/OSS/对象存储.png)
 
 - 文件存储是网络附加存储，其中数据存储在文件夹中。当需要访问文件时，计算机必须知道找到它的完整路径。
 - 块存储将数据保存在原始块中，与文件存储不同，它可以通过存储区域网络访问，低延迟高性能，一般用于数据库相关操作。
@@ -25,7 +25,7 @@
 缺乏基于文件夹的存储不仅使检索文件更容易，而且还为每条数据分配元数据。对象存储，是一种扁平结构，其中文件被分解成碎片并分散在硬件中。
 在对象存储中，数据被分成称为对象的离散单元并保存在单个存储库中，而不是作为文件夹中的文件或服务器上的块保存。
 
-![](../athena项目开发文档/images/OSS/object_save.png)
+![](../athena系统解决方案文档/images/OSS/object_save.png)
 
 **对象存储 VS HDFS**
 
@@ -167,7 +167,7 @@ Storage server会连接集群中所有的Tracker server，定时向他们报告�
 
 采用的http(https):/IP:端口号/FastDFS FID,例如：http://192.168.25.137:8888/group1/M00/00/00/wKgZimI2mw6AA3N2AAAATzab9Do712.txt
 
-![](../athena项目开发文档/images/OSS/fastdfs_result.png)
+![](../athena系统解决方案文档/images/OSS/fastdfs_result.png)
 
 ## 2.4 同步时间管理
 
@@ -202,7 +202,7 @@ FastDFS通过Tracker服务器,将文件放在Storage服务器存储，但是同�
 # 1.拉取镜像
 docker pull delron/fastdfs 
 ```
-![](../athena项目开发文档/images/OSS/dokcer_pull.png)
+![](../athena系统解决方案文档/images/OSS/dokcer_pull.png)
 
 ```shell
 # 2.使用docker镜像构建tracker容器（跟踪服务器，起到调度的作用）:
@@ -212,7 +212,7 @@ docker run -dti --network=host --name tracker -v /var/fdfs/tracker:/var/fdfs -v 
 # TRACKER_SERVER=本机的ip地址:22122 本机ip地址不要使用127.0.0.1
 docker run -dti  --network=host --name storage -e TRACKER_SERVER=192.168.25.137:22122 -v /var/fdfs/storage:/var/fdfs  -v /etc/localtime:/etc/localtime  delron/fastdfs storage
 ```
-![](../athena项目开发文档/images/OSS/fastdfs_docker.png)
+![](../athena系统解决方案文档/images/OSS/fastdfs_docker.png)
 
 ```shell
 #4.进入storage容器，到storage的配置文件中配置http访问的端口，配置文件在/etc/fdfs目录下的storage.conf。
@@ -223,7 +223,7 @@ cd /etc/fdfs/
 #编辑文件
 vi storage.conf   
 ```
-![](../athena项目开发文档/images/OSS/nginx_port.png)
+![](../athena系统解决方案文档/images/OSS/nginx_port.png)
 ```shell
 # 5.修改storage中的nginx (不需要安装 应为在docker images 中已经封装好了相关的额nginx服务)
 docker exec -it storage bash 
@@ -235,7 +235,7 @@ docker start storage
 #或者是docker restart storage
 #如果重启后无法启动的会，可能是报下面错误了，手动创建 vi /var/fdfs/logs/storaged.log 文件即可
 ```
-![](../athena项目开发文档/images/OSS/port_update.png)
+![](../athena系统解决方案文档/images/OSS/port_update.png)
 
 ```shell
 # 7.测试 进入storage容器，进入/var/fdfs目录
@@ -245,9 +245,9 @@ echo hello i am zhuang xiaoyan , welcome to my gitee>a.txt
 /usr/bin/fdfs_upload_file /etc/fdfs/client.conf a.txt
 ```
 
-![](../athena项目开发文档/images/OSS/filepath.png)
+![](../athena系统解决方案文档/images/OSS/filepath.png)
 
-![](../athena项目开发文档/images/OSS/fastdfs_result.png)
+![](../athena系统解决方案文档/images/OSS/fastdfs_result.png)
 
 到这里就表示Athena-SSO的FASTDFS文件存储单节点的服务构建已经构建完成了。后面将介绍的Athena-SSO的FASTDFS文件存储单节点的服务的；连接测试服务。
 
@@ -337,7 +337,7 @@ sh /usr/local/src/storage.sh
 ![](/FastDFSDocker/cludter2.png)
 
 ### Athena-SSO的的连接与下载与访问测试服务
-![](../athena项目开发文档/images/OSS/athena-oss服务.png)
+![](../athena系统解决方案文档/images/OSS/athena-oss服务.png)
 
 # 五、基于原原生的Minio分布式存储解决方案
 https://github.com/minio/minio

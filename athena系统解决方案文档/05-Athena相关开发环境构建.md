@@ -9,7 +9,7 @@
 KubeSphere 愿景是打造一个以 Kubernetes 为内核的云原生分布式操作系统， 它的架构可以非常方便地使第三方应用与云原生生态组件进行即插即用（plug-and-play）的集成，
 支持云原生应用在多云与多集群的统一分发和运维管理。
 
-![img.png](../athena项目开发文档/images/KubeSphere.png)
+![img.png](images/K8S/KubeSphere.png)
 
 ### KubeSphere单节点的机器准备
 
@@ -73,12 +73,12 @@ yum install -y conntrack
 
 ```
 
-![img.png](../athena项目开发文档/images/kubekey_intsall.png)
+![img.png](images/K8S/kubekey_intsall.png)
 
 ### KubeSphere系统测试
 
-![img.png](../athena项目开发文档/images/kubeSphere_controller.png)
-![img.png](../athena项目开发文档/images/kubeSphere_account.png)
+![img.png](images/K8S/kubeSphere_controller.png)
+![img.png](images/K8S/kubeSphere_account.png)
 
 ## Athena系统基础镜像构建
 
@@ -143,11 +143,11 @@ secretKey: "not-a-secure-key"
 
 基于配置文件中 expose.type 字段的设置，访问方式可能会不同。本示例使用 nodePort 访问 Harbor，按照先前步骤中的设置，访问 http://nodeIP:30002。
 
-![img.png](../athena项目开发文档/images/harbor_login.png)
+![img.png](images/ImgaesHarbor/harbor_login.png)
 
 使用默认帐户和密码 (admin/Harbor12345) 登录 Harbor。密码由配置文件中 harborAdminPassword 字段定义。
 
-![img.png](../athena项目开发文档/images/harbor_account.jpg)
+![img.png](images/ImgaesHarbor/harbor_account.jpg)
 
 Harbor常见问题
 
@@ -209,7 +209,7 @@ docker image push registry-host:5000/myadmin/rhel-httpd:latest
 
 为了解决系统服务注册中心的高可用服务问题，在运行过程中会保存数据或状态。利用的Nacos的来构建Nacos集群的构建。 登录 KubeSphere 控制台，在已创建的项目下选择 工作负载 → 有状态副本集，进入列表页。
 
-![img.png](images/nacos.png)
+![img.png](images/Problem/nacos.png)
 
 ### Mysql的部署
 
@@ -249,7 +249,7 @@ Mysql是一个开源的关系型数据库管理系统 (RDBMS)，它基于最常�
 
 - 您需要使用 MySQL Client 或第三方应用（例如 SQLPro Studio）才能访问 MySQL 数据库。以下演示如何使用 SQLPro Studio 访问 MySQL 数据库
 
-![img.png](images/Mysql.png)
+![img.png](images/Problem/Mysql.png)
 
 ### Redis的部署
 
@@ -309,7 +309,7 @@ RabbitMQ是部署最广泛的开源消息代理。它轻量且易于在本地和
 
 - 用 <NodeIP>:<NodePort> 地址以及步骤 1 中记录的用户名和密码访问 RabbitMQ 的 management 端口。
 
-![img.png](../athena项目开发文档/images/MQ.png)
+![img.png](images/Mq/MQ.png)
 
 ### Elasticsearch的部署
 
@@ -344,7 +344,7 @@ Elasticsearch 是一个分布式的、开源的搜索分析引擎，支持各种
 
 - 用 <NodeIP>:<NodePort> 地址以及步骤 1 中记录的用户名和密码访问 elasticsearch的 management 端口。
 
-![img.png](../athena项目开发文档/images/es.png)
+![img.png](images/es.png)
 
 参考：
 
