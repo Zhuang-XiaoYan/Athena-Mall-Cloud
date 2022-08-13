@@ -70,12 +70,21 @@ public interface CategoryService extends IService<CategoryEntity> {
     List<CategoryEntity> queryOneCategory();
 
     /**
-     * @description 获取的目录的文件
+     * @description 通过Db获取的目录的文件
       * @param:
      * @date: 2022/8/13 10:14
      * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
     */
-    Map<String, List<Catelog2Vo>> getCatalogJson();
+    Map<String, List<Catelog2Vo>> getCatalogJsonFromDb();
+
+    /**
+     * @description 通过redis获取的目录的文件
+     * @param:
+     * @date: 2022/8/13 10:14
+     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    Map<String, List<Catelog2Vo>> getCatalogJsonFromRedis();
 }
 

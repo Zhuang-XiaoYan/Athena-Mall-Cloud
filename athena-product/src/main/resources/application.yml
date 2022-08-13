@@ -10,6 +10,10 @@ spring:
   # 配置Spring服务的名称
   application:
     name: athena-product
+  #配置Spring resids的账户和连接
+  redis:
+    host: 192.168.25.137
+    port: 6379
   #配置Spring datebase的账户和连接
   datasource:
     username: root
@@ -48,4 +52,4 @@ mybatis-plus:
 # 日志数据输出
 logging:
   level:
-    com.zhuangxiaoyan.athena.product: debug
+    com.zhuangxiaoyan.athena.product: error

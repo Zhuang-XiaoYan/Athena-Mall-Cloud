@@ -1,5 +1,7 @@
 package com.zhuangxiaoyan.athena.product.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,14 +12,19 @@ import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.vo.Catelog2Vo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
+import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
+import org.redisson.api.RReadWriteLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -25,12 +32,18 @@ import java.util.stream.Collectors;
  * @date: 2022/7/28 14:13
  * @author: xjl
  */
-
+@Slf4j
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
     @Autowired
     CategoryBrandRelationService categoryBrandRelationService;
+
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    RedissonClient redissonClient;
 
     /**
      * @description queryPage()
@@ -177,15 +190,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /**
-     * @description 获取的目录的文件
-     * @param:
+     * @description 通过Db获取的目录的文件
+     * @param: 使用的synchronized
      * @date: 2022/8/13 10:14
      * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
      */
     @Override
-    public Map<String, List<Catelog2Vo>> getCatalogJson() {
-        System.out.println("查询了数据库");
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromDb() {
+        String catalogJSON = stringRedisTemplate.opsForValue().get("catalogJSON");
+        if (StringUtils.isEmpty(catalogJSON)) {
+            // 缓存中不为空，直接返回数据
+            Map<String, List<Catelog2Vo>> result = JSON.parseObject(catalogJSON, new TypeReference<Map<String, List<Catelog2Vo>>>() {});
+            return result;
+        }
+        log.info(Thread.currentThread().getName() + "查询了数据库");
         //将数据库的多次查询变为一次
         List<CategoryEntity> selectList = this.baseMapper.selectList(null);
         //1、查出所有分类
@@ -215,6 +234,99 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             }
             return catelog2Vos;
         }));
+        // 设置过期时间
+        stringRedisTemplate.opsForValue().set("catalogJSON", JSON.toJSONString(parentCid), 1, TimeUnit.DAYS);
         return parentCid;
+    }
+
+    /**
+     * @description 通过redis获取的目录的文件
+     * 1)、springboot2.0以后默认使用lettuce操作redis的客户端，它使用通信
+     * 2)、lettuce的bug导致netty堆外内存溢出,可设置：-Dio.netty.maxDirectMemory
+     * 解决方案：不能直接使用-Dio.netty.maxDirectMemory去调大堆外内存
+     * 1)、升级lettuce客户端。
+     * 2）、切换使用jedis
+     * @param:
+     * @date: 2022/8/13 10:14
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    @Override
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromRedis() {
+        // 添加空的结果:解决缓存穿透问题
+        // 设置过期时间（添加随机值）:解决缓存雪崩问题
+        // 加锁:解决缓存击穿问题
+        //1、加入缓存逻辑,缓存中存的数据是json字符串
+        String catalogJSON = stringRedisTemplate.opsForValue().get("catalogJSON");
+        if (StringUtils.isEmpty(catalogJSON)) {
+            log.info("缓存不命中，将要查询数据库……");
+            //2、缓存中没有数据，查询数据库db
+            Map<String, List<Catelog2Vo>> catalogJsonFromDb = getCatalogJsonFromDb();
+            return catalogJsonFromDb;
+        }
+        //转为指定的对象
+        Map<String, List<Catelog2Vo>> result = JSON.parseObject(catalogJSON, new TypeReference<Map<String, List<Catelog2Vo>>>() {});
+        return result;
+    }
+
+    /**
+     * @description 使用分布式锁的机制
+     * @param:
+     * @date: 2022/8/13 15:12
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedisLock() {
+        //1、占分布式锁。去redis占坑、设置过期时间必须和加锁是同步的，保证原子性（避免死锁）
+        String Lockkey = "athena";
+        String token = UUID.randomUUID().toString();
+        Boolean lock = stringRedisTemplate.opsForValue().setIfAbsent(Lockkey, token, 60, TimeUnit.SECONDS);
+        if (lock) {
+            System.out.println("获取分布式锁成功...");
+            Map<String, List<Catelog2Vo>> dataFromDb = null;
+            try {
+                //加锁成功...执行业务
+                dataFromDb = getCatalogJsonFromDb();
+            } finally {
+                String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+                //删除锁 执行的原子操作
+                stringRedisTemplate.execute(new DefaultRedisScript<Long>(script, Long.class), Arrays.asList(Lockkey), token);
+            }
+            return dataFromDb;
+        } else {
+            System.out.println("获取分布式锁失败...等待重试...");
+            //加锁失败...重试机制、休眠一百毫秒
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //自旋的方式
+            return getCatalogJsonFromDbWithRedisLock();
+        }
+    }
+
+    /**
+     * @description 使用的是RedissonLock分布式锁
+      * @param:
+     * @date: 2022/8/13 17:30
+     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+    */
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
+        //1、占分布式锁。去redis占坑
+        //RLock catalogJsonLock = redissonClient.getLock("catalogJson-lock");
+        //创建读锁
+        RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("catalogJson-lock");
+        RLock rLock = readWriteLock.readLock();
+        Map<String, List<Catelog2Vo>> dataFromDb = null;
+        try {
+            rLock.lock();
+            //加锁成功...执行业务
+            dataFromDb = getCatalogJsonFromDb();
+        } finally {
+            rLock.unlock();
+        }
+        return dataFromDb;
     }
 }

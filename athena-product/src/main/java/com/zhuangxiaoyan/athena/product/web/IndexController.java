@@ -40,7 +40,7 @@ public class IndexController {
     }
 
     /**
-     * @description 访问的是的目录的json数据
+     * @description 访问Db是的目录的json数据
       * @param:
      * @date: 2022/8/13 10:19
      * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
@@ -48,8 +48,23 @@ public class IndexController {
     */
     @GetMapping(value = "/index/catalog.json")
     @ResponseBody
-    public Map<String, List<Catelog2Vo>> getCatalogJson() {
-        Map<String, List<Catelog2Vo>> catalogJson = categoryService.getCatalogJson();
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromDb() {
+        Map<String, List<Catelog2Vo>> catalogJson = categoryService.getCatalogJsonFromDb();
+        return catalogJson;
+    }
+
+
+    /**
+     * @description 访问Db是的目录的json数据
+     * @param:
+     * @date: 2022/8/13 10:19
+     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    //@GetMapping(value = "/index/catalog.json")
+    @ResponseBody
+    public Map<String, List<Catelog2Vo>> getCatalogJsonFromRedis() {
+        Map<String, List<Catelog2Vo>> catalogJson = categoryService.getCatalogJsonFromRedis();
         return catalogJson;
     }
 
@@ -59,7 +74,4 @@ public class IndexController {
     public String hello() {
         return "hello";
     }
-
-
-
 }
