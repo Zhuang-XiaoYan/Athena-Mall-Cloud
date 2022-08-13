@@ -64,7 +64,11 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /athena-admin/$\{segment}
-
+        # low level athena-host-route service
+        - id: athena-host-route
+          uri: lb://athena-product
+          predicates:
+            - Host=**.athena.com
 
 
 
