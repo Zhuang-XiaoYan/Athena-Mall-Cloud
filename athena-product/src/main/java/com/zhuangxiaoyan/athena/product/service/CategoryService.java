@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
+import com.zhuangxiaoyan.athena.product.vo.Catelog2Vo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.List;
@@ -67,5 +68,14 @@ public interface CategoryService extends IService<CategoryEntity> {
      * @author: xjl
      */
     List<CategoryEntity> queryOneCategory();
+
+    /**
+     * @description 获取的目录的文件
+      * @param:
+     * @date: 2022/8/13 10:14
+     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+    */
+    Map<String, List<Catelog2Vo>> getCatalogJson();
 }
 
