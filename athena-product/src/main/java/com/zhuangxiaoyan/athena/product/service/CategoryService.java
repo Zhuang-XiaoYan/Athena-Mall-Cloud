@@ -71,20 +71,38 @@ public interface CategoryService extends IService<CategoryEntity> {
 
     /**
      * @description 通过Db获取的目录的文件
-      * @param:
+     * @param:
      * @date: 2022/8/13 10:14
-     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
-    */
+     */
     Map<String, List<Catelog2Vo>> getCatalogJsonFromDb();
 
     /**
      * @description 通过redis获取的目录的文件
      * @param:
      * @date: 2022/8/13 10:14
-     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
      */
     Map<String, List<Catelog2Vo>> getCatalogJsonFromRedis();
+
+    /**
+     * @description WithRedisLock
+     * @param:
+     * @date: 2022/8/14 9:14
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedisLock();
+
+    /**
+     * @description WithRedissonLock
+     * @param:
+     * @date: 2022/8/14 9:15
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @author: xjl
+     */
+    Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedissonLock();
 }
 

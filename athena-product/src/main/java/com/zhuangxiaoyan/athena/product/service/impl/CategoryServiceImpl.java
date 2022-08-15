@@ -17,6 +17,8 @@ import org.redisson.api.RLock;
 import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
@@ -150,11 +152,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * @description 级联更新所有的关联数据
+     * CacheEvict 缓存失效
      * @param: category
      * @date: 2022/7/23 11:27
      * @return: void
      * @author: xjl
      */
+//    @Caching(evict = {
+//            @CacheEvict(value = "category", key = "'queryOneCategory'"),
+//            @CacheEvict(value = "category", key = "'getCatalogJsonFromDb'")
+//    })
+    @CacheEvict(value = "category", allEntries = true)
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void updateCascade(CategoryEntity category) {
@@ -165,11 +173,13 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * @description 查询的商品的一级分类
+     * 表示当前的结果的需要缓存 如果缓存中有 方法都不调用,如果缓存中没有，则会调用方法，最后将方法的结果放入缓存中 每一个缓存的数据 指定缓存的分区 按照业务类型分区
      * @param:
      * @date: 2022/8/3 23:20
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
      * @author: xjl
      */
+    @Cacheable(value = {"category"}, key = "#root.method.name")
     @Override
     public List<CategoryEntity> queryOneCategory() {
         List<CategoryEntity> categoryEntities = this.baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
@@ -196,16 +206,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
      */
+    @Cacheable(value = "category", key = "#root.methodName")
     @Override
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDb() {
-        String catalogJSON = stringRedisTemplate.opsForValue().get("catalogJSON");
-        if (StringUtils.isEmpty(catalogJSON)) {
-            // 缓存中不为空，直接返回数据
-            Map<String, List<Catelog2Vo>> result = JSON.parseObject(catalogJSON, new TypeReference<Map<String, List<Catelog2Vo>>>() {});
+        //得到锁以后，我们应该再去缓存中确定一次，如果没有才需要继续查询
+        String catalogJson = stringRedisTemplate.opsForValue().get("catalogJson");
+        if (!StringUtils.isEmpty(catalogJson)) {
+            //缓存不为空直接返回
+            Map<String, List<Catelog2Vo>> result = JSON.parseObject(catalogJson, new TypeReference<Map<String, List<Catelog2Vo>>>() {});
             return result;
         }
-        log.info(Thread.currentThread().getName() + "查询了数据库");
-        //将数据库的多次查询变为一次
+        System.out.println("查询了数据库");
         List<CategoryEntity> selectList = this.baseMapper.selectList(null);
         //1、查出所有分类
         //1、1）查出所有一级分类
@@ -234,8 +245,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             }
             return catelog2Vos;
         }));
-        // 设置过期时间
-        stringRedisTemplate.opsForValue().set("catalogJSON", JSON.toJSONString(parentCid), 1, TimeUnit.DAYS);
+        //3、将查到的数据放入缓存,将对象转为json
+        String valueJson = JSON.toJSONString(parentCid);
+        stringRedisTemplate.opsForValue().set("catalogJson", valueJson, 1, TimeUnit.DAYS);
         return parentCid;
     }
 
@@ -264,6 +276,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
             Map<String, List<Catelog2Vo>> catalogJsonFromDb = getCatalogJsonFromDb();
             return catalogJsonFromDb;
         }
+        log.info("缓存命中，直接返回数据……");
         //转为指定的对象
         Map<String, List<Catelog2Vo>> result = JSON.parseObject(catalogJSON, new TypeReference<Map<String, List<Catelog2Vo>>>() {});
         return result;
@@ -276,9 +289,10 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
      */
+    @Override
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedisLock() {
         //1、占分布式锁。去redis占坑、设置过期时间必须和加锁是同步的，保证原子性（避免死锁）
-        String Lockkey = "athena";
+        String Lockkey = "athena-RedisLock";
         String token = UUID.randomUUID().toString();
         Boolean lock = stringRedisTemplate.opsForValue().setIfAbsent(Lockkey, token, 60, TimeUnit.SECONDS);
         if (lock) {
@@ -308,16 +322,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
 
     /**
      * @description 使用的是RedissonLock分布式锁
-      * @param:
+     * @param:
      * @date: 2022/8/13 17:30
-     * @return: java.util.Map<java.lang.String,java.util.List<com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
+     * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
-    */
+     */
+    @Override
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
         //1、占分布式锁。去redis占坑
         //RLock catalogJsonLock = redissonClient.getLock("catalogJson-lock");
         //创建读锁
-        RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("catalogJson-lock");
+        RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("catalogJson-RedissonLock");
         RLock rLock = readWriteLock.readLock();
         Map<String, List<Catelog2Vo>> dataFromDb = null;
         try {

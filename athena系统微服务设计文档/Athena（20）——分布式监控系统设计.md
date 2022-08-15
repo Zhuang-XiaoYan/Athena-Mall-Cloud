@@ -157,10 +157,24 @@ services:
 # 自定义的export数据
 
 
+
+
+
 # 告警和执行相关任务
 
 
+# 系统的监控分类
 
+## 硬件（os）级别的监控
+
+
+## 第三方中间件的监控
+
+
+## 微服务的监控
+
+
+## JVM的监控
 
 # 博文参考
 
@@ -172,5 +186,7 @@ Prometheus: https://prometheus.io/docs/introduction/overview/
 
 Prometheus中文文档：https://www.prometheus.wang/alert/alert-manager-route.html
 
+JMX Exporter 项目地址: https://github.com/prometheus/jmx_exporter
 
+JVM 监控面板: https://grafana.com/grafana/dashboards/8563
 
