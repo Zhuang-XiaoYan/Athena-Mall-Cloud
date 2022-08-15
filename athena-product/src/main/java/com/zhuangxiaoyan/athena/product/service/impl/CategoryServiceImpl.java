@@ -182,6 +182,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Cacheable(value = {"category"}, key = "#root.method.name")
     @Override
     public List<CategoryEntity> queryOneCategory() {
+        System.out.println("查询了一级菜单的分类的…………");
         List<CategoryEntity> categoryEntities = this.baseMapper.selectList(new QueryWrapper<CategoryEntity>().eq("parent_cid", 0));
         return categoryEntities;
     }
@@ -194,7 +195,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.CategoryEntity>
      * @author: xjl
      */
-    private List<CategoryEntity> getParent_cid(List<CategoryEntity> selectList, Long parentCid) {
+    @Cacheable(value = {"category"}, key = "#root.method.name")
+    public List<CategoryEntity> getParent_cid(List<CategoryEntity> selectList, Long parentCid) {
+        System.out.println("查询的父类的Id…………");
         List<CategoryEntity> categoryEntities = selectList.stream().filter(item -> item.getParentCid().equals(parentCid)).collect(Collectors.toList());
         return categoryEntities;
     }
@@ -206,7 +209,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
      * @return: java.util.Map<java.lang.String, java.util.List < com.zhuangxiaoyan.athena.product.vo.Catelog2Vo>>
      * @author: xjl
      */
-    @Cacheable(value = "category", key = "#root.methodName")
+    @Cacheable(value = "category", key = "#root.method.name")
     @Override
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDb() {
         //得到锁以后，我们应该再去缓存中确定一次，如果没有才需要继续查询
@@ -330,8 +333,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     @Override
     public Map<String, List<Catelog2Vo>> getCatalogJsonFromDbWithRedissonLock() {
         //1、占分布式锁。去redis占坑
-        //RLock catalogJsonLock = redissonClient.getLock("catalogJson-lock");
-        //创建读锁
+        //（锁的粒度，越细越快:具体缓存的是某个数据，11号商品） product-11-lock
+        // RLock catalogJsonLock = redissonClient.getLock("catalogJson-lock");
+        // 创建读锁
         RReadWriteLock readWriteLock = redissonClient.getReadWriteLock("catalogJson-RedissonLock");
         RLock rLock = readWriteLock.readLock();
         Map<String, List<Catelog2Vo>> dataFromDb = null;

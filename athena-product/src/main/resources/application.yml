@@ -10,13 +10,6 @@ spring:
   # 配置Spring服务的名称
   application:
     name: athena-product
-  #配置Spring cache的类型
-  cache:
-    type: redis
-    redis:
-      time-to-live: 3600
-      # 防止缓存穿透
-      cache-null-values: true
   #配置Spring resids的账户和连接
   redis:
     host: 192.168.25.137
