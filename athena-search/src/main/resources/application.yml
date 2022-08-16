@@ -25,6 +25,9 @@ spring:
   # 配置日期相关的格式的输出
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  # 关闭thymeleaf的缓存
+  thymeleaf:
+    cache: false
 
 # mybatis-plus的系列的属性
 mybatis-plus:
