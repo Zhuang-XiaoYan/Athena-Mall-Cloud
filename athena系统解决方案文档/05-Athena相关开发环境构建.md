@@ -346,7 +346,7 @@ Elasticsearch 是一个分布式的、开源的搜索分析引擎，支持各种
 
 ![img.png](images/es.png)
 
-参考：
+# 博文参考：
 
 - https://www.bookstack.cn/read/KubeSphere-3.2-zh/4295a21d28df7802-%E5%86%85%E7%BD%AE%E5%BA%94%E7%94%A8.md
 - https://zhuangxiaoyan.blog.csdn.net/article/details/122798232

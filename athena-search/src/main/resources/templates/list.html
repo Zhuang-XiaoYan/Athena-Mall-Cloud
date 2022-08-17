@@ -1930,7 +1930,6 @@
         return false;
     });
 
-
     $(".rig_tab>div").hover(function () {
         var i = $(this).index();
         $(this).find('.ico').css({display: 'block'}).stop(true).animate({top: "190px"}, 300)
@@ -1961,7 +1960,6 @@
         })
     });
 
-
     $(".nav_li1 a").hover(function () {
         $(".header_main_left").stop(true).fadeIn()
     }, function () {
@@ -1972,7 +1970,6 @@
     }, function () {
         $(this).stop(true).fadeOut()
     });
-
 
     //右侧侧边栏
     $(".header_bar_box ul li").hover(function () {
@@ -1993,7 +1990,6 @@
         }, 300)
     });
 
-
     //底部
     $(".footer_foot .p1 a").hover(function () {
         $(this).css("color", "#D70B1C")
@@ -2007,12 +2003,10 @@
         $(this).css("color", "#727272")
     })
 
-
     function searchProducts(name, value) {
         //原來的页面
         location.href = replaceParamVal(location.href, name, value, true)
     }
-
 
     function searchByKeyword() {
         searchProducts("keyword", $("#keyword_input").val());

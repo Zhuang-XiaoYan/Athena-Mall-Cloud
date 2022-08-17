@@ -157,11 +157,7 @@ services:
 # 自定义的export数据
 
 
-
-
-
 # 告警和执行相关任务
-
 
 # 系统的监控分类
 
@@ -178,15 +174,10 @@ services:
 
 # 博文参考
 
-Prometheus之Dockerfile编写、镜像构建、容器启动：https://www.cnblogs.com/MrReboot/p/15937802.html
-
-Prometheus监控架构--生产级别：https://cloud.tencent.com/developer/article/2014103
-
-Prometheus: https://prometheus.io/docs/introduction/overview/
-
-Prometheus中文文档：https://www.prometheus.wang/alert/alert-manager-route.html
-
-JMX Exporter 项目地址: https://github.com/prometheus/jmx_exporter
-
-JVM 监控面板: https://grafana.com/grafana/dashboards/8563
+- Prometheus之Dockerfile编写、镜像构建、容器启动：https://www.cnblogs.com/MrReboot/p/15937802.html
+- Prometheus监控架构--生产级别：https://cloud.tencent.com/developer/article/2014103
+- Prometheus: https://prometheus.io/docs/introduction/overview/
+- Prometheus中文文档：https://www.prometheus.wang/alert/alert-manager-route.html
+- JMX Exporter 项目地址: https://github.com/prometheus/jmx_exporter
+- JVM 监控面板: https://grafana.com/grafana/dashboards/8563
 
