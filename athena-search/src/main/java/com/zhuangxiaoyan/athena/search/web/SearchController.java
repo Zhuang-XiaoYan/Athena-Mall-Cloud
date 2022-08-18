@@ -22,11 +22,9 @@ public class SearchController {
     @Autowired
     AthenaSearchService athenaSearchService;
 
+
     @GetMapping({"/list.html"})
-    public String searchPage(SearchParamVo paramVo, Model model, HttpServletRequest request) {
-        paramVo.set_queryString(request.getQueryString());
-        SearchResultVo searchresult = athenaSearchService.search(paramVo);
-        model.addAttribute("result", searchresult);
+    public String searchPage() {
         return "list";
     }
 }
