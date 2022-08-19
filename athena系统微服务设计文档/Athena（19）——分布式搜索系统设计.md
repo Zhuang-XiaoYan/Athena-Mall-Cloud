@@ -85,87 +85,76 @@ discovery.seed_hosts: ["0.0.0.0", "[::1]"]
 
 ![img.png](images/athena-search环境构建与测试.png)
 
-
+> 在商品的存放在es之前一定要的在es中存放好的关于athena_product的数据类型，
+> 否则存放的数据的会使用默认的数据格式，导致检索的时候查询错误。**
 
 ```shell
-PUT product
+PUT athena_product
 {
   "mappings": {
-      "properties": {
-        "skuId":{
-          "type":"long"
-        },
-        "spuId":{
-          "type":"keyword"
-        },
-        "skuTitle":{
-          "type":"text",
-          "analyzer": "ik_smart"
-        },
-        "skuPrice":{
-          "type":"keyword"
-        },
-        "skuImg":{
-          "type":"keyword",
-          "index": false,
-          "doc_values": false
-        },
-        "saleCount":{
-          "type":"long"
-        },
-        "hasStock":{
-          "type":"boolean"
-        },
-        "hotScore":{
-          "type":"long"
-        },
-        "brandId":{
-          "type":"long"
-        },
-        "catalogId":{
-          "type":"long"
-        },
-        "brandName":{
-          "type":"keyword",
-          "index": false,
-          "doc_values": false
-        },
-        "brandImg":{
-          "type":"keyword",
-          "index": false,
-          "doc_values": false
-        },
-        "catalogName":{
-          "type":"keyword",
-          "index": false,
-          "doc_values": false
-        },
-        "attrs":{
-          "type": "nested",
-          "properties": {
-            "attrId":{
-              "type":"long"
-            },
-            "attrName":{
-               "type":"keyword",
-               "index": false,
-               "doc_values": false
-            },
-            "attrValue":{
-              "type":"keyword"
-            }
+    "properties": {
+      "skuId": {
+        "type": "long"
+      },
+      "spuId": {
+        "type": "long"
+      },
+      "skuTitle": {
+        "type": "text",
+        "analyzer": "ik_smart"
+      },
+      "skuPrice": {
+        "type": "keyword"
+      },
+      "skuImg": {
+        "type": "keyword"
+      },
+      "saleCount": {
+        "type": "long"
+      },
+      "hosStock": {
+        "type": "boolean"
+      },
+      "hotScore": {
+        "type": "long"
+      },
+      "brandId": {
+        "type": "long"
+      },
+      "catelogId": {
+        "type": "long"
+      },
+      "brandName": {
+        "type": "keyword"
+      },
+      "brandImg": {
+        "type": "keyword"
+      },
+      "catalogName": {
+        "type": "keyword"
+      },
+      "attrs": {
+        "type": "nested",
+        "properties": {
+          "attrId": {
+            "type": "long"
+          },
+          "attrName": {
+            "type": "keyword"
+          },
+          "attrValue": {
+            "type": "keyword"
           }
         }
-      }  
+      }
+    }
   }
 }
 ```
 
 ![img.png](images/athena的数据模型.png)
 
-
 # athena-search服务压测设计
-
 
 
 # 博文参考

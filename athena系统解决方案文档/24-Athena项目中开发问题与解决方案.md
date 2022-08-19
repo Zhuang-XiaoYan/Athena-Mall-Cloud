@@ -14,6 +14,9 @@
 
 ## athena-ware微服务设计
 
+
+redis中的使用的log与sl4j的日志存在冲突的问题。导致服务不能正常启动。
+
 ## athena-admin微服务设计
 
 ## athena-vue微服务设计
