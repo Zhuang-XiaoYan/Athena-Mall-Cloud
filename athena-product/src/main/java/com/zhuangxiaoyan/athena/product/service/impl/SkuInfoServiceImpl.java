@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.dao.SkuInfoDao;
 import com.zhuangxiaoyan.athena.product.entity.SkuInfoEntity;
 import com.zhuangxiaoyan.athena.product.service.SkuInfoService;
+import com.zhuangxiaoyan.athena.product.vo.SkuItemVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.apache.commons.lang.StringUtils;
@@ -85,7 +86,6 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
                     queryWrapper.le("price", max);
                 }
             } catch (Exception e) {
-
             }
         }
         IPage<SkuInfoEntity> page = this.page(new Query<SkuInfoEntity>().getPage(params), queryWrapper);
@@ -103,5 +103,17 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
     public List<SkuInfoEntity> getSkusBySpuId(Long spuId) {
         List<SkuInfoEntity> list = this.list(new QueryWrapper<SkuInfoEntity>().eq("spu_id", spuId));
         return list;
+    }
+
+    /**
+     * @description 展示当前sku的详情页面
+      * @param: skuId
+     * @date: 2022/8/20 0:10
+     * @return: com.zhuangxiaoyan.athena.product.vo.SkuItemVo
+     * @author: xjl
+    */
+    @Override
+    public SkuItemVo itemPage(Long skuId) {
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.SkuInfoEntity;
+import com.zhuangxiaoyan.athena.product.vo.SkuItemVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.List;
@@ -50,5 +51,14 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
      * @author: xjl
      */
     List<SkuInfoEntity> getSkusBySpuId(Long spuId);
+    
+    /**
+     * @description 展示当前sku的详情页面
+      * @param: skuId
+     * @date: 2022/8/20 0:09
+     * @return: com.zhuangxiaoyan.athena.product.vo.SkuItemVo
+     * @author: xjl
+    */
+    SkuItemVo itemPage(Long skuId);
 }
 
