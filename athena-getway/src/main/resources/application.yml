@@ -68,7 +68,7 @@ spring:
         - id: athena-host-route
           uri: lb://athena-product
           predicates:
-            - Host=athena.com
+            - Host=athena.com,item.athena.com
         # low level athena-host-search service
         - id: athena-host-search
           uri: lb://athena-search
