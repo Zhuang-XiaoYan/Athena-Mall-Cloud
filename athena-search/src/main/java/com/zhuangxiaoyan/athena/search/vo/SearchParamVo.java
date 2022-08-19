@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @description SearchParamVo
+ * @description SearchParamVo 封装的页面的传递的过来的查询条件
  * @date: 2022/8/16 11:24
  * @author: xjl
  */

@@ -24,7 +24,9 @@ public class SearchController {
 
 
     @GetMapping({"/list.html"})
-    public String searchPage() {
+    public String searchPage(SearchParamVo searchParamVo,Model model) {
+        SearchResultVo  result= athenaSearchService.search(searchParamVo);
+        model.addAttribute("result",result);
         return "list";
     }
 }
