@@ -9,6 +9,7 @@ import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import com.zhuangxiaoyan.athena.product.service.AttrGroupService;
 import com.zhuangxiaoyan.athena.product.service.AttrService;
 import com.zhuangxiaoyan.athena.product.vo.AttrGroupWithAttrsVo;
+import com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.eclipse.jetty.util.StringUtil;
@@ -94,5 +95,20 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             return attrVos;
         }).collect(Collectors.toList());
         return collect;
+    }
+
+    /**
+     * @description 查出当前spu对应的所有属性的分组信息以及当前分组下的所有属性对应的值
+     * @param: spuId
+     * @param: catalogId
+     * @date: 2022/8/20 16:03
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo>
+     * @author: xjl
+     */
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId) {
+        AttrGroupDao attrGroupDao = this.getBaseMapper();
+        List<SpuItemAttrGroupVo> voList = attrGroupDao.getAttrGroupWithAttrsBySpuId(spuId, catalogId);
+        return voList;
     }
 }

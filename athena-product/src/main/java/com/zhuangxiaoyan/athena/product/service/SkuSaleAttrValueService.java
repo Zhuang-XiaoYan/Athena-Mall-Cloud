@@ -2,8 +2,10 @@ package com.zhuangxiaoyan.athena.product.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.SkuSaleAttrValueEntity;
+import com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,5 +24,14 @@ public interface SkuSaleAttrValueService extends IService<SkuSaleAttrValueEntity
      * @author: xjl
      */
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * @description 获取spu的销售属性组合
+      * @param: spuId
+     * @date: 2022/8/20 16:30
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo>
+     * @author: xjl
+    */
+    List<SkuItemSaleAttrVo> getSaleAttrBySpuId(Long spuId);
 }
 

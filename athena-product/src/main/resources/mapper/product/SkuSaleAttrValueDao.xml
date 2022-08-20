@@ -12,4 +12,7 @@
         <result property="attrValue" column="attr_value"/>
         <result property="attrSort" column="attr_sort"/>
     </resultMap>
+    <select id="getSaleAttrBySpuId" resultType="com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo">
+
+    </select>
 </mapper>

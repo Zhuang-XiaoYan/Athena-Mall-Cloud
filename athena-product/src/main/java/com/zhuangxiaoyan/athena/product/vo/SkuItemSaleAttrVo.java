@@ -6,10 +6,11 @@ import lombok.ToString;
 import java.util.List;
 
 /**
- * @description TODO
- * @date: 2022/7/28 14:47
+ * @description SkuItemSaleAttrVo
+ * @date: 2022/8/20 15:47
  * @author: xjl
 */
+
 @Data
 @ToString
 public class SkuItemSaleAttrVo {

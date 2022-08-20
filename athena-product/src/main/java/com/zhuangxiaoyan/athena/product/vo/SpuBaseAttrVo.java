@@ -12,6 +12,8 @@ import lombok.ToString;
 @ToString
 public class SpuBaseAttrVo {
 
+    private Long attrId;
+
     private String attrName;
 
     private String attrValue;

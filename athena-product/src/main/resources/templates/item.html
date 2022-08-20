@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="/static/item/scss/header.css"/>
     <link rel="stylesheet" type="text/css" href="/static/item/bootstrap/css/bootstrap.css"/>
 </head>
+
 <body>
+
 <div id="max">
     <header>
         <!--品牌官方网站-->
@@ -82,10 +84,8 @@
                         <li style="margin-top: 0;"><a href="/static/item/javascript:;">我的京豆</a></li>
                         <li style="margin-top: 0;"><a href="/static/item/javascript:;">我的优惠券</a></li>
                         <li style="margin-bottom: 10px;"><a href="/static/item/javascript:;">我的白条</a></li>
-
                     </ol>
                 </li>
-
                 <li><a href="/static/item/javascript:;" class="aa">京东会员</a> |</li>
                 <li><a href="/static/item/javascript:;" class="aa">企业采购</a> |</li>
                 <li class="fuwu"><a href="/static/item/javascript:;">客户服务</a><span
@@ -261,6 +261,7 @@
             </ul>
         </div>
     </header>
+
     <nav>
         <div class="nav_min">
             <div class="nav_top">
@@ -295,9 +296,7 @@
             </div>
         </div>
     </nav>
-
 </div>
-
 
 <div class="crumb-wrap">
     <div class="w">
@@ -351,12 +350,8 @@
                                     <img src="/static/item/img/599a806bN9d829c1c.jpg" alt=""/>
                                 </li>
                                 <li>
-                                    <p>
-                                        荣耀8青春版 全网通标配 3GB+32GB 幻海蓝
-                                    </p>
-                                    <p>
-                                        ￥1099.00
-                                    </p>
+                                    <p>荣耀8青春版 全网通标配 3GB+32GB 幻海蓝</p>
+                                    <p>￥1099.00</p>
                                 </li>
                             </ul>
                         </div>
@@ -367,7 +362,6 @@
                                 <li>APPle</li>
                                 <li>魅族(meizu)</li>
                                 <li>锤子</li>
-
                             </ul>
                             <ul>
                                 <li>三星</li>
@@ -375,35 +369,24 @@
                                 <li>飞利浦</li>
                                 <li>360</li>
                                 <li>更多>></li>
-
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </div>
             <div class="crumb-item sep">></div>
             <div class="crumb-item">
                 华为Mate 10
             </div>
         </div>
-
         <div class="contact">
             <ul class="contact-ul">
                 <li>
-                    <a href="/static/item/#">
-                        华为京东自营官方旗舰店
-                    </a>
-
+                    <a href="/static/item/#">华为京东自营官方旗舰店</a>
                     <span class="contact-sp">
-								<span class="contact-sp1">
-								JD
-							</span>
-							<span class="contact-sp2">
-								自营
-							    </span>
-							</span>
+							<span class="contact-sp1">JD</span>
+							<span class="contact-sp2">自营</span>
+					</span>
                 </li>
                 <li>
                     <a href="/static/item/#">
@@ -438,9 +421,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
 <div class="Shop">
     <div class="box">
         <div class="box-one ">
@@ -455,9 +438,7 @@
                         <img class="img1" alt="" th:src="${item.info.skuDefaultImg}">
                     </div>
                 </div>
-
                 <div class="box-lh">
-
                     <div class="box-lh-one">
                         <ul>
                             <li th:each="img : ${item.images}"><img th:src="${img.imgUrl}"/></li>
@@ -469,26 +450,15 @@
                     <div id="right">
                         >
                     </div>
-
                 </div>
-
                 <div class="boxx-one">
                     <ul>
                         <li>
-									<span>
-										<img src="/static/item/img/b769782fe4ecca40913ad375a71cb92d.png" alt=""/>关注
-									</span>
-                            <span>
-										<img src="/static/item/img/9224fcea62bfff479a6712ba3a6b47cc.png" alt=""/>
-										对比
-									</span>
-                        </li>
-                        <li>
-
+                            <span><img src="/static/item/img/b769782fe4ecca40913ad375a71cb92d.png" alt=""/>关注</span>
+                            <span><img src="/static/item/img/9224fcea62bfff479a6712ba3a6b47cc.png" alt=""/>对比</span>
                         </li>
                     </ul>
                 </div>
-
             </div>
             <div class="box-two">
                 <div class="box-name" th:text="${item.info.skuTitle}">
@@ -509,9 +479,7 @@
                             </li>
                             <li>
                                 <img src="/static/item/img/36860afb69afa241beeb33ae86678093.png"/> 预约剩余
-                                <span id="timer">
-
-									</span>
+                                <span id="timer"></span>
                             </li>
                         </ul>
                     </div>
@@ -532,7 +500,6 @@
                             <span th:if="${#dates.createNow().getTime() >= item.seckillSkuVo.startTime && #dates.createNow().getTime() <= item.seckillSkuVo.endTime}">
                                 秒杀价  [[${#numbers.formatDecimal(item.seckillSkuVo.seckillPrice,1,2)}]]
                             </span>
-
                         </li>
                         <li>
                             <a href="/static/item/">
@@ -551,7 +518,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="box-stock">
                     <ul class="box-ul">
                         <li>配送至</li>
@@ -598,14 +564,11 @@
                                                         <li>北苑</li>
                                                     </ul>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </dd>
                                 </dl>
-
                             </div>
-
                         </li>
                         <li>
                             <span th:text="${item.hasStock?'有货':'无货'}">无货</span>， 此商品暂时售完
@@ -626,11 +589,7 @@
                             <dt>选择[[${attr.attrName}]]</dt>
                             <dd th:each="val : ${attr.attrValues}">
                                 <a th:attr=" class=${#lists.contains(#strings.listSplit(val.skuIds,','),item.info.skuId.toString())
-                                   ? 'sku_attr_value checked': 'sku_attr_value'}, skus=${val.skuIds} "
-                                >
-                                    [[${val.attrValue}]]
-                                    <!--											<img src="/static/item/img/59ddfcb1Nc3edb8f1.jpg" /> -->
-                                </a>
+                                   ? 'sku_attr_value checked': 'sku_attr_value'}, skus=${val.skuIds} ">[[${val.attrValue}]]</a>
                             </dd>
                         </dl>
                     </div>
@@ -657,7 +616,6 @@
                             加入购物车
                         </a>
                     </div>
-
                     <div class="box-btns-two"
                          th:if="${item.seckillSkuVo != null && (#dates.createNow().getTime() >= item.seckillSkuVo.startTime && #dates.createNow().getTime() <= item.seckillSkuVo.endTime)}">
                         <a class="seckill" href="#"
@@ -665,12 +623,10 @@
                             立即抢购
                         </a>
                     </div>
-
                     <div class="box-btns-three">
                         <img src="/static/item/img/e4ed3606843f664591ff1f68f7fda12d.png" alt=""/> 分享
                     </div>
                 </div>
-
                 <div class="box-footer-zo">
                     <div class="box-footer clear">
                         <dl>
@@ -682,7 +638,6 @@
                             </dd>
                         </dl>
                     </div>
-
                     <div class="box-footer">
                         <dl>
                             <dt>温馨提示</dt>
@@ -692,7 +647,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!--欲约抢购流程-->
@@ -1037,6 +991,7 @@
         </div>
     </div>
 </div>
+
 <div class="headera">
     <div class="Logo-tu">
         <span><img src="/static/item/img/service_items_1.png"/></span>
@@ -1241,35 +1196,35 @@
         <img src="/static/item/img/56a89b8fNfbaade9a.jpg"/>
     </p>
 </div>
+
 <div class="Fixedbian">
     <ul>
         <li class="li1"><a class="aaa" href="/static/item/##">顶部</a></li>
     </ul>
 </div>
+
 <div class="gouwuchexiaguo">
     <img src="/static/item/img/44.png"/>
     <span>购物车还没有商品，赶紧选购吧！</span>
 </div>
+
 </body>
+
 <script src="/static/item/js/jquery1.9.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/item/js/js.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 </script>
-
 <script>
     $(".sku_attr_value").click(function () {
         // 1、点击的元素添加上自定义的属性
         let skus = new Array();
         let curr = $(this).attr("skus").split(",");
-
         $(this).parent().parent().find(".sku_attr_value").removeClass("checked");
         $(this).addClass("checked");
         changeCheckedStyle();
-
         $("a[class='sku_attr_value checked']").each(function () {
             skus.push($(this).attr("skus").split(","));
         });
-
         let filterEle = skus[0];
         for (let i = 1; i < skus.length; i++) {
             filterEle = $(filterEle).filter(skus[i])[0];
@@ -1281,12 +1236,10 @@
     $(function () {
         changeCheckedStyle();
     });
-
     function changeCheckedStyle() {
         $(".sku_attr_value").parent().css({"border": "solid 1px #ccc"});
         $("a[class='sku_attr_value checked']").parent().css({"border": "solid 1px red"});
     };
-
 
     $(".addToCart").click(function () {
         let skuId = $(this).attr("skuId");

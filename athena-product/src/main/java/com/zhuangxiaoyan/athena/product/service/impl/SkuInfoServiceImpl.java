@@ -1,20 +1,32 @@
 package com.zhuangxiaoyan.athena.product.service.impl;
 
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.dao.SkuInfoDao;
+import com.zhuangxiaoyan.athena.product.entity.SkuImagesEntity;
 import com.zhuangxiaoyan.athena.product.entity.SkuInfoEntity;
-import com.zhuangxiaoyan.athena.product.service.SkuInfoService;
+import com.zhuangxiaoyan.athena.product.entity.SpuInfoDescEntity;
+import com.zhuangxiaoyan.athena.product.service.*;
+import com.zhuangxiaoyan.athena.product.vo.SeckillSkuVo;
+import com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo;
 import com.zhuangxiaoyan.athena.product.vo.SkuItemVo;
+import com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @description SkuInfoServiceImpl
@@ -24,6 +36,21 @@ import java.util.Map;
 
 @Service("skuInfoService")
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> implements SkuInfoService {
+
+    @Autowired
+    private SkuImagesService skuImagesService;
+
+    @Autowired
+    private SpuInfoDescService spuInfoDescService;
+
+    @Autowired
+    private AttrGroupService attrGroupService;
+
+    @Autowired
+    private SkuSaleAttrValueService skuSaleAttrValueService;
+
+//    @Autowired
+//    private ThreadPoolExecutor executor;
 
     /**
      * @description queryPage
@@ -113,7 +140,45 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoDao, SkuInfoEntity> i
      * @author: xjl
     */
     @Override
-    public SkuItemVo itemPage(Long skuId) {
-        return null;
+    public SkuItemVo itemPage(Long skuId) throws ExecutionException, InterruptedException {
+        // 穿件返回的结果
+        SkuItemVo skuItemVo = new SkuItemVo();
+
+//        CompletableFuture<SkuInfoEntity> infoFuture = CompletableFuture.supplyAsync(() -> {
+//            //1、sku基本信息的获取  pms_sku_info
+//            SkuInfoEntity info = this.getById(skuId);
+//            skuItemVo.setInfo(info);
+//            return info;
+//        }, executor);
+//
+//        CompletableFuture<Void> saleAttrFuture = infoFuture.thenAcceptAsync((res) -> {
+//            //3、获取spu的销售属性组合
+//            List<SkuItemSaleAttrVo> saleAttrVos = skuSaleAttrValueService.getSaleAttrBySpuId(res.getSpuId());
+//            skuItemVo.setSaleAttr(saleAttrVos);
+//        }, executor);
+//
+//        CompletableFuture<Void> descFuture = infoFuture.thenAcceptAsync((res) -> {
+//            //4、获取spu的介绍    pms_spu_info_desc
+//            SpuInfoDescEntity spuInfoDescEntity = spuInfoDescService.getById(res.getSpuId());
+//            skuItemVo.setDesc(spuInfoDescEntity);
+//        }, executor);
+//
+//        CompletableFuture<Void> baseAttrFuture = infoFuture.thenAcceptAsync((res) -> {
+//            //5、获取spu的规格参数信息
+//            List<SpuItemAttrGroupVo> attrGroupVos = attrGroupService.getAttrGroupWithAttrsBySpuId(res.getSpuId(), res.getCatalogId());
+//            skuItemVo.setGroupAttrs(attrGroupVos);
+//        }, executor);
+//
+//        // Long spuId = info.getSpuId();
+//        // Long catalogId = info.getCatalogId();
+//        //2、sku的图片信息    pms_sku_images
+//        CompletableFuture<Void> imageFuture = CompletableFuture.runAsync(() -> {
+//            List<SkuImagesEntity> imagesEntities = skuImagesService.getImagesBySkuId(skuId);
+//            skuItemVo.setImages(imagesEntities);
+//        }, executor);
+//
+//        //等到所有任务都完成
+//        CompletableFuture.allOf(saleAttrFuture,descFuture,baseAttrFuture,imageFuture).get();
+        return skuItemVo;
     }
 }

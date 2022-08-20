@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @Created by xjl
  */
 @Configuration
-public class ProductMybatisConfig {
+public class MybatisConfig {
 
     /**
      * @description 引入分页插件

@@ -3,6 +3,7 @@ package com.zhuangxiaoyan.athena.product.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.AttrGroupEntity;
 import com.zhuangxiaoyan.athena.product.vo.AttrGroupWithAttrsVo;
+import com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.List;
@@ -42,5 +43,15 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
      * @author: xjl
      */
     List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catelogId);
+
+    /**
+     * @description 获取spu的规格参数信息
+      * @param: spuId
+     * @param: catalogId
+     * @date: 2022/8/20 16:02
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo>
+     * @author: xjl
+    */
+    List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catalogId);
 }
 

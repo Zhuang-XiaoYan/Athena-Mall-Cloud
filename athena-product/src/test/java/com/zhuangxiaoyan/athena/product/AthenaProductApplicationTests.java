@@ -3,9 +3,11 @@ package com.zhuangxiaoyan.athena.product;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
+import com.zhuangxiaoyan.athena.product.dao.AttrGroupDao;
 import com.zhuangxiaoyan.athena.product.entity.BrandEntity;
 import com.zhuangxiaoyan.athena.product.service.BrandService;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
+import com.zhuangxiaoyan.athena.product.vo.SpuItemAttrGroupVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -44,6 +47,15 @@ public class AthenaProductApplicationTests {
 
     @Autowired
     RedissonClient redissonClient;
+
+    @Autowired
+    private AttrGroupDao attrGroupDao;
+
+    @Test
+    public void getAttrGroupWithAttrsBySpuIdTest() {
+        List<SpuItemAttrGroupVo> attrGroupWithAttrsBySpuId = attrGroupDao.getAttrGroupWithAttrsBySpuId(13L, 225L);
+        attrGroupWithAttrsBySpuId.forEach(System.out::println);
+    }
 
     @Test
     public void contextLoads() {

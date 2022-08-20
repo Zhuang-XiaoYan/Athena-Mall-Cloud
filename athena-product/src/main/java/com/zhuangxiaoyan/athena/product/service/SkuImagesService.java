@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.product.entity.SkuImagesEntity;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,5 +22,14 @@ public interface SkuImagesService extends IService<SkuImagesEntity> {
      * @author: xjl
      */
     PageUtils queryPage(Map<String, Object> params);
+    
+    /**
+     * @description 通过的skuid获取商品的sku图片信息
+      * @param: skuId
+     * @date: 2022/8/20 15:53
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.entity.SkuImagesEntity>
+     * @author: xjl
+    */
+    List<SkuImagesEntity> getImagesBySkuId(Long skuId);
 }
 

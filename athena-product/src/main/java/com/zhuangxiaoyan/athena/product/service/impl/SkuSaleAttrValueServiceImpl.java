@@ -6,10 +6,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhuangxiaoyan.athena.product.dao.SkuSaleAttrValueDao;
 import com.zhuangxiaoyan.athena.product.entity.SkuSaleAttrValueEntity;
 import com.zhuangxiaoyan.athena.product.service.SkuSaleAttrValueService;
+import com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,5 +34,19 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<SkuSaleAttrValueEntity> page = this.page(new Query<SkuSaleAttrValueEntity>().getPage(params), new QueryWrapper<SkuSaleAttrValueEntity>());
         return new PageUtils(page);
+    }
+
+    /**
+     * @description 获取spu的销售属性组合
+     * @param: spuId
+     * @date: 2022/8/20 16:30
+     * @return: java.util.List<com.zhuangxiaoyan.athena.product.vo.SkuItemSaleAttrVo>
+     * @author: xjl
+     */
+    @Override
+    public List<SkuItemSaleAttrVo> getSaleAttrBySpuId(Long spuId) {
+        SkuSaleAttrValueDao dao = this.baseMapper;
+        List<SkuItemSaleAttrVo> voList = dao.getSaleAttrBySpuId(spuId);
+        return voList;
     }
 }

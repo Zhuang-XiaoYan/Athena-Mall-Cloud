@@ -7,6 +7,7 @@ import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @description sku信息接口
@@ -59,6 +60,6 @@ public interface SkuInfoService extends IService<SkuInfoEntity> {
      * @return: com.zhuangxiaoyan.athena.product.vo.SkuItemVo
      * @author: xjl
     */
-    SkuItemVo itemPage(Long skuId);
+    SkuItemVo itemPage(Long skuId) throws ExecutionException, InterruptedException;
 }
 
