@@ -23,6 +23,8 @@
         <module>athena-sms</module>
         <module>athena-ai</module>
         <module>athena-oss</module>
+        <module>athena-index</module>
+        <module>athena-sso</module>
         <module>athena-code-generate</module>
     </modules>
 </project>

@@ -36,6 +36,20 @@ spring:
             - Path=/api/member/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # high level athena-sms service
+        - id: athena-sms-route
+          uri: lb://athena-sms
+          predicates:
+            - Path=/api/sms/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # high level athena-sso service
+        - id: athena-sso-route
+          uri: lb://athena-sso
+          predicates:
+            - Path=/api/sso/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
         # high level athena-ware service
         - id: athena-ware-route
           uri: lb://athena-ware
@@ -74,6 +88,10 @@ spring:
           uri: lb://athena-search
           predicates:
             - Host=search.athena.com
-
+        # low level athena-host-search service
+        - id: athena-host-sso
+          uri: lb://athena-sso
+          predicates:
+            - Host=sso.athena.com
 
 
