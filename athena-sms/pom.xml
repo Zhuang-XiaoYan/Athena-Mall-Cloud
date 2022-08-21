@@ -22,6 +22,12 @@
     </properties>
 
     <dependencies>
+        <!-- 属性的提示工具-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>com.zhuangxiaoyan</groupId>
             <artifactId>athena-common</artifactId>

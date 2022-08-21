@@ -1,9 +1,12 @@
 package com.zhuangxiaoyan.athena.sms.sms;
 
+import com.zhuangxiaoyan.athena.sms.config.SmsConfig;
 import com.zhuangxiaoyan.athena.sms.utils.HttpUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,7 +25,11 @@ import java.util.Map;
 @SpringBootTest
 public class AthenaSmsTest {
 
-    public static void main(String[] args) {
+    @Autowired
+    SmsConfig smsConfig;
+
+    @Test
+    public void smsTest() {
         String host = "https://dfsns.market.alicloudapi.com";
         String path = "/data/send_sms";
         String method = "POST";
@@ -35,7 +42,7 @@ public class AthenaSmsTest {
         Map<String, String> querys = new HashMap<String, String>();
         Map<String, String> bodys = new HashMap<String, String>();
         bodys.put("content", "code:1314");
-        bodys.put("phone_number", "18279148786");
+        bodys.put("phone_number", "18bh78");
         bodys.put("template_id", "TPL_0000");
 
         try {
@@ -46,5 +53,10 @@ public class AthenaSmsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void smsconfigTest() {
+        smsConfig.sengSmsCode("18279148786", "18bh78");
     }
 }

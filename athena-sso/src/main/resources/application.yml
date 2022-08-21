@@ -10,6 +10,10 @@ spring:
   # 配置Spring服务的名称
   application:
     name: athena-sso
+  #配置Spring resids的账户和连接
+  redis:
+    host: 192.168.25.137
+    port: 6379
   # Springcloud alibaba nacos注册中心
   cloud:
     nacos:
