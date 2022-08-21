@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @Description SpringCacheConfig
+ * @Description SpringCacheConfig缓存配置
  * @Date 2022/8/14 10:43
  * @Created by xjl
  */
@@ -22,16 +22,16 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class SpringCacheConfig {
     /**
      * @description 导致配置文件不起作用
-      * @param:
+     * @param:
      * @date: 2022/8/14 10:50
      * @return: org.springframework.data.redis.cache.RedisCacheConfiguration
      * @author: xjl
-    */
+     */
     @Bean
-    RedisCacheConfiguration redisCacheConfiguration(CacheProperties cacheProperties){
+    RedisCacheConfiguration redisCacheConfiguration(CacheProperties cacheProperties) {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
-        redisCacheConfiguration=redisCacheConfiguration.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()));
-        redisCacheConfiguration=redisCacheConfiguration.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
+        redisCacheConfiguration = redisCacheConfiguration.serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()));
+        redisCacheConfiguration = redisCacheConfiguration.serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
         CacheProperties.Redis redisProperties = cacheProperties.getRedis();
         //将配置文件中所有的配置都生效
         if (redisProperties.getTimeToLive() != null) {
