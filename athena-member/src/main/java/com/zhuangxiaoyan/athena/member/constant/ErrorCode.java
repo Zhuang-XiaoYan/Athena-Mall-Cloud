@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.sso.constant;
+package com.zhuangxiaoyan.athena.member.constant;
 
 /**
  * @description 错误状态码枚举类
@@ -18,7 +18,7 @@ package com.zhuangxiaoyan.athena.sso.constant;
  * @date: 2022/7/27 21:05
  * @return:
  * @author: xjl
- */
+*/
 public enum ErrorCode {
 
     UNKNOW_EXCEPTION(10000, "系统未知异常"),

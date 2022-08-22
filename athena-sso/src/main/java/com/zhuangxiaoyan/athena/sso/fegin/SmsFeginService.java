@@ -15,5 +15,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface SmsFeginService {
 
     @GetMapping("/sms/sendcode")
-    public Result sendPhoneCode(@RequestParam("phone") String phone, @RequestParam("code") String code);
+    Result sendPhoneCode(@RequestParam("phone") String phone, @RequestParam("code") String code);
 }

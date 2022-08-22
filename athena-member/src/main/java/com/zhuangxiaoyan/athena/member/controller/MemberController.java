@@ -1,7 +1,11 @@
 package com.zhuangxiaoyan.athena.member.controller;
 
+import com.zhuangxiaoyan.athena.member.constant.ErrorCode;
 import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
+import com.zhuangxiaoyan.athena.member.exception.PhoneExistException;
+import com.zhuangxiaoyan.athena.member.exception.UsernameExistException;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
+import com.zhuangxiaoyan.athena.member.vo.UserRegisterVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,26 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+
+    /**
+     * @description 用户的注册功能
+      * @param: userRegisterVo
+     * @date: 2022/8/22 21:08
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+    */
+    @PostMapping("/registry")
+    public Result registry(@RequestBody UserRegisterVo userRegisterVo){
+        try {
+            memberService.userRegistry(userRegisterVo);
+        }catch (PhoneExistException e){
+            return Result.error(ErrorCode.PHONE_EXIST_EXCEPTION.getCode(),ErrorCode.PHONE_EXIST_EXCEPTION.getMessage());
+        }catch (UsernameExistException e){
+            return Result.error(ErrorCode.USER_EXIST_EXCEPTION.getCode(),ErrorCode.USER_EXIST_EXCEPTION.getMessage());
+        }
+        return Result.ok();
+    }
+
 
     /**
      * @description 查询所有的数据

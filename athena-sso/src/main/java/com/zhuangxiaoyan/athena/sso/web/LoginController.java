@@ -35,18 +35,19 @@ public class LoginController {
     public Result sendPhoneCode(@RequestParam("phone") String phone) {
 
         String rediscode = stringRedisTemplate.opsForValue().get(SsoConstant.SMS_CODE_CACHE_PREFIX + phone);
-        if (!StringUtils.isEmpty(rediscode)){
+        if (!StringUtils.isEmpty(rediscode)) {
             long redis_time = Long.parseLong(rediscode.split("_")[1]);
             if (System.currentTimeMillis() - redis_time < 60000) {
                 //60秒内不能在发送相关的验证码
-                return Result.error(ErrorCode.SMS_CODE_EXCEPTION.getCode(),ErrorCode.SMS_CODE_EXCEPTION.getMessage());
+                return Result.error(ErrorCode.SMS_CODE_EXCEPTION.getCode(), ErrorCode.SMS_CODE_EXCEPTION.getMessage());
             }
         }
-        String code = UUID.randomUUID().toString().substring(0, 5) + "_" + System.currentTimeMillis();
+        String code = UUID.randomUUID().toString().substring(0, 5);
+        String redis_code = code + "_" + System.currentTimeMillis();
         // 接口防止刷机
 
         // 缓存的验证码
-        stringRedisTemplate.opsForValue().set(SsoConstant.SMS_CODE_CACHE_PREFIX + phone, code, 10, TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(SsoConstant.SMS_CODE_CACHE_PREFIX + phone, redis_code, 10, TimeUnit.MINUTES);
         smsFeginService.sendPhoneCode(phone, code);
         return Result.ok();
     }
