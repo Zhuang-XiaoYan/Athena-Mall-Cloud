@@ -29,42 +29,6 @@ public class MemberController {
     private MemberService memberService;
 
     /**
-     * @description TODO
-     * @param: userLoginVo
-     * @date: 2022/8/24 8:46
-     * @return: com.zhuangxiaoyan.common.utils.Result
-     * @author: xjl
-     */
-    @PostMapping("/login")
-    public Result login(@RequestBody UserLoginVo userLoginVo) {
-        MemberEntity memberEntity = memberService.userLogin(userLoginVo);
-        if (memberEntity!=null){
-            return Result.ok();
-        }else {
-            return Result.error(ErrorCode.LOGINACCT_PASSWORD_EXCEPTION.getCode(),ErrorCode.LOGINACCT_PASSWORD_EXCEPTION.getMessage());
-        }
-    }
-
-    /**
-     * @description 用户的注册功能
-     * @param: userRegisterVo
-     * @date: 2022/8/22 21:08
-     * @return: com.zhuangxiaoyan.common.utils.Result
-     * @author: xjl
-     */
-    @PostMapping("/registry")
-    public Result registry(@RequestBody UserRegisterVo userRegisterVo) {
-        try {
-            memberService.userRegistry(userRegisterVo);
-        } catch (PhoneExistException e) {
-            return Result.error(ErrorCode.PHONE_EXIST_EXCEPTION.getCode(), ErrorCode.PHONE_EXIST_EXCEPTION.getMessage());
-        } catch (UsernameExistException e) {
-            return Result.error(ErrorCode.USER_EXIST_EXCEPTION.getCode(), ErrorCode.USER_EXIST_EXCEPTION.getMessage());
-        }
-        return Result.ok();
-    }
-
-    /**
      * @description 查询所有的数据
      * @param: params
      * @date: 2022/7/30 21:53

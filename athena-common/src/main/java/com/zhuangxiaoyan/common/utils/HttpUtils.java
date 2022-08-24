@@ -27,6 +27,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,7 +71,7 @@ public class HttpUtils {
      * @return: org.apache.http.HttpResponse
      * @author: xjl
      */
-    public static HttpResponse doPost(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, Map<String, String> bodys) throws Exception {
+    public static HttpResponse doPost(String s1, String s, String host, String path, String method, HashMap<String, String> map) throws Exception {
         HttpClient httpClient = wrapClient(host);
         HttpPost request = new HttpPost(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
@@ -100,7 +101,7 @@ public class HttpUtils {
      * @return: org.apache.http.HttpResponse
      * @author: xjl
      */
-    public static HttpResponse doPost(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, String body) throws Exception {
+    public static HttpResponse doPost(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, Map<String, String> body) throws Exception {
         HttpClient httpClient = wrapClient(host);
         HttpPost request = new HttpPost(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {

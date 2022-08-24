@@ -2,6 +2,7 @@ package com.zhuangxiaoyan.athena.sso.fegin;
 
 import com.zhuangxiaoyan.athena.sso.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.sso.vo.UserRegisterVo;
+import com.zhuangxiaoyan.athena.sso.vo.WeiBoUserVo;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient("athena-member")
 public interface MemberFeginService {
 
-    @PostMapping("/member/member/registry")
+    @PostMapping("/member/user/registry")
     Result registry(@RequestBody UserRegisterVo userRegisterVo);
 
-    @PostMapping("/member/member/login")
+    @PostMapping("/member/user/login")
     Result login(@RequestBody UserLoginVo userLoginVo);
+
+    @PostMapping("member/user/weibo/login")
+    Result weiboLogin(@RequestBody WeiBoUserVo weiBoUserVo);
 
 }
