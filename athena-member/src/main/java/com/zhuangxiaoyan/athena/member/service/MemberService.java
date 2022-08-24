@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.member.entity.MemberEntity;
 import com.zhuangxiaoyan.athena.member.exception.PhoneExistException;
 import com.zhuangxiaoyan.athena.member.exception.UsernameExistException;
+import com.zhuangxiaoyan.athena.member.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.member.vo.UserRegisterVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
@@ -46,6 +47,13 @@ public interface MemberService extends IService<MemberEntity> {
     */
     void userRegistry(UserRegisterVo userRegisterVo);
 
-
+    /**
+     * @description 用户的登入功能
+      * @param: userLoginVo
+     * @date: 2022/8/24 8:48
+     * @return: com.zhuangxiaoyan.athena.member.entity.MemberEntity
+     * @author: xjl
+    */
+    MemberEntity userLogin(UserLoginVo userLoginVo);
 }
 

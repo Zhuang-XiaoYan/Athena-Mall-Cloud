@@ -1,19 +1,17 @@
 package com.zhuangxiaoyan.athena.sso.web;
 
-import com.zhuangxiaoyan.athena.sso.constant.ErrorCode;
-import com.zhuangxiaoyan.athena.sso.constant.SsoConstant;
-import com.zhuangxiaoyan.athena.sso.fegin.SmsFeginService;
-import com.zhuangxiaoyan.common.utils.Result;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+import com.alibaba.fastjson.TypeReference;
+import com.zhuangxiaoyan.athena.sso.fegin.MemberFeginService;
+import com.zhuangxiaoyan.athena.sso.vo.UserLoginVo;
+import com.zhuangxiaoyan.common.utils.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Classname loginController
@@ -25,30 +23,21 @@ import java.util.concurrent.TimeUnit;
 public class LoginController {
 
     @Autowired
-    SmsFeginService smsFeginService;
+    MemberFeginService memberFeginService;
 
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    @PostMapping("/login")
+    public String login(UserLoginVo userLoginVo, RedirectAttributes redirectAttributes){
 
-    @ResponseBody
-    @GetMapping("/sso/sendcode")
-    public Result sendPhoneCode(@RequestParam("phone") String phone) {
-
-        String rediscode = stringRedisTemplate.opsForValue().get(SsoConstant.SMS_CODE_CACHE_PREFIX + phone);
-        if (!StringUtils.isEmpty(rediscode)) {
-            long redis_time = Long.parseLong(rediscode.split("_")[1]);
-            if (System.currentTimeMillis() - redis_time < 60000) {
-                //60秒内不能在发送相关的验证码
-                return Result.error(ErrorCode.SMS_CODE_EXCEPTION.getCode(), ErrorCode.SMS_CODE_EXCEPTION.getMessage());
-            }
+        Result result = memberFeginService.login(userLoginVo);
+        if (result.getCode()==0){
+            // 登入成功 重定向到的首页
+            return "redirect:http://athena.com";
+        }else {
+            Map<String, String> errors=new HashMap();
+            errors.put("msg",result.getData("msg",new TypeReference<String>(){}));
+            redirectAttributes.addFlashAttribute("errors",errors);
+            // 登入失败重新定向到登入页
+            return "redirect:http://sso.athena.com/login.html";
         }
-        String code = UUID.randomUUID().toString().substring(0, 5);
-        String redis_code = code + "_" + System.currentTimeMillis();
-        // 接口防止刷机
-
-        // 缓存的验证码
-        stringRedisTemplate.opsForValue().set(SsoConstant.SMS_CODE_CACHE_PREFIX + phone, redis_code, 10, TimeUnit.MINUTES);
-        smsFeginService.sendPhoneCode(phone, code);
-        return Result.ok();
     }
 }

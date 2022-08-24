@@ -10,6 +10,7 @@ import com.zhuangxiaoyan.athena.member.entity.MemberLevelEntity;
 import com.zhuangxiaoyan.athena.member.exception.PhoneExistException;
 import com.zhuangxiaoyan.athena.member.exception.UsernameExistException;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
+import com.zhuangxiaoyan.athena.member.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.member.vo.UserRegisterVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
@@ -96,4 +97,32 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         memberDao.insert(memberEntity);
     }
 
+    /**
+     * @description 用户的登入功能
+      * @param: userLoginVo
+     * @date: 2022/8/24 8:49
+     * @return: com.zhuangxiaoyan.athena.member.entity.MemberEntity
+     * @author: xjl
+    */
+    @Override
+    public MemberEntity userLogin(UserLoginVo userLoginVo) {
+        String account=userLoginVo.getLoginAccount();
+        String password=userLoginVo.getPassWord();
+
+        MemberDao memberDao = this.baseMapper;
+        MemberEntity memberEntity = memberDao.selectOne(new QueryWrapper<MemberEntity>().eq("username", account).or().eq("mobile", account));
+        if (memberEntity==null){
+            //登入失败
+            return null;
+        }else {
+            String dbPassword = memberEntity.getPassword();
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            boolean matches = passwordEncoder.matches(password, dbPassword);
+            if (matches){
+                return memberEntity;
+            }else {
+                return null;
+            }
+        }
+    }
 }

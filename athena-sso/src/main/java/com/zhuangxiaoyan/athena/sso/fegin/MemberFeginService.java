@@ -1,5 +1,6 @@
 package com.zhuangxiaoyan.athena.sso.fegin;
 
+import com.zhuangxiaoyan.athena.sso.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.sso.vo.UserRegisterVo;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -18,5 +19,8 @@ public interface MemberFeginService {
 
     @PostMapping("/member/member/registry")
     Result registry(@RequestBody UserRegisterVo userRegisterVo);
+
+    @PostMapping("/member/member/login")
+    Result login(@RequestBody UserLoginVo userLoginVo);
 
 }
