@@ -27,28 +27,28 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @description HttpUtils工具类
- * @date: 2022/3/19 18:35
+ * @param: null
+ * @date: 2022/8/25 8:07
+ * @return:
  * @author: xjl
  */
-
 public class HttpUtils {
 
     /**
-     * @description HttpUtils.doGet()
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @date: 2022/7/27 21:24
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * get
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @return
+     * @throws Exception
      */
     public static HttpResponse doGet(String host, String path, String method, Map<String, String> headers, Map<String, String> querys) throws Exception {
         HttpClient httpClient = wrapClient(host);
@@ -60,25 +60,32 @@ public class HttpUtils {
     }
 
     /**
-     * @description HttpUtils.doPost()
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @param: bodys
-     * @date: 2022/7/27 21:24
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * post form
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @param bodys
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doPost(String s1, String s, String host, String path, String method, HashMap<String, String> map) throws Exception {
+    public static HttpResponse doPost(String host, String path, String method,
+                                      Map<String, String> headers,
+                                      Map<String, String> querys,
+                                      Map<String, String> bodys)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpPost request = new HttpPost(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         if (bodys != null) {
             List<NameValuePair> nameValuePairList = new ArrayList<NameValuePair>();
+
             for (String key : bodys.keySet()) {
                 nameValuePairList.add(new BasicNameValuePair(key, bodys.get(key)));
             }
@@ -86,134 +93,159 @@ public class HttpUtils {
             formEntity.setContentType("application/x-www-form-urlencoded; charset=UTF-8");
             request.setEntity(formEntity);
         }
+
         return httpClient.execute(request);
     }
 
     /**
-     * @description HttpUtils.doPost toString
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @param: body
-     * @date: 2022/7/27 21:25
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * Post String
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @param body
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doPost(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, Map<String, String> body) throws Exception {
+    public static HttpResponse doPost(String host, String path, String method,
+                                      Map<String, String> headers,
+                                      Map<String, String> querys,
+                                      String body)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpPost request = new HttpPost(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         if (StringUtils.isNotBlank(body)) {
             request.setEntity(new StringEntity(body, "utf-8"));
         }
+
         return httpClient.execute(request);
     }
 
     /**
-     * @description HttpUtils Post stream
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @param: body
-     * @date: 2022/7/27 21:26
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * Post stream
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @param body
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doPost(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, byte[] body) throws Exception {
+    public static HttpResponse doPost(String host, String path, String method,
+                                      Map<String, String> headers,
+                                      Map<String, String> querys,
+                                      byte[] body)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpPost request = new HttpPost(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         if (body != null) {
             request.setEntity(new ByteArrayEntity(body));
         }
+
         return httpClient.execute(request);
     }
 
     /**
-     * @description HttpUtils doPut
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @param: body
-     * @date: 2022/7/27 21:30
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * Put String
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @param body
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doPut(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, String body) throws Exception {
+    public static HttpResponse doPut(String host, String path, String method,
+                                     Map<String, String> headers,
+                                     Map<String, String> querys,
+                                     String body)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpPut request = new HttpPut(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         if (StringUtils.isNotBlank(body)) {
             request.setEntity(new StringEntity(body, "utf-8"));
         }
+
         return httpClient.execute(request);
     }
 
     /**
-     * @description HttpUtils Put stream
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @param: body
-     * @date: 2022/7/27 21:28
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * Put stream
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @param body
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doPut(String host, String path, String method, Map<String, String> headers, Map<String, String> querys, byte[] body) throws Exception {
+    public static HttpResponse doPut(String host, String path, String method,
+                                     Map<String, String> headers,
+                                     Map<String, String> querys,
+                                     byte[] body)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpPut request = new HttpPut(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         if (body != null) {
             request.setEntity(new ByteArrayEntity(body));
         }
+
         return httpClient.execute(request);
     }
 
     /**
-     * @description HttpUtils Delete
-     * @param: host
-     * @param: path
-     * @param: method
-     * @param: headers
-     * @param: querys
-     * @date: 2022/7/27 21:28
-     * @return: org.apache.http.HttpResponse
-     * @author: xjl
+     * Delete
+     *
+     * @param host
+     * @param path
+     * @param method
+     * @param headers
+     * @param querys
+     * @return
+     * @throws Exception
      */
-    public static HttpResponse doDelete(String host, String path, String method, Map<String, String> headers, Map<String, String> querys) throws Exception {
+    public static HttpResponse doDelete(String host, String path, String method,
+                                        Map<String, String> headers,
+                                        Map<String, String> querys)
+            throws Exception {
         HttpClient httpClient = wrapClient(host);
+
         HttpDelete request = new HttpDelete(buildUrl(host, path, querys));
         for (Map.Entry<String, String> e : headers.entrySet()) {
             request.addHeader(e.getKey(), e.getValue());
         }
+
         return httpClient.execute(request);
     }
 
-    /**
-     * @description HttpUtils buildUrl
-     * @param: host
-     * @param: path
-     * @param: querys
-     * @date: 2022/7/27 21:30
-     * @return: java.lang.String
-     * @author: xjl
-     */
     private static String buildUrl(String host, String path, Map<String, String> querys) throws UnsupportedEncodingException {
         StringBuilder sbUrl = new StringBuilder();
         sbUrl.append(host);
@@ -241,31 +273,19 @@ public class HttpUtils {
                 sbUrl.append("?").append(sbQuery);
             }
         }
+
         return sbUrl.toString();
     }
 
-    /**
-     * @description wrapClient
-     * @param: host
-     * @date: 2022/7/27 21:29
-     * @return: org.apache.http.client.HttpClient
-     * @author: xjl
-     */
     private static HttpClient wrapClient(String host) {
         HttpClient httpClient = new DefaultHttpClient();
         if (host.startsWith("https://")) {
             sslClient(httpClient);
         }
+
         return httpClient;
     }
 
-    /**
-     * @description sslClient
-     * @param: httpClient
-     * @date: 2022/7/27 21:29
-     * @return: void
-     * @author: xjl
-     */
     private static void sslClient(HttpClient httpClient) {
         try {
             SSLContext ctx = SSLContext.getInstance("TLS");
@@ -282,6 +302,7 @@ public class HttpUtils {
 
                 @Override
                 public void checkServerTrusted(X509Certificate[] xcs, String str) {
+
                 }
             };
             ctx.init(null, new TrustManager[]{tm}, null);
@@ -296,4 +317,5 @@ public class HttpUtils {
             throw new RuntimeException(ex);
         }
     }
+
 }

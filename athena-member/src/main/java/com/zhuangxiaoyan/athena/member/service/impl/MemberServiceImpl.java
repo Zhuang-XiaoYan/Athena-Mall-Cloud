@@ -14,7 +14,7 @@ import com.zhuangxiaoyan.athena.member.exception.UsernameExistException;
 import com.zhuangxiaoyan.athena.member.service.MemberService;
 import com.zhuangxiaoyan.athena.member.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.member.vo.UserRegisterVo;
-import com.zhuangxiaoyan.athena.member.vo.WeiBoUserVo;
+import com.zhuangxiaoyan.athena.member.vo.OAuth2UserVo;
 import com.zhuangxiaoyan.common.utils.HttpUtils;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Query;
@@ -97,6 +97,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         // 验证手机和用户名的唯一性
         memberEntity.setMobile(userRegisterVo.getPhone());
         memberEntity.setUsername(userRegisterVo.getUserName());
+        memberEntity.setNickname(userRegisterVo.getUserName());
         // 密文保存
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encode_password = passwordEncoder.encode(userRegisterVo.getPassWord());
@@ -142,9 +143,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
      * @author: xjl
      */
     @Override
-    public MemberEntity weiboLogin(WeiBoUserVo weiBoUserVo) throws Exception {
+    public MemberEntity weiboLogin(OAuth2UserVo oAuth2UserVo) throws Exception {
         //具有登录和注册逻辑
-        String uid = weiBoUserVo.getUid();
+        String uid = oAuth2UserVo.getUid();
 
         //1、判断当前社交用户是否已经登录过系统
         MemberEntity memberEntity = this.baseMapper.selectOne(new QueryWrapper<MemberEntity>().eq("social_uid", uid));
@@ -154,12 +155,12 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
             //更新用户的访问令牌的时间和access_token
             MemberEntity update = new MemberEntity();
             update.setId(memberEntity.getId());
-            update.setAccessToken(weiBoUserVo.getAccess_token());
-            update.setExpiresIn(String.valueOf(weiBoUserVo.getExpires_in()));
+            update.setAccessToken(oAuth2UserVo.getAccess_token());
+            update.setExpiresIn(String.valueOf(oAuth2UserVo.getExpires_in()));
             this.baseMapper.updateById(update);
 
-            memberEntity.setAccessToken(weiBoUserVo.getAccess_token());
-            memberEntity.setExpiresIn(String.valueOf(weiBoUserVo.getExpires_in()));
+            memberEntity.setAccessToken(oAuth2UserVo.getAccess_token());
+            memberEntity.setExpiresIn(String.valueOf(oAuth2UserVo.getExpires_in()));
             return memberEntity;
         } else {
             //2、没有查到当前社交用户对应的记录我们就需要注册一个
@@ -167,8 +168,8 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
             try {
                 //3、查询当前社交用户的社交账号信息（昵称、性别等）
                 Map<String, String> query = new HashMap<>();
-                query.put("access_token", weiBoUserVo.getAccess_token());
-                query.put("uid", weiBoUserVo.getUid());
+                query.put("access_token", oAuth2UserVo.getAccess_token());
+                query.put("uid", oAuth2UserVo.getUid());
                 HttpResponse response = HttpUtils.doGet("https://api.weibo.com", "/2/users/show.json", "get", new HashMap<String, String>(), query);
                 if (response.getStatusLine().getStatusCode() == 200) {
                     //查询成功
@@ -185,9 +186,9 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            register.setSocialUid(weiBoUserVo.getUid());
-            register.setAccessToken(weiBoUserVo.getAccess_token());
-            register.setExpiresIn(String.valueOf(weiBoUserVo.getExpires_in()));
+            register.setSocialUid(oAuth2UserVo.getUid());
+            register.setAccessToken(oAuth2UserVo.getAccess_token());
+            register.setExpiresIn(String.valueOf(oAuth2UserVo.getExpires_in()));
             //把用户信息插入到数据库中
             this.baseMapper.insert(register);
             return register;

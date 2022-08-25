@@ -14,9 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class AthenaWebConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/registry.html").setViewName("registry");
-        registry.addViewController("/login.html").setViewName("login");
-    }
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/registry.html").setViewName("registry");
+//        registry.addViewController("/login.html").setViewName("login");
+//    }
 }

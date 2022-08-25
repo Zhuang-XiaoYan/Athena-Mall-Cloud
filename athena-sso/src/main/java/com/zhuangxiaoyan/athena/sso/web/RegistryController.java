@@ -45,6 +45,13 @@ public class RegistryController {
     @Autowired
     MemberFeginService memberFeginService;
 
+
+    @GetMapping("/registry.html")
+    public String loginPage(){
+        return "registry";
+    }
+
+
     @ResponseBody
     @GetMapping("/sso/sendcode")
     public Result sendPhoneCode(@RequestParam("phone") String phone) {

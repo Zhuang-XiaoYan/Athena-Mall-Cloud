@@ -6,7 +6,7 @@ import com.zhuangxiaoyan.athena.member.exception.PhoneExistException;
 import com.zhuangxiaoyan.athena.member.exception.UsernameExistException;
 import com.zhuangxiaoyan.athena.member.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.member.vo.UserRegisterVo;
-import com.zhuangxiaoyan.athena.member.vo.WeiBoUserVo;
+import com.zhuangxiaoyan.athena.member.vo.OAuth2UserVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 
 import java.util.Map;
@@ -64,6 +64,6 @@ public interface MemberService extends IService<MemberEntity> {
      * @return: com.zhuangxiaoyan.athena.member.entity.MemberEntity
      * @author: xjl
     */
-    MemberEntity weiboLogin(WeiBoUserVo weiBoUserVo) throws Exception;
+    MemberEntity weiboLogin(OAuth2UserVo oAuth2UserVo) throws Exception;
 }
 

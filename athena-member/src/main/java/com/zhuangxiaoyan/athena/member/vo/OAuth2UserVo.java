@@ -10,7 +10,7 @@ import lombok.Data;
  */
 
 @Data
-public class WeiBoUserVo {
+public class OAuth2UserVo {
 
     private String access_token;
 

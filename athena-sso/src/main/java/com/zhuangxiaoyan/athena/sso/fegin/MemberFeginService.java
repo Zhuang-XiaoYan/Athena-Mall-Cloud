@@ -2,7 +2,7 @@ package com.zhuangxiaoyan.athena.sso.fegin;
 
 import com.zhuangxiaoyan.athena.sso.vo.UserLoginVo;
 import com.zhuangxiaoyan.athena.sso.vo.UserRegisterVo;
-import com.zhuangxiaoyan.athena.sso.vo.WeiBoUserVo;
+import com.zhuangxiaoyan.athena.sso.vo.OAuth2UserVo;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ public interface MemberFeginService {
     @PostMapping("/member/user/login")
     Result login(@RequestBody UserLoginVo userLoginVo);
 
-    @PostMapping("member/user/weibo/login")
-    Result weiboLogin(@RequestBody WeiBoUserVo weiBoUserVo);
+    @PostMapping("/member/oauth2/weibo/login")
+    Result weiboLogin(@RequestBody OAuth2UserVo weiBoUserVo);
 
 }
