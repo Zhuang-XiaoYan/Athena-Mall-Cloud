@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.zhuangxiaoyan.athena.sso.constant.SsoConstant;
 import com.zhuangxiaoyan.athena.sso.fegin.MemberFeginService;
-import com.zhuangxiaoyan.athena.sso.vo.MemberRespVo;
+import com.zhuangxiaoyan.common.vo.MemberRespVo;
 import com.zhuangxiaoyan.athena.sso.vo.OAuth2UserVo;
 import com.zhuangxiaoyan.common.utils.HttpUtils;
 import com.zhuangxiaoyan.common.utils.Result;
@@ -35,6 +35,9 @@ public class OAuth2Controller {
 
     @GetMapping("/oauth2.0/weibo/success")
     public String weiboLogin(@RequestParam("code") String code, HttpSession session) throws Exception {
+
+        System.out.println("微博的返回的code=="+code);
+
         Map<String, String> map = new HashMap<>();
         map.put("client_id", "1004031124");
         map.put("client_secret", "49117528e7c390bd5576bb86c266586d");
@@ -54,7 +57,7 @@ public class OAuth2Controller {
             //知道了哪个社交用户
             //1）、当前用户如果是第一次进网站，自动注册进来（为当前社交用户生成一个会员信息，以后这个社交账号就对应指定的会员）
             //登录或者注册这个社交用户
-            System.out.println(oAuth2UserVo.getAccess_token());
+            System.out.println("用户授权的token=="+oAuth2UserVo.getAccess_token());
             //调用远程服务
             Result result = memberFeginService.weiboLogin(oAuth2UserVo);
             if (result.getCode() == 0) {

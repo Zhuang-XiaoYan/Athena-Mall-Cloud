@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public class IndexController {
      * @author: xjl
      */
     @GetMapping({"/", "/index.html"})
-    public String indexPage(Model model) {
+    public String indexPage(Model model, HttpSession session) {
         // 查询所有的以及分类
         List<CategoryEntity> categoryEntities = categoryService.queryOneCategory();
         // 设置视图解析器

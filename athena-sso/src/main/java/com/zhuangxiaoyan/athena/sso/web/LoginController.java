@@ -4,7 +4,7 @@ package com.zhuangxiaoyan.athena.sso.web;
 import com.alibaba.fastjson.TypeReference;
 import com.zhuangxiaoyan.athena.sso.constant.SsoConstant;
 import com.zhuangxiaoyan.athena.sso.fegin.MemberFeginService;
-import com.zhuangxiaoyan.athena.sso.vo.MemberRespVo;
+import com.zhuangxiaoyan.common.vo.MemberRespVo;
 import com.zhuangxiaoyan.athena.sso.vo.UserLoginVo;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;

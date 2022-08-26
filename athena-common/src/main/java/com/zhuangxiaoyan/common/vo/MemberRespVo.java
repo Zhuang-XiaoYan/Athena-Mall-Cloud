@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.athena.product.vo;
+package com.zhuangxiaoyan.common.vo;
 
 import lombok.Data;
 

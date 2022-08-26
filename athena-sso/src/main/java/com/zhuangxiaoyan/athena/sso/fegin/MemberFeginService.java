@@ -27,4 +27,7 @@ public interface MemberFeginService {
     @PostMapping("/member/oauth2/weibo/login")
     Result weiboLogin(@RequestBody OAuth2UserVo weiBoUserVo);
 
+    @PostMapping("/member/oauth2/weixin/login")
+    Result weixinLogin(@RequestBody OAuth2UserVo weiBoUserVo);
+
 }
