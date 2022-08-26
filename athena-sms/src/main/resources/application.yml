@@ -10,7 +10,7 @@ spring:
   # 配置Spring服务的名称
   application:
     name: athena-sms
-#  #配置Spring datebase的账户和连接
+  #配置Spring datebase的账户和连接
 #  datasource:
 #    username: root
 #    password: root
@@ -22,7 +22,6 @@ spring:
       # 配置的Springcloud服务注册中心
       discovery:
         server-addr: 192.168.25.137:8848
-
   # 配置的时间输出格式
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

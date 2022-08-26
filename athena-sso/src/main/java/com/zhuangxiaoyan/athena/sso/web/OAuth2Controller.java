@@ -36,8 +36,8 @@ public class OAuth2Controller {
     @GetMapping("/oauth2.0/weibo/success")
     public String weiboLogin(@RequestParam("code") String code, HttpSession session) throws Exception {
         Map<String, String> map = new HashMap<>();
-        map.put("client_id", "2077705774");
-        map.put("client_secret", "40af02bd1c7e435ba6a6e9cd3bf799fd");
+        map.put("client_id", "1004031124");
+        map.put("client_secret", "49117528e7c390bd5576bb86c266586d");
         map.put("grant_type", "authorization_code");
         map.put("redirect_uri", "http://sso.athena.com/oauth2.0/weibo/success");
         map.put("code", code);
