@@ -8,7 +8,7 @@
 
 # 基于prometheus的分布式监控中心架构设计
 
-![img.png](images/基于prometheus架构设计.png)
+![img.png](images/Athena的监控系统设计/基于prometheus架构设计.png)
 
 该服务监控主要分为三个层次
 1. 硬件层面或者是OS层面的监控，保证机器的正常运行
@@ -21,9 +21,9 @@ Prometheus 是一个开源的云原生基于指标的监控系统以及告警系
 现在最常见的Kubernetes容器管理系统中，通常会搭配Prometheus进行监控, 所以它主要用于容器监控和k8s集群监控以及云环境的监控(OpenStack)。
 Prometheus的监控实现，是基于HTTP周期性的抓取被监控组件的状态，任意组件只要提供符合Prometheus定义的数据格式的HTTP接口，就可以加入Prometheus监控。Prometheus监控架构如下所示：
 
-![img.png](images/prometheus架构设计.png)  
+![img.png](images/Athena的监控系统设计/prometheus架构设计.png)  
 
-![img.png](images/prometheus.png)
+![img.png](images/Athena的监控系统设计/prometheus.png)
 
 Prometheus 的主要优势有：
 由指标名称和和键/值对标签标识的时间序列数据组成的多维数据模型。
@@ -103,9 +103,9 @@ scrape_configs:
 
 # Granfa 数据可视化实战操作
 
-![img.png](images/Grafana监控页面.png)
+![img.png](images/Athena的监控系统设计/Grafana监控页面.png)
 
-![img.png](images/Docker的监控页面.png)
+![img.png](images/Athena的监控系统设计/Docker的监控页面.png)
 
 # docker-compse的数据采集
 
@@ -280,7 +280,7 @@ inhibit_rules:
     equal: ['alertname','operations', 'instance']
 ```
 
-![img.png](images/Alertmanager.png)
+![img.png](images/Athena的监控系统设计/Alertmanager.png)
 
 
 ## 监控指标

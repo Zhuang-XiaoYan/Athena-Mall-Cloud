@@ -61,18 +61,18 @@ network.host: 0.0.0.0
 discovery.seed_hosts: ["0.0.0.0", "[::1]"]
 ```
 
-![img.png](images/elasticsearch启动成功.png)
+![img.png](images/Athena的搜索系统设计/elasticsearch启动成功.png)
  
 
 
 ## 2.3 ik分词器的配置
 
-![img.png](images/ik分词器的配置.png)
+![img.png](images/Athena的搜索系统设计/ik分词器的配置.png)
 
 
 ### 2.3.1 自定义分词配置
 
-![img.png](images/自定义分词配置.png)
+![img.png](images/Athena的搜索系统设计/自定义分词配置.png)
 
 
 ## 2.3 Elasticserach的集群部署
@@ -83,7 +83,7 @@ discovery.seed_hosts: ["0.0.0.0", "[::1]"]
 
 # 四、athena-search系统构建
 
-![img.png](images/athena-search环境构建与测试.png)
+![img.png](images/Athena的搜索系统设计/athena-search环境构建与测试.png)
 
 > 在商品的存放在es之前一定要的在es中存放好的关于athena_product的数据类型，
 > 否则存放的数据的会使用默认的数据格式，导致检索的时候查询错误。**
@@ -152,10 +152,10 @@ PUT athena_product
 }
 ```
 
-![img.png](images/athena的数据模型.png)
+![img.png](images/Athena系统架构设计/athena的数据模型.png)
 
 
-![img.png](images/es页面工程跳转.png)
+![img.png](images/Athena的搜索系统设计/es页面工程跳转.png)
 
 # athena-search服务压测设计
 

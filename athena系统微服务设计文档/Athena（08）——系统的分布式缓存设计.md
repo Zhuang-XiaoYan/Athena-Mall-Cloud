@@ -4,7 +4,7 @@
 # 摘要
 
 
-![img.png](images/Athena-缓存测试成功.png)
+![img.png](images/Athena的缓存设计/Athena-缓存测试成功.png)
 
 
 # Redis的缓存设计

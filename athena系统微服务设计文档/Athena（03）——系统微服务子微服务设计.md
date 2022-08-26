@@ -10,14 +10,14 @@
 > - npm config set registry http://registry.npm.taobao.org/
 > - npm run dev
 
-![img.png](images/vue-dev.png)
+![img.png](images/Athena前端服务设计/vue-dev.png)
 
 解决方案：
 
 由于的语法的检查有太严格，导致的运行的检查错误。
 
 
-![img.png](images/athena-admin-login.png)
+![img.png](images/Athena业务服务设计/athena-admin-login.png)
 
 
 - 部署端口：9009
@@ -27,49 +27,49 @@
 
 服务启动
 
-![img.png](images/MicroService.png)
+![img.png](images/Athena的微服务治理设计/MicroService.png)
 
 商品服务的查询与三级分类功能实现
 
-![img.png](images/commodity_search.png)
+![img.png](images/Athena的搜索系统设计/commodity_search.png)
 
-![img.png](images/商品的三级分类结果.png)
+![img.png](images/Athena业务服务设计/商品的三级分类结果.png)
 
-![img.png](images/商品的三级分类前端有问题.png)
+![img.png](images/Athena业务服务设计/商品的三级分类前端有问题.png)
 
-![img.png](images/后端的数据的传递的有问题.png)
+![img.png](images/Athena业务服务设计/后端的数据的传递的有问题.png)
 
-![img.png](images/商品的三级分类的功能完成.png)
+![img.png](images/Athena业务服务设计/商品的三级分类的功能完成.png)
 
-![img.png](images/商品的属性分组.png)
+![img.png](images/Athena业务服务设计/商品的属性分组.png)
 
 
 商品的品牌管理
 
-![img.png](images/商品的品牌管理.png)
+![img.png](images/Athena业务服务设计/商品的品牌管理.png)
 
-![img.png](images/品牌管理的分页查询.png)
+![img.png](images/Athena业务服务设计/品牌管理的分页查询.png)
 
 前后端参数检验
 
-![img.png](images/异常校验.png)
+![img.png](images/Athena业务服务设计/异常校验.png)
 
-![img.png](images/自定义的异常.png)
+![img.png](images/Athena业务服务设计/自定义的异常.png)
 
-![img.png](images/分组校验.png)
+![img.png](images/Athena业务服务设计/分组校验.png)
 
 
-![img.png](images/商品的属性分组有bug.png)
+![img.png](images/Athena业务服务设计/商品的属性分组有bug.png)
 
 商品管理的模糊查询
 
-![img.png](images/商品管理的模糊查询.png)
+![img.png](images/Athena业务服务设计/商品管理的模糊查询.png)
 
-![img.png](images/关联分类功能.png)
+![img.png](images/Athena业务服务设计/关联分类功能.png)
 
 商品屬性查詢
 
-![img.png](images/商品屬性查詢.png)
+![img.png](images/Athena业务服务设计/商品屬性查詢.png)
 
 
 # 3、支付服务
@@ -78,7 +78,7 @@
 
 服务启动
 
-![img.png](images/MicroService.png)
+![img.png](images/Athena的微服务治理设计/MicroService.png)
 
 # 5、促销服务
 
@@ -90,7 +90,7 @@
 
 服务启动
 
-![img.png](images/MicroService.png)
+![img.png](images/Athena的微服务治理设计/MicroService.png)
 
 # 9、秒杀服务
 
@@ -98,7 +98,7 @@
 
 服务启动
 
-![img.png](images/MicroService.png)
+![img.png](images/Athena的微服务治理设计/MicroService.png)
 
 # 11、检索服务
 
@@ -123,15 +123,15 @@
 
 - 部署端口：9000
 
-![img.png](images/athena-admin.png)
+![img.png](images/Athena业务服务设计/athena-admin.png)
 
 注册到nacos
 
-![img.png](images/athena-admin-naocs.png)
+![img.png](images/Athena业务服务设计/athena-admin-naocs.png)
 
-![img.png](images/admin-vue.jpg)
+![img.png](images/Athena前端服务设计/admin-vue.jpg)
 
-![img.png](images/admi-success.png)
+![img.png](images/Athena业务服务设计/admi-success.png)
 
 # 16、直播服务
 
@@ -153,52 +153,52 @@
 docker restart 6c0e160aafa1
 ```
 
-![img.png](images/nacos.png)
+![img.png](images/Athena的微服务治理设计/nacos.png)
 
 远程调用服务
 
-![img.png](images/远程调用服务启动.png)
+![img.png](images/Athena的微服务治理设计/远程调用服务启动.png)
 
-![img.png](images/远程调用.png)
+![img.png](images/Athena的微服务治理设计/远程调用.png)
 
 配置中心
 
-![img_1.png](images/nacos-dev.png)
+![img_1.png](images/Athena的微服务治理设计/nacos-dev.png)
 
 
 # 23、会员服务
 
 服务启动
 
-![img.png](images/MicroService.png)
+![img.png](images/Athena的微服务治理设计/MicroService.png)
 
-![img.png](images/会员服务查询.png)
+![img.png](images/Athena业务服务设计/会员服务查询.png)
 
-![img.png](images/会员服务等级查询.png)
+![img.png](images/Athena业务服务设计/会员服务等级查询.png)
 
 
 # 24、网关服务
 
-![img.png](images/Springcloud-getway.png)
+![img.png](images/Athena的微服务治理设计/Springcloud-getway.png)
 
 请求的转发
 
-![img.png](images/服务请求转发.png)
+![img.png](images/Athena业务服务设计/服务请求转发.png)
 
 # 25、OSS对象存储服务
 
-![img.png](images/aliyun-oss.png)
+![img.png](images/Athena的存储系统设计/aliyun-oss.png)
 
-![img.png](images/athena-oss测试成功.png)
+![img.png](images/Athena的存储系统设计/athena-oss测试成功.png)
 
-![img.png](images/网关转发成功.png)
+![img.png](images/Athena的微服务治理设计/网关转发成功.png)
 
-![img.png](images/oss错误.png)
+![img.png](images/Athena前端服务设计/oss错误.png)
 
 需要在的你自己的OSS中设置允许跨域的方式。 
 
 
-![img.png](images/表单校验.png)
+![img.png](images/Athena业务服务设计/表单校验.png)
 
 统一的异常处理
 

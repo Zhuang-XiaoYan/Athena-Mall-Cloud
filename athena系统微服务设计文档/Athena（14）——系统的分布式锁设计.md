@@ -8,7 +8,7 @@
 
 # 基于redison分布式锁
 
-![img.png](images/基于redison分布式锁.png)
+![img.png](images/Athena的缓存设计/基于redison分布式锁.png)
 
 
 

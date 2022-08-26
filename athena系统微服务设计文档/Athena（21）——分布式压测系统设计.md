@@ -34,11 +34,11 @@
 # 微服务压测——JMeter安装与使用
 
 
-![img.png](images/baidu压测示例.png)
+![img.png](images/Athena的压测系统设计/baidu压测示例.png)
 
 **JMeter压测bug: 、JMeter Address Already in use 错误解决**
 
-![img.png](images/JMeterAddress错误.png)
+![img.png](images/Athena的压测系统设计/JMeterAddress错误.png)
 
 windows 本身提供的端口访问机制的问题。Windows 提供给TCP/IP 链接的端口为1024-5000，并且要四分钟来循环回收他们。就导致
 我们在短时间内跑大量的请求时将端口占满了。
@@ -51,7 +51,7 @@ windows 本身提供的端口访问机制的问题。Windows 提供给TCP/IP 链
    - 然后双击TCPTimedWaitDelay，输入数值数据为30，基数选择十进制（如果是分布式运行的话，控制机器和负载机器都需要这样操作）
    - 修改配置完毕之后记得重启机器才会生效
    
-![img.png](images/window压测配置修改.png)
+![img.png](images/Athena的压测系统设计/window压测配置修改.png)
 
 
 # Mysql集群压测
@@ -90,13 +90,13 @@ windows 本身提供的端口访问机制的问题。Windows 提供给TCP/IP 链
 |                   |       |      |          |          |
 
 
-![img.png](images/springgetwayjvm监控.png)
+![img.png](images/Athena的监控系统设计/springgetwayjvm监控.png)
 
-![img.png](images/一级菜单的压测.png)
+![img.png](images/Athena的压测系统设计/一级菜单的压测.png)
 
-![img.png](images/三级菜单压测.png)
+![img.png](images/Athena的压测系统设计/三级菜单压测.png)
 
-![img.png](images/添加缓存后的压测数据.png)
+![img.png](images/Athena的压测系统设计/添加缓存后的压测数据.png)
 
 
 
