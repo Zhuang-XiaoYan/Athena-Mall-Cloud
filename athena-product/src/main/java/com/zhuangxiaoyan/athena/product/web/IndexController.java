@@ -1,8 +1,10 @@
 package com.zhuangxiaoyan.athena.product.web;
 
+import com.zhuangxiaoyan.athena.product.constant.ProductConstant;
 import com.zhuangxiaoyan.athena.product.entity.CategoryEntity;
 import com.zhuangxiaoyan.athena.product.service.CategoryService;
 import com.zhuangxiaoyan.athena.product.vo.Catelog2Vo;
+import com.zhuangxiaoyan.common.vo.MemberRespVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +59,6 @@ public class IndexController {
         return catalogJson;
     }
 
-
     /**
      * @description 访问Db是的目录的json数据
      * @param:
@@ -71,8 +72,6 @@ public class IndexController {
         Map<String, List<Catelog2Vo>> catalogJson = categoryService.getCatalogJsonFromRedis();
         return catalogJson;
     }
-
-
 
     /**
      * @description 访问Db是的目录的json数据
