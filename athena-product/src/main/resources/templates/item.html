@@ -62,12 +62,12 @@
             `
             <ul class="header_ul_right">
                 <li style="border: 0;">
-                    <a th:if="${session.loginUser == null}" href="http://auth.athena.com/login.html"
+                    <a th:if="${session.loginUser == null}" href="http://sso.athena.com/login.html"
                        class="aa">你好，请登录</a>
                     <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
                 </li>
                 <li>
-                    <a th:if="${session.loginUser == null}" href="http://auth.athena.com/reg.html"
+                    <a th:if="${session.loginUser == null}" href="http://sso.athena.com/reg.html"
                        style="color: red;">免费注册</a>
                 </li>
                 <li><a href="http://member.athena.com/memberOrder.html" class="aa">我的订单</a> |</li>
@@ -610,8 +610,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-btns-two"
-                         th:if="${item.seckillSkuVo == null }">
+                    <div class="box-btns-two" th:if="${item.seckillSkuVo == null }">
                         <a class="addToCart" href="#" th:attr="skuId=${item.info.skuId}">
                             加入购物车
                         </a>

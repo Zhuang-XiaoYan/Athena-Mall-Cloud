@@ -1,7 +1,6 @@
 package com.zhuangxiaoyan.athena.sso.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author: xjl
  */
 @Configuration
-public class AthenaWebConfig implements WebMvcConfigurer {
+public class SsoWebConfig implements WebMvcConfigurer {
 
 //    @Override
 //    public void addViewControllers(ViewControllerRegistry registry) {

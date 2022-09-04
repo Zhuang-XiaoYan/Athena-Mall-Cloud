@@ -49,4 +49,17 @@ public class SkuSaleAttrValueServiceImpl extends ServiceImpl<SkuSaleAttrValueDao
         List<SkuItemSaleAttrVo> voList = dao.getSaleAttrBySpuId(spuId);
         return voList;
     }
+
+    /**
+     * @description 通过的这个的来是查询的属性
+      * @param: s
+     * @date: 2022/9/3 14:05
+     * @return: java.util.List<java.lang.String>
+     * @author: xjl
+    */
+    @Override
+    public List<String> getSkuSaleAttrValuesStringList(Long skuId) {
+        SkuSaleAttrValueDao dao = this.baseMapper;
+        return dao.getSkuSaleAttrValuesStringList(skuId);
+    }
 }

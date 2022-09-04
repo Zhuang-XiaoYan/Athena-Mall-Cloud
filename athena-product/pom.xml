@@ -76,16 +76,18 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
         </dependency>
-        <!--公共类-->
+        <!--athena-common-->
         <dependency>
             <groupId>com.zhuangxiaoyan</groupId>
             <artifactId>athena-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--spring-boot-web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--spring-boot-test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

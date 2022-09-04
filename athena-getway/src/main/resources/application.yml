@@ -64,6 +64,13 @@ spring:
             - Path=/api/product/**
           filters:
             - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+        # high level athena-cart service
+        - id: athena-cart-route
+          uri: lb://athena-cart
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
         # high level athena-coupon service
         - id: athena-coupon-route
           uri: lb://athena-coupon
@@ -88,10 +95,15 @@ spring:
           uri: lb://athena-search
           predicates:
             - Host=search.athena.com
-        # low level athena-host-search service
+        # low level athena-host-sso service
         - id: athena-host-sso
           uri: lb://athena-sso
           predicates:
             - Host=sso.athena.com
+        # low level athena-host-cart service
+        - id: athena-host-cart
+          uri: lb://athena-cart
+          predicates:
+            - Host=cart.athena.com
 
 
