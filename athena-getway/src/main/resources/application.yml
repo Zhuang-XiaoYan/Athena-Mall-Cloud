@@ -105,5 +105,10 @@ spring:
           uri: lb://athena-cart
           predicates:
             - Host=cart.athena.com
+        # low level athena-host-order service
+        - id: athena-host-order
+          uri: lb://athena-order
+          predicates:
+            - Host=order.athena.com
 
 
