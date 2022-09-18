@@ -17,10 +17,8 @@
 .login_form .checkcode img{width: 150px; height: 36px; vertical-align: top;}
 .login_form  a{color: #005aa0;}
 .login_form .chb{position: relative; top:2px; left: 2px;}
-
 .login_btn{width: 307px; height: 34px; border: 0; background: url("../images/login_img.png") 0 0 no-repeat; cursor: pointer;}
 .login_btn:hover{background-position: 0 -34px;}
-
 .coagent dd{ float: left; display: inline; padding-right: 10px; }
 .coagent dl{line-height: 20px;}
 .coagent span{display: inline-block; width: 16px; height: 16px; background: url("../images/icon_cologin.png") 0 0 no-repeat; position: relative; top:3px; margin-right: 2px;}
@@ -31,20 +29,17 @@
 .baidu span{background-position: 0 -40px;}
 .douban span{background-position: -20px -60px;}
 .fetion span{background-position: 0 -60px;}
-
 .guide{ width: 350px; height:250px; padding-left:50px; }
 .guide h3{font-weight: bold;}
 .guide p{color: #666; margin:20px 0; line-height: 20px; }
 .reg_btn{margin-left: 100px; display: block; width: 140px; height: 32px; line-height: 32px; background:#7cbe56; color: #fff; font-size: 14px; text-align: center; border-radius: 3px;}
 .reg_btn:hover{background-color: #89c964; color: #fff; text-decoration: none;}
-
 /*注册部分css*/
 .regist .login_form{width: 630px; border: 0; }
 .regist .login_btn{ background: url("../images/regist_img.png") 0 0 no-repeat;}
 .regist .login_btn:hover{background-position: 0 -34px;}
 .regist .login_form p{color: #aaa; margin-left: 60px; margin-top: 5px;}
 .mobile{width:260px; padding: 10px 20px; border: 1px solid #e5e5e5;}
-
 .mobile h3{width: 260px;  height: 85px; padding-bottom: 25px; background: url("../images/reg_mobile.png") center center no-repeat;  text-indent: -9999px; border-bottom: 2px solid #ededed;}
 .mobile p{text-align: center; line-height: 25px; color: #999;}
 .mobile p strong{color:#e4393c; font-weight: bolder; font-family: Verdana,Arial; font-size: 16px;}

@@ -1,11 +1,11 @@
 /*
 @功能：填写并核对订单页面css
-@作者：diamondwang
-@时间：2013年11月12日
+@作者：庄小焱
+@时间：2022年9月18日
 */
+
 .fillin_hd{height: 36px; line-height: 36px;  background: url("../images/sort_bg.png") 0 0 repeat-x;border: 1px solid #E7E3E7; border-top: 2px solid #CE0000; border-bottom: 0;}
 .fillin_hd h2{padding-left: 10px; font-weight: 700; font-size: 16px; font-family: "microsoft yahei"; color: #444;}
-
 .fillin_bd{width: 958px; border: 1px solid #E7E3E7; border-width: 0 1px; padding: 0 15px;color: #666;}
 .address,.delivery,.pay,.receipt{width:958px; padding: 10px 0; border-bottom: 1px dotted #ddd;}
 .goods{width:958px; padding: 10px 0;}
@@ -22,8 +22,6 @@
 .address li.cur{background: #fff4d3;}
 .confirm_btn{display: inline-block; height: 30px; margin-top: 10px;background: url("../images/btn_fillin.png") 0 0 no-repeat; padding-left: 30px; cursor: pointer;}
 .confirm_btn span{display: inline-block; height: 30px; line-height: 30px; background: url("../images/btn_fillin.png") right -30px no-repeat; padding-right: 30px; color: #fff; font-size: 14px; font-weight: bolder;}
-
-
 .confirm_btn:hover{background-position: 0 -60px; }
 .confirm_btn:hover span{background-position: 0 -90px;}
 .delivery_select table{width: 100%;}
@@ -32,19 +30,15 @@
 .delivery_select .col2{width: 15%;}
 .delivery_select .col3{width: 50%;}
 .delivery_select .cur{background: #fff4d3;}
-
 .pay_select td{padding: 4px 0;}
 .pay_select .col1{width: 20%;}
 .pay_select .col2{width: 80%;}
 .pay_select table{width: 100%;}
 .pay_select .cur{background: #fff4d3;}
-
 .receipt_select li{padding: 4px 0;}
 .receipt_select .txt{width: 250px; height: 18px; padding: 3px; border: 1px solid #ccc;}
-
 /*radio效果修正*/
 input[type='radio']{position: relative; top:2px; margin-right: 2px;}
-
 /*商品信息css*/
 .goods table{width: 100%;}
 .goods thead{background: #ddd; height: 35px; line-height: 35px; }
@@ -64,7 +58,6 @@ input[type='radio']{position: relative; top:2px; margin-right: 2px;}
 .goods tfoot li{line-height: 25px; clear: both;}
 .goods tfoot li span{width: 100px; }
 .goods tfoot li em{display: inline-block; width: 50px; text-align: right;}
-
 .fillin_ft{width: 988px; height: 50px; background: #f5f5f5;  border:1px solid #E7E3E7; border-top: 0;  text-align: right;}
 .fillin_ft p{font-size: 16px; font-weight:bold; color: #666; float: right; display: inline; line-height: 50px;}
 .fillin_ft p strong{color:#e4393c; font-family: Verdana,Arial;}

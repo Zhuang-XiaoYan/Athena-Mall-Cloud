@@ -1,8 +1,9 @@
 /*
 @功能：头部js
-@作者：diamondwang
-@时间：2013年11月13日
+@作者：庄小焱
+@时间：2022年9月18日
 */
+
 /* 注意，要在页面中先引入jquery*/
 $(function(){
 	//搜索框，注意此处，获取文本框的默认值使用defaultValue属性，但是只能通过this.defaultValue，不能使用$(this).defalutValue。
@@ -23,7 +24,6 @@ $(function(){
 		$(this).find("dd").hide();
 		$(this).find("dt").removeClass("on");
 	});
-
 	//购物车
 	$(".cart").mouseover(function(){
 		$(this).find("dd").show();
@@ -32,7 +32,6 @@ $(function(){
 		$(this).find("dd").hide();
 		$(this).find("dt").removeClass("on");
 	});
-
 	//导航菜单效果
 	$(".cat").hover(function(){
 		$(this).find(".cat_detail").show();
@@ -41,7 +40,6 @@ $(function(){
 		$(this).find(".cat_detail").hide();
 		$(this).find("h3").removeClass("on");
 	});
-
 	//非首页，导航菜单显隐效果
 	$(".cat1").hover(function(){
 		$(".cat1 .cat_hd").addClass("on").removeClass("off");
@@ -50,6 +48,4 @@ $(function(){
 		$(".cat1 .cat_hd").addClass("off").removeClass("on");
 		$(".cat1 .cat_bd").hide();
 	});
-
-
 });

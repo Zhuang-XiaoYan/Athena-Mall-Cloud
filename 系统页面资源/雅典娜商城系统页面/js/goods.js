@@ -1,7 +1,7 @@
 /*
 @功能：商品页js
-@作者：diamondwang
-@时间：2013年11月13日
+@作者：庄小焱
+@时间：2022年9月18日
 */
 
 $(function(){
@@ -20,10 +20,8 @@ $(function(){
 			//开启右边的按钮
 			$("#forward").removeClass("off").addClass("on");			
 		}
-		
 		$(this).blur(); //去除ie 虚边框
 	});
-
 	//点击前进
 	$("#forward").click(function(){
 		var left = parseInt($(".smallpic_wrap ul").css("left")); //获取ul水平方向偏移量
@@ -38,12 +36,9 @@ $(function(){
 			});
 			//开启左边的按钮
 			$("#backward").addClass("on").removeClass("off");
-			
 		}
-		
 		$(this).blur(); //去除ie 虚边框
 	});
-
 	//选择货品，如颜色、版本等
 	$(".product a").click(function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
@@ -51,8 +46,6 @@ $(function(){
 		//去除虚边框
 		$(this).blur();
 	});
-
-
 	//购买数量
 	//减少
 	$("#reduce_num").click(function(){
@@ -62,12 +55,10 @@ $(function(){
 			$(".amount").val(parseInt($(".amount").val()) - 1);
 		}
 	});
-
 	//增加
 	$("#add_num").click(function(){
 		$(".amount").val(parseInt($(".amount").val()) + 1);
 	});
-
 	//直接输入
 	$(".amount").blur(function(){
 		if (parseInt($(".amount").val()) < 1){
@@ -75,7 +66,6 @@ $(function(){
 			$(this).val(1);
 		}
 	});
-
 	//商品详情效果
 	$(".detail_hd li").click(function(){
 		$(".detail_div").hide().eq($(this).index()).show();

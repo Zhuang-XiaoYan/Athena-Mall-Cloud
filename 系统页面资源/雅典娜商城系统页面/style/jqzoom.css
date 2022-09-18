@@ -4,8 +4,6 @@
 	z-index:99;
 	cursor:crosshair;
 }
-
-
 .zoomPreload{
    -moz-opacity:0.8;
    opacity: 0.8;
@@ -30,8 +28,6 @@
     * width:100px;
     * height:49px;
 }
-
-
 .zoomPup{
 	overflow:hidden;
 	background-color: #FFF;
@@ -44,7 +40,6 @@
   z-index:101;
   cursor:crosshair;
 }
-
 .zoomOverlay{
 	position:absolute;
 	left:0px;
@@ -57,7 +52,6 @@
 	display:none;
   z-index:101;
 }
-
 .zoomWindow{
 	position:absolute;
 	left:110%;
@@ -96,7 +90,6 @@
   position:relative;
   overflow:hidden;
   z-index:110;
-
 }
 .zoomWrapperImage img{
   border:0px;
@@ -104,7 +97,6 @@
   position:absolute;
   z-index:101;
 }
-
 .zoomIframe{
   z-index: -1;
   filter:alpha(opacity=0);
@@ -113,8 +105,3 @@
   position:absolute;
   display:block;
 }
-
-/*********************************************************
-/ When clicking on thumbs jqzoom will add the class
-/ "zoomThumbActive" on the anchor selected
-/*********************************************************/
