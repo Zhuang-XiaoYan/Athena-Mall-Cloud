@@ -2,31 +2,16 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.zhuangxiaoyan.Athenamall</groupId>
-    <artifactId>Athenamall</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Athenamall</name>
-    <description>Athenamall基于Springcloud的微服务分布式电商系统</description>
+    <groupId>com.zhuangxiaoyan.AthenaMall</groupId>
+    <artifactId>AthenaMall</artifactId>
+    <version>1.0</version>
+    <name>AthenaMall</name>
+    <description>AthenaAthenaMall基于Springcloud微服务分布式电商系统</description>
     <packaging>pom</packaging>
 
+    <!--AthenaMall电商系统中的子系统-->
     <modules>
-        <module>athena-common</module>
-        <module>athena-getway</module>
-        <module>athena-admin</module>
-        <module>athena-coupon</module>
-        <module>athena-member</module>
-        <module>athena-order</module>
-        <module>athena-product</module>
-        <module>athena-ware</module>
-        <module>athena-search</module>
-        <module>athena-pay</module>
-        <module>athena-sms</module>
-        <module>athena-ai</module>
-        <module>athena-oss</module>
-        <module>athena-index</module>
-        <module>athena-sso</module>
-        <module>athena-code-generate</module>
-        <module>Athena-sso-test</module>
-        <module>athena-cart</module>
+
     </modules>
+
 </project>
