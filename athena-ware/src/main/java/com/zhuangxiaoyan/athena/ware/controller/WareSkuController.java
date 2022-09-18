@@ -1,8 +1,11 @@
 package com.zhuangxiaoyan.athena.ware.controller;
 
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
+import com.zhuangxiaoyan.athena.ware.exception.ExceptionCode;
+import com.zhuangxiaoyan.athena.ware.exception.NoStockException;
 import com.zhuangxiaoyan.athena.ware.service.WareSkuService;
 import com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo;
+import com.zhuangxiaoyan.athena.ware.vo.WareSkuLockVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,23 @@ public class WareSkuController {
 
     @Autowired
     private WareSkuService wareSkuService;
+
+    /**
+     * @description 锁住订单库存数据
+     * @param: vo
+     * @date: 2022/9/11 17:19
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+     */
+    @PostMapping(value = "/lock/order")
+    public Result orderLockStock(@RequestBody WareSkuLockVo vo) {
+        try {
+            Boolean lockStockResult = wareSkuService.orderLockStock(vo);
+            return Result.ok();
+        } catch (NoStockException e) {
+            return Result.error(ExceptionCode.NO_STOCK_EXCEPTION.getCode(), ExceptionCode.NO_STOCK_EXCEPTION.getMessage());
+        }
+    }
 
     /**
      * @description 查询的对应的skuIds的是否有库存
@@ -87,5 +107,4 @@ public class WareSkuController {
         wareSkuService.removeByIds(Arrays.asList(ids));
         return Result.ok();
     }
-
 }

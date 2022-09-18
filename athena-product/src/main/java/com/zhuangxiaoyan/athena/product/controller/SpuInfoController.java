@@ -26,6 +26,13 @@ public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
 
+
+    @GetMapping(value = "/skuId/{skuId}")
+    Result getSpuInfoBySkuId(@PathVariable("skuId") Long skuId){
+        SpuInfoEntity spuInfoEntity=spuInfoService.getSpuInfoBySkuId(skuId);
+        return Result.ok().setData(spuInfoEntity);
+    }
+
     /**
      * @description 将数据的上传到的es中
       * @param: spuId

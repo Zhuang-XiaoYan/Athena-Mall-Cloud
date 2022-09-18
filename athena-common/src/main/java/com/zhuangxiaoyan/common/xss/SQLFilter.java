@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
  * @date: 2022/3/19 18:38
  * @author: xjl
  */
+@SuppressWarnings("ALL")
 public class SQLFilter {
 
     /**

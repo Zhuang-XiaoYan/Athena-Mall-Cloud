@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE"/>
-    <link rel="stylesheet" type="text/css" href="/static/order/detail/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/order/detail/css/scss.css"/>
+    <meta content="IE=EmulateIE" http-equiv="X-UA-Compatible"/>
+    <link href="/static/order/detail/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/order/detail/css/scss.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="max">
@@ -14,7 +14,7 @@
         <div class="min">
             <ul class="header_ul_left">
                 <li class="glyphicon glyphicon-home">
-                    <a href="http://gulimall.com" class="aa">谷粒商城首页</a>
+                    <a class="aa" href="http://athena.com">谷粒商城首页</a>
                 </li>
                 <li class="glyphicon glyphicon-map-marker">
                     <a href="/static/order/detail/javascript:;">北京</a>
@@ -130,15 +130,15 @@
             <ul class="header_ul_right">
                 <li style="width: 100px;">
                     <a th:if="${session.loginUser != null}">欢迎, [[${session.loginUser.nickname}]]</a>
-                    <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/login.html">你好，请登录</a>
+                    <a href="http://sso.athena.com/login.html" th:if="${session.loginUser == null}">你好，请登录</a>
                 </li>
                 <li>
-                    <a th:if="${session.loginUser == null}" href="http://auth.gulimall.com/reg.html"
-                       class="li_2">免费注册</a>
+                    <a class="li_2" href="http://sso.athena.com/registry.html"
+                       th:if="${session.loginUser == null}">免费注册</a>
                 </li>
-                <a href="http://order.gulimall.com/list.html" class="aa">我的订单</a> |</li>
+                <a class="aa" href="http://order.athena.com/list.html">我的订单</a> |</li>
                 <li class="jingdong" style="width:95px;">
-                    <a href="http://gulimall.com/">我的谷粒商城</a><span class="glyphicon glyphicon-menu-down">|</span>
+                    <a href="http://athena.com/">我的谷粒商城</a><span class="glyphicon glyphicon-menu-down">|</span>
                     <ol class="jingdong_ol">
                         <li>
                             <a href="/static/order/detail/javascript:;">待处理订单</a>
@@ -181,10 +181,10 @@
                     </ol>
                 </li>
                 <li style="width:80px;">
-                    <a href="/static/order/detail/javascript:;" class="aa">谷粒商城会员</a> |
+                    <a class="aa" href="/static/order/detail/javascript:;">谷粒商城会员</a> |
                 </li>
                 <li>
-                    <a href="/static/order/detail/javascript:;" class="aa">企业采购</a> |
+                    <a class="aa" href="/static/order/detail/javascript:;">企业采购</a> |
                 </li>
                 <li class="fuwu">
                     <a href="/static/order/detail/javascript:;">客户服务</a><span
@@ -276,91 +276,91 @@
                         <li>
                             <h5>行业频道</h5>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">手机</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">智能数码</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">玩3C</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">手机</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">智能数码</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">玩3C</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">电脑办公</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">家用电器</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城智能</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">电脑办公</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">家用电器</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城智能</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">服装城</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">美妆馆</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">家装城</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">服装城</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">美妆馆</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">家装城</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">母婴</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">食品</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">运动户外</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">母婴</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">食品</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">运动户外</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">农资频道</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">整车</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">图书</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">农资频道</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">整车</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">图书</a>
                             </p>
                         </li>
                         <li>
                             <h5>生活服务</h5>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城众筹</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">白条</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城金融APP</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城众筹</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">白条</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城金融APP</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城小金库</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">理财</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">智能家电</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城小金库</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">理财</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">智能家电</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">话费</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">水电煤</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">彩票</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">话费</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">水电煤</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">彩票</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">旅行</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">机票酒店</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">电影票</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">旅行</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">机票酒店</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">电影票</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城到家</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城众测</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">游戏</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城到家</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城众测</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">游戏</a>
                             </p>
                         </li>
                         <li style="border: 0;">
                             <h5>更多精选</h5>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">合作招商</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城通信</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城E卡</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">合作招商</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城通信</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城E卡</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">企业采购</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">服务市场</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">办公生活馆</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">企业采购</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">服务市场</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">办公生活馆</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">乡村招募</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">校园加盟</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">京友邦</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">乡村招募</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">校园加盟</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">京友邦</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">谷粒商城社区</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">智能社区</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">游戏社区</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">谷粒商城社区</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">智能社区</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">游戏社区</a>
                             </p>
                             <p>
-                                <a href="/static/order/detail/javascript:;" class="aa_2">知识产权维权</a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2"></a>
-                                <a href="/static/order/detail/javascript:;" class="aa_2"></a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;">知识产权维权</a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;"></a>
+                                <a class="aa_2" href="/static/order/detail/javascript:;"></a>
                             </p>
                         </li>
                     </ol>
                 </li>
                 <li class="sjjd" style="border: 0;">
-                    <a href="/static/order/detail/javascript:;" class="aa">手机谷粒商城</a>
+                    <a class="aa" href="/static/order/detail/javascript:;">手机谷粒商城</a>
                     <div class="er">
                         <div class="er_1">
                             <img src="/static/order/detail/img/59a51bf6Nb8e478cc.png"/>
@@ -402,13 +402,13 @@
         <div class="nav_min">
             <div class="nav_top">
                 <div class="nav_top_one">
-                    <a href="http://gulimall.com/"><img src="/static/order/detail/img/logo1.jpg"/></a>
+                    <a href="http://athena.com/"><img src="/static/order/detail/img/logo1.jpg"/></a>
                 </div>
                 <div class="nav_top_two"><input type="text"/>
                     <button>搜索</button>
                 </div>
                 <div class="nav_top_three">
-                    <a href="http://cart.gulimall.com/cart.html">我的购物车</a><span
+                    <a href="http://cart.athena.com/cart.html">我的购物车</a><span
                         class="glyphicon glyphicon-shopping-cart"></span>
                     <div class="nav_top_three_1">
                         <img src="/static/order/detail/img/44.png"/>购物车还没有商品，赶紧选购吧！
@@ -446,7 +446,9 @@
                         <span class="span1"><b class="b1"></b>打印订单</span>
                         <span class="span2"><b class="b2"></b>取消订单</span>
                     </div>
+
                 </div>
+
                 <!-- 进度条 -->
                 <div class="state-rcol">
                     <div class="state-rtop">
@@ -456,7 +458,8 @@
                         </div>
                     </div>
                     <!--进度条 -->
-                    <div id="process-04" class="order-process order-strike-process">
+
+                    <div class="order-process order-strike-process" id="process-04">
                         <div class="lioucheng">
                             <ul>
                                 <li>等待付款</li>
@@ -504,15 +507,18 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="state-others">
                         <span class="txt">完成订单可能获得：</span>
-                        <a href="/static/order/detail/#none" class="btn-bean mr10"
-                           clstag="click|keycount|orderinfo|xqjingdou"><b class="b1"></b>京豆</a>
-                        <a href="/static/order/detail/#none" class="btn-coupon mr10"
-                           clstag="click|keycount|orderinfo|xqyouhuiquan"><b class="b2"></b>优惠券</a>
+                        <a class="btn-bean mr10" clstag="click|keycount|orderinfo|xqjingdou"
+                           href="/static/order/detail/#none"><b class="b1"></b>京豆</a>
+                        <a class="btn-coupon mr10" clstag="click|keycount|orderinfo|xqyouhuiquan"
+                           href="/static/order/detail/#none"><b class="b2"></b>优惠券</a>
                     </div>
+
                 </div>
                 <div class="xian">
+
                 </div>
             </div>
             <div class="mb"></div>
@@ -523,8 +529,8 @@
                 <div class="sta_1">
                     <img src="/static/order/detail/image/5886ffa5Na5e39e2d.jpg"/>
                     <span>
-							送货方式：普通快递
-						</span>
+                                送货方式：普通快递
+							</span>
                 </div>
             </div>
             <div class="sta_rifht">
@@ -575,37 +581,37 @@
                         <div class="dd">
 
                             <div class="item">
-									<span class="label">
-				配送方式：
-			</span>
+										<span class="label">
+                    配送方式：
+                </span>
                                 <div class="info-rcol">
                                     普通快递
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					运费：
-				</span>
+										<span class="label">
+                        运费：
+                    </span>
                                 <div class="info-rcol">
-										<span class="f-price">
-						¥12.00
-					 </span>
+											<span class="f-price">
+                       	 	¥12.00
+                       	 </span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-									送货日期：
-								</span>
+										<span class="label">
+                                        送货日期：
+                                    </span>
                                 <div class="info-rcol">
                                     2018-01-01
                                 </div>
                             </div>
                             <div class="item">
-									<span class="label">
-									配送时间：
-								</span>
+										<span class="label">
+                                        配送时间：
+                                    </span>
                                 <div class="info-rcol">
                                     18:00-20:00<span class="delivery-type">京准达</span></div>
                             </div>
@@ -620,44 +626,44 @@
                         </div>
                         <div class="dd">
                             <div class="item">
-									<span class="label">
-					付款方式：
-				</span>
+										<span class="label">
+						付款方式：
+					</span>
                                 <div class="info-rcol">
                                     在线支付
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-							商品总额：
+										<span class="label">
+    							商品总额：
+    						</span>
+                                <div class="info-rcol">
+											<span class="f-price">
+                               	 ¥21.80
+    							</span>
+                                </div>
+                            </div>
+
+                            <div class="item">
+										<span class="label">
+							应支付金额：
 						</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-							 ¥21.80
+											<span class="f-price">
+                            	¥33.80
 							</span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-						应支付金额：
+										<span class="label">
+						运费金额：
 					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-							¥33.80
-						</span>
-                                </div>
-                            </div>
-
-                            <div class="item">
-									<span class="label">
-					运费金额：
-				</span>
-                                <div class="info-rcol">
-										<span class="f-price">
-				¥12.00
-				</span>
+											<span class="f-price">
+                    ¥12.00
+                    </span>
                                     <span class="help-tip"></span></div>
                             </div>
 
@@ -689,86 +695,89 @@
                         <div id="pay-info-allfee" style="display:none">
 
                             <div class="item">
-									<span class="label">
-					优惠券：
-				</span>
+										<span class="label">
+						优惠券：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					返现：
-				</span>
+										<span class="label">
+						返现：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
 
                             <div class="item">
-                                <span class="label"> 礼品卡-领货码</span>
+										<span class="label">
+						礼品卡-领货码
+					</span>
                                 <div class="info-rcol">
-                                    <span class="f-price"> ¥<0 class="00"></span>
+											<span class="f-price">
+                        ¥<0 class="00"></span>
                                     </span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					余额：
-				</span>
+										<span class="label">
+						余额：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
                             <div class="item">
-									<span class="label">
-					税费：
-				</span>
+										<span class="label">
+						税费：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
-                                </div>
-                            </div>
-
-                            <div class="item">
-									<span class="label">
-					京豆：
-				</span>
-                                <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					订单优惠：
-				</span>
+										<span class="label">
+						京豆：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					退换无忧：
-				</span>
+										<span class="label">
+						订单优惠：
+					</span>
                                 <div class="info-rcol">
-										<span class="f-price">
-					¥0.00
-				</span>
+											<span class="f-price">
+                        ¥0.00
+                    </span>
+                                </div>
+                            </div>
+
+                            <div class="item">
+										<span class="label">
+						退换无忧：
+					</span>
+                                <div class="info-rcol">
+											<span class="f-price">
+                        ¥0.00
+                    </span>
                                 </div>
                             </div>
 
@@ -776,33 +785,33 @@
                     </div>
                 </li>
                 <li>
-                    <div id="J-invoice-info" class="dl">
+                    <div class="dl" id="J-invoice-info">
                         <div class="dt">
                             <h4>发票信息</h4>
                         </div>
                         <div class="dd">
 
                             <div class="item">
-									<span class="label">
-						   发票类型：
-						</span>
+										<span class="label">
+                               发票类型：
+                            </span>
                                 <div class="info-rcol">
                                     电子普通发票
                                 </div>
                             </div>
                             <div class="item">
-									<span class="label">
-						发票抬头：
-					</span>
+										<span class="label">
+                            发票抬头：
+                        </span>
                                 <div class="info-rcol">
                                     个人
                                 </div>
                             </div>
 
                             <div class="item">
-									<span class="label">
-					   发票内容：
-					</span>
+										<span class="label">
+                           发票内容：
+                        </span>
                                 <div class="info-rcol">
                                     商品明细
                                 </div>
@@ -837,7 +846,7 @@
                 <tr>
                     <td><img src="/static/order/detail/image/5886ffa5Na5e39e2d.jpg"/>
                         <div style="display: inline-block;">
-                            <p><b></b><a href="/static/order/detail/item.jd.com/1778772.html" class="a-link"
+                            <p><b></b><a class="a-link" href="/static/order/detail/item.jd.com/1778772.html"
                                          target="_blank" title="伊利 风味发酵乳 原味酸奶100g*8（两件起售）">伊利 风味发酵乳 原味酸奶100g*8（两件起售）</a>
                             </p>
                             <p class="txt">益消 原味八连杯100g*</p>
@@ -1017,7 +1026,7 @@
                 </ul>
             </div>
         </div>
-        <script src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+        <script charset="utf-8" src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(".r1 span").mouseover(function () {
 
@@ -1199,9 +1208,9 @@
                 </p>
                 <p class="bg_info_p">
                     <span class="copyright_text">Copyright&nbsp;©&nbsp;2004&nbsp;-&nbsp;<em
-                            id="copyright_year">2017</em>&nbsp;&nbsp;谷粒商城gulimall.com&nbsp;版权所有</span><span
+                            id="copyright_year">2017</em>&nbsp;&nbsp;谷粒商城athena.com&nbsp;版权所有</span><span
                         class="copyright_split">|</span><span>消费者维权热线：4006067733</span>
-                    <a href="/static/order/detail/javascript:;" target="_blank" class="copyright_license">经营证照</a>
+                    <a class="copyright_license" href="/static/order/detail/javascript:;" target="_blank">经营证照</a>
                 </p>
                 <p class="bg_info_p">
                     <span>谷粒商城旗下网站：</span>
@@ -1209,18 +1218,18 @@
                     <a href="/static/order/detail/javascript:;" target="_blank">谷粒商城云</a>
                 </p>
                 <p class="bg_info_dy">
-                    <a class="copyright_auth_ico copyright_auth_ico_1" href="/static/order/detail/javascript:;"
+                    <a class="copyright_sso_ico copyright_sso_ico_1" href="/static/order/detail/javascript:;"
                        target="_blank">经营性网站备案中心</a>
 
-                    <a id="urlknet" class="copyright_auth_ico copyright_auth_ico_2"
-                       href="/static/order/detail/javascript:;" target="_blank">可信网站信用评估</a>
-                    <a class="copyright_auth_ico copyright_auth_ico_3" href="/static/order/detail/javascript:;"
+                    <a class="copyright_sso_ico copyright_sso_ico_2" href="/static/order/detail/javascript:;"
+                       id="urlknet" target="_blank">可信网站信用评估</a>
+                    <a class="copyright_sso_ico copyright_sso_ico_3" href="/static/order/detail/javascript:;"
                        target="_blank">网络警察提醒你</a>
-                    <a class="copyright_auth_ico copyright_auth_ico_4" href="/static/order/detail/javascript:;"
+                    <a class="copyright_sso_ico copyright_sso_ico_4" href="/static/order/detail/javascript:;"
                        target="_blank">诚信网站</a>
-                    <a class="copyright_auth_ico copyright_auth_ico_5" href="/static/order/detail/javascrit:;"
+                    <a class="copyright_sso_ico copyright_sso_ico_5" href="/static/order/detail/javascrit:;"
                        target="_blank">中国互联网举报中心</a>
-                    <a class="copyright_auth_ico copyright_auth_ico_6" href="/static/order/detail/javascript:;"
+                    <a class="copyright_sso_ico copyright_sso_ico_6" href="/static/order/detail/javascript:;"
                        target="_blank">网络举报APP下载</a>
                 </p>
             </div>
@@ -1234,7 +1243,7 @@
                 <div class="service-cont problem-cont">
                     <div class="problem-top">
                         <h5>常见问题</h5>
-                        <a href="/static/order/detail/#none" class="close">x</a>
+                        <a class="close" href="/static/order/detail/#none">x</a>
                     </div>
                     <div class="problem-list">
                         <a href="/static/order/detail/help.jd.com/user/issue/102-250.html">1、我的包裹几天可以收到？</a>
@@ -1242,10 +1251,9 @@
                         <a href="/static/order/detail/help.jd.com/user/issue/108-385.html">3、订单签收异常了怎么办？</a>
                         <a href="/static/order/detail/help.jd.com/user/issue/75-244.html">4、下单后可以修改订单吗？</a>
                         <a href="/static/order/detail/help.jd.com/user/issue/100-1014.html">5、自提点位置如何查询？</a>
-                        <a href="/static/order/detail/help.jd.com/user/index.html" class="more">更多问题&nbsp;&gt;</a>
+                        <a class="more" href="/static/order/detail/help.jd.com/user/index.html">更多问题&nbsp;&gt;</a>
                     </div>
                 </div>
-            </div>
         </li>
         <li class="i2">
             <div class="weweima">
@@ -1257,6 +1265,7 @@
         <li class="i4"></li>
     </ul>
 </div>
+
 </div>
 <script type="text/javascript">
     $('.uls .i1').hover(function () {
@@ -1279,11 +1288,13 @@
     })
 </script>
 <div class="erweima">
+
 </div>
 </body>
-<script src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/order/detail/bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/order/detail/js/index.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/order/detail/swiper/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="/static/order/detail/js/lunbo.js" type="text/javascript" charset="utf-8"></script>
+<script charset="utf-8" src="/static/order/detail/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script charset="utf-8" src="/static/order/detail/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script charset="utf-8" src="/static/order/detail/js/index.js" type="text/javascript"></script>
+<script charset="utf-8" src="/static/order/detail/swiper/swiper-3.4.2.min.js" type="text/javascript"></script>
+<script charset="utf-8" src="/static/order/detail/js/lunbo.js" type="text/javascript"></script>
+
 </html>

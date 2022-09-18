@@ -5,14 +5,14 @@
 </head>
 <body>
 <div id="myQrcode" th:text="${codeUrl}"></div>
-<div id="orderId" hidden>${orderId}</div>
-<div id="returnUrl" hidden>${returnUrl}</div>
+<div hidden id="orderId">${orderId}</div>
+<div hidden id="returnUrl">${returnUrl}</div>
 
 <script src="https://cdn.bootcss.com/jquery/1.5.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-<script type="text/javascript" th:inline="javascript">
+<script th:inline="javascript" type="text/javascript">
     jQuery('#myQrcode').qrcode({
-        text	: [[${codeUrl}]]
+        text: [[${codeUrl}]]
     });
 
     $(function () {
@@ -36,7 +36,6 @@
             })
         }, 10000)
     });
-
 </script>
 </body>
 </html>

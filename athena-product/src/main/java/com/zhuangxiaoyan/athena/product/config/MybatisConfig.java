@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @Description MybatisConfig
  * @Date 2022/7/23 10:02
- * @Created by xjl
+ *@author: xjl
  */
 @Configuration
 public class MybatisConfig {

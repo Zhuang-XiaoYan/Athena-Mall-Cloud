@@ -6,7 +6,7 @@ import java.util.concurrent.*;
  * @Classname ThreadPoolTest
  * @Description 线程池的创建测试与运行测试
  * @Date 2022/8/17 17:39
- * @Created by xjl
+ *@author: xjl
  */
 
 public class ThreadPoolTest {

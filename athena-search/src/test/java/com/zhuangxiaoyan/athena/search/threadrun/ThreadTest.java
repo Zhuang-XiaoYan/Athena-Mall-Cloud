@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask;
  * @Classname ThreadTest
  * @Description 线程的创建测试与运行测试
  * @Date 2022/8/17 17:39
- * @Created by xjl
+ *@author: xjl
  */
 
 public class ThreadTest {

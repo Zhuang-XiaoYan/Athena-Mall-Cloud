@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 /**
  * @Description SpringCacheConfig缓存配置
  * @Date 2022/8/14 10:43
- * @Created by xjl
+ *@author: xjl
  */
 
 @EnableConfigurationProperties(CacheProperties.class)

@@ -24,8 +24,9 @@ import java.util.Map;
  * @Classname WeiBoController
  * @Description TODO
  * @Date 2022/8/24 20:37
- * @Created by xjl
+ *@author: xjl
  */
+@SuppressWarnings("ALL")
 @Slf4j
 @Controller
 public class OAuth2Controller {

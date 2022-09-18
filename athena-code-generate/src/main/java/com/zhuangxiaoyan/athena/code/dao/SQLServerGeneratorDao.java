@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @return:
  * @author: xjl
  */
+@SuppressWarnings("ALL")
 @Mapper
 public interface SQLServerGeneratorDao extends GeneratorDao {
 

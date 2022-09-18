@@ -15,7 +15,7 @@ import java.util.List;
  * @Classname getAttrGroupWithAttrsBySpuIdTest
  * @Description getAttrGroupWithAttrsBySpuIdTest
  * @Date 2022/8/20 23:24
- * @Created by xjl
+ *@author: xjl
  */
 
 @Slf4j

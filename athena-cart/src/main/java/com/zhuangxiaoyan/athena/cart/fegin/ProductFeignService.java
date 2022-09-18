@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Classname ProductFeignService
  * @Date 2022/9/3 7:43
- * @Created by xjl
+ *@author: xjl
  */
 
 @FeignClient("athena-product")

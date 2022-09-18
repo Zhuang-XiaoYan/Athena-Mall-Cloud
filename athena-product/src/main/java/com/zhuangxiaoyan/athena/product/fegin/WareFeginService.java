@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @Description WareFeginService
  * @Date 2022/8/1 23:06
- * @Created by xjl
+ *@author: xjl
  */
 @FeignClient("athena-ware")
 public interface WareFeginService {

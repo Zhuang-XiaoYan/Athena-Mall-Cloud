@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @Description 声明式的远程调用
  * @Date 2022/3/12 15:16
- * @Created by xjl
+ *@author: xjl
  */
 
 @FeignClient("athena-coupon")

@@ -19,6 +19,7 @@ import java.util.Map;
  * @date: 2022/7/29 15:31
  * @author: xjl
  */
+@SuppressWarnings("ALL")
 @Repository
 @Conditional(MongoCondition.class)
 public class MongoDBGeneratorDao implements GeneratorDao {

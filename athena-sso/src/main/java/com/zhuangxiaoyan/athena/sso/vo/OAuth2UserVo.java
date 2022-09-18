@@ -6,8 +6,9 @@ import lombok.Data;
  * @Classname WeiBoUserVo
  * @Description TODO
  * @Date 2022/8/24 21:21
- * @Created by xjl
+ *@author: xjl
  */
+@SuppressWarnings("ALL")
 @Data
 public class OAuth2UserVo {
 

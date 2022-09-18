@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
  * @author: xjl
  */
 
+@SuppressWarnings("ALL")
 @Component
 @Conditional(MongoCondition.class)
 public class MongoDBCollectionFactory {

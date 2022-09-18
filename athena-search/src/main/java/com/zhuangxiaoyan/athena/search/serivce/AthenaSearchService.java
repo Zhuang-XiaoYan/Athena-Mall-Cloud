@@ -6,7 +6,7 @@ import com.zhuangxiaoyan.athena.search.vo.SearchResultVo;
 /**
  * @Description MallSearchService
  * @Date 2022/8/2 9:22
- * @Created by xjl
+ *@author: xjl
  */
 public interface AthenaSearchService {
 

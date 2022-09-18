@@ -1,8 +1,11 @@
 package com.zhuangxiaoyan.athena.ware.entity;
 
+import ch.qos.logback.core.joran.spi.NoAutoStart;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,7 +14,8 @@ import java.io.Serializable;
  * @date: 2022/7/30 23:57
  * @author: xjl
  */
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @TableName("wms_ware_order_task_detail")
 public class WareOrderTaskDetailEntity implements Serializable {

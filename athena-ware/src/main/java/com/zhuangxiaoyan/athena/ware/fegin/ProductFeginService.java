@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Classname ProductFeginService
  * @Description 远程商品的调用的接口
  * @Date 2022/7/27 9:17
- * @Created by xjl
+ *@author: xjl
  */
 @FeignClient("athena-product")
 public interface ProductFeginService {

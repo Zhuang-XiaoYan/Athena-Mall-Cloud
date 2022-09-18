@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @author Mark sunlightcs@gmail.com
  * @since 2018-07-24
  */
+@SuppressWarnings("ALL")
 @Mapper
 public interface PostgreSQLGeneratorDao extends GeneratorDao {
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Classname SmsFeginService
  * @Description TODO
  * @Date 2022/8/21 18:45
- * @Created by xjl
+ *@author: xjl
  */
 @FeignClient("athena-sms")
 public interface SmsFeginService {

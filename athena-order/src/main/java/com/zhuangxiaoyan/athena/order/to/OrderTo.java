@@ -1,4 +1,4 @@
-package com.zhuangxiaoyan.common.to;
+package com.zhuangxiaoyan.athena.order.to;
 
 import lombok.Data;
 

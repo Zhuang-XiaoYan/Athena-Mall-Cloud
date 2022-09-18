@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Classname MemberLoginController
  * @Description 用户登入的功能
  * @Date 2022/8/24 21:33
- * @Created by xjl
+ *@author: xjl
  */
 @RestController
 @RequestMapping("member/user")

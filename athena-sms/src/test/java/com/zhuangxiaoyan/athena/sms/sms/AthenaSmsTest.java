@@ -18,7 +18,7 @@ import java.util.Map;
  * HttpUtils请从https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java
  * @Description TODO
  * @Date 2022/8/21 14:25
- * @Created by xjl
+ *@author: xjl
  */
 
 @RunWith(SpringRunner.class)

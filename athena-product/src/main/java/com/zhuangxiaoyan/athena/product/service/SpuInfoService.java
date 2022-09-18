@@ -58,5 +58,7 @@ public interface SpuInfoService extends IService<SpuInfoEntity> {
      * @author: xjl
     */
     void spusavees(Long spuId);
+
+    SpuInfoEntity getSpuInfoBySkuId(Long skuId);
 }
 

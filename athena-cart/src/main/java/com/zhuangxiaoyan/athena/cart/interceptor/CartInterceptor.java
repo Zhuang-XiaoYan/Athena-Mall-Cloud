@@ -17,7 +17,7 @@ import java.util.UUID;
 /**
  * @Classname CartInterceptor 拦截器组件
  * @Date 2022/9/3 8:38
- * @Created by xjl
+ *@author: xjl
  */
 
 @Component

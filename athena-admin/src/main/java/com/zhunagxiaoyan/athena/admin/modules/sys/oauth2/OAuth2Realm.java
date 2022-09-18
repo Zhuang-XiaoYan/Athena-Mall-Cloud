@@ -20,6 +20,7 @@ import java.util.Set;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@SuppressWarnings("ALL")
 @Component
 public class OAuth2Realm extends AuthorizingRealm {
     @Autowired

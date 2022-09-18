@@ -2,7 +2,10 @@ package com.zhuangxiaoyan.athena.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhuangxiaoyan.athena.ware.entity.WareSkuEntity;
+import com.zhuangxiaoyan.athena.ware.to.OrderTo;
+import com.zhuangxiaoyan.athena.ware.to.StockLockedTo;
 import com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo;
+import com.zhuangxiaoyan.athena.ware.vo.WareSkuLockVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,31 +21,44 @@ import java.util.Map;
 public interface WareSkuService extends IService<WareSkuEntity> {
     /**
      * @description 分页查询
-      * @param: params
+     * @param: params
      * @date: 2022/8/1 22:56
      * @return: com.zhuangxiaoyan.common.utils.PageUtils
      * @author: xjl
-    */
+     */
     PageUtils queryPage(Map<String, Object> params);
 
     /**
      * @description 添加到这个仓库
-      * @param: skuId
+     * @param: skuId
      * @param: wareId
      * @param: skuNum
      * @date: 2022/8/1 22:56
      * @return: void
      * @author: xjl
-    */
+     */
     void addStock(Long skuId, Long wareId, Integer skuNum);
 
     /**
      * @description 查询是否有库存
-      * @param: skuIds
+     * @param: skuIds
      * @date: 2022/8/1 22:57
      * @return: java.util.List<com.zhuangxiaoyan.athena.ware.vo.SkuHasStockVo>
      * @author: xjl
-    */
+     */
     List<SkuHasStockVo> querySkuHasStock(@Param("skuIds") List<Long> skuIds);
+
+    /**
+     * @description TODO
+     * @param: vo
+     * @date: 2022/9/11 17:23
+     * @return: java.util.List<com.zhuangxiaoyan.athena.ware.vo.LockStockResultVo>
+     * @author: xjl
+     */
+    Boolean orderLockStock(WareSkuLockVo vo);
+
+    void unlockStock(StockLockedTo to);
+
+    void unockOrderStock(OrderTo orderTo);
 }
 

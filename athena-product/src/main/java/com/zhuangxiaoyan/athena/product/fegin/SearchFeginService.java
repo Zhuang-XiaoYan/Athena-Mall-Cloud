@@ -12,7 +12,7 @@ import java.util.List;
  * @Classname SearchFeginService
  * @Description TODO
  * @Date 2022/8/3 10:44
- * @Created by xjl
+ *@author: xjl
  */
 @FeignClient("athena-search")
 public interface SearchFeginService {

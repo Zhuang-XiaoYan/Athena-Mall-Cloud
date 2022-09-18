@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  * @Classname RegistryController
  * @Description TODO
  * @Date 2022/8/21 21:45
- * @Created by xjl
+ *@author: xjl
  */
 
 @Controller

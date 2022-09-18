@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date: 2022/7/30 8:49
  * @author: xjl
 */
+@SuppressWarnings("ALL")
 public class IPUtils {
     private static final Logger logger = LoggerFactory.getLogger(IPUtils.class);
 

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @Description ProductSaveService
  * @Date 2022/8/2 9:22
- * @Created by xjl
+ *@author: xjl
  */
 public interface ProductSaveService {
 

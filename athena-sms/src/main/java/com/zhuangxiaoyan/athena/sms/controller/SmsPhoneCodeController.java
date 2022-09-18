@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Classname SmsPhoneCodeController
  * @Description TODO
  * @Date 2022/8/21 18:30
- * @Created by xjl
+ *@author: xjl
  */
 @RequestMapping("/sms")
 @RestController

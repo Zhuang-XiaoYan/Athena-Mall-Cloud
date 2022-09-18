@@ -22,6 +22,19 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    
+    /**
+     * @description 查询订单状态是否完成
+      * @param: orderSn
+     * @date: 2022/9/17 20:09
+     * @return: com.zhuangxiaoyan.common.utils.Result
+     * @author: xjl
+    */
+    @GetMapping("/status/{orderSn}")
+    public Result getOrderStatus(@PathVariable("orderSn") String orderSn){
+        OrderEntity orderEntity=orderService.getStatusByOrderSn(orderSn);
+        return Result.ok().setData(orderEntity);
+    }
 
     /**
      * @description 查询所有数据

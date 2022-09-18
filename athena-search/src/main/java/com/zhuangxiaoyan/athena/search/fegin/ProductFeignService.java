@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * @Description ProductFeignService
  * @Date 2022/8/16 11:38
- * @Created by xjl
+ *@author: xjl
  */
 
 @FeignClient("athena-product")

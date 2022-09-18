@@ -19,7 +19,7 @@ import java.util.Map;
  * @Classname OssController
  * @Description TODO
  * @Date 2022/7/20 14:11
- * @Created by xjl
+ *@author: xjl
  */
 @RestController
 public class OssController {

@@ -12,6 +12,7 @@ import com.zhunagxiaoyan.athena.admin.modules.sys.service.SysConfigService;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@SuppressWarnings("ALL")
 public final class OSSFactory {
     private static SysConfigService sysConfigService;
 

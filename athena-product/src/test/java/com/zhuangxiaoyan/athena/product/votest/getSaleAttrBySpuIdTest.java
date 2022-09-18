@@ -15,7 +15,7 @@ import java.util.List;
  * @Classname getSaleAttrBySpuIdTest
  * @Description TODO
  * @Date 2022/8/21 8:40
- * @Created by xjl
+ *@author: xjl
  */
 
 @Slf4j

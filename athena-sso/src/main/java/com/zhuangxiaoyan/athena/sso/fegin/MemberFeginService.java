@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @Classname MemberFeginService
  * @Description TODO
  * @Date 2022/8/22 23:39
- * @Created by xjl
+ *@author: xjl
  */
 
 @FeignClient("athena-member")

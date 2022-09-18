@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
  * @Classname RabbitConfig
  * @Description TODO
  * @Date 2022/9/4 17:11
- * @Created by xjl
+ *@author: xjl
  */
 @Configuration
 public class RabbitMqConfig {

@@ -23,6 +23,7 @@ import java.io.IOException;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@SuppressWarnings("ALL")
 public class OAuth2Filter extends AuthenticatingFilter {
 
     @Override

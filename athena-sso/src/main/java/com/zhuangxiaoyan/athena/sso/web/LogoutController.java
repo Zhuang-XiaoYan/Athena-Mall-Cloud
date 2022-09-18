@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Classname LogoutController
  * @Description TODO
  * @Date 2022/9/1 21:15
- * @Created by xjl
+ *@author: xjl
  */
 @Controller
 public class LogoutController {

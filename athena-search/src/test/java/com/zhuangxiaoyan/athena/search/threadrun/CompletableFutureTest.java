@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  * @Classname CompletableFutureTest
  * @Description CompletableFuture的语法功能测试
  * @Date 2022/8/17 17:39
- * @Created by xjl
+ *@author: xjl
  */
 
 public class CompletableFutureTest {

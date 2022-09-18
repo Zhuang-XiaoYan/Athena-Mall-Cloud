@@ -9,6 +9,7 @@ import org.apache.shiro.authc.AuthenticationToken;
  *
  * @author Mark sunlightcs@gmail.com
  */
+@SuppressWarnings("ALL")
 public class OAuth2Token implements AuthenticationToken {
     private final String token;
 

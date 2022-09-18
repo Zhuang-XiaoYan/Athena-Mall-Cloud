@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @Classname MemberOAuth2Controller
  * @Description TODO
  * @Date 2022/8/25 15:37
- * @Created by xjl
+ *@author: xjl
  */
 
+@SuppressWarnings("ALL")
 @RestController
 @RequestMapping("member/oauth2")
 public class MemberOAuth2Controller {

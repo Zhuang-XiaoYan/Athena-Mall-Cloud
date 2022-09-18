@@ -23,7 +23,7 @@ import java.util.Date;
  * @Classname RabbitMqTest
  * @Description TODO
  * @Date 2022/9/4 16:16
- * @Created by xjl
+ *@author: xjl
  */
 
 @Slf4j

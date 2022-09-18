@@ -12,7 +12,7 @@ import java.io.InputStream;
  * @Classname OssTest
  * @Description TODO
  * @Date 2022/7/20 12:34
- * @Created by xjl
+ *@author: xjl
  */
 public class OssTest {
 

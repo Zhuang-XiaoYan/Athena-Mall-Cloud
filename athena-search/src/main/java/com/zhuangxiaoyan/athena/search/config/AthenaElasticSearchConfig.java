@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @Description AthenaElasticSearchConfig 配置类
  * @Date 2022/7/31 17:11
- * @Created by xjl
+ *@author: xjl
  */
 @Configuration
 public class AthenaElasticSearchConfig {

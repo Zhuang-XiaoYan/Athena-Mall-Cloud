@@ -2,11 +2,13 @@ package com.zhuangxiaoyan.athena.ware.controller;
 
 import com.zhuangxiaoyan.athena.ware.entity.WareInfoEntity;
 import com.zhuangxiaoyan.athena.ware.service.WareInfoService;
+import com.zhuangxiaoyan.athena.ware.vo.FareVo;
 import com.zhuangxiaoyan.common.utils.PageUtils;
 import com.zhuangxiaoyan.common.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -22,6 +24,12 @@ public class WareInfoController {
 
     @Autowired
     private WareInfoService wareInfoService;
+
+    @GetMapping("/fare")
+    public Result getFare(@RequestParam("addrId") Long addrId){
+        FareVo fareVo=wareInfoService.getFare(addrId);
+        return Result.ok().setData(fareVo);
+    }
 
     /**
      * 列表
