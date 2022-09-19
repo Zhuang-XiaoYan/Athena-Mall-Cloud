@@ -43,3 +43,4 @@
 .mobile h3{width: 260px;  height: 85px; padding-bottom: 25px; background: url("../images/reg_mobile.png") center center no-repeat;  text-indent: -9999px; border-bottom: 2px solid #ededed;}
 .mobile p{text-align: center; line-height: 25px; color: #999;}
 .mobile p strong{color:#e4393c; font-weight: bolder; font-family: Verdana,Arial; font-size: 16px;}
+.safe {text-align: center;height: 35px}

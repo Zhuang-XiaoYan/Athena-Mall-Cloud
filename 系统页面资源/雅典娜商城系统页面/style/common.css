@@ -27,7 +27,7 @@
 .viewd dl dd{float:left; width: 125px; text-align: left; padding: 10px 0 0 5px;}
 .viewd dl img{width:50px; height: 50px;}
 /*分页效果*/
-.page{width: 987px; text-align: right; height: 30px; padding: 5px 0;}
+.page{width: 987px; text-align: center; height: 30px; padding: 5px 0;}
 .page a{padding: 4px 10px 5px; color: #005aa0; border:1px solid #ccc; font-size: 14px; background: #fff; border-radius: 3px;}
 .page a:hover, .page a.cur{background:#005aa0; color: #fff; text-decoration: none; }
 .page .page_num{display: inline-block; width: 36px; height: 21px; border-width: 1px; border-style: solid; border-color:#aaa #ddd #ddd #aaa; text-align: center;}
