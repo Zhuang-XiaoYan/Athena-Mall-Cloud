@@ -11,7 +11,20 @@
 
     <!--AthenaMall电商系统中的子系统-->
     <modules>
-
+        <module>athena-backup-system</module>
+        <module>athena-product-system</module>
+        <module>athena-index-system</module>
+        <module>athena-user-system</module>
+        <module>athena-search-system</module>
+        <module>athena-item-system</module>
+        <module>athena-ai-system</module>
+        <module>athena-code-system</module>
+        <module>athena-coupon-system</module>
+        <module>athena-getway-system</module>
+        <module>athena-order-system</module>
+        <module>athena-oss-system</module>
+        <module>atehna-sso-system</module>
+        <module>athena-cart-system</module>
     </modules>
 
 </project>
