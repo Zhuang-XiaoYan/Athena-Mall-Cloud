@@ -12,8 +12,9 @@
     <artifactId>athena-product-system</artifactId>
     <packaging>pom</packaging>
     <modules>
+
+        <module>athena-product-mircoservice</module>
         <module>athena-product-common</module>
-        <module>athena-product-microservice</module>
     </modules>
 
     <properties>
