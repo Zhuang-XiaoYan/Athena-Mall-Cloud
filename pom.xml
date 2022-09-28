@@ -9,7 +9,7 @@
     <description>AthenaAthenaMall基于Springcloud微服务分布式电商系统</description>
     <packaging>pom</packaging>
 
-    <!--AthenaMall电商系统中包含的子系统-->
+    <!--AthenaMall电商系统中的子系统-->
     <modules>
         <module>athena-backup-system</module>
         <module>athena-product-system</module>
@@ -23,6 +23,7 @@
         <module>athena-getway-system</module>
         <module>athena-order-system</module>
         <module>athena-oss-system</module>
+        <module>athena-sso-system</module>
         <module>athena-cart-system</module>
         <module>athena-sso-system</module>
     </modules>

@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
+    <title>我的购物车</title>
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="style/base.css" rel="stylesheet" type="text/css">
+    <link href="style/global.css" rel="stylesheet" type="text/css">
+    <link href="style/header.css" rel="stylesheet" type="text/css">
+    <link href="style/cart.css" rel="stylesheet" type="text/css">
+    <link href="style/footer.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="js/cart1.js" type="text/javascript"></script>
+</head>
+<body>
+<!-- 顶部导航 start -->
+<div class="topnav">
+    <div class="topnav_bd w1210 bc">
+        <div class="topnav_left">
+        </div>
+        <div class="topnav_right fr">
+            <ul>
+                <li>您好，欢迎来到雅典娜！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>]</li>
+                <li class="line">|</li>
+                <li>我的订单</li>
+                <li class="line">|</li>
+                <li>客户服务</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 顶部导航 end -->
+<div style="clear:both;"></div>
+<!-- 页面头部 start -->
+<div class="header w1210 bc mt15">
+    <div class="logo w1210">
+        <h2 class="fl"><a href="index.html"><img alt="雅典娜商城" src="images/logo.png"></a></h2>
+        <div class="flow fr">
+            <ul>
+                <li class="cur">1.我的购物车</li>
+                <li>2.填写核对订单信息</li>
+                <li>3.成功提交订单</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 页面头部 end -->
+<div style="clear:both;"></div>
+<!-- 主体部分 start -->
+<div class="mycart w1210 mt10 bc">
+    <h2><span>我的购物车</span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th class="col1">商品名称</th>
+            <th class="col2">商品信息</th>
+            <th class="col3">单价</th>
+            <th class="col4">数量</th>
+            <th class="col5">小计</th>
+            <th class="col6">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="col1"><a href=""><img alt="" src="images/cart_goods1.jpg"/></a> <strong><a href="">【1111购物狂欢节】惠JackJones杰克琼斯纯羊毛菱形格</a></strong>
+            </td>
+            <td class="col2"><p>颜色：073深红</p>
+                <p>尺码：170/92A/S</p></td>
+            <td class="col3">￥<span>499.00</span></td>
+            <td class="col4">
+                <a class="reduce_num" href="javascript:"></a>
+                <input class="amount" name="amount" type="text" value="1"/>
+                <a class="add_num" href="javascript:"></a>
+            </td>
+            <td class="col5">￥<span>499.00</span></td>
+            <td class="col6"><a href="">删除</a></td>
+        </tr>
+        <tr>
+            <td class="col1"><a href=""><img alt="" src="images/cart_goods2.jpg"/></a> <strong><a href="">九牧王王正品新款时尚休闲中长款茄克EK01357200</a></strong>
+            </td>
+            <td class="col2"><p>颜色：淡蓝色</p>
+                <p>尺码：165/88</p></td>
+            <td class="col3">￥<span>1102.00</span></td>
+            <td class="col4">
+                <a class="reduce_num" href="javascript:"></a>
+                <input class="amount" name="amount" type="text" value="1"/>
+                <a class="add_num" href="javascript:"></a>
+            </td>
+            <td class="col5">￥<span>1102.00</span></td>
+            <td class="col6"><a href="">删除</a></td>
+        </tr>
+        <tr>
+            <td class="col1"><a href=""><img alt="" src="images/cart_goods3.jpg"/></a> <strong><a href="">【1111购物狂欢节】捷王纯手工缝制休闲男鞋大头皮鞋
+                头层牛</a></strong></td>
+            <td class="col2"><p>颜色：0922红棕现货</p>
+                <p>尺码：40现货</p></td>
+            <td class="col3">￥<span>269.00</span></td>
+            <td class="col4">
+                <a class="reduce_num" href="javascript:"></a>
+                <input class="amount" name="amount" type="text" value="1"/>
+                <a class="add_num" href="javascript:"></a>
+            </td>
+            <td class="col5">￥<span>269.00</span></td>
+            <td class="col6"><a href="">删除</a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="6">购物金额总计： <strong>￥ <span id="total">1870.00</span></strong></td>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="cart_btn w1210 bc mt10">
+        <a class="continue" href="">继续购物</a>
+        <a class="checkout" href="">结 算</a>
+    </div>
+</div>
+<!-- 主体部分 end -->
+<div style="clear:both;"></div>
+<!-- 网站详情开始 -->
+<div id="xiang">
+    <div class="xleft">
+        <div class="qing">
+            <div class="qtu"></div>
+            <h3>购物指南</h3>
+            <div class="bao"><a href="">购物流程</a></div>
+            <div class="bao"><a href="">会员介绍</a></div>
+            <div class="bao"><a href="">团购/机票</a></div>
+            <div class="bao"><a href="">常见问题</a></div>
+            <div class="bao"><a href="">大家电</a></div>
+            <div class="bao"><a href="">联系客服</a></div>
+        </div>
+        <div class="bao"></div>
+        <div class="qing">
+            <div class="qtu1"></div>
+            <h3>配送方式</h3>
+            <div class="bao"><a href="">上门自提</a></div>
+            <div class="bao"><a href="">211限时达</a></div>
+            <div class="bao"><a href="">配送服务查询</a></div>
+            <div class="bao"><a href="">配送费收取标准</a></div>
+            <div class="bao"><a href="">海外配送</a></div>
+        </div>
+        <div class="qing">
+            <div class="qtu2"></div>
+            <h3>支付方式</h3>
+            <div class="bao"><a href="">货到付款</a></div>
+            <div class="bao"><a href="">在线支付</a></div>
+            <div class="bao"><a href="">分期付款</a></div>
+            <div class="bao"><a href="">邮局汇款</a></div>
+            <div class="bao"><a href="">公司转账</a></div>
+        </div>
+        <div class="qing">
+            <div class="qtu3"></div>
+            <h3>售后服务</h3>
+            <div class="bao"><a href="">售后政策</a></div>
+            <div class="bao"><a href="">价格保护</a></div>
+            <div class="bao"><a href="">退款说明</a></div>
+            <div class="bao"><a href="">返修/退换货</a></div>
+            <div class="bao"><a href="">取消订单</a></div>
+        </div>
+        <div class="qing">
+            <div class="qtu4"></div>
+            <h3>特色服务</h3>
+            <div class="bao"><a href="">夺宝岛</a></div>
+            <div class="bao"><a href="">DIY装机</a></div>
+            <div class="bao"><a href="">延保服务</a></div>
+            <div class="bao"><a href="">雅典娜E卡</a></div>
+            <div class="bao"><a href="">节能补贴</a></div>
+            <div class="bao"><a href="">雅典娜通信</a></div>
+        </div>
+    </div>
+    <div class="xright">
+        <h3>雅典娜自营覆盖区县</h3>
+        <span>雅典娜已向全国1864个区县提供自营配送服务，支持货到付款、POS机刷卡和售后上门服务。</span>
+        <a href="">查看详情></a>
+    </div>
+</div>
+<!-- 网站详情结束 -->
+<div style="clear:both;"></div>
+<!-- 底部开始 -->
+<div id="down">
+    <div class="down_top">
+        <a href="">关于我们</a>
+        <a href="">联系我们</a>
+        <a href="">联系客服</a>
+        <a href="">合作招商</a>
+        <a href="">商家帮助</a>
+        <a href="">营销中心</a>
+        <a href="">友情链接</a>
+        <a href="">销售联盟</a>
+        <a href="">雅典娜社区</a>
+        <a href="">风险监测</a>
+        <a href="">隐私政策</a>
+        <a href="">雅典娜公益</a>
+        <a href="">English Site</a>
+        <a href="" style="border-right:none">Media & IR</a>
+    </div>
+    <div class="down_center">
+        <span>
+            <a href="">沪公网安备 110105014669</a>
+            <a href="">京ICP证070359号</a>
+            <a href="">互联网药品信息服务资格证编号(京)-经营性-2022-0008</a>
+            <a href="" style="border-right:none">新出发京零 字第大120007号</a>
+        </span>
+        <span>
+            <a href="">互联网出版社许可证编号新出网(沪)字180号</a>
+            <a href="">出版物经营许可证</a>
+            <a href="">网络文化经营许可证沪网文[2022]6258-1582号</a>
+            <a href="" style="border-right:none">举报和不良信息举报电话：45896999856</a>
+        </span>
+        <span>
+            <a href="">Copyright © 2022-2050 雅典娜Athena.com 版权所有</a>
+            <a href="">消费者维权热线：487969856955</a>
+            <a href="">经营执照</a>
+            <a href="">(沪)网械平台备字(2022)第1002号码</a>
+            <a href="" style="border-right:none">增值电信业务经营许可证</a>
+        </span>
+        <span>
+            <a href="">雅典娜旗下网址：</a>
+            <a href="">雅典娜钱包</a>
+            <a href="">雅典娜Cloud</a>
+            <a href="" style="border-right:none">网络从业人员违法举报电话：489687896554</a>
+        </span>
+    </div>
+    <div class="down_bot">
+        <img alt="" src="images/bot1.gif"/>
+        <img alt="" src="images/bot2.gif"/>
+        <img alt="" src="images/bot3.png"/>
+        <img alt="" src="images/bot4.png"/>
+    </div>
+</div>
+<!-- 底部结束 -->
+</body>
+</html>
