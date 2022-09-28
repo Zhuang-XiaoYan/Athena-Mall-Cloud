@@ -1,6 +1,13 @@
-# \u5E94\u7528\u540D\u79F0
-spring.application.name=athena-product-mircoservice
-# \u5E94\u7528\u670D\u52A1 WEB \u8BBF\u95EE\u7AEF\u53E3
-server.port=8080
+# service的运行配置
+server:
+  port: 9000
+  servlet:
+    session:
+      timeout: 30
+
+spring:
+  application:
+    name: athena-index-microservice
+
 
 
