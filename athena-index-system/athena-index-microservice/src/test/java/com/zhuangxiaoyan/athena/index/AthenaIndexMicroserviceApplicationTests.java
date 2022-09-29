@@ -1,13 +1,14 @@
 package com.zhuangxiaoyan.athena.index;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaIndexMicroserviceApplicationTests {
+public class AthenaIndexMicroserviceApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }
