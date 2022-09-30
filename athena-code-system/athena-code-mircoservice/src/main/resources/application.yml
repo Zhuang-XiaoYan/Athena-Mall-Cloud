@@ -1,0 +1,26 @@
+# service的运行配置
+server:
+  port: 9004
+  servlet:
+    session:
+      timeout: 30
+
+spring:
+  application:
+    name: athena-index-microservice
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    servlet:
+      content-type: text/html
+    mode: HTML
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/templates/
+
+
+
+
+
