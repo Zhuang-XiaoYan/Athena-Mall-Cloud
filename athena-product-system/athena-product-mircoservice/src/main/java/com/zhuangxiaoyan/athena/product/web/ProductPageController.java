@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProductPageController {
 
-    @GetMapping({"/", "/product","/product.html"})
+    @GetMapping({"/", "/product", "/product.html"})
     public String indexPage() {
         return "product";
     }

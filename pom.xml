@@ -16,7 +16,6 @@
         <module>athena-index-system</module>
         <module>athena-user-system</module>
         <module>athena-search-system</module>
-        <module>athena-item-system</module>
         <module>athena-ai-system</module>
         <module>athena-code-system</module>
         <module>athena-coupon-system</module>
@@ -25,6 +24,7 @@
         <module>athena-oss-system</module>
         <module>athena-cart-system</module>
         <module>athena-sso-system</module>
+        <module>athena-ware-system</module>
     </modules>
 
 </project>

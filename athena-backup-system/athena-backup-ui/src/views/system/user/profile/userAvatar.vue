@@ -1,31 +1,33 @@
 <template>
   <div>
-    <div class="user-info-head" @click="editCropper()"><img v-bind:src="options.img" title="点击上传头像" class="img-circle img-lg" /></div>
-    <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body @opened="modalOpened"  @close="closeDialog">
+    <div class="user-info-head" @click="editCropper()"><img class="img-circle img-lg" title="点击上传头像"
+                                                            v-bind:src="options.img"/></div>
+    <el-dialog :title="title" :visible.sync="open" append-to-body width="800px" @close="closeDialog"
+               @opened="modalOpened">
       <el-row>
-        <el-col :xs="24" :md="12" :style="{height: '350px'}">
+        <el-col :md="12" :style="{height: '350px'}" :xs="24">
           <vue-cropper
+            v-if="visible"
             ref="cropper"
+            :autoCrop="options.autoCrop"
+            :autoCropHeight="options.autoCropHeight"
+            :autoCropWidth="options.autoCropWidth"
+            :fixedBox="options.fixedBox"
             :img="options.img"
             :info="true"
-            :autoCrop="options.autoCrop"
-            :autoCropWidth="options.autoCropWidth"
-            :autoCropHeight="options.autoCropHeight"
-            :fixedBox="options.fixedBox"
             @realTime="realTime"
-            v-if="visible"
           />
         </el-col>
-        <el-col :xs="24" :md="12" :style="{height: '350px'}">
+        <el-col :md="12" :style="{height: '350px'}" :xs="24">
           <div class="avatar-upload-preview">
-            <img :src="previews.url" :style="previews.img" />
+            <img :src="previews.url" :style="previews.img"/>
           </div>
         </el-col>
       </el-row>
-      <br />
+      <br/>
       <el-row>
         <el-col :lg="2" :md="2">
-          <el-upload action="#" :http-request="requestUpload" :show-file-list="false" :before-upload="beforeUpload">
+          <el-upload :before-upload="beforeUpload" :http-request="requestUpload" :show-file-list="false" action="#">
             <el-button size="small">
               选择
               <i class="el-icon-upload el-icon--right"></i>
@@ -45,7 +47,7 @@
           <el-button icon="el-icon-refresh-right" size="small" @click="rotateRight()"></el-button>
         </el-col>
         <el-col :lg="{span: 2, offset: 6}" :md="2">
-          <el-button type="primary" size="small" @click="uploadImg()">提 交</el-button>
+          <el-button size="small" type="primary" @click="uploadImg()">提 交</el-button>
         </el-col>
       </el-row>
     </el-dialog>
@@ -54,11 +56,11 @@
 
 <script>
 import store from "@/store";
-import { VueCropper } from "vue-cropper";
-import { uploadAvatar } from "@/api/system/user";
+import {VueCropper} from "vue-cropper";
+import {uploadAvatar} from "@/api/system/user";
 
 export default {
-  components: { VueCropper },
+  components: {VueCropper},
   props: {
     user: {
       type: Object
@@ -145,7 +147,7 @@ export default {
   }
 };
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .user-info-head {
   position: relative;
   display: inline-block;
