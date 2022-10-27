@@ -12,9 +12,29 @@
 
 # 二、Athena-Mall电商系统模块系统说明
 
-
-
-
+```shell
+├──Athena-Mall
+|──────athena-admin
+|──────athena-ai
+|──────athena-cart
+|──────athena-code-generate
+|──────athena-common
+|────────────athena-common-log
+|────────────athena-common-swagger
+|──────athena-coupon
+|──────athena-getway
+|──────athena-index
+|──────athena-member
+|──────athena-monitor
+|──────athena-order
+|──────athena-pay
+|──────athena-product
+|──────athena-search
+|──────athena-secondskill
+|──────athena-sms
+|──────athena-ware
+|──────athena-web-ui
+```
 
 
 # Athena-Mall 电商系统总结
