@@ -2,9 +2,18 @@
 
 # 一、mysql的kubesphere部署
 
+
+
 # 二、Nacos的KubeSphere部署
 
+
+
+
+
 # 三、
+
+
+
 
 # 四、
 

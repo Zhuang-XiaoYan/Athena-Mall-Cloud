@@ -1,7 +1,7 @@
 server:
-  port: 8005
+  port: 8017
   servlet:
-    context-path: /properties
+    context-path: /athenamall
 spring:
   # 激活相关的配置文件
   profiles:
