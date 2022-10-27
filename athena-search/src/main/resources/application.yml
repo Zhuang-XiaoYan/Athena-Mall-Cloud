@@ -1,0 +1,8 @@
+server:
+  port: 8005
+  servlet:
+    context-path: /properties
+spring:
+  # 激活相关的配置文件
+  profiles:
+    active: dev
