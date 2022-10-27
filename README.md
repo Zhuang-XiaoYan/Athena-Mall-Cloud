@@ -8,8 +8,6 @@
 
 # Athena-Mall电商系统架构图
 
-> - 01-Athena电商系统.drawio
-> - 02-Athena微服务架构图.drawio
 
 # Athena系统说明
 >
