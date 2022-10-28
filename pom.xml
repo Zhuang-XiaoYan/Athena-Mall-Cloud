@@ -13,6 +13,7 @@
     <modules>
         <module>athena-admin</module>
         <module>athena-ai</module>
+        <module>athena-author</module>
         <module>athena-cart</module>
         <module>athena-code-generate</module>
         <module>athena-common</module>

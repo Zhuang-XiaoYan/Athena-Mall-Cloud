@@ -1,8 +1,11 @@
-application:
-  name: dev环境 @artifactId@
-  version: dev环境 @version@
-developer:
-  name: dev环境 zhuangxiaoyan
-  website: dev环境 http://zhuangxiaoyan.com
-  qq: dev环境 2462612540-dev
-  phone-number: dev环境 18279148786
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8017
+  servlet:
+    context-path: /athena-web-ui
+
+
+
+
