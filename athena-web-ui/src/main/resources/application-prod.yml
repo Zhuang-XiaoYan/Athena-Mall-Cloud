@@ -4,4 +4,5 @@ server:
     uri-encoding: UTF-8
   port: 9017
   servlet:
-    context-path: /athena-web-ui
+    session:
+      timeout: 30
