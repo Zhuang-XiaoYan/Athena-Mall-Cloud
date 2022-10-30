@@ -8,7 +8,7 @@
 
 # 一、Athena-Mall 电商系统架构图
 
-![img_1.png](athena-mall开发文档/系统架构设计/image/Athena-Mall系统架构图.png)
+![img.png](athena-mall开发文档/系统架构设计/image/Athena-Mall系统架构图.png)
 
 # 二、Athena-Mall电商系统模块系统说明
 
@@ -36,6 +36,12 @@
 |──────athena-web-ui
 ```
 
+
+# Athena-Mall电商系统微监控服务
+
+![img.png](athena-mall开发文档/athena-monitor监控服务/images/athena-all-server-monitor.png)
+
+![img.png](athena-mall开发文档/athena-monitor监控服务/images/athena-all-service.png)
 
 # Athena-Mall 电商系统总结
 

@@ -1,13 +1,13 @@
 package com.zhuangxiaoyan.athena.admin;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaAdminApplicationTests {
+public class AthenaAdminApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

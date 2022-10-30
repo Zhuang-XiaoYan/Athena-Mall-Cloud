@@ -1,13 +1,13 @@
 package com.zhuangxiaoyan.athena.ai;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaAiApplicationTests {
+public class AthenaAiApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

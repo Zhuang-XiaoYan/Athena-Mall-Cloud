@@ -4,7 +4,7 @@ spring:
     name: athena-web-ui
   # 激活相关的配置文件
   profiles:
-    active: test
+    active: dev
   # jackson时间格式化
   jackson:
     time-zone: GMT+8

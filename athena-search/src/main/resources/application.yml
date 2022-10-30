@@ -1,8 +1,17 @@
-server:
-  port: 8013
-  servlet:
-    context-path: /properties
 spring:
+  # 微服务的名字
+  application:
+    name: athena-search
   # 激活相关的配置文件
   profiles:
     active: dev
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  # servlet的配置
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 200MB
+      enabled: true

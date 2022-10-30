@@ -23,6 +23,17 @@
     </properties>
 
     <dependencies>
+        <!-- spring-boot-admin-starter-client -->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <!-- spring-boot-Actuator 启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!--spring-boot-web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

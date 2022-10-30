@@ -1,8 +1,36 @@
-application:
-  name: test环境 @artifactId@
-  version: test环境 @version@
-developer:
-  name: test环境 xkcoding
-  website: test环境 http://zhuangxiaoyan.com
-  qq: test环境 2462612540-test
-  phone-number: test环境 18279148786
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+  port: 9014
+  servlet:
+    session:
+      timeout: 30
+
+# 配置springboot-admin-server
+spring:
+  boot:
+    admin:
+      client:
+        # server的url配置
+        url: "http://localhost:8010/"
+
+management:
+  # 端点信息接口使用的端口，为了和主系统接口使用的端口进行分离
+  server:
+    port: 9114
+    servlet:
+      context-path: /search
+  # 端点健康情况，默认值"never"，设置为"always"可以显示硬盘使用情况和线程情况
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+    caches:
+      enabled: true
+  # 设置端点暴露的哪些内容，默认["health","info"]，设置"*"代表暴露所有可访问的端点
+  endpoints:
+    web:
+      exposure:
+        include: '*'

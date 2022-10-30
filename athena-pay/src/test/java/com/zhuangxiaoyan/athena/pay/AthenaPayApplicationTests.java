@@ -1,13 +1,13 @@
 package com.zhuangxiaoyan.athena.pay;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaPayApplicationTests {
+public class AthenaPayApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

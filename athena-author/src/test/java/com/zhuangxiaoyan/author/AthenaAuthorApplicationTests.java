@@ -1,13 +1,13 @@
 package com.zhuangxiaoyan.author;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AthenaAuthorApplicationTests {
+public class AthenaAuthorApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }
