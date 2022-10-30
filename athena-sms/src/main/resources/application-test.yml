@@ -14,6 +14,13 @@ spring:
       client:
         # server的url配置
         url: "http://localhost:8009/"
+  # 配置springboot-cloud-nacos的注册与配置中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.25.137:8848
+      config:
+        server-addr: 192.168.25.137:8848
 
 management:
   # 端点信息接口使用的端口，为了和主系统接口使用的端口进行分离
