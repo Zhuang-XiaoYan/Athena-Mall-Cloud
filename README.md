@@ -76,9 +76,9 @@
 
 # Athena-Mall电商系统微监控服务
 
-![img.png](athena-mall开发文档/athena-monitor监控服务/images/athena-all-server-monitor.png)
+![img.png](athena-mall开发文档/athena监控服务/images/athena-all-server-monitor.png)
 
-![img.png](athena-mall开发文档/athena-monitor监控服务/images/athena-all-service.png)
+![img.png](athena-mall开发文档/athena监控服务/images/athena-all-service.png)
 
 # Athena-Mall 电商系统总结
 
