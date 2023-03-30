@@ -1,0 +1,20 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    privileged: true
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: Asia/Shanghai
+    command:
+      --wait_timeout=31536000
+      --interactive_timeout=31536000
+      --max_connections=1000
+      --default-authentication-plugin=mysql_native_password
+    volumes:
+      - /home/xjl/workspace/athena-data/mysql/data:/var/lib/mysql
+      - /home/xjl/workspace/athena-data/mysql/my.cnf:/etc/mysql/my.cnf
