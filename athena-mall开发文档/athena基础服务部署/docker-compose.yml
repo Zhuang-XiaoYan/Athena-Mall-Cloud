@@ -1,12 +1,13 @@
 version: '2'
 services:
+  # mysql服务
   mysql:
     image: mysql:5.7
     container_name: mysql
     privileged: true
     restart: always
     ports:
-      - "3306:3306"
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       TZ: Asia/Shanghai
@@ -18,6 +19,7 @@ services:
     volumes:
       - /home/xjl/workspace/athena-data/mysql/data:/var/lib/mysql
       - /home/xjl/workspace/athena-data/mysql/my.cnf:/etc/mysql/my.cnf
+  # redis服务
   redis:
     image: redis
     container_name: redis
@@ -29,3 +31,20 @@ services:
       - /home/xjl/workspace/athena-data/redis/data:/data
     command:
       /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf "
+  # nacos服务
+  nacos:
+    image: nacos/nacos-server
+    container_name: nacos
+    restart: always
+    ports:
+      - 8848:8848
+    environment:
+        - MODE=standalone
+        - MYSQL_MASTER_SERVICE_HOST=192.168.25.142
+        - MYSQL_MASTER_SERVICE_PORT=3306
+        - MYSQL_MASTER_SERVICE_USER=root
+        - MYSQL_MASTER_SERVICE_PASSWORD=root
+        - MYSQL_MASTER_SERVICE_DB_NAME=nacos
+    volumes:
+      - /home/xjl/workspace/athena-data/nacos/logs:/home/nacos/logs
+      - /home/xjl/workspace/athena-data/nacos/conf:/home/nacos/conf
