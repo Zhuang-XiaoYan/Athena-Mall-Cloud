@@ -1,6 +1,8 @@
 version: '2'
+
 services:
-  # mysql服务
+  #=======================================================================================================================
+  # mysql service
   mysql:
     image: mysql:5.7
     container_name: mysql
@@ -17,34 +19,115 @@ services:
       --max_connections=1000
       --default-authentication-plugin=mysql_native_password
     volumes:
-      - /home/xjl/workspace/athena-data/mysql/data:/var/lib/mysql
-      - /home/xjl/workspace/athena-data/mysql/my.cnf:/etc/mysql/my.cnf
-  # redis服务
+      - /home/xjl/jialexiong/docker_data/athenamall/mysql/data:/var/lib/mysql
+      - /home/xjl/jialexiong/docker_data/athenamall/mysql/my.cnf:/etc/mysql/my.cnf
+
+  # redis service
   redis:
-    image: redis
+    image: redis:latest
     container_name: redis
     restart: always
+    privileged: true
     ports:
       - 6379:6379
     volumes:
-      - /home/xjl/workspace/athena-data/redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - /home/xjl/workspace/athena-data/redis/data:/data
+      - /home/xjl/jialexiong/docker_data/athenamall/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - /home/xjl/jialexiong/docker_data/athenamall/redis/data:/data
     command:
-      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf "
-  # nacos服务
+      /bin/bash -c "redis-server /usr/local/etc/redis/redis.conf"
+
+  # nginx service
+  nginx:
+    image: nginx
+    container_name: nginx
+    restart: always
+    privileged: true
+    ports:
+      - 80:80
+    volumes:
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/www:/home/www
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/docker-nginx/log:/var/log/nginx
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/html:/usr/share/nginx/html
+
+  # nacos service
   nacos:
-    image: nacos/nacos-server
+    image: nacos/nacos-server:latest
     container_name: nacos
+    privileged: true
     restart: always
     ports:
       - 8848:8848
+      - 9848:9848
+      - 9849:9849
     environment:
-        - MODE=standalone
-        - MYSQL_MASTER_SERVICE_HOST=192.168.25.142
-        - MYSQL_MASTER_SERVICE_PORT=3306
-        - MYSQL_MASTER_SERVICE_USER=root
-        - MYSQL_MASTER_SERVICE_PASSWORD=root
-        - MYSQL_MASTER_SERVICE_DB_NAME=nacos
+      - MODE=standalone
+      - JVM_XMS=256m
+      - JVM_XMX=256m
     volumes:
-      - /home/xjl/workspace/athena-data/nacos/logs:/home/nacos/logs
-      - /home/xjl/workspace/athena-data/nacos/conf:/home/nacos/conf
+      - /home/xjl/jialexiong/docker_data/athenamall/nacos/logs:/home/nacos/logs
+      - /home/xjl/jialexiong/docker_data/athenamall/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties
+
+  #=======================================================================================================================
+  # granfa service
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: always
+    ports:
+      - 3000:3000
+
+  # prometheus service
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - /home/xjl/jialexiong/docker_data/athenamall/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml
+      - /home/xjl/jialexiong/docker_data/athenamall/prometheus/conf/rules.yml:/etc/prometheus/rules.yml
+
+  # container export service
+  cadvisor:
+    image: google/cadvisor
+    container_name: cadvisor
+    restart: always
+    ports:
+      - 8080:8080
+
+  # node export service
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    container_name: node-exporter
+    restart: always
+    ports:
+      - 9100:9100
+
+  # redis export service
+  redis-exporter:
+    image: oliver006/redis_exporter
+    container_name: redis_exporter
+    hostname: redis_exporter
+    restart: always
+    ports:
+      - "9121:9121"
+    command:
+      - '--redis.addr=redis://192.168.25.129:6379'
+
+  # redis export service
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:0.8.0
+    container_name: nginx_exporter
+    hostname: nginx_exporter
+    restart: always
+    ports:
+      - "9113:9113"
+
+
+
+
+
+
+
