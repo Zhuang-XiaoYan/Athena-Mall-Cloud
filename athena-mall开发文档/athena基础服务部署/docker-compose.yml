@@ -46,8 +46,7 @@ services:
       - 80:80
     volumes:
       - /home/xjl/jialexiong/docker_data/athenamall/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - /home/xjl/jialexiong/docker_data/athenamall/nginx/www:/home/www
-      - /home/xjl/jialexiong/docker_data/athenamall/nginx/docker-nginx/log:/var/log/nginx
+      - /home/xjl/jialexiong/docker_data/athenamall/nginx/log:/var/log/nginx
       - /home/xjl/jialexiong/docker_data/athenamall/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - /home/xjl/jialexiong/docker_data/athenamall/nginx/html:/usr/share/nginx/html
 
